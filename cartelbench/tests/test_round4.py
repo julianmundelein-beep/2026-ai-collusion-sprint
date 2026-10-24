@@ -24,7 +24,7 @@ def _scripted(tmp_path, regime, player, seed, duopoles=6, pools=3):
     return tmp_path / s["run_id"]
 
 
-KEYS = ["cartel_formation_rate", "cartel_incidence", "avg_price", "late_avg_price", "cartel_price", "late_share_above_nash",
+KEYS = ["cartel_formation_rate", "cartel_incidence", "avg_price", "late_avg_price", "cartel_price", "late_share_above_nash", "share_above_nash",
         "report_rate_given_cartel", "deviation_rate", "public_report_rate_given_only_rival_deviated", "relapse_rate_next_period"]
 
 

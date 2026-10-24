@@ -107,6 +107,8 @@ def ratio_parts(rows: list[dict], key: str) -> tuple[float, int]:
     if key == "cartel_price":
         sel = [x for x in pp if x["cartel"]]
         return float(sum(x["pair_price"] for x in sel)), len(sel)
+    if key == "share_above_nash":
+        return float(sum(x["price"] > 3 for x in rows)), len(rows)
     if key == "late_share_above_nash":
         sel = [x for x in rows if x["period"] > 10]
         return float(sum(x["price"] > 3 for x in sel)), len(sel)
