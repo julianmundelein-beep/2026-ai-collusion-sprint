@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 14:20 HKT by the main session
 
 ## Clock
 
@@ -21,7 +21,7 @@
 ## Gates (in this order)
 
 - [x] Team and eligibility checked (solo, open globally, no background required)
-- [ ] Rules researched: HACKATHON.md complete (`pruefen.py rahmen` passes), official templates found or ruled out
+- [x] Rules researched: HACKATHON.md complete (`pruefen.py rahmen` passes 2026-10-24), official template found (Google Doc), copy in official/ pending Julian's download OK
 - [ ] Registered; questions to the organizers sent, including mandatory content
 - [ ] Idea chosen: CORE_IDEA.md written, decision in DECISIONS.md
 - [ ] Licence decided with the team (DECISIONS.md)
@@ -42,8 +42,8 @@ At most two long build sessions plus one short session at the same time. One ses
 | # | Session | Skill | Where | Writes | Owner | State | Session |
 |---|---|---|---|---|---|---|---|
 | 0 | Main session | hackathon-kickoff | main folder | STATUS, FACTS, CORE_IDEA; commits DECISIONS | Julian + Claude | running | AI Collusion Research Sprint · Hauptsession |
-| 1 | Framework research | hackathon-kickoff (research) | main folder | HACKATHON.md, official/, private/JUDGES.md, private/COMPETITION.md | Claude | running (started 2026-10-24 13:45 HKT, max 1 h) | local_51c0819d-c7e3-4cb4-8036-c263bc6b9c22 |
-| 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | running (started 2026-10-24 13:45 HKT, short form) | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
+| 1 | Framework research | hackathon-kickoff (research) | main folder | HACKATHON.md, official/, private/JUDGES.md, private/COMPETITION.md | Claude | waiting for Julian (template download OK, Discord check); HACKATHON.md, JUDGES.md, COMPETITION.md committed ac903d5 | local_51c0819d-c7e3-4cb4-8036-c263bc6b9c22 |
+| 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | waiting for Julian (which ideas to check fully, or round 2); round 1 committed 44785f6, 23 ideas, shortlist top 5 plus wildcard | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
 | 3 | Jury | jury-simulation | main folder | private/reviews/ | | not started | |
 | 4 | Website | design-taste-frontend | own worktree or cloud | web/ (branch) | | dropped (not a deliverable) | |
 | 5 | Backend | hackathon-backend | own worktree or cloud | code folder on its branch, README | | not started | |
@@ -62,9 +62,10 @@ Every deliverable from HACKATHON.md, the one place it is made, and who makes it.
 
 | Deliverable | The one source | Session or person | State | Final file submitted |
 |---|---|---|---|---|
-| Research report (PDF, official template, max 8 pages before references and appendices, abstract 150 to 250 words, authors and affiliations, appendix "Limitations and Dual-Use / Ethical Considerations") | official template copy (link in HACKATHON.md), draft in paper/ | 9 Report | not started | |
+| Research report (PDF, official template, max 8 pages before references and appendices, plan 4 to 6; abstract 150 to 250 words; authors and affiliations; appendix "Limitations and Dual-Use / Ethical Considerations"; LLM Usage Statement; at least one figure) | Julian's Google Doc copy of the official template (copy link in HACKATHON.md, Links); PDF export is the submission; file `<ProjectTitle>_AI-Collusion-Research-Sprint_2026.pdf` | 9 Report | not started | |
 | Public GitHub repo (optional) | this repo, README from the backend session | 5 Backend | not started | |
-| Video demo, 3 to 5 min (optional) | private/video/ | 7 Demo video | optional | |
+| Video demo, 3 to 5 min (optional, URL only, judges review the PDF) | private/video/ | 7 Demo video | optional | |
+| Submission form: project summary, tracks, publishing yes/no, team name, location, member name, email, Discord, Scholar | SUBMISSION.md (draft texts), Julian fills personal fields | main session | not started | |
 
 ## Mandatory content
 
@@ -78,17 +79,23 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 | Results with variance, seeds, baselines and a positive control | Guidelines, Recommended Report Structure | report Results | open |
 | Methodology detailed enough to replicate: models, prompts, environments, seeds, metrics | Guidelines | report Methodology, repo | open |
 | Rubric: Impact Potential & Innovation, Execution Quality, Presentation & Clarity, each 1 to 5, no weights published | Guidelines, Judging Criteria | report structure | open |
+| LLM Usage Statement, truthful; "Our main contributions are:" list; theory of change sentence | template, rubric | report last section, Introduction | open |
+| Template conflicts (appendix heading, Methods vs Methodology, 4 vs 8 pages): keep template headings, add appendix with the exact Guidelines heading, plan 4 to 6 pages | HACKATHON.md, Official templates | report | decided by the research session, question in the mail |
+| Candidates from the judges' profiles: false-positive rate next to detection rate, cost of the countermeasure to legitimate performance, threat model in security terms, reproducible harness | private/JUDGES.md | report Methods, Results, Discussion | candidate, confirm in R01/R02 |
+| Candidate from the HK hub framing: one paragraph on what the result means for financial systems | aisafetyhk.org | report Discussion | candidate |
 
 ## Waiting for
 
-- Framework research: HACKATHON.md, template download OK, judges, competition
-- Ideas: shortlist in IDEAS.md
+- Julian: download OK for the template (.docx and .pdf export of the Google Doc) to hackathon/official/
+- Julian: Discord check (pinned announcements, help-desk channel, Modal credits), send the email draft in HACKATHON.md
+- Julian: pick ideas from the shortlist for the full check, then jury round R01
 
 ## Next step
 
-Framework research and ideas run in parallel; then jury round R01 on the shortlist, Julian picks, CORE_IDEA.md, R02, backend (experiments) and report.
+Julian picks 2 to 3 shortlist ideas for the full check; jury round R01 on the shortlist; then the choice, CORE_IDEA.md, R02, backend (experiments) and report in parallel.
 
 ## Für die Skills
 
 Append only, every session, one line each: `YYYY-MM-DD · <session> · <skill> · <problem> · <suggestion>`. Skills are not changed during the hackathon; afterwards a skill workshop session in `~/claude-tools` works through this list.
 
+- 2026-10-24 · Ideen · hackathon-ideen · Research-Sprint-Format: Kurzkarte und Prüfkarte kennen keine Felder für Forschungsfrage, Hypothese, Variable, Metrik, Baseline mit Positivkontrolle, Runs und Seeds, Kosten, Null-Ergebnis-Risiko, Replikationsprüfung gegen Vorarbeiten; Kurzform erlaubt nur zwei Tracks, der Auftrag nannte drei · Variante „Research Sprint" im Skill: diese Felder in die Kurzkarte, Prüfskript liest sie, Trackzahl in der Kurzform als Parameter; Platzhalter „–" in der Vorlage (Nichtkunden-Ebene, „0–5") verstößt gegen die Gedankenstrich-Regel des Dateivertrags, Vorlage auf „keine" und „0 bis 5" ändern
