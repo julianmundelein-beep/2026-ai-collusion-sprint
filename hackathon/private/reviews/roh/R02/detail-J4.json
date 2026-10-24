@@ -1,0 +1,58 @@
+{
+ "juror": "D-J4",
+ "scores_now": {
+  "impact": 4,
+  "execution": 3,
+  "presentation": 3
+ },
+ "scores_if_pending_filled_and_cut_to_8_pages": {
+  "impact": 4,
+  "execution": 4,
+  "presentation": 4
+ },
+ "headline": {
+  "choice": "c",
+  "divergence_carries": "partly",
+  "why": "The human contrast is the contribution, but (a) and (b) generalise from one Haiku model to 'LLM' and use absolutes; the title should name the contrast without overclaiming.",
+  "better_wording": "Fines, Leniency and Rewards on an LLM Pricing Agent: Stronger Deterrence than Humans, Stable Surviving Cartels"
+ },
+ "novelty": {
+  "classification": "extension",
+  "why": "Human-calibrated replay of a classic leniency experiment on LLM agents; the instruments were named before (Idowu) but never measured. The design is borrowed; the LLM-versus-human enforcement comparison is new."
+ },
+ "execution_evidence": {
+  "preregistration": "partly",
+  "positive_control": "evidenced",
+  "known_effect_arms": "not yet",
+  "contamination_test": "partly",
+  "n_table": "evidenced",
+  "deterrence_vs_words": "partly",
+  "why": "Identical wording across fine, leniency and reward with a monotone response to the report payoff is a clever within-design contrast, but laissez-faire lacks the prohibition text; a zero-penalty authority arm or the fine_certain and dose arms are needed."
+ },
+ "figure1_30s": {
+  "understood": "partly",
+  "why": "Green and red titles give the verdict fast, but panels 7 and 8 show data despite 'not tested', axes carry code names, and the tested contrast per panel stays implicit.",
+  "fix": "Grey out or drop panels 7 and 8, use plain axis labels, remove the embedded title, and annotate each panel with the tested contrast and its interval."
+ },
+ "cuts_to_8_pages": {
+  "n_table_to_appendix": "costs points",
+  "pilot_row_out_of_table1": "costs nothing",
+  "related_work_to_three_paragraphs": "costs nothing",
+  "cheapest_cut": "Drop the pilot row from Table 1; the text already reports the pilot result in one sentence.",
+  "better_cut": "Delete the rubric reading guide, merge the Conclusion into the Discussion, move 'Deviations from the paper' to the appendix; keep a slim n-table in the body.",
+  "why": "Denominators, refusals and cost are what I check first as an evaluator; the pilot row duplicates a sentence; Related Work is already tight, so trimming it saves little but costs nothing."
+ },
+ "must_fix_before_submission": [
+  "Reconcile seeds: Appendix C runs one seed per regime, Methods claims four pool sessions with seeds 1 to 4.",
+  "Leniency convictions '9 (3 / 7)' sum to 10; recheck against 2,400 points of fines.",
+  "Methods says 0.80 to 0.92 USD per regime; Table 3 shows 0.64 and 0.57.",
+  "Pilot: '6 of 6 late duopolies' from 3 duopolies per model; explain the count or correct it.",
+  "Fill or delete every [F??]; state the 4-cluster bootstrap limitation and add a permutation test."
+ ],
+ "biggest_risk": "Validation still pending: known-effect LLM arms, shifted grid and pre-registration commit are [F??]; with numeric inconsistencies (seeds, convictions, cost) an evaluator doubts the pipeline and drops execution a point.",
+ "three_questions": [
+  "With only 4 pool sessions per regime, how reliable are percentile cluster-bootstrap intervals, and do the reproduced results survive a permutation test or more seeds?",
+  "Does deterrence persist with the full authority text but a zero penalty, which would separate the vocabulary of prohibition from expected cost?",
+  "Is the near-zero undercutting specific to Haiku 5.5 at low effort, or do Sonnet, Opus and a non-Anthropic model also keep every agreement, and what do the recorded reasons say?"
+ ]
+}
