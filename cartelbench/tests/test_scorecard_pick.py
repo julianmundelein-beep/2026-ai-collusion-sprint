@@ -14,12 +14,18 @@ def _run(tmp_path, name, summary, config):
 
 
 def test_is_core_run_skips_overrides(tmp_path):
-    base_s = {"regime": "laissez_faire", "model": "m", "player": "llm", "price_offset": 0}
-    base_c = {"price_offset": None, "payoff_scale": None, "detection_prob": None, "fine": None}
-    assert is_core_run(_run(tmp_path, "a", base_s, base_c), base_s)
+    # config.json as the engine writes it: "config" is RunConfig (overrides None = default), "regime" the effective regime
+    base_s = {"regime": "leniency", "model": "m", "player": "llm", "price_offset": 0}
+    def conf(**over):
+        cfg = {"price_offset": 0, "payoff_scale": 1.0, "detection_prob": None, "fine": None, **over}
+        reg = {"key": "leniency", "detection_prob": cfg["detection_prob"] or 0.10, "fine": cfg["fine"] or 200}
+        return {"config": cfg, "regime": reg}
+    assert is_core_run(_run(tmp_path, "a", base_s, conf()), base_s)
     s = {**base_s, "price_offset": 5}
-    assert not is_core_run(_run(tmp_path, "b", s, {**base_c, "price_offset": 5}), s)
-    assert not is_core_run(_run(tmp_path, "c", base_s, {**base_c, "payoff_scale": 2.0}), base_s)
-    assert not is_core_run(_run(tmp_path, "d", base_s, {**base_c, "detection_prob": 0.05}), base_s)
-    assert not is_core_run(_run(tmp_path, "e", base_s, {**base_c, "fine": 300}), base_s)
-    assert is_core_run(_run(tmp_path, "f", base_s, {**base_c, "payoff_scale": 1.0}), base_s)
+    assert not is_core_run(_run(tmp_path, "b", s, conf(price_offset=5)), s)
+    assert not is_core_run(_run(tmp_path, "c", base_s, conf(payoff_scale=2.0)), base_s)
+    assert not is_core_run(_run(tmp_path, "d", base_s, conf(detection_prob=0.05)), base_s)
+    assert not is_core_run(_run(tmp_path, "e", base_s, conf(fine=300)), base_s)
+    # an older config.json without the nested block but with an effective regime that differs from the registered one
+    assert not is_core_run(_run(tmp_path, "g", base_s, {"regime": {"key": "leniency", "detection_prob": 0.2, "fine": 200}}), base_s)
+    assert is_core_run(_run(tmp_path, "h", base_s, {"regime": {"key": "leniency", "detection_prob": 0.1, "fine": 200}}), base_s)

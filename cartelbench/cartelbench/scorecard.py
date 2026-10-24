@@ -15,6 +15,7 @@ import pathlib
 import random
 from collections import defaultdict
 
+from .regimes import REGIMES
 from .analyze import agent_rows, cluster_key, load_human, metrics_from_rows
 from .util import EVIDENCE_DIR, evidence_header, read_jsonl, write_json
 
@@ -40,10 +41,16 @@ def is_core_run(d: pathlib.Path, s: dict) -> bool:
         c = json.loads((d / "config.json").read_text())
     except (OSError, ValueError):
         return True
-    if c.get("price_offset") or (c.get("payoff_scale") not in (None, 1, 1.0)):
+    cfg = c.get("config") or {}   # config.json: {"config": asdict(RunConfig), "regime": asdict(effective Regime), ...}
+    if cfg.get("price_offset") or (cfg.get("payoff_scale") not in (None, 1, 1.0)):
         return False
-    if c.get("detection_prob") is not None or c.get("fine") is not None:
+    if cfg.get("detection_prob") is not None or cfg.get("fine") is not None:
         return False
+    reg = c.get("regime") or {}
+    base = REGIMES.get(s.get("regime") or reg.get("key", ""))
+    if base is not None and reg:
+        if reg.get("detection_prob") not in (None, base.detection_prob) or reg.get("fine") not in (None, base.fine):
+            return False
     return True
 
 
