@@ -4,7 +4,7 @@ Working name; the final project name follows Julian's pick (CORE_IDEA.md, "Messa
 
 Links: [Repository](https://github.com/julianmundelein-beep/2026-ai-collusion-sprint) · [The paper (RAND 2012, publisher page)](https://onlinelibrary.wiley.com/doi/10.1111/j.1756-2171.2012.00170.x) · [Pre-registration](cartelbench/PREREGISTRATION.md) · [Build plan](cartelbench/BUILD_PLAN.md) · [Measurements](cartelbench/evidence/MEASUREMENTS.md) · [Judges' guide](docs/JUDGES_GUIDE.md) · [Design notes: what comes from the paper, what is new](docs/DESIGN_NOTES.md) · Research report: to follow (PDF on the official template)
 
-Cartel policy (fines, leniency programmes, whistleblower rewards) rests on assumptions about human players, and nobody has tested these instruments on LLM pricing agents. This repository replays the cartel laboratory experiment of Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND Journal of Economics, 2012) with LLM sellers under the same rules, payoffs, regimes and matching, so that every number sits next to the published human result. The output is a scorecard "x of 8 Bigoni results replicated" per model, a regime ranking with cluster-bootstrap intervals, and a cost per regime (fines, reports as investigation load, rewards). Status on 2026-10-24 evening: harness checked against the paper, 49 tests green (M01), pre-registration committed with the jury-round R01 amendment, pilot done: Haiku 5.5, Sonnet 5.5 and Opus 5.5 all pass the pre-registered positive control in laissez-faire (6 of 6 late duopolies above the Nash price each, 0 refusals, 3.01 USD in total, M11 to M18); Haiku 5.5 is the main model, the four core regimes are running.
+Cartel policy (fines, leniency programmes, whistleblower rewards) rests on assumptions about human players, and nobody has tested these instruments on LLM pricing agents. This repository replays the cartel laboratory experiment of Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND Journal of Economics, 2012) with LLM sellers under the same rules, payoffs, regimes and matching, so that every number sits next to the published human result. The output is a scorecard "x of 8 Bigoni results replicated" per model, a regime ranking with cluster-bootstrap intervals, and a cost per regime (fines, reports as investigation load, rewards). Status on 2026-10-24 evening: harness checked against the paper, 49 tests green (M01), pre-registration committed with the jury-round R01 amendment, pilot done: Haiku 5.5, Sonnet 5.5 and Opus 5.5 all pass the pre-registered positive control in laissez-faire (6 of 6 late duopolies above the Nash price each, 0 refusals, 3.01 USD in total, M11 to M18); the four core regimes ran with Haiku 5.5 (20 duopoles each, 10,980 calls, 0 refusals, 2.93 USD, M20 to M24); scorecard 2 of 6 tested Bigoni results reproduced (M30).
 
 ## What it does
 
@@ -23,21 +23,44 @@ python3 -m cartelbench.contamination --model claude-haiku-5-5                   
 python3 -m cartelbench.pilot --models claude-haiku-5-5,claude-sonnet-5-5,claude-opus-5-5  # positive control, 3 duopoles each
 ```
 
-## Core runs (Sunday morning, one command per regime)
+## Core runs: done (Haiku 5.5, 2026-10-24 evening, cloud)
 
-Main model after the pilot: Haiku 5.5 (positive control passed, `cartelbench/evidence/pilot/pilot_summary.json`; rule in `PREREGISTRATION.md`). Prompts, payoffs, regime logic and termination are frozen from the pilot on. Measured in the pilot: 0.040 USD and about 393,000 tokens per duopoly, so one regime of 20 duopoles costs about 0.80 USD and the four core regimes about 3.2 USD (M12).
+Main model after the pilot: Haiku 5.5 (all three models passed the positive control, `cartelbench/evidence/pilot/pilot_summary.json`; rule in `PREREGISTRATION.md`). Prompts, payoffs, regime logic and termination are frozen since the pilot. The four core regimes ran in the cloud one after another at `--concurrency 8` (measurements M20 to M24, scorecard M30):
+
+| Regime | Seed | Run | Cartel incidence | Average price | Report rate given cartel | Calls | Refusals | Invalid | USD | Wall time |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Laissez-faire | 1 | `laissez_faire_claude-haiku-5-5_20261024T100506Z_s1` | 0.956 | 8.85 | n/a | 4,376 | 0 | 0 | 0.92 | 24 min |
+| Fine | 2 | `fine_claude-haiku-5-5_20261024T103034Z_s2` | 0.439 | 5.59 | 0.005 | 2,608 | 0 | 2 | 0.80 | 18 min |
+| Leniency | 3 | `leniency_claude-haiku-5-5_20261024T104849Z_s3` | 0.032 | 3.33 | 0.375 | 2,074 | 0 | 0 | 0.64 | 16 min |
+| Reward | 4 | `reward_claude-haiku-5-5_20261024T110426Z_s4` | 0.013 | 3.33 | 0.667 | 1,922 | 0 | 0 | 0.57 | 14 min |
+
+Scorecard (`cartelbench/evidence/scorecard/scorecard.md`, Figure 1 `figure1_dotplot.png`): 2 of 6 tested Bigoni results reproduced (cartel deterrence by regime; detection through reports), 4 not reproduced (recidivism, average prices, cartel prices, price deviations: the LLM sellers almost never undercut an agreed price, 0.0 to 0.015 against 0.37 to 0.78 for the humans, and agree on 9 instead of 5 to 7), 2 not tested (NoReport, ReMatch arms). The two invalid answers in Fine are second-round proposals below the stated minimum whose reason declines to coordinate ("prohibited collusion"); they count as invalid, not as refusals.
+
+## Next runs (Sunday), one command each
+
+Measured cost: Haiku 5.5 0.03 to 0.05 USD per duopoly, Sonnet 5.5 0.37 USD per duopoly (pilot M15), 14 to 24 minutes per 20-duopole regime at concurrency 8. Validation arms first (pre-registration), then breadth in the order of DECISIONS.md (the last item on the cut list runs first):
 
 ```bash
-cd cartelbench && pip install -e . && cp -n .env.example .env   # put ANTHROPIC_API_KEY into .env once
-python3 -m cartelbench.run --regime laissez_faire --model claude-haiku-5-5 --duopoles 20 --seed 1
-python3 -m cartelbench.run --regime fine          --model claude-haiku-5-5 --duopoles 20 --seed 2
-python3 -m cartelbench.run --regime leniency      --model claude-haiku-5-5 --duopoles 20 --seed 3
-python3 -m cartelbench.run --regime reward        --model claude-haiku-5-5 --duopoles 20 --seed 4
-python3 -m cartelbench.analyze --bootstrap evidence/runs/<run_id of each regime>   # run ids are printed by each run and listed in the pilot and run summaries
-python3 -m cartelbench.scorecard --model claude-haiku-5-5
+cd cartelbench                                   # key in .env or the environment; run tests first: sh scripts/run_tests.sh
+python3 -m cartelbench.run --regime instructed_cartel --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 11   # validation: must form cartels (about 0.4 USD)
+python3 -m cartelbench.run --regime fine_certain      --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 12   # validation: must kill cartels
+python3 -m cartelbench.run --regime nocomm            --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 13   # validation: no discussion
+python3 -m cartelbench.run --regime laissez_faire --price-offset 5 --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 14   # contamination: shifted grid
+python3 -m cartelbench.run --regime laissez_faire --model claude-sonnet-5-5 --duopoles 10 --pools 2 --seed 21   # V4 second model, about 3.7 USD per regime
+python3 -m cartelbench.run --regime fine          --model claude-sonnet-5-5 --duopoles 10 --pools 2 --seed 22
+python3 -m cartelbench.run --regime leniency      --model claude-sonnet-5-5 --duopoles 10 --pools 2 --seed 23
+python3 -m cartelbench.run --regime reward        --model claude-sonnet-5-5 --duopoles 10 --pools 2 --seed 24
+python3 -m cartelbench.run --regime leniency --detection 0.05 --model claude-haiku-5-5 --duopoles 20 --seed 31   # V3 dose, about 0.7 USD each
+python3 -m cartelbench.run --regime leniency --detection 0.20 --model claude-haiku-5-5 --duopoles 20 --seed 32
+python3 -m cartelbench.run --regime reward   --detection 0.05 --model claude-haiku-5-5 --duopoles 20 --seed 33
+python3 -m cartelbench.run --regime reward   --detection 0.20 --model claude-haiku-5-5 --duopoles 20 --seed 34
+python3 -m cartelbench.run --regime noreport --model claude-haiku-5-5 --duopoles 20 --seed 5    # scorecard result 7
+python3 -m cartelbench.run --regime rematch  --model claude-haiku-5-5 --duopoles 20 --seed 6    # scorecard result 8
+python3 -m cartelbench.run --regime clone    --model claude-haiku-5-5 --duopoles 20 --seed 7    # V5
+python3 -m cartelbench.scorecard --model claude-haiku-5-5                                        # rerun after every new arm; also --model claude-sonnet-5-5
 ```
 
-Each run writes `evidence/runs/<run_id>/` (config, prompts, `calls.jsonl`, `periods.jsonl`, `summary.json` with the n-table: calls, refusals, invalid answers, errors, defaulted decisions, tokens, USD). The four pool sessions of a regime play in parallel; `--concurrency 8` (default) caps the API calls in flight. Wall time per regime at that setting is about 25 minutes (pilot: 24 periods with 3 pairs in 5 minutes 42 seconds at concurrency 6; a regime has 20 pairs and 8 slots). Two regimes can run in two terminals at once; if `summary.json` shows `errors` above 0, rate limits hit despite the SDK's five retries, and the regime should be rerun with `--concurrency 4` and a new seed noted in MEASUREMENTS.md. A refusal or an invalid answer is never retried; the engine counts it and plays the default action, and the counts land in the n-table.
+Each run writes `evidence/runs/<run_id>/` (config, prompts, `calls.jsonl`, `periods.jsonl`, `summary.json` with the n-table: calls, refusals, invalid answers, errors, defaulted decisions, tokens, USD) and prints the run id. The pool sessions of a run play in parallel; `--concurrency 8` (default) caps the API calls in flight. Two runs can go in two terminals at once; if `summary.json` shows `errors` above 0, rate limits hit despite the SDK's five transport retries, and the run should be repeated with `--concurrency 4` and a new seed noted in MEASUREMENTS.md. A refusal or an invalid answer is never retried; the engine counts it and plays the default action. After each run, add its row to `cartelbench/evidence/MEASUREMENTS.md` with the commit of the evidence.
 
 One command per regime and model (the full list; 20 duopoles as 4 independent pool sessions of 10 agents, the bootstrap unit):
 
