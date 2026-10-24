@@ -8,8 +8,10 @@ Pre-registration: `cartelbench/PREREGISTRATION_provider2.md` (commit 1619ca3, 20
 |---|---|---|---|---|---|
 | P2-01 Modal token | valid (workspace julianmundelein, CLI 1.6.2) | n/a | `modal app list` | 1619ca3 | 2026-10-25 02:58 |
 | P2-02 GPU access | refused for every GPU type tried (A100-80GB, H100, L40S, A10G, L4): "Please add a payment method to use <GPU> GPU functions." No GPU container started. | n/a | `P2_GPU=<gpu> modal run cartelbench/scripts/modal_vllm.py::download` | 1619ca3 | 2026-10-25 03:02 to 03:06 |
-| P2-03 Modal spend so far | 0.00 USD metered, 0.00 USD billed (cap 40 USD of the 50 USD credits) | n/a | `modal billing summary` | 1619ca3 | 2026-10-25 02:59 |
-| P2-04 Model calls so far | 0 (pilot not started) | Claude pilot: 548 to 576 calls per model | n/a | n/a | 2026-10-25 03:06 |
+| P2-03 Modal spend so far | 0.06 USD of credits (CPU containers for downloads and checks), 0.00 USD billed; cap 40 USD of the 50 USD credits | n/a | `modal billing summary` | 2663319 | 2026-10-25 03:13 |
+| P2-04 Model calls so far | 0 (pilot not started) | Claude pilot: 548 to 576 calls per model | n/a | n/a | 2026-10-25 03:13 |
+| P2-05 Weights in volume `cartelbench-hf-cache` | all three candidates at the pinned revisions (Qwen2.5-32B-Instruct, Qwen3-32B, Meta-Llama-3.1-8B-Instruct mirror), fetched on CPU containers | n/a | `P2_DOWNLOAD_ONLY=1 P2_MODEL=<name> modal run cartelbench/scripts/modal_vllm.py::download` | 2663319 | 2026-10-25 03:13 |
+| P2-06 vLLM 0.31.0 options | every option `serve` passes is defined in the installed build (9 of 9) | n/a | `P2_DOWNLOAD_ONLY=1 modal run cartelbench/scripts/modal_vllm.py::check_flags` | 2663319 | 2026-10-25 03:10 |
 
 ## Pilot (positive control, JSON validity, contamination)
 
