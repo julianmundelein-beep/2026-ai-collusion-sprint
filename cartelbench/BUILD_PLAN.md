@@ -126,3 +126,20 @@ Assumptions: about 27 periods per session, 3 calls per agent and period on avera
 | Contamination questions | about 30 | small | small | under 0.01 | 0.05 |
 
 Everything with Haiku 5.5 as the main model costs about 9 USD of the 100 USD credit; Sonnet 5.5 on the four core regimes alone costs about 52 USD. Recommendation: Haiku 5.5 as the main model if it forms cartels in the pilot, Sonnet 5.5 as one of the V4 cultures with 10 duopoles per regime (about 26 USD). The estimate is re-measured after the pilot from `usage` in `calls.jsonl` and reported to FACTS.
+
+## Round 4 after jury R04 (cloud, 2026-10-25 03:00 to 05:20 HKT)
+
+| Step | State | Evidence |
+|---|---|---|
+| Amendment 4 (K1, K2, prompt robustness, ledger) committed and pushed before the first paid call | done 7b727bb, 03:00 HKT | PREREGISTRATION.md |
+| Cost plan before the first paid call | done: 20.62 USD expected, 37.35 upper, cap 50 | M60 |
+| K1 and K2 in parallel | done after one aborted launch (429 at 44 requests in flight, 4.23 USD, M62); relaunched at 20 in flight, 0 errors | M61, M65 |
+| Prompt robustness (c) | done; started while the last K1 run (laissez-faire) was still in flight | M69 |
+| Scorecards 4 and 8 pools, permutation tests, Sonnet 4 pools, prohibition against no channel | done | M63, M64, M66 to M68 |
+| Amendment 5 (price screen: rule, threshold from recorded data, false-positive measurement, reading) before the first screen call | done 61c83a9, 03:15 HKT | PREREGISTRATION.md, M70 |
+| K3 screen arms and false-positive rate | done; started while the last paraphrase run was still in flight | M71, M72 |
+| Run ledger | done | M73 |
+| Tests | 60 green | M74 |
+| Cost | round 23.67 USD, programme 47.18 of 100 USD | M75 |
+
+Core freeze holds: the instructions, payoffs, regime rules and termination of every existing arm are unchanged (test against the 160 recorded system prompts); new arms are new regime configurations with tests. Changes to shared code: `prompt_variant` switch (default original), screen fields on `Regime` (default off), a launch log in `run.py`, the scorecard picks the first registered run per regime (explicit merged samples for added pools), and the evidence dirty flag ignores files under `evidence/`.
