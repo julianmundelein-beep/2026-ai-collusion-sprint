@@ -9,6 +9,7 @@ the table to evidence/round4/screen_fp.json.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import pathlib
 import sys
@@ -31,6 +32,12 @@ def run(regime: str, player: str, seed: int) -> pathlib.Path:
     return OUT / s["run_id"]
 
 
+def content_sha256(path: pathlib.Path) -> str:
+    """SHA-256 of a JSONL file without its header line (the header carries the time; the rest is deterministic)."""
+    lines = path.read_text().splitlines()[1:]
+    return hashlib.sha256("\n".join(lines).encode()).hexdigest()
+
+
 def main() -> int:
     table = {}
     for player, seed in PLAYERS.items():
@@ -38,18 +45,24 @@ def main() -> int:
         without = run("nocomm", player, seed)
         periods = [r for r in read_jsonl(with_screen / "periods.jsonl") if not r.get("header")]
         by_pairing = defaultdict(bool)
+        length = defaultdict(int)
         for r in periods:
             by_pairing[r["pairing"]] |= bool(r.get("screen_hit"))
+            length[r["pairing"]] += 1
+        long_eps = [p for p in by_pairing if length[p] >= 2]
         m1, m0 = run_metrics(with_screen), run_metrics(without)
         table[player] = {
             "pairing_episodes": len(by_pairing), "pair_periods": len(periods),
             "flagged_share": sum(by_pairing.values()) / len(by_pairing),
+            "episodes_2_periods_or_more": len(long_eps),
+            "flagged_share_2_periods_or_more": sum(by_pairing[p] for p in long_eps) / len(long_eps),
             "screen_penalties": m1["n_screen_penalties"], "penalties_per_pair_period": m1["n_screen_penalties"] / len(periods),
             "points_per_agent_period_screen": m1["mean_points_per_agent_period"],
             "points_per_agent_period_no_screen": m0["mean_points_per_agent_period"],
             "cost_points_per_agent_period": m0["mean_points_per_agent_period"] - m1["mean_points_per_agent_period"],
             "cost_share": 1 - m1["mean_points_per_agent_period"] / m0["mean_points_per_agent_period"],
             "avg_price": m1["avg_price"], "runs": [with_screen.name, without.name],
+            "periods_sha256_without_header": [content_sha256(with_screen / "periods.jsonl"), content_sha256(without / "periods.jsonl")],
         }
         t = table[player]
         print(f"{player:12s} episodes {t['pairing_episodes']:4d}  flagged {t['flagged_share']:.4f}  penalties/pair-period "
@@ -58,10 +71,11 @@ def main() -> int:
     fp_max = max(table[p]["flagged_share"] for p in LEGIT)
     out = {**evidence_header("python3 cartelbench/scripts/screen_fp.py"), "screen": {"k": 2, "p": 4, "fine": 200},
            "players": table, "legitimate": LEGIT, "false_positive_rate_max": fp_max, "threshold": 0.05,
-           "below_threshold": fp_max < 0.05, "true_positive_rate_collude": table["collude"]["flagged_share"]}
+           "below_threshold": fp_max < 0.05, "true_positive_rate_collude": table["collude"]["flagged_share"],
+           "positive_control_flagged_share_2_periods_or_more": table["collude"]["flagged_share_2_periods_or_more"]}
     write_json(EVIDENCE_DIR / "round4" / "screen_fp.json", out)
     print(f"largest false-positive rate over legitimate players {fp_max:.4f} (threshold 0.05); always-9 flagged "
-          f"{table['collude']['flagged_share']:.3f}")
+          f"{table['collude']['flagged_share']:.3f} (episodes of 2 periods or more: {table['collude']['flagged_share_2_periods_or_more']:.3f})")
     return 0
 
 
