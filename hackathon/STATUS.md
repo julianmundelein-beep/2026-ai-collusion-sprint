@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-25 02:30 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-25 02:50 HKT by the main session
 
 ## Clock
 
@@ -44,7 +44,7 @@ At most two long build sessions plus one short session at the same time. One ses
 | 0 | Main session | hackathon-kickoff | main folder | STATUS, FACTS, CORE_IDEA; commits DECISIONS | Julian + Claude | running | AI Collusion Research Sprint · Hauptsession |
 | 1 | Framework research | hackathon-kickoff (research) | main folder | HACKATHON.md, official/, private/JUDGES.md, private/COMPETITION.md | Claude | done (HACKATHON.md, JUDGES.md, COMPETITION.md, official/ committed); kept open for COMPETITION rescans | local_51c0819d-c7e3-4cb4-8036-c263bc6b9c22 |
 | 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | done (two rounds, 39 ideas, I24 chosen with build plan, commit d5e8cf9); archive on Julian's OK | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
-| 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | R03 done (8f3ac56): rank 1 of 5, 4 / 4 / 4 in the scoring round, Presentation 3 in the full read; levers sent to the report session; done unless Julian wants R04 | local_525668aa-4f92-4e55-8006-1293f749dce9 |
+| 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | R04 done (f19ed6d): path to 5; package K6, K2, K1, then K3 or K4; 4/4/4 stable optimum, Impact 5 only via K3 | local_525668aa-4f92-4e55-8006-1293f749dce9 |
 | 4 | Website | design-taste-frontend | own worktree or cloud | web/ (branch) | | dropped (not a deliverable) | |
 | 5 | Backend | hackathon-backend | cloud (claude.ai/code), branch `backend` | `cartelbench/` on its branch, README, docs/ | Claude (cloud) | all arms done (F13 to F40): core, validation, placebo, shifted grid, Sonnet second model, dose, NoReport, ReMatch, clone; V6 cut; branch `origin/backend` at c14c944 (23:10 HKT), 51 tests green, 23.51 USD spent; ready to merge | cloud |
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
@@ -122,7 +122,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Next step
 
-Report session applies the R03 levers (no new run); Julian decides title length, commit authorship and licence; then close-out per references/repo-abschluss.md: SUBMISSION.md, LICENSE, translate what stays, remove hackathon/, CLAUDE.md and .claude/settings.json from the tree, repo public, form texts drafted; submission by Monday 16:59 HKT.
+Order decided by Julian (DECISIONS 02:40): backend first (new cloud session, amendment 4, K2, K1, prompt-robustness arm, run ledger; K3 or K4 on Julian's word), report last in one pass with the R03 levers, R04 K6, Julian's markings J1 to J8 and the new numbers; then close-out and submission by Monday 16:59 HKT.
 
 ## Für die Skills
 
@@ -133,3 +133,4 @@ Append only, every session, one line each: `YYYY-MM-DD · <session> · <skill> �
 - 2026-10-24 · Jury · jury-simulation · Kein Paket für ideenspezifische Fragen (Replikation oder neu, trägt die Positivkontrolle, Streichreihenfolge); Juroren bewerten Ideen in Dimension 2 nach dem Stand statt nach dem Potenzial · eigener Pakettyp „Detailprüfung“ je Juror (wie die Vortragsprüfung, frischer Kontext, ohne Konkurrenz) mit Auswertung im Bericht; Hinweis in der Vorlage schärfen, dass Ideen in Execution nach dem Plan bewertet werden
 - 2026-10-24 · Bericht · klare-einreichung · `pruefen.py --rubrik` verlangt je Kriterium eine eigene Überschrift, obwohl die offizielle Vorlage die Gliederung vorgibt und der Skill selbst sagt, dass die Kriterien dann als Unterpunkte hineinkommen; im Report steht deshalb eine dreizeilige Leseanleitung mit den Kriteriennamen, damit kein FEHLT bleibt · Option `--rubrik-unterpunkte`: Kriterium gilt als abgedeckt, wenn sein Name in einer Zeile unter 120 Zeichen vorkommt; Glossar-Warnung „Begriffe nicht benutzt“ listet auch benutzte Begriffe (research question, positive control), weil die ganze Tabellenzelle gesucht wird, besser je Begriff vor dem Semikolon prüfen
 - 2026-10-24 · Backend (cloud) · hackathon-backend · Die Standard-Cloud-Umgebung erreicht keine Verlags- und Preprint-Server (hhs.se, ifn.se, cepr.org, ssrn.com, arxiv.org); das Backend musste die Auszahlungstabelle des Quellpapiers aus vier Ankerwerten rekonstruieren statt sie abzuschreiben · Abschnitt „In der Cloud“: die Hauptsession legt Quellpapiere und Vorlagen vor dem Start einer Cloud-Backend-Session unter hackathon/private/sources/ ab und pusht main; BUILD_PLAN-Vorlage bekommt eine Zeile „Quellen im Checkout“
+- 2026-10-25 · Jury · jury-simulation · Reine Detailrunden (R04 „was fehlt für eine 5“, Kandidatenbewertung) kennt `runde.py` nicht: kein Pakettyp, kein Bericht-Gerüst, kein Datenblock, sodass die nächste Bewertungsrunde keinen Vorrundenvergleich findet · Pakettyp `detail` mit Fragenkatalog als Datei (`--fragen`), Auswertung zu Konsens-Tabellen und ein Datenblock, der auf die letzte Bewertungsrunde verweist
