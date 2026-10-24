@@ -1,0 +1,29 @@
+{
+  "_note": "Human values from Bigoni, Fridolfsson, Le Coq and Spagnolo, working paper CEPR DP 7417 (2009), as transcribed by the ideas session (IDEAS.md, source O24, Tables 1 to 5, retrieved 2026-10-24). FACTS candidates: the main session enters them into FACTS.md after the comparison with the RAND Journal of Economics 2012 version, which the cloud session could not download (network policy). Fields marked null are not yet transcribed.",
+  "source": "Bigoni, Fridolfsson, Le Coq, Spagnolo (2009) Fines, Leniency and Rewards in Antitrust: An Experiment, CEPR DP 7417; RAND Journal of Economics 43(2), 2012, 368 to 390",
+  "verified_against_rand_2012": false,
+  "regimes": {
+    "laissez_faire": {"cartel_rate": 0.716, "avg_price": 4.917, "report_rate_given_cartel": null, "public_report_after_rival_deviation": null, "cartel_price": null},
+    "fine":          {"cartel_rate": 0.315, "avg_price": 5.349, "report_rate_given_cartel": 0.092, "public_report_after_rival_deviation": 0.286, "cartel_price": 5.031},
+    "leniency":      {"cartel_rate": 0.178, "avg_price": 4.845, "report_rate_given_cartel": 0.507, "public_report_after_rival_deviation": 0.481, "cartel_price": null},
+    "reward":        {"cartel_rate": 0.220, "avg_price": 3.973, "report_rate_given_cartel": 0.937, "public_report_after_rival_deviation": 0.333, "cartel_price": null},
+    "noreport":      {"cartel_rate": null, "avg_price": null, "cartel_price": 3.553}
+  },
+  "design": {
+    "prices": "0 to 12", "nash_price": 3, "nash_payoff": 100, "joint_optimum_price": 9, "joint_optimum_payoff": 180,
+    "undercut_example": "7 against 9 pays 296 against 20", "fine": 200, "detection_prob": 0.10,
+    "continuation_prob": 0.85, "end_rule": "after period 20 at the first rematching event", "pool_size": 20,
+    "report_rate_learning": "report rate rose from about 0.6 to 0.9 over the session (criticism 3 in IDEAS.md)",
+    "cities": ["Stockholm", "Rome"], "city_span_source": "Table 8 of the working paper (values not yet transcribed)"
+  },
+  "results_numbered": {
+    "1": "deterrence: fines, leniency and rewards reduce cartel formation (0.716, 0.315, 0.178, 0.220)",
+    "2": "detection: reports rise from fine to leniency to reward (0.092, 0.507, 0.937)",
+    "3": "relapse after detection or report (human value to be transcribed)",
+    "4": "average prices: fine 5.349 above laissez-faire 4.917; reward lowest 3.973",
+    "5": "cartel prices: higher under fine (5.031) than without reports (NoReport 3.553)",
+    "6": "deviations from the agreed price (human value to be transcribed)",
+    "7": "public reports serve as punishment of deviators (NoReport arm)",
+    "8": "reports even without future interaction, altruistic punishment (ReMatch arm; human value to be transcribed)"
+  }
+}
