@@ -1,8 +1,8 @@
 {
   "header": true,
   "generated_by": "python3 cartelbench/scripts/screen_fp.py",
-  "commit": "9c33452b28615019ca1fe186b6c362c0103c0c49-dirty",
-  "time": "2026-10-24T21:17:57Z",
+  "commit": "dd0c35071113cd23e45102be35313ec27a86cef5",
+  "time": "2026-10-24T21:23:23Z",
   "note": "Do not edit by hand.",
   "screen": {
     "k": 2,
@@ -28,8 +28,8 @@
         "nocomm_scripted-nash_s81"
       ],
       "periods_sha256_without_header": [
-        "5cac38cf0188ef90a77febcd156d1b7abb92c723213441e0323072c5b5fe0073",
-        "71ae8c3c65d8941936a0136d6df2fa78ac3873c35edfa37822fc1fe31320bc3a"
+        "3d504880b8de33e64243c9668a319fa1f48615729579a9dd82840397d05e4dbd",
+        "a310eaac5a6490857944f48e419becdeceab6992edf9cc3f3e4f1b85ddff2be3"
       ]
     },
     "scatter_emp": {
@@ -50,8 +50,8 @@
         "nocomm_scripted-scatter_emp_s82"
       ],
       "periods_sha256_without_header": [
-        "d387de72b834cfc8d48bd8a973737ae83395cbe089c4538d03f20f5de35302a9",
-        "dfb9148a6302b9913b4121200bd93bf1a80361743d4d2cdc219879b50d3b868a"
+        "f20a439e99a69bf27c8b4780b73e7f9a738cd67ea05024378ac7584e92f12da5",
+        "b1a387d46727881ba701e0f81173cfa06dd81f79349f932732c7e985cd3d1156"
       ]
     },
     "scatter24": {
@@ -72,8 +72,8 @@
         "nocomm_scripted-scatter24_s83"
       ],
       "periods_sha256_without_header": [
-        "3f68bc6cf46b6dd585db8c64dd20cb89e40eab290af62c36f9e562a5e145414d",
-        "147e0f5db1be3cee4b5dbd1a6066e55eebb82ee299e53ca6e2abb558deeaa634"
+        "225aa06e905871c73f6d45654928b4e5e00958a7b0581ecfcda29e876c4ddb63",
+        "16b4c5aa549708cdc0be75f3a5c1c73e88254b85e560367476c437d8baaf6f02"
       ]
     },
     "scatter15": {
@@ -94,8 +94,8 @@
         "nocomm_scripted-scatter15_s84"
       ],
       "periods_sha256_without_header": [
-        "5f8156330e52c3875aaddb811aa0b23032064f804fc5f33500a13cc3f27a304f",
-        "de955c1027bc6f0007899c3fd9e8d480f6282083f10bc09bd638b7844af5631e"
+        "b9518762c617641d1ad7859595f976ea1ebba6c35a2e725e1c23ac06c7ae8b63",
+        "11e5fe86447aa2a558646ea113b489d7b4e44449fb63076f126e6d40d68a70a6"
       ]
     },
     "collude": {
@@ -116,8 +116,8 @@
         "nocomm_scripted-collude_s85"
       ],
       "periods_sha256_without_header": [
-        "1200827ebf5e474d984eccbbfe18941f7b2ddd658a7448f55203998fcd56860f",
-        "efa8fb420a580d3d80eff93424a12da22b1b2eae1fc4a345290abc1e44b0db21"
+        "e41b51d342429c308d17901f4a6263d0abccc9d5e1d3fe88cd46bef81dc87fdd",
+        "97cbc91e44d205d5d26d6dd2d3afc70e81a0eb07fe2fd063ade24cccf512651e"
       ]
     }
   },

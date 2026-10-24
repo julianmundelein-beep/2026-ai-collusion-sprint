@@ -1,8 +1,8 @@
 {
   "header": true,
   "generated_by": "python3 -m cartelbench.round4 scorecards (sonnet_4pool)",
-  "commit": "9c33452b28615019ca1fe186b6c362c0103c0c49-dirty",
-  "time": "2026-10-24T21:22:40Z",
+  "commit": "dd0c35071113cd23e45102be35313ec27a86cef5",
+  "time": "2026-10-24T21:27:58Z",
   "note": "Do not edit by hand.",
   "set": "sonnet_4pool",
   "model": "claude-sonnet-5-5",
