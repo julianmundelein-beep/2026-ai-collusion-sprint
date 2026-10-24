@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 16:25 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 16:40 HKT by the main session
 
 ## Clock
 
@@ -44,9 +44,9 @@ At most two long build sessions plus one short session at the same time. One ses
 | 0 | Main session | hackathon-kickoff | main folder | STATUS, FACTS, CORE_IDEA; commits DECISIONS | Julian + Claude | running | AI Collusion Research Sprint · Hauptsession |
 | 1 | Framework research | hackathon-kickoff (research) | main folder | HACKATHON.md, official/, private/JUDGES.md, private/COMPETITION.md | Claude | done (HACKATHON.md, JUDGES.md, COMPETITION.md, official/ committed); kept open for COMPETITION rescans | local_51c0819d-c7e3-4cb4-8036-c263bc6b9c22 |
 | 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | done (two rounds, 39 ideas, I24 chosen with build plan, commit d5e8cf9); archive on Julian's OK | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
-| 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | running (R01 on CORE_IDEA, started 2026-10-24 16:40 HKT) | local_525668aa-4f92-4e55-8006-1293f749dce9 |
+| 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | R01 done (e9f0c70): idea rank 2 of 4, medians 4 / 2 / 3; stays open for R02 on the first running state | local_525668aa-4f92-4e55-8006-1293f749dce9 |
 | 4 | Website | design-taste-frontend | own worktree or cloud | web/ (branch) | | dropped (not a deliverable) | |
-| 5 | Backend | hackathon-backend | own worktree or cloud | code folder on its branch, README | | not started | |
+| 5 | Backend | hackathon-backend | cloud (claude.ai/code), branch `backend` | `cartelbench/` on its branch, README, docs/ | Claude (cloud) | requested 2026-10-24 16:30 HKT (task_3bb7fe33); reports only on claude.ai, main session reads the branch on "Stand?" | cloud |
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
 | 7 | Demo video | video-studio | main folder | private/video/ | | optional (3 to 5 min, decide after R02 and the clock) | |
 | 8 | Design | hackathon-design | main folder | DESIGN.md, private/design/ | | optional (only if figures or video need a look) | |
@@ -83,21 +83,31 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 | Template conflicts (appendix heading, Methods vs Methodology, 4 vs 8 pages): keep template headings, add appendix with the exact Guidelines heading, plan 4 to 6 pages | HACKATHON.md, Official templates | report | decided by the research session, question in the mail |
 | Candidates from the judges' profiles: false-positive rate next to detection rate, cost of the countermeasure to legitimate performance, threat model in security terms, reproducible harness | private/JUDGES.md | report Methods, Results, Discussion | candidate, confirm in R01/R02 |
 | Candidate from the HK hub framing: one paragraph on what the result means for financial systems | aisafetyhk.org | report Discussion | candidate |
+| n-table per regime and model: independent units (pool sessions), duopolies, periods, calls, refusals and parse errors with denominator, cost; how refusals enter each measure | jury R01 (5 of 5) | report Methods and Results | open |
+| Pre-registration evidenced: commit hash and timestamp before the first API call, list of all deviations | jury R01 (5 of 5) | report Methods, repo | open |
+| Contamination test with a pre-registered equivalence margin, reported even if it fails: shifted price grid (Nash and optimum move, not uniform rescaling), cloze probe on the paper's numbers | jury R01 (5 of 5) | report Results, own section | open |
+| Positive and negative controls in one table or figure: scripted players through the same pipeline, known-effect arm, no-communication arm, laissez-faire with n and interval | jury R01 (5 of 5) | first figure or table in Results | open |
+| Human versus LLM with Stockholm and Rome separate, cluster-bootstrap intervals, reproduction rule in the caption, three states (reproduced, not, not tested), "x of k tested" | jury R01 (5 of 5) | Figure 1 | open |
+| One paragraph separating strategic deterrence from a reaction to the words fine, leniency, reward, since punishments are only told | jury R01 (4 of 5) | Discussion, Limitations appendix | open |
+| Exact model IDs with date, verbatim prompts, seeds, one replication command | jury R01 (2 of 5) | appendix, README | open |
+| Headline is the divergence from humans with a tested mechanism, not the reproduction count; at least two providers so the claim is about LLMs | jury R01 (5 of 5 levers) | title, abstract, contributions, Figure 1 caption | open |
 
 ## Waiting for
 
 - Julian: Discord check (keys from the organizers, Modal credit redemption, pinned announcements), send the email draft in HACKATHON.md
-- Julian: start the Backend card (5); licence decided later, before submission
+- Julian: tell the cloud backend session that `ANTHROPIC_API_KEY` is set (entered 2026-10-24 16:55 HKT; the VM reads it after its next pause) and to merge main for the jury notes; licence decided later, before submission
 - Julian: pick project name, one sentence, why sentence, slogan from CORE_IDEA.md "Message"
 - Julian: Anthropic API key into the backend's compute.env when the session asks
 
 ## Next step
 
-Start Backend (harness, tests, pilot by Sat 23:00 HKT) and Jury round R01/R02 on CORE_IDEA.md in parallel; licence line in DECISIONS; report session (9) once the pilot confirms the positive control.
+Backend (cloud) builds harness, tests and pilot by Sat 23:00 HKT with the jury's design notes (independent unit, shifted-grid contamination test, pilot threshold, cost per duopoly). Cut order fixed (KEEP): V6, V5, ReMatch, NoReport, V3, V4. Then fetch `origin/backend`, main regimes locally Sunday morning, R02 on the first running state, report session (9).
 
 ## Für die Skills
 
 Append only, every session, one line each: `YYYY-MM-DD · <session> · <skill> · <problem> · <suggestion>`. Skills are not changed during the hackathon; afterwards a skill workshop session in `~/claude-tools` works through this list.
 
 - 2026-10-24 · Ideen · hackathon-ideen · Research-Sprint-Format: Kurzkarte und Prüfkarte kennen keine Felder für Forschungsfrage, Hypothese, Variable, Metrik, Baseline mit Positivkontrolle, Runs und Seeds, Kosten, Null-Ergebnis-Risiko, Replikationsprüfung gegen Vorarbeiten; Kurzform erlaubt nur zwei Tracks, der Auftrag nannte drei · Variante „Research Sprint" im Skill: diese Felder in die Kurzkarte, Prüfskript liest sie, Trackzahl in der Kurzform als Parameter; Platzhalter „–" in der Vorlage (Nichtkunden-Ebene, „0–5") verstößt gegen die Gedankenstrich-Regel des Dateivertrags, Vorlage auf „keine" und „0 bis 5" ändern
+- 2026-10-24 · Jury · jury-simulation · `runde.py` liest „not published (plan: equal)“ nicht als Gewicht und bricht ab; die Juroren-Vorlage erzwingt 0 bis 10 und „Total 0 to 100“, obwohl die Rubrik 1 bis 5 mit wörtlichen Stufen hat (hier per `--rubrik` JSON und Nachbearbeitung der Pakete gelöst) · Option `--gleich` für gleiche Gewichte bei unveröffentlichten Gewichten; Skala aus der Rubrik übernehmen (`--skala 1-5`), Totaltext danach richten
+- 2026-10-24 · Jury · jury-simulation · Kein Paket für ideenspezifische Fragen (Replikation oder neu, trägt die Positivkontrolle, Streichreihenfolge); Juroren bewerten Ideen in Dimension 2 nach dem Stand statt nach dem Potenzial · eigener Pakettyp „Detailprüfung“ je Juror (wie die Vortragsprüfung, frischer Kontext, ohne Konkurrenz) mit Auswertung im Bericht; Hinweis in der Vorlage schärfen, dass Ideen in Execution nach dem Plan bewertet werden
 - 2026-10-24 · Backend (cloud) · hackathon-backend · Die Standard-Cloud-Umgebung erreicht keine Verlags- und Preprint-Server (hhs.se, ifn.se, cepr.org, ssrn.com, arxiv.org); das Backend musste die Auszahlungstabelle des Quellpapiers aus vier Ankerwerten rekonstruieren statt sie abzuschreiben · Abschnitt „In der Cloud“: die Hauptsession legt Quellpapiere und Vorlagen vor dem Start einer Cloud-Backend-Session unter hackathon/private/sources/ ab und pusht main; BUILD_PLAN-Vorlage bekommt eine Zeile „Quellen im Checkout“

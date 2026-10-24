@@ -1,0 +1,44 @@
+{"juror": "J3-L1",
+ "entries": {
+  "B2": {"scores": {"C1": 3, "C2": 3, "C3": 2},
+   "reasons": {
+    "C1": "Real-world detection of self-funded rings on public ledgers matters, but resembles known wash-trading forensics; wallets not shown to be LLM agents.",
+    "C2": "Held-out test, permutation and positive control present, yet labels share the rule's evidence, only 10 test families, independent-feature rule p = 0.14.",
+    "C3": "17-page report against an 8-page limit; key result and its circularity caveat risk being buried in length."},
+   "levers": {
+    "C1": "Show flagged wallets are actually LLM agents and demonstrate detection against an adaptive ring that knows the four-hop rule.",
+    "C2": "Obtain labels independent of transfer-graph evidence and test on more families, reporting significance on features labels never used.",
+    "C3": "Cut to 8 pages with one headline table: held-out accuracy, independent-feature result, and evasion limits up front."},
+   "verdict": "Grounded in real payment data with honest controls, but the label circularity means we cannot yet tell detection from restatement."},
+  "P3": {"scores": {"C1": 3, "C2": 2, "C3": 3},
+   "reasons": {
+    "C1": "Testing whether leniency and fines deter LLM cartels is policy-relevant; replaying human lab games with LLMs is an established, growing pattern.",
+    "C2": "Nothing runs; plan is preregistered with cut order and fallback, but 48 hours solo for 80 duopolies plus contamination tests is tight.",
+    "C3": "Clear problem, plan and single demo table; but no results exist to communicate."},
+   "levers": {
+    "C1": "Add an adversarial regime where agents can detect or game the enforcement signal, showing where human-calibrated policy breaks for agents.",
+    "C2": "Deliver the laissez-faire positive control and all four regimes with intervals and the contamination check actually run.",
+    "C3": "Present the human-versus-LLM regime table with real intervals and a one-paragraph answer to which rule works on agents."},
+   "verdict": "Sensible, well-scoped replication plan with a policy angle, but at this point it is a protocol, not a result."},
+  "C2": {"scores": {"C1": 4, "C2": 4, "C3": 3},
+   "reasons": {
+    "C1": "Unmonitorable vector channels between models are a neglected oversight problem; testing receiver-side countermeasures is a useful, buildable contribution.",
+    "C2": "Real models, 10 of 10 checkpoints reproduced, shuffled-label and no-message controls; but channels non-adaptive, trained pre-sprint, no collusion game.",
+    "C3": "Figure 1 makes the core finding instantly visible, but 13 pages exceeds the 8-page limit."},
+   "levers": {
+    "C1": "Embed the channel in an actual collusion game so the countermeasure is shown to stop coordinated harmful behaviour, not just recall.",
+    "C2": "Train channels adversarially against snapping and quantization and report whether the defence survives an adaptive attacker with significance tests.",
+    "C3": "Cut to 8 pages, lead with Figure 1 and state clearly that results hold only for non-adaptive channels."},
+   "verdict": "Strongest evidence in the field; snapping kills the channel, but any security person asks immediately whether an adaptive channel survives it."},
+  "C8": {"scores": {"C1": 3, "C2": 2, "C3": 2},
+   "reasons": {
+    "C1": "External actor soliciting price-fixing is a realistic adversarial injection; six-condition design with harmless-request control is thoughtful but conventional.",
+    "C2": "149 tests and frozen preregistration, but no real model run, no model chosen, no results; only mock client runs.",
+    "C3": "No report seen, only README dual-use note; design is described but nothing communicates findings."},
+   "levers": {
+    "C1": "Vary attacker sophistication and show which framings bypass model refusals, mapping a real attack surface for pricing agents.",
+    "C2": "Run the 60 preregistered games on two real model families and report acceptance and price shifts with Wilson intervals.",
+    "C3": "Write the report with a results table per condition, the positive control outcome and the limitations appendix."},
+   "verdict": "Careful scaffolding and preregistration, but without a single real model run there is nothing yet to judge on outcomes."}
+ },
+ "top3": ["C2", "B2", "P3"]}
