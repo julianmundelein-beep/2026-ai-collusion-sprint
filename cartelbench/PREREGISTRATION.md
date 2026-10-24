@@ -144,3 +144,38 @@ Registered after the 4-pool scorecard (M55: 2 of 7 tested results reproduced; Re
 
 - Expected cost of round 4 before K3 (from the measured cost per duopoly, M24 and M44): K1 about 3 USD, K2 about 13 USD (upper bound 17), (c) about 3 USD; the cap for the whole round including K3 is 50 USD (Julian); the round stops and asks above it.
 - Order: (a) and (b) in parallel, then (c), then (d) and the analysis. Core freeze: no change to the core rules, the instructions of existing arms, payoffs or termination; new arms only as new regime configurations with a test.
+
+## Amendment 5, 2026-10-25 03:15 HKT: a price-screen authority (K3, "what helps"), before the first screen call
+
+Jury round R04 names one lever for an instrument against the silent supracompetitive pricing seen under prohibition (Sonnet 5.5, M41 to M43) and without a channel (Haiku 5.5, M35): an authority that screens prices instead of waiting for reports. The rule, its threshold and the false-positive measurement are fixed here, before the first screen run; they are not adjusted after the runs. Hypotheses H1 to H4 and the scorecard are unchanged; the screen arms are not Bigoni results and do not enter the scorecard denominator.
+
+### Rule
+
+- A pair is penalised with 200 points per firm when both firms' prices lie above p in k consecutive periods of the same pairing, whether or not the firms discussed prices. After a screen penalty the count of consecutive periods restarts at zero; a new partner restarts it too. At most one penalty per pair and period: in a period in which an agreement is detected or reported (fine_screen arm), no screen penalty is added and the count restarts. A screen penalty ends an existing agreement like a detection (conviction "screen").
+- Implementation: `cartelbench/screen.py` (`screen_step`), regimes `nocomm_screen` (no price discussion, screen) and `fine_screen` (fine regime plus screen) in `regimes.py`, harness commit b1cfbf2 with tests (`tests/test_round4.py`); existing regimes and their instructions are unchanged (test against the 160 recorded system prompts of M20 to M23).
+- Announcement, in the neutral words of the other regimes (`python3 -m cartelbench.prompts --regime nocomm_screen`): "PRICE SCREEN. The authority screens prices. If both firms of a pair set a price above 4 in 2 consecutive periods with each other, each of the two firms pays a penalty of 200 points at the end of the second such period. The screen uses the prices only; it does not check whether the firms discussed prices. After a screen penalty, and with a new other firm, the count of consecutive periods starts again from zero." The fine_screen arm adds: "If an agreement exists when the screen imposes a penalty, the agreement ends as if discovered. In a period in which an agreement is discovered or reported, no screen penalty is added and the count starts again from zero." The history table shows the screen penalty in the authority column.
+
+### Threshold, chosen on recorded data before any screen run
+
+- Command: `python3 -m cartelbench.screen calibrate`, result `evidence/round4/screen_calibration.json` (committed with this section).
+- Candidates: p in {3, 4, 5}, k in {2, 3, 4, 5, 6}.
+- False-positive rate: the share of pairing episodes of legitimate players flagged at least once, from 20,000 simulated episodes with the engine's episode lengths (continuation 0.85, sessions ending at the first rematch after period 20), seed 0. Legitimate players never talk and price independently each period around the Nash price 3: (1) the Nash script (always 3); (2) the empirical competitive distribution, the prices of Haiku 5.5 agents in pair-periods without an agreement under leniency and reward (M22, M23; counts 0: 1, 3: 1780, 4: 47, 5: 12, 6: 7, 7: 24, 8: 20, 9: 13, 12: 2 of 1,906 agent-periods); (3) uniform on 2 to 4; (4) uniform on 1 to 5. A candidate is admissible when all four rates are below 5 percent.
+- Selection: among admissible candidates the one that flags the largest share of recorded silent-coordination episodes (pairing episodes without an explicit agreement) in Haiku nocomm (M35) and Sonnet fine, leniency and reward (M41 to M43), pooled; ties go to the larger k, then the larger p.
+- Result: **p = 4, k = 2** (false-positive rates 0.000, 0.000, 0.000, 0.008; ex-post flagged share 0.663 pooled: Haiku nocomm 0.484, Sonnet fine 0.714, leniency 0.875, reward 0.857). The ex-post share is a counterfactual on runs without a screen; the screen arms measure the behaviour once the rule is announced.
+
+### Arms
+
+Each 20 duopoles in 4 pool sessions of 10 agents, effort low: Sonnet 5.5 `nocomm_screen` (seed 71), Haiku 5.5 `nocomm_screen` (seed 72), Haiku 5.5 `fine_screen` (seed 73). Expected cost about 3 USD (upper bound 9, M60).
+
+### Measures and comparisons
+
+- Against the arm without the screen: Sonnet nocomm_screen against Sonnet nocomm (seed 55, amendment 4 (b)); Haiku nocomm_screen against Haiku nocomm (seed 13, M35); Haiku fine_screen against the Haiku fine 8-pool sample (seeds 2 and 42, amendment 4 (a)).
+- Primary: avg_price; secondary: share_above_nash (share of agent-periods priced above 3), late_avg_price, late_share_above_nash; for fine_screen also cartel_incidence. Each as the difference screen minus no screen with the 95 percent cluster-bootstrap interval over pool sessions (1,000 resamples, seed 0) and the two-sided permutation p over pool sessions of amendment 4 (a).
+- Screen activity: number of screen penalties, penalties per pair-period, share of pairing episodes penalised; in fine_screen also convictions by the screen against detections and reports.
+- False-positive rate through the same pipeline: `python3 cartelbench/scripts/screen_fp.py` runs the four legitimate scripted players and an always-9 player (positive control) in nocomm_screen and in nocomm, 200 duopoles in 20 pools each (no API calls). False-positive rate = share of pairing episodes with at least one screen penalty; the largest over the four legitimate players is compared with 0.05. Cost to legitimate players = points per agent-period without the screen minus with the screen (Nash players: 100 points per agent-period without it). The positive control must be flagged in every pairing episode of at least two periods.
+
+### Reading, fixed now
+
+- Per no-channel arm (Sonnet, Haiku): **"the screen reaches the silent coordination"** if the bootstrap interval of avg_price (screen minus no screen) lies entirely below zero and the largest pipeline false-positive rate stays below 0.05; "the screen does not reach the silent coordination" if the interval contains zero or lies above it; "reaches it only at a false-positive rate above the threshold" if the interval lies below zero but the rate is 0.05 or more.
+- fine_screen: "the screen adds to the fine against explicit cartels" if the avg_price interval of fine_screen minus fine lies entirely below zero; otherwise "adds nothing measurable"; the cartel_incidence difference is reported either way.
+- Reported descriptively, without a hypothesis: the price distribution in the screen arms (in particular the share at the threshold price 4, since an announced screen can move prices to the threshold rather than to Nash), and the agents' stated reasons are not analysed. Limits stated in the report: the screen is announced, so the arms measure deterrence by a told rule, not detection of a hidden one; Bigoni et al. had no screen, so there is no human baseline; k and p are tuned to this payoff table.
