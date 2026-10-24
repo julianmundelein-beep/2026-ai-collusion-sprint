@@ -268,7 +268,7 @@ class Builder:
         grid = tbl.find(qn("w:tblGrid"))
         for gc, w in zip(grid.findall(qn("w:gridCol")), widths):
             gc.set(qn("w:w"), str(w))
-        size = 7.5 if ncols <= 7 else 7
+        size = 7
         for ri, row in enumerate(rows):
             tr = tbl.findall(qn("w:tr"))[ri]
             if ri == 0:
@@ -285,7 +285,7 @@ class Builder:
                     tcw = OxmlElement("w:tcW"); tcpr.insert(0, tcw)
                 tcw.set(qn("w:w"), str(widths[ci])); tcw.set(qn("w:type"), "dxa")
                 mar = OxmlElement("w:tcMar")
-                for side, v in (("top", 30), ("bottom", 30), ("left", 60), ("right", 60)):
+                for side, v in (("top", 15), ("bottom", 15), ("left", 50), ("right", 50)):
                     e = OxmlElement(f"w:{side}"); e.set(qn("w:w"), str(v)); e.set(qn("w:type"), "dxa"); mar.append(e)
                 tcpr.append(mar)
                 p = cell.paragraphs[0]._p

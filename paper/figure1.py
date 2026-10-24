@@ -62,7 +62,7 @@ def main(argv=None) -> int:
     sc = json.loads(args.scorecard.read_text())
     ci = read_bootstrap(args.bootstrap, sc.get("runs", {}))
     plt.rcParams.update({"font.family": "sans-serif", "font.size": 8, "axes.titlesize": 8, "axes.labelsize": 8})
-    fig, axes = plt.subplots(2, 4, figsize=(6.5, 3.5))
+    fig, axes = plt.subplots(2, 4, figsize=(6.5, 3.1))
     for ax, row in zip(axes.flat, sc["rows"]):
         state = row.get("replicated")
         verdict, color = ("reproduced", GREEN) if state else (("not testable", GREY) if state is None else ("not reproduced", RED))
@@ -110,7 +110,7 @@ def main(argv=None) -> int:
     handles = [plt.Line2D([], [], marker="o", ms=5.5, mfc="white", mec=HUMAN, mew=1.2, ls="none", label="Humans (Bigoni et al.), pooled"),
                plt.Line2D([], [], marker="s", ms=5, color=LLM, ls="none", label="Claude Haiku 5.5, 95 percent cluster-bootstrap interval over 4 pool sessions")]
     fig.legend(handles=handles, loc="lower center", ncol=2, frameon=False, fontsize=7, bbox_to_anchor=(0.5, 0.0))
-    fig.tight_layout(h_pad=1.6, w_pad=0.8, rect=(0, 0.07, 1, 1))
+    fig.tight_layout(h_pad=1.4, w_pad=0.8, rect=(0, 0.08, 1, 1))
     args.out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(args.out, dpi=300)
     print(f"wrote {args.out}")
