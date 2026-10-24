@@ -15,7 +15,8 @@ EVIDENCE_DIR = CODE_DIR / "evidence"
 def git_commit() -> str:
     try:
         sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=True).stdout.strip()
-        dirty = subprocess.run(["git", "status", "--porcelain", "--", "cartelbench"], cwd=ROOT,
+        # dirty = uncommitted code or data; files written under evidence/ by runs and analyses do not count
+        dirty = subprocess.run(["git", "status", "--porcelain", "--", "cartelbench", ":!cartelbench/evidence"], cwd=ROOT,
                                capture_output=True, text=True).stdout.strip()
         return sha + ("-dirty" if dirty else "")
     except Exception:  # noqa: BLE001
