@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 14:20 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 16:25 HKT by the main session
 
 ## Clock
 
@@ -23,7 +23,7 @@
 - [x] Team and eligibility checked (solo, open globally, no background required)
 - [x] Rules researched: HACKATHON.md complete (`pruefen.py rahmen` passes 2026-10-24), official template found (Google Doc), copy in official/ pending Julian's download OK
 - [ ] Registered; questions to the organizers sent, including mandatory content
-- [ ] Idea chosen: CORE_IDEA.md written, decision in DECISIONS.md
+- [x] Idea chosen: I24 Bigoni twin, CORE_IDEA.md written 2026-10-24 16:25 HKT, decision in DECISIONS.md 15:58 HKT
 - [ ] Licence decided with the team (DECISIONS.md)
 - [ ] Toolchain proven (hello world runs or is deployed)
 - [ ] Happy path runs end to end with real evidence
@@ -42,8 +42,8 @@ At most two long build sessions plus one short session at the same time. One ses
 | # | Session | Skill | Where | Writes | Owner | State | Session |
 |---|---|---|---|---|---|---|---|
 | 0 | Main session | hackathon-kickoff | main folder | STATUS, FACTS, CORE_IDEA; commits DECISIONS | Julian + Claude | running | AI Collusion Research Sprint · Hauptsession |
-| 1 | Framework research | hackathon-kickoff (research) | main folder | HACKATHON.md, official/, private/JUDGES.md, private/COMPETITION.md | Claude | waiting for Julian (template download OK, Discord check); HACKATHON.md, JUDGES.md, COMPETITION.md committed ac903d5 | local_51c0819d-c7e3-4cb4-8036-c263bc6b9c22 |
-| 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | waiting for Julian (which ideas to check fully, or round 2); round 1 committed 44785f6, 23 ideas, shortlist top 5 plus wildcard | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
+| 1 | Framework research | hackathon-kickoff (research) | main folder | HACKATHON.md, official/, private/JUDGES.md, private/COMPETITION.md | Claude | done (HACKATHON.md, JUDGES.md, COMPETITION.md, official/ committed); kept open for COMPETITION rescans | local_51c0819d-c7e3-4cb4-8036-c263bc6b9c22 |
+| 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | done (two rounds, 39 ideas, I24 chosen with build plan, commit d5e8cf9); archive on Julian's OK | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
 | 3 | Jury | jury-simulation | main folder | private/reviews/ | | not started | |
 | 4 | Website | design-taste-frontend | own worktree or cloud | web/ (branch) | | dropped (not a deliverable) | |
 | 5 | Backend | hackathon-backend | own worktree or cloud | code folder on its branch, README | | not started | |
@@ -63,7 +63,7 @@ Every deliverable from HACKATHON.md, the one place it is made, and who makes it.
 | Deliverable | The one source | Session or person | State | Final file submitted |
 |---|---|---|---|---|
 | Research report (PDF, official template, max 8 pages before references and appendices, plan 4 to 6; abstract 150 to 250 words; authors and affiliations; appendix "Limitations and Dual-Use / Ethical Considerations"; LLM Usage Statement; at least one figure) | Julian's Google Doc copy of the official template (copy link in HACKATHON.md, Links); PDF export is the submission; file `<ProjectTitle>_AI-Collusion-Research-Sprint_2026.pdf` | 9 Report | not started | |
-| Public GitHub repo (optional) | this repo, README from the backend session | 5 Backend | not started | |
+| Public GitHub repo (optional) | this repo; harness in `cartel/` (name per Julian's pick) on branch `backend`, README from the backend session | 5 Backend | not started | |
 | Video demo, 3 to 5 min (optional, URL only, judges review the PDF) | private/video/ | 7 Demo video | optional | |
 | Submission form: project summary, tracks, publishing yes/no, team name, location, member name, email, Discord, Scholar | SUBMISSION.md (draft texts), Julian fills personal fields | main session | not started | |
 
@@ -86,13 +86,14 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Waiting for
 
-- Julian: download OK for the template (.docx and .pdf export of the Google Doc) to hackathon/official/
-- Julian: Discord check (pinned announcements, help-desk channel, Modal credits), send the email draft in HACKATHON.md
-- Julian: pick ideas from the shortlist for the full check, then jury round R01
+- Julian: Discord check (keys from the organizers, Modal credit redemption, pinned announcements), send the email draft in HACKATHON.md
+- Julian: OK to start Backend (5) and Jury (3, round R01/R02 on CORE_IDEA.md) in parallel; licence decision (proposal: MIT for code, CC BY 4.0 for the report)
+- Julian: pick project name, one sentence, why sentence, slogan from CORE_IDEA.md "Message"
+- Julian: Anthropic API key into the backend's compute.env when the session asks
 
 ## Next step
 
-Julian picks 2 to 3 shortlist ideas for the full check; jury round R01 on the shortlist; then the choice, CORE_IDEA.md, R02, backend (experiments) and report in parallel.
+Start Backend (harness, tests, pilot by Sat 23:00 HKT) and Jury round R01/R02 on CORE_IDEA.md in parallel; licence line in DECISIONS; report session (9) once the pilot confirms the positive control.
 
 ## Für die Skills
 
