@@ -11,7 +11,7 @@ import os
 import sys
 
 from .engine import RunConfig, run_sync
-from .llm import make_client
+from .llm import anthropic_api_key, make_client
 from .regimes import REGIMES
 
 
@@ -53,9 +53,9 @@ def main(argv=None) -> int:
         cfg.out_dir = args.out_dir
     client = None
     if args.player == "llm":
-        if args.provider == "anthropic" and not os.environ.get("ANTHROPIC_API_KEY"):
-            print("ANTHROPIC_API_KEY is not set: no paid call is made. Set it (locally in .env, in the cloud as an "
-                  "environment variable) or use --player collude for a scripted run.", file=sys.stderr)
+        if args.provider == "anthropic" and not anthropic_api_key():
+            print("ANTHROPIC_API_KEY is not set: no paid call is made. Set it (locally in .env, in the cloud as the "
+                  "environment variable CARTELBENCH_ANTHROPIC_KEY) or use --player collude for a scripted run.", file=sys.stderr)
             return 2
         client = make_client(args.provider, args.model, effort=args.effort, concurrency=args.concurrency,
                              base_url=args.base_url, api_key_env=args.api_key_env)

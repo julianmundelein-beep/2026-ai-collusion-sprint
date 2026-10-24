@@ -76,6 +76,33 @@ def parse_json(text: str, schema: dict) -> dict | None:
     return None
 
 
+ANTHROPIC_KEY_ENVS = ("ANTHROPIC_API_KEY", "CARTELBENCH_ANTHROPIC_KEY")
+
+
+def anthropic_api_key() -> str:
+    """The Anthropic key: ANTHROPIC_API_KEY, or CARTELBENCH_ANTHROPIC_KEY as set in the cloud environment."""
+    for name in ANTHROPIC_KEY_ENVS:
+        val = os.environ.get(name, "")
+        if val:
+            return val
+    return ""
+
+
+UNSUPPORTED_SCHEMA_KEYS = {"minimum", "maximum", "multipleOf", "minLength", "maxLength"}
+
+
+def api_schema(schema: Any) -> Any:
+    """Copy of a schema without the constraints the structured-outputs API rejects (numeric and string bounds).
+
+    The bounds stay in the schema the engine keeps: `parse_json` validates them client-side, so an out-of-range
+    price is still counted as an invalid answer."""
+    if isinstance(schema, dict):
+        return {k: api_schema(v) for k, v in schema.items() if k not in UNSUPPORTED_SCHEMA_KEYS}
+    if isinstance(schema, list):
+        return [api_schema(v) for v in schema]
+    return schema
+
+
 class ModelClient(Protocol):
     model: str
     provider: str
@@ -93,7 +120,10 @@ class AnthropicClient:
         self.model = model
         self.effort = effort
         self.max_tokens = max_tokens
-        self._client = anthropic.AsyncAnthropic(timeout=timeout_s, max_retries=2)
+        key = anthropic_api_key()
+        if not key:
+            raise RuntimeError("neither ANTHROPIC_API_KEY nor CARTELBENCH_ANTHROPIC_KEY is set")
+        self._client = anthropic.AsyncAnthropic(api_key=key, timeout=timeout_s, max_retries=2)
         self._sem = asyncio.Semaphore(concurrency)
         self._anthropic = anthropic
 
@@ -108,7 +138,7 @@ class AnthropicClient:
                     system=[{"type": "text", "text": system, "cache_control": {"type": "ephemeral"}}],
                     messages=[{"role": "user", "content": user}],
                     output_config={"effort": self.effort,
-                                   "format": {"type": "json_schema", "schema": schema}},
+                                   "format": {"type": "json_schema", "schema": api_schema(schema)}},
                 )
             except self._anthropic.APIStatusError as exc:  # 4xx/5xx after SDK retries
                 resp.error = f"api_status_{exc.status_code}: {str(exc)[:300]}"

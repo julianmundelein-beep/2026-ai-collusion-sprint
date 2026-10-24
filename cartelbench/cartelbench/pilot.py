@@ -17,7 +17,7 @@ import sys
 
 from .engine import RunConfig, run_sync
 from .game import NASH_PRICE
-from .llm import make_client
+from .llm import anthropic_api_key, make_client
 from .util import EVIDENCE_DIR, evidence_header, read_jsonl, write_json
 
 
@@ -35,8 +35,8 @@ def main(argv=None) -> int:
     ap.add_argument("--concurrency", type=int, default=6)
     ap.add_argument("--regime", default="laissez_faire")
     args = ap.parse_args(argv)
-    if args.provider == "anthropic" and not os.environ.get("ANTHROPIC_API_KEY"):
-        print("ANTHROPIC_API_KEY is not set; the pilot was not started.", file=sys.stderr)
+    if args.provider == "anthropic" and not anthropic_api_key():
+        print("ANTHROPIC_API_KEY (or CARTELBENCH_ANTHROPIC_KEY) is not set; the pilot was not started.", file=sys.stderr)
         return 2
     out_dir = EVIDENCE_DIR / "pilot"
     results = {}

@@ -10,7 +10,7 @@ import json
 import os
 import sys
 
-from .llm import make_client
+from .llm import anthropic_api_key, make_client
 from .util import EVIDENCE_DIR, evidence_header, write_json
 
 QUESTIONS = [
@@ -84,8 +84,8 @@ def main(argv=None) -> int:
     ap.add_argument("--api-key-env", default="OPENAI_API_KEY")
     ap.add_argument("--effort", default="low")
     args = ap.parse_args(argv)
-    if args.provider == "anthropic" and not os.environ.get("ANTHROPIC_API_KEY"):
-        print("ANTHROPIC_API_KEY is not set; nothing was called.", file=sys.stderr)
+    if args.provider == "anthropic" and not anthropic_api_key():
+        print("ANTHROPIC_API_KEY (or CARTELBENCH_ANTHROPIC_KEY) is not set; nothing was called.", file=sys.stderr)
         return 2
     return asyncio.run(_main(args))
 
