@@ -94,7 +94,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Waiting for
 
-- Julian: download OK for the Bigoni working paper PDF into hackathon/private/sources/ (the cloud network blocks the publishers; the backend reconstructed the payoff table from four anchor cells and must verify it cell by cell)
+- Julian: tell the cloud backend session to merge main and verify the payoff table against hackathon/private/sources/ (IFN WP 738, 2011 version, on main since 17:15 HKT)
 - Julian: confirm the main-model rule (Haiku 5.5 as main model if it passes the pilot, Sonnet 5.5 as one V4 culture with 10 duopoles) and the project name (CartelBench recommended)
 - Julian: Modal account and credits (form in the inbox, per Discord) for the second provider in V4; the cloud environment reaches only api.anthropic.com, so V4 runs locally
 - Julian: Discord check (keys from the organizers, Modal credit redemption, pinned announcements), send the email draft in HACKATHON.md
