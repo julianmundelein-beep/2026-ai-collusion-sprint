@@ -63,8 +63,9 @@ def main(argv=None) -> int:
     m = summary["metrics"]
     print(json.dumps({"run_id": summary["run_id"], "periods_per_pool": summary["periods_per_pool"],
                       "n_table": summary["n_table"],
-                      "cartel_rate": m["cartel_rate"], "avg_price": m["avg_price"], "cartel_price": m["cartel_price"],
-                      "deviation_rate": m["deviation_rate"], "report_rate_pair_given_cartel": m["report_rate_pair_given_cartel"]},
+                      "cartel_incidence": m.get("cartel_incidence"), "cartel_formation_rate": m.get("cartel_formation_rate"),
+                      "avg_price": m.get("avg_price"), "cartel_price": m.get("cartel_price"),
+                      "deviation_rate": m.get("deviation_rate"), "report_rate_given_cartel": m.get("report_rate_given_cartel")},
                      indent=2))
     print(f"evidence: {cfg.out_dir}/{summary['run_id']}")
     return 0
