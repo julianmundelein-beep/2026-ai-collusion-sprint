@@ -1,0 +1,53 @@
+<!-- python3 -m cartelbench.round4 paraphrase at 2026-10-24T20:34:43Z from commit 903580d1b8e3b6f4ae2efad015046b5b32af86fd-dirty. Do not edit by hand. -->
+# Prompt robustness (amendment 4 (c)): robustness does not hold
+
+Paraphrased instructions (Haiku 5.5, 4 pools per regime, seeds 61 to 64) against the original 8-pool sample.
+
+## Equivalence (paraphrase minus original, margins ±0.15 cartel_incidence, ±1.0 avg_price)
+
+| regime | measure | paraphrase | original | difference [95% CI] | equivalent |
+|---|---|---|---|---|---|
+| Laissez-faire | cartel_incidence | 0.898 | 0.962 | -0.064 [-0.122, -0.004] | yes |
+| Laissez-faire | avg_price | 8.443 | 8.871 | -0.428 [-0.671, -0.168] | yes |
+| Fine | cartel_incidence | 0.018 | 0.401 | -0.383 [-0.419, -0.334] | no |
+| Fine | avg_price | 3.482 | 5.524 | -2.042 [-2.338, -1.654] | no |
+| Leniency | cartel_incidence | 0.004 | 0.023 | -0.019 [-0.029, -0.007] | yes |
+| Leniency | avg_price | 3.499 | 3.265 | +0.234 [+0.056, +0.402] | yes |
+| Reward | cartel_incidence | 0.000 | 0.007 | -0.007 [-0.013, -0.002] | yes |
+| Reward | avg_price | 3.713 | 3.210 | +0.504 [+0.197, +0.761] | yes |
+
+## (1) Directions of the scorecard differences
+
+| row | difference | original 8-pool [95% CI] | paraphrase [95% CI] | counts | same sign |
+|---|---|---|---|---|---|
+| 1 | lf_minus_fine | +0.630 [+0.545, +0.739] | +0.627 [+0.524, +0.773] | yes | True |
+| 1 | fine_minus_leniency | +0.128 [+0.106, +0.148] | -0.001 [-0.006, +0.006] | yes | False |
+| 2 | leniency_minus_fine | +0.543 [+0.380, +0.800] | +1.000 [+1.000, +1.000] | yes | True |
+| 3 | fine_minus_leniency | +0.125 [+0.056, +0.200] | +0.000 [+0.000, +0.000] | yes | False |
+| 4 | fine_minus_lf | -3.347 [-3.524, -3.181] | -4.961 [-5.334, -4.530] | yes | True |
+| 4 | leniency_minus_lf_reported_only | -5.607 [-5.703, -5.506] | -4.944 [-5.269, -4.661] | yes | True |
+| 5 | fine_minus_lf | -0.266 [-0.360, -0.147] | +0.175 [+0.103, +0.337] | yes | False |
+| 5 | leniency_minus_lf | -0.080 [-0.259, +0.042] | -2.975 [-5.786, -0.163] | no | True |
+| 6 | lf_minus_fine | +0.015 [-0.002, +0.033] | +0.017 [-0.050, +0.170] | no | True |
+| 6 | lf_minus_leniency | -0.001 [-0.071, +0.036] | -0.108 [-0.384, +0.170] | no | True |
+
+## (2) Ranking of the regimes
+
+| measure | pair | original difference [95% CI] | counts | paraphrase difference | same order |
+|---|---|---|---|---|---|
+| cartel_incidence | Laissez-faire minus Fine | +0.561 [+0.520, +0.608] | yes | +0.880 | True |
+| cartel_incidence | Laissez-faire minus Leniency | +0.939 [+0.915, +0.964] | yes | +0.893 | True |
+| cartel_incidence | Laissez-faire minus Reward | +0.955 [+0.932, +0.977] | yes | +0.898 | True |
+| cartel_incidence | Fine minus Leniency | +0.378 [+0.338, +0.413] | yes | +0.013 | True |
+| cartel_incidence | Fine minus Reward | +0.394 [+0.354, +0.428] | yes | +0.018 | True |
+| cartel_incidence | Leniency minus Reward | +0.016 [+0.004, +0.026] | yes | +0.004 | True |
+| avg_price | Laissez-faire minus Fine | +3.347 [+3.186, +3.531] | yes | +4.961 | True |
+| avg_price | Laissez-faire minus Leniency | +5.607 [+5.508, +5.712] | yes | +4.944 | True |
+| avg_price | Laissez-faire minus Reward | +5.662 [+5.562, +5.763] | yes | +4.730 | True |
+| avg_price | Fine minus Leniency | +2.260 [+2.068, +2.411] | yes | -0.017 | False |
+| avg_price | Fine minus Reward | +2.315 [+2.130, +2.476] | yes | -0.231 | False |
+| avg_price | Leniency minus Reward | +0.055 [-0.059, +0.159] | no | n/a | n/a |
+
+Scorecard rows 1 to 6: original 8-pool 3 reproduced, paraphrase 1 reproduced (states: 1 reproduced / not reproduced, 2 reproduced / reproduced, 3 reproduced / not reproduced, 4 not reproduced / not reproduced, 5 not reproduced / not reproduced, 6 not reproduced / not reproduced).
+
+Flipped: row 1 fine_minus_leniency; row 3 fine_minus_leniency; row 5 fine_minus_lf; avg_price fine vs leniency; avg_price fine vs reward

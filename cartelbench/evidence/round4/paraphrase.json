@@ -1,0 +1,937 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.round4 paraphrase",
+  "commit": "903580d1b8e3b6f4ae2efad015046b5b32af86fd-dirty",
+  "time": "2026-10-24T20:34:43Z",
+  "note": "Do not edit by hand.",
+  "verdict": "robustness does not hold",
+  "flipped": [
+    "row 1 fine_minus_leniency",
+    "row 3 fine_minus_leniency",
+    "row 5 fine_minus_lf",
+    "avg_price fine vs leniency",
+    "avg_price fine vs reward"
+  ],
+  "directions": [
+    {
+      "row": 1,
+      "test": "lf_minus_fine",
+      "original": {
+        "point": 0.6297101689850935,
+        "lo": 0.545155034718602,
+        "hi": 0.7388640275387264,
+        "n_boot": 1000,
+        "span_required": 0.0
+      },
+      "paraphrase": {
+        "point": 0.6266614365674457,
+        "lo": 0.5241466498103666,
+        "hi": 0.7726692949907236,
+        "n_boot": 1000,
+        "span_required": 0.0
+      },
+      "counts": true,
+      "same_sign": true
+    },
+    {
+      "row": 1,
+      "test": "fine_minus_leniency",
+      "original": {
+        "point": 0.1283310598590551,
+        "lo": 0.10591656069043004,
+        "hi": 0.14839700374531833,
+        "n_boot": 1000,
+        "span_required": 0.0
+      },
+      "paraphrase": {
+        "point": -0.0006198620428989887,
+        "lo": -0.005633802816901409,
+        "hi": 0.0061162079510703364,
+        "n_boot": 1000,
+        "span_required": 0.0
+      },
+      "counts": true,
+      "same_sign": false
+    },
+    {
+      "row": 2,
+      "test": "leniency_minus_fine",
+      "original": {
+        "point": 0.5428160230271047,
+        "lo": 0.3804312841969746,
+        "hi": 0.8,
+        "n_boot": 1000,
+        "span_required": 0.0
+      },
+      "paraphrase": {
+        "point": 1.0,
+        "lo": 1.0,
+        "hi": 1.0,
+        "n_boot": 883,
+        "span_required": 0.0
+      },
+      "counts": true,
+      "same_sign": true
+    },
+    {
+      "row": 3,
+      "test": "fine_minus_leniency",
+      "original": {
+        "point": 0.125,
+        "lo": 0.05555555555555555,
+        "hi": 0.2,
+        "n_boot": 1000,
+        "span_required": 0.0
+      },
+      "paraphrase": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_boot": 648,
+        "span_required": 0.0
+      },
+      "counts": true,
+      "same_sign": false
+    },
+    {
+      "row": 4,
+      "test": "fine_minus_lf",
+      "original": {
+        "point": -3.3471567027641784,
+        "lo": -3.524408716449642,
+        "hi": -3.181350765478932,
+        "n_boot": 1000,
+        "span_required": 0.0
+      },
+      "paraphrase": {
+        "point": -4.960722370858202,
+        "lo": -5.3341619887730545,
+        "hi": -4.529983633387889,
+        "n_boot": 1000,
+        "span_required": 0.0
+      },
+      "counts": true,
+      "same_sign": true
+    },
+    {
+      "row": 4,
+      "test": "leniency_minus_lf_reported_only",
+      "original": {
+        "point": -5.606728487724565,
+        "lo": -5.703418803418804,
+        "hi": -5.50563162970106,
+        "n_boot": 1000
+      },
+      "paraphrase": {
+        "point": -4.9440758873929,
+        "lo": -5.269047619047619,
+        "hi": -4.661096345514951,
+        "n_boot": 1000
+      },
+      "counts": true,
+      "same_sign": true
+    },
+    {
+      "row": 5,
+      "test": "fine_minus_lf",
+      "original": {
+        "point": -0.265944598721509,
+        "lo": -0.360028550045735,
+        "hi": -0.14712051254518776,
+        "n_boot": 1000,
+        "span_required": 0.0
+      },
+      "paraphrase": {
+        "point": 0.17461139896373012,
+        "lo": 0.10297029702970306,
+        "hi": 0.33684210526315717,
+        "n_boot": 928,
+        "span_required": 0.0
+      },
+      "counts": true,
+      "same_sign": false
+    },
+    {
+      "row": 5,
+      "test": "leniency_minus_lf",
+      "original": {
+        "point": -0.08010866684336015,
+        "lo": -0.25917978063900904,
+        "hi": 0.041666666666666075,
+        "n_boot": 1000,
+        "span_required": 0.0
+      },
+      "paraphrase": {
+        "point": -2.9753886010362702,
+        "lo": -5.7857142857142865,
+        "hi": -0.16315789473684283,
+        "n_boot": 946,
+        "span_required": 0.0
+      },
+      "counts": false,
+      "same_sign": true
+    },
+    {
+      "row": 6,
+      "test": "lf_minus_fine",
+      "original": {
+        "point": 0.015196083752130166,
+        "lo": -0.0021973466003316726,
+        "hi": 0.03344298245614035,
+        "n_boot": 1000,
+        "span_required": 0.0
+      },
+      "paraphrase": {
+        "point": 0.016909814323607414,
+        "lo": -0.05041666666666665,
+        "hi": 0.16991643454038996,
+        "n_boot": 934,
+        "span_required": 0.0
+      },
+      "counts": false,
+      "same_sign": true
+    },
+    {
+      "row": 6,
+      "test": "lf_minus_leniency",
+      "original": {
+        "point": -0.0006251116270762636,
+        "lo": -0.07084891036746604,
+        "hi": 0.03627232142857143,
+        "n_boot": 1000,
+        "span_required": 0.0
+      },
+      "paraphrase": {
+        "point": -0.10809018567639259,
+        "lo": -0.38354430379746834,
+        "hi": 0.16991643454038996,
+        "n_boot": 938,
+        "span_required": 0.0
+      },
+      "counts": false,
+      "same_sign": true
+    }
+  ],
+  "ranking": [
+    {
+      "measure": "cartel_incidence",
+      "a": "laissez_faire",
+      "b": "fine",
+      "original": {
+        "point": 0.5606240419324531,
+        "lo": 0.5198583234946871,
+        "hi": 0.6078811227297742,
+        "n_boot": 1000
+      },
+      "counts": true,
+      "paraphrase_point": 0.8799753035604033,
+      "same_order": true
+    },
+    {
+      "measure": "cartel_incidence",
+      "a": "laissez_faire",
+      "b": "leniency",
+      "original": {
+        "point": 0.9388843155295143,
+        "lo": 0.9148636980387319,
+        "hi": 0.9643115942028986,
+        "n_boot": 1000
+      },
+      "counts": true,
+      "paraphrase_point": 0.8934638922888617,
+      "same_order": true
+    },
+    {
+      "measure": "cartel_incidence",
+      "a": "laissez_faire",
+      "b": "reward",
+      "original": {
+        "point": 0.9545393858477971,
+        "lo": 0.9315649867374005,
+        "hi": 0.9765153822723118,
+        "n_boot": 1000
+      },
+      "counts": true,
+      "paraphrase_point": 0.8976744186046511,
+      "same_order": true
+    },
+    {
+      "measure": "cartel_incidence",
+      "a": "fine",
+      "b": "leniency",
+      "original": {
+        "point": 0.37826027359706116,
+        "lo": 0.3376256552574777,
+        "hi": 0.41318681318681316,
+        "n_boot": 1000
+      },
+      "counts": true,
+      "paraphrase_point": 0.013488588728458314,
+      "same_order": true
+    },
+    {
+      "measure": "cartel_incidence",
+      "a": "fine",
+      "b": "reward",
+      "original": {
+        "point": 0.39391534391534394,
+        "lo": 0.3541407867494824,
+        "hi": 0.42762136484764224,
+        "n_boot": 1000
+      },
+      "counts": true,
+      "paraphrase_point": 0.017699115044247787,
+      "same_order": true
+    },
+    {
+      "measure": "cartel_incidence",
+      "a": "leniency",
+      "b": "reward",
+      "original": {
+        "point": 0.015655070318282754,
+        "lo": 0.004224137931034483,
+        "hi": 0.025694686664341358,
+        "n_boot": 1000
+      },
+      "counts": true,
+      "paraphrase_point": 0.004210526315789474,
+      "same_order": true
+    },
+    {
+      "measure": "avg_price",
+      "a": "laissez_faire",
+      "b": "fine",
+      "original": {
+        "point": 3.3471567027641784,
+        "lo": 3.186387686387686,
+        "hi": 3.531084872574234,
+        "n_boot": 1000
+      },
+      "counts": true,
+      "paraphrase_point": 4.960722370858202,
+      "same_order": true
+    },
+    {
+      "measure": "avg_price",
+      "a": "laissez_faire",
+      "b": "leniency",
+      "original": {
+        "point": 5.606728487724565,
+        "lo": 5.508184523809524,
+        "hi": 5.7117716929232305,
+        "n_boot": 1000
+      },
+      "counts": true,
+      "paraphrase_point": 4.9440758873929,
+      "same_order": true
+    },
+    {
+      "measure": "avg_price",
+      "a": "laissez_faire",
+      "b": "reward",
+      "original": {
+        "point": 5.661801449551783,
+        "lo": 5.561828571428572,
+        "hi": 5.7632157545080664,
+        "n_boot": 1000
+      },
+      "counts": true,
+      "paraphrase_point": 4.729757949691504,
+      "same_order": true
+    },
+    {
+      "measure": "avg_price",
+      "a": "fine",
+      "b": "leniency",
+      "original": {
+        "point": 2.2595717849603862,
+        "lo": 2.0676755175517556,
+        "hi": 2.411028632025451,
+        "n_boot": 1000
+      },
+      "counts": true,
+      "paraphrase_point": -0.0166464834653004,
+      "same_order": false
+    },
+    {
+      "measure": "avg_price",
+      "a": "fine",
+      "b": "reward",
+      "original": {
+        "point": 2.314644746787604,
+        "lo": 2.130153256704981,
+        "hi": 2.4763532763532763,
+        "n_boot": 1000
+      },
+      "counts": true,
+      "paraphrase_point": -0.2309644211666968,
+      "same_order": false
+    },
+    {
+      "measure": "avg_price",
+      "a": "leniency",
+      "b": "reward",
+      "original": {
+        "point": 0.05507296182721788,
+        "lo": -0.0590060851926979,
+        "hi": 0.15931510582250885,
+        "n_boot": 1000
+      },
+      "counts": false
+    }
+  ],
+  "equivalence": {
+    "laissez_faire": {
+      "cartel_incidence": {
+        "paraphrase": 0.8976744186046511,
+        "original": 0.9616822429906542,
+        "diff": {
+          "point": -0.06400782438600305,
+          "lo": -0.1218084241340055,
+          "hi": -0.003658536585365857,
+          "n_boot": 1000
+        },
+        "margin": 0.15,
+        "equivalent": true
+      },
+      "avg_price": {
+        "paraphrase": 8.443023255813953,
+        "original": 8.871495327102803,
+        "diff": {
+          "point": -0.4284720712888497,
+          "lo": -0.6711039828922747,
+          "hi": -0.1677620492079548,
+          "n_boot": 1000
+        },
+        "margin": 1.0,
+        "equivalent": true
+      }
+    },
+    "fine": {
+      "cartel_incidence": {
+        "paraphrase": 0.017699115044247787,
+        "original": 0.40105820105820106,
+        "diff": {
+          "point": -0.3833590860139533,
+          "lo": -0.41948011274663327,
+          "hi": -0.3340361445783132,
+          "n_boot": 1000
+        },
+        "margin": 0.15,
+        "equivalent": false
+      },
+      "avg_price": {
+        "paraphrase": 3.482300884955752,
+        "original": 5.5243386243386245,
+        "diff": {
+          "point": -2.0420377393828724,
+          "lo": -2.338153345535896,
+          "hi": -1.6535636424618483,
+          "n_boot": 1000
+        },
+        "margin": 1.0,
+        "equivalent": false
+      }
+    },
+    "leniency": {
+      "cartel_incidence": {
+        "paraphrase": 0.004210526315789474,
+        "original": 0.022797927461139896,
+        "diff": {
+          "point": -0.018587401145350423,
+          "lo": -0.028515406162464986,
+          "hi": -0.007094594594594595,
+          "n_boot": 1000
+        },
+        "margin": 0.15,
+        "equivalent": true
+      },
+      "avg_price": {
+        "paraphrase": 3.4989473684210526,
+        "original": 3.2647668393782383,
+        "diff": {
+          "point": 0.23418052904281428,
+          "lo": 0.05573440643863181,
+          "hi": 0.40156620787850006,
+          "n_boot": 1000
+        },
+        "margin": 1.0,
+        "equivalent": true
+      }
+    },
+    "reward": {
+      "cartel_incidence": {
+        "paraphrase": 0.0,
+        "original": 0.007142857142857143,
+        "diff": {
+          "point": -0.007142857142857143,
+          "lo": -0.01263157894736842,
+          "hi": -0.0019801980198019802,
+          "n_boot": 1000
+        },
+        "margin": 0.15,
+        "equivalent": true
+      },
+      "avg_price": {
+        "paraphrase": 3.713265306122449,
+        "original": 3.2096938775510204,
+        "diff": {
+          "point": 0.5035714285714286,
+          "lo": 0.1972239170225749,
+          "hi": 0.7614864864864868,
+          "n_boot": 1000
+        },
+        "margin": 1.0,
+        "equivalent": true
+      }
+    }
+  },
+  "scorecard_original_8pool": [
+    {
+      "n": 1,
+      "result": "Cartel deterrence",
+      "measure": "cartel_formation_rate",
+      "human": {
+        "laissez_faire": 0.716,
+        "fine": 0.315,
+        "leniency": 0.178,
+        "reward": 0.22
+      },
+      "llm": {
+        "laissez_faire": 0.7747252747252747,
+        "fine": 0.14501510574018128,
+        "leniency": 0.016684045881126174,
+        "reward": 0.005112474437627812
+      },
+      "replicated": true,
+      "tests": {
+        "lf_minus_fine": {
+          "point": 0.6297101689850935,
+          "lo": 0.545155034718602,
+          "hi": 0.7388640275387264,
+          "n_boot": 1000,
+          "span_required": 0.0
+        },
+        "fine_minus_leniency": {
+          "point": 0.1283310598590551,
+          "lo": 0.10591656069043004,
+          "hi": 0.14839700374531833,
+          "n_boot": 1000,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 2,
+      "result": "Cartel detection through reports",
+      "measure": "report_rate_given_cartel",
+      "human": {
+        "fine": 0.092,
+        "leniency": 0.507,
+        "reward": 0.937
+      },
+      "llm": {
+        "fine": 0.002638522427440633,
+        "leniency": 0.5454545454545454,
+        "reward": 0.7142857142857143
+      },
+      "replicated": true,
+      "tests": {
+        "leniency_minus_fine": {
+          "point": 0.5428160230271047,
+          "lo": 0.3804312841969746,
+          "hi": 0.8,
+          "n_boot": 1000,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 3,
+      "result": "Cartel recidivism",
+      "measure": "relapse_rate_next_period",
+      "human": {
+        "fine": 0.4,
+        "leniency": null,
+        "reward": null
+      },
+      "llm": {
+        "fine": 0.125,
+        "leniency": 0.0,
+        "reward": 0.0
+      },
+      "replicated": true,
+      "tests": {
+        "fine_minus_leniency": {
+          "point": 0.125,
+          "lo": 0.05555555555555555,
+          "hi": 0.2,
+          "n_boot": 1000,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 4,
+      "result": "Average prices",
+      "measure": "avg_price",
+      "human": {
+        "laissez_faire": 4.917,
+        "fine": 5.349,
+        "leniency": 4.845,
+        "reward": 3.973
+      },
+      "llm": {
+        "laissez_faire": 8.871495327102803,
+        "fine": 5.5243386243386245,
+        "leniency": 3.2647668393782383,
+        "reward": 3.2096938775510204
+      },
+      "replicated": false,
+      "tests": {
+        "fine_minus_lf": {
+          "point": -3.3471567027641784,
+          "lo": -3.524408716449642,
+          "hi": -3.181350765478932,
+          "n_boot": 1000,
+          "span_required": 0.0
+        },
+        "leniency_minus_lf_reported_only": {
+          "point": -5.606728487724565,
+          "lo": -5.703418803418804,
+          "hi": -5.50563162970106,
+          "n_boot": 1000
+        }
+      }
+    },
+    {
+      "n": 5,
+      "result": "Cartel prices",
+      "measure": "cartel_price",
+      "human": {
+        "laissez_faire": 4.971,
+        "fine": 6.144,
+        "leniency": 7.024,
+        "reward": 5.339
+      },
+      "llm": {
+        "laissez_faire": 8.966472303206997,
+        "fine": 8.700527704485488,
+        "leniency": 8.886363636363637,
+        "reward": 9.0
+      },
+      "replicated": false,
+      "tests": {
+        "fine_minus_lf": {
+          "point": -0.265944598721509,
+          "lo": -0.360028550045735,
+          "hi": -0.14712051254518776,
+          "n_boot": 1000,
+          "span_required": 0.0
+        },
+        "leniency_minus_lf": {
+          "point": -0.08010866684336015,
+          "lo": -0.25917978063900904,
+          "hi": 0.041666666666666075,
+          "n_boot": 1000,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 6,
+      "result": "Price deviations",
+      "measure": "deviation_rate",
+      "human": {
+        "laissez_faire": 0.564,
+        "fine": 0.424,
+        "leniency": 0.373,
+        "reward": 0.782
+      },
+      "llm": {
+        "laissez_faire": 0.022102161100196464,
+        "fine": 0.006906077348066298,
+        "leniency": 0.022727272727272728,
+        "reward": 0.0
+      },
+      "replicated": false,
+      "tests": {
+        "lf_minus_fine": {
+          "point": 0.015196083752130166,
+          "lo": -0.0021973466003316726,
+          "hi": 0.03344298245614035,
+          "n_boot": 1000,
+          "span_required": 0.0
+        },
+        "lf_minus_leniency": {
+          "point": -0.0006251116270762636,
+          "lo": -0.07084891036746604,
+          "hi": 0.03627232142857143,
+          "n_boot": 1000,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 7,
+      "result": "Public reports as punishment",
+      "measure": "cartel_price",
+      "human": {
+        "fine": 5.031,
+        "noreport": 3.553
+      },
+      "llm": {
+        "fine": 8.700527704485488,
+        "noreport": null
+      },
+      "replicated": null,
+      "tests": {
+        "fine_minus_noreport": null
+      }
+    },
+    {
+      "n": 8,
+      "result": "Public reports as altruistic punishment",
+      "measure": "public_report_rate_given_only_rival_deviated",
+      "human": {
+        "fine": 0.197,
+        "rematch": 0.324
+      },
+      "llm": {
+        "fine": 0.0,
+        "rematch": null
+      },
+      "replicated": null,
+      "tests": {
+        "rematch_minus_fine": null
+      }
+    }
+  ],
+  "scorecard_paraphrase": [
+    {
+      "n": 1,
+      "result": "Cartel deterrence",
+      "measure": "cartel_formation_rate",
+      "human": {
+        "laissez_faire": 0.716,
+        "fine": 0.315,
+        "leniency": 0.178,
+        "reward": 0.22
+      },
+      "llm": {
+        "laissez_faire": 0.6302521008403361,
+        "fine": 0.003590664272890485,
+        "leniency": 0.004210526315789474,
+        "reward": 0.0
+      },
+      "replicated": false,
+      "tests": {
+        "lf_minus_fine": {
+          "point": 0.6266614365674457,
+          "lo": 0.5241466498103666,
+          "hi": 0.7726692949907236,
+          "n_boot": 1000,
+          "span_required": 0.0
+        },
+        "fine_minus_leniency": {
+          "point": -0.0006198620428989887,
+          "lo": -0.005633802816901409,
+          "hi": 0.0061162079510703364,
+          "n_boot": 1000,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 2,
+      "result": "Cartel detection through reports",
+      "measure": "report_rate_given_cartel",
+      "human": {
+        "fine": 0.092,
+        "leniency": 0.507,
+        "reward": 0.937
+      },
+      "llm": {
+        "fine": 0.0,
+        "leniency": 1.0,
+        "reward": null
+      },
+      "replicated": true,
+      "tests": {
+        "leniency_minus_fine": {
+          "point": 1.0,
+          "lo": 1.0,
+          "hi": 1.0,
+          "n_boot": 883,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 3,
+      "result": "Cartel recidivism",
+      "measure": "relapse_rate_next_period",
+      "human": {
+        "fine": 0.4,
+        "leniency": null,
+        "reward": null
+      },
+      "llm": {
+        "fine": 0.0,
+        "leniency": 0.0,
+        "reward": null
+      },
+      "replicated": false,
+      "tests": {
+        "fine_minus_leniency": {
+          "point": 0.0,
+          "lo": 0.0,
+          "hi": 0.0,
+          "n_boot": 648,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 4,
+      "result": "Average prices",
+      "measure": "avg_price",
+      "human": {
+        "laissez_faire": 4.917,
+        "fine": 5.349,
+        "leniency": 4.845,
+        "reward": 3.973
+      },
+      "llm": {
+        "laissez_faire": 8.443023255813953,
+        "fine": 3.482300884955752,
+        "leniency": 3.4989473684210526,
+        "reward": 3.713265306122449
+      },
+      "replicated": false,
+      "tests": {
+        "fine_minus_lf": {
+          "point": -4.960722370858202,
+          "lo": -5.3341619887730545,
+          "hi": -4.529983633387889,
+          "n_boot": 1000,
+          "span_required": 0.0
+        },
+        "leniency_minus_lf_reported_only": {
+          "point": -4.9440758873929,
+          "lo": -5.269047619047619,
+          "hi": -4.661096345514951,
+          "n_boot": 1000
+        }
+      }
+    },
+    {
+      "n": 5,
+      "result": "Cartel prices",
+      "measure": "cartel_price",
+      "human": {
+        "laissez_faire": 4.971,
+        "fine": 6.144,
+        "leniency": 7.024,
+        "reward": 5.339
+      },
+      "llm": {
+        "laissez_faire": 8.72538860103627,
+        "fine": 8.9,
+        "leniency": 5.75,
+        "reward": null
+      },
+      "replicated": false,
+      "tests": {
+        "fine_minus_lf": {
+          "point": 0.17461139896373012,
+          "lo": 0.10297029702970306,
+          "hi": 0.33684210526315717,
+          "n_boot": 928,
+          "span_required": 0.0
+        },
+        "leniency_minus_lf": {
+          "point": -2.9753886010362702,
+          "lo": -5.7857142857142865,
+          "hi": -0.16315789473684283,
+          "n_boot": 946,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 6,
+      "result": "Price deviations",
+      "measure": "deviation_rate",
+      "human": {
+        "laissez_faire": 0.564,
+        "fine": 0.424,
+        "leniency": 0.373,
+        "reward": 0.782
+      },
+      "llm": {
+        "laissez_faire": 0.1419098143236074,
+        "fine": 0.125,
+        "leniency": 0.25,
+        "reward": null
+      },
+      "replicated": false,
+      "tests": {
+        "lf_minus_fine": {
+          "point": 0.016909814323607414,
+          "lo": -0.05041666666666665,
+          "hi": 0.16991643454038996,
+          "n_boot": 934,
+          "span_required": 0.0
+        },
+        "lf_minus_leniency": {
+          "point": -0.10809018567639259,
+          "lo": -0.38354430379746834,
+          "hi": 0.16991643454038996,
+          "n_boot": 938,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 7,
+      "result": "Public reports as punishment",
+      "measure": "cartel_price",
+      "human": {
+        "fine": 5.031,
+        "noreport": 3.553
+      },
+      "llm": {
+        "fine": 8.9,
+        "noreport": null
+      },
+      "replicated": null,
+      "tests": {
+        "fine_minus_noreport": null
+      }
+    },
+    {
+      "n": 8,
+      "result": "Public reports as altruistic punishment",
+      "measure": "public_report_rate_given_only_rival_deviated",
+      "human": {
+        "fine": 0.197,
+        "rematch": 0.324
+      },
+      "llm": {
+        "fine": 0.0,
+        "rematch": null
+      },
+      "replicated": null,
+      "tests": {
+        "rematch_minus_fine": null
+      }
+    }
+  ],
+  "runs": {
+    "laissez_faire": "laissez_faire_claude-haiku-5-5_20261024T195637Z_s61",
+    "fine": "fine_claude-haiku-5-5_20261024T195637Z_s62",
+    "leniency": "leniency_claude-haiku-5-5_20261024T195637Z_s63",
+    "reward": "reward_claude-haiku-5-5_20261024T195637Z_s64"
+  }
+}
