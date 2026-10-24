@@ -1,6 +1,6 @@
 """Second provider: an open model served by vLLM on Modal as an OpenAI-compatible endpoint.
 
-    P2_MODEL=qwen2.5-32b-instruct modal run cartelbench/scripts/modal_vllm.py::download   # weights to the volume (CPU only)
+    P2_DOWNLOAD_ONLY=1 P2_MODEL=qwen2.5-32b-instruct modal run cartelbench/scripts/modal_vllm.py::download  # weights (CPU)
     P2_MODEL=qwen2.5-32b-instruct modal deploy cartelbench/scripts/modal_vllm.py          # endpoint up (scales to zero)
     curl -H "Authorization: Bearer $P2_KEY" https://<workspace>--cartelbench-vllm-serve.modal.run/v1/models
     modal app stop cartelbench-vllm                                                        # endpoint down after the runs
@@ -47,6 +47,9 @@ CANDIDATES = {
 MODEL = os.environ.get("P2_MODEL", "qwen2.5-32b-instruct")
 SPEC = CANDIDATES[MODEL]
 GPU = os.environ.get("P2_GPU", SPEC["gpu"])
+# P2_DOWNLOAD_ONLY=1 defines the CPU download alone (Modal refuses an app with a GPU function until the workspace
+# has a payment method on file, so the weights can be fetched before that)
+DOWNLOAD_ONLY = os.environ.get("P2_DOWNLOAD_ONLY", "") == "1"
 VLLM_VERSION = "0.31.0"
 MAX_MODEL_LEN = 8192  # prompts stay under about 4,000 tokens (Haiku max 2,180 plus the appended schema), answers under 2,048
 PORT = 8000
@@ -57,7 +60,8 @@ vllm_cache = modal.Volume.from_name("cartelbench-vllm-cache", create_if_missing=
 image = (
     modal.Image.debian_slim(python_version="3.12")
     .uv_pip_install(f"vllm=={VLLM_VERSION}", "huggingface_hub[hf_transfer]")
-    .env({"HF_HUB_ENABLE_HF_TRANSFER": "1", "HF_HOME": "/root/.cache/huggingface", "P2_MODEL": MODEL, "P2_GPU": GPU})
+    .env({"HF_HUB_ENABLE_HF_TRANSFER": "1", "HF_HOME": "/root/.cache/huggingface", "P2_MODEL": MODEL, "P2_GPU": GPU,
+          "P2_DOWNLOAD_ONLY": "1" if DOWNLOAD_ONLY else ""})
 )
 
 app = modal.App("cartelbench-vllm", image=image)
@@ -75,16 +79,23 @@ def download() -> str:
     return path
 
 
-@app.function(
-    gpu=GPU,
-    volumes=VOLUMES,
-    secrets=[modal.Secret.from_name("cartelbench-vllm")],
-    max_containers=1,
-    scaledown_window=5 * 60,
-    timeout=24 * 60 * 60,
-)
-@modal.concurrent(max_inputs=128)
-@modal.web_server(port=PORT, startup_timeout=30 * 60)
+@app.function(timeout=15 * 60)
+def check_flags() -> str:
+    """CPU check that this vLLM build defines every option `serve` passes (the CLI itself needs a GPU to start)."""
+    import importlib.util
+    import pathlib
+
+    root = pathlib.Path(importlib.util.find_spec("vllm").submodule_search_locations[0])
+    src = "\n".join(p.read_text(errors="ignore") for p in (root / "engine").rglob("*.py"))
+    src += "\n".join(p.read_text(errors="ignore") for p in (root / "entrypoints").rglob("*.py"))
+    src += "\n".join(p.read_text(errors="ignore") for p in (root / "config").rglob("*.py"))
+    fields = ["revision", "served_model_name", "api_key", "dtype", "max_model_len", "enable_prefix_caching",
+              "gpu_memory_utilization", "generation_config", "default_chat_template_kwargs"]
+    report = "\n".join(f"--{f.replace('_', '-')}: {'ok' if (f + ':') in src else 'MISSING'}" for f in fields)
+    print(report)
+    return report
+
+
 def serve() -> None:
     cmd = [
         "vllm", "serve", SPEC["repo"],
@@ -102,3 +113,14 @@ def serve() -> None:
         *SPEC["args"],
     ]
     subprocess.Popen(cmd)
+
+
+if not DOWNLOAD_ONLY:
+    serve = app.function(
+        gpu=GPU,
+        volumes=VOLUMES,
+        secrets=[modal.Secret.from_name("cartelbench-vllm")],
+        max_containers=1,
+        scaledown_window=5 * 60,
+        timeout=24 * 60 * 60,
+    )(modal.concurrent(max_inputs=128)(modal.web_server(port=PORT, startup_timeout=30 * 60)(serve)))
