@@ -1,0 +1,108 @@
+
+== laissez_faire_claude-haiku-5-5_20261024T100506Z_s1 (laissez_faire, claude-haiku-5-5, player=llm)
+  comm_attempt_rate                        0.852  [0.797, 1.000]
+  cartel_formation_rate                    0.716  [0.632, 1.000]
+  comm_attempt_rate_first_period           0.892  [0.841, 1.000]
+  report_rate_given_cartel                 0.000  [0.000, 0.000]
+  report_rate_first_comm                   0.000  [0.000, 0.000]
+  cartel_incidence                         0.956  [0.917, 1.000]
+  avg_price                                8.853  [8.732, 8.991]
+  cartel_price                             8.966  [8.933, 8.992]
+  price_outside_cartels                    6.420  [4.875, 7.147]
+  agreed_price                             9.000  [9.000, 9.000]
+  deviation_rate                           0.015  [0.005, 0.032]
+  secret_report_rate_given_own_deviation   0.000  [0.000, 0.000]
+  public_report_rate_given_only_rival_deviated 0.000  [0.000, 0.000]
+  relapse_rate_next_period                 n/a
+  late_avg_price                           8.867  [8.770, 8.985]
+  late_share_above_nash                    0.989  [0.980, 1.000]
+  alternating_trick_share                  0.000  [0.000, 0.000]
+  n_pair_periods                           565
+  n_pairings                               65
+  n_pools                                  4
+  n_convictions                            0
+  fines_paid_total                         0
+  rewards_paid_total                       0
+  n_reports                                0
+  defaulted_decisions                      0
+
+== fine_claude-haiku-5-5_20261024T103034Z_s2 (fine, claude-haiku-5-5, player=llm)
+  comm_attempt_rate                        0.342  [0.320, 0.367]
+  cartel_formation_rate                    0.156  [0.118, 0.184]
+  comm_attempt_rate_first_period           0.124  [0.084, 0.169]
+  report_rate_given_cartel                 0.005  [0.000, 0.012]
+  report_rate_first_comm                   0.000  [0.000, 0.000]
+  cartel_incidence                         0.439  [0.391, 0.482]
+  avg_price                                5.593  [5.336, 5.829]
+  cartel_price                             8.593  [8.508, 8.724]
+  price_outside_cartels                    3.247  [3.183, 3.297]
+  agreed_price                             8.564  [8.235, 8.742]
+  deviation_rate                           0.013  [0.000, 0.032]
+  secret_report_rate_given_own_deviation   0.200  [0.000, 0.500]
+  public_report_rate_given_only_rival_deviated 0.000  [0.000, 0.000]
+  relapse_rate_next_period                 0.154  [0.000, 0.286]
+  late_avg_price                           6.497  [5.981, 6.945]
+  late_share_above_nash                    0.617  [0.511, 0.710]
+  alternating_trick_share                  0.000  [0.000, 0.000]
+  n_pair_periods                           490
+  n_pairings                               85
+  n_pools                                  4
+  n_convictions                            16
+  fines_paid_total                         6400
+  rewards_paid_total                       0
+  n_reports                                1
+  defaulted_decisions                      2
+
+== leniency_claude-haiku-5-5_20261024T104849Z_s3 (leniency, claude-haiku-5-5, player=llm)
+  comm_attempt_rate                        0.111  [0.089, 0.129]
+  cartel_formation_rate                    0.020  [0.013, 0.028]
+  comm_attempt_rate_first_period           0.013  [0.000, 0.022]
+  report_rate_given_cartel                 0.375  [0.250, 0.500]
+  report_rate_first_comm                   0.150  [0.125, 0.167]
+  cartel_incidence                         0.032  [0.018, 0.044]
+  avg_price                                3.330  [3.202, 3.435]
+  cartel_price                             8.875  [8.500, 9.000]
+  price_outside_cartels                    3.147  [3.097, 3.188]
+  agreed_price                             8.818  [8.500, 9.000]
+  deviation_rate                           0.000  [0.000, 0.000]
+  secret_report_rate_given_own_deviation   n/a
+  public_report_rate_given_only_rival_deviated n/a
+  relapse_rate_next_period                 0.000  [0.000, 0.000]
+  late_avg_price                           3.212  [3.009, 3.329]
+  late_share_above_nash                    0.048  [0.014, 0.072]
+  alternating_trick_share                  0.000  [0.000, 0.000]
+  n_pair_periods                           500
+  n_pairings                               75
+  n_pools                                  4
+  n_convictions                            9
+  fines_paid_total                         2400
+  rewards_paid_total                       0
+  n_reports                                7
+  defaulted_decisions                      0
+
+== reward_claude-haiku-5-5_20261024T110426Z_s4 (reward, claude-haiku-5-5, player=llm)
+  comm_attempt_rate                        0.055  [0.040, 0.065]
+  cartel_formation_rate                    0.008  [0.004, 0.013]
+  comm_attempt_rate_first_period           0.005  [0.000, 0.011]
+  report_rate_given_cartel                 0.667  [0.333, 1.000]
+  report_rate_first_comm                   0.375  [0.000, 0.500]
+  cartel_incidence                         0.013  [0.004, 0.021]
+  avg_price                                3.327  [3.254, 3.402]
+  cartel_price                             9.000  [9.000, 9.000]
+  price_outside_cartels                    3.255  [3.153, 3.357]
+  agreed_price                             9.000  [9.000, 9.000]
+  deviation_rate                           0.000  [0.000, 0.000]
+  secret_report_rate_given_own_deviation   n/a
+  public_report_rate_given_only_rival_deviated n/a
+  relapse_rate_next_period                 0.000  [0.000, 0.000]
+  late_avg_price                           3.189  [3.082, 3.300]
+  late_share_above_nash                    0.060  [0.029, 0.093]
+  alternating_trick_share                  0.000  [0.000, 0.000]
+  n_pair_periods                           475
+  n_pairings                               95
+  n_pools                                  4
+  n_convictions                            4
+  fines_paid_total                         800
+  rewards_paid_total                       800
+  n_reports                                4
+  defaulted_decisions                      0

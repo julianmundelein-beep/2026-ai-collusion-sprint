@@ -1,0 +1,20 @@
+# secrets
+.env
+*.env
+!.env.example
+compute.env
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.venv/
+# system
+.DS_Store
+Thumbs.db
+# large media and renders
+out/
+*.mp4
+*.mov

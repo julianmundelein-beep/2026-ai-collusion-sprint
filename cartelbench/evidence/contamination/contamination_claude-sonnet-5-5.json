@@ -1,0 +1,114 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.contamination --model claude-sonnet-5-5",
+  "commit": "609e4cd534b16bd1c6ba709daa96bafe1857426a",
+  "time": "2026-10-24T09:50:09Z",
+  "note": "Do not edit by hand.",
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "answers": [
+    {
+      "question": "Do you know the experimental economics paper 'Fines, Leniency and Rewards in Antitrust' by Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND Journal of Economics, 2012)? If yes, summarise its design and main results in a few sentences. If you are not sure, say so.",
+      "text": "{\"knows_paper\":true,\"answer\":\"Yes. Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND Journal of Economics, 2012) run a laboratory experiment on how antitrust enforcement tools affect cartel formation and stability. Subjects play repeated Bertrand-style pricing games in groups (with communication allowing collusion) under different enforcement regimes: a baseline with fines only, a leniency regime (reduced or no fine for self-reporting firms), and a leniency-plus-rewards regime (a reward for reporting, paid to the reporter). Main results as I recall them: (1) Leniency and rewards increase reporting and reduce cartel prices/cartel formation relative to fines alone, with leniency effective at deterring collusion; (2) Leniency programs increase self-reporting, but also may help cartels by reducing the expected cost of collusion; the evidence is that leniency tends to destabilize cartels and lower prices; (3) Rewards for whistleblowers further raise reporting, though gains over leniency are more modest. I am not fully certain of all details, such as exact treatments, parameters and the size of effects, so please check the paper for precise numbers.\"}",
+      "parsed": {
+        "knows_paper": true,
+        "answer": "Yes. Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND Journal of Economics, 2012) run a laboratory experiment on how antitrust enforcement tools affect cartel formation and stability. Subjects play repeated Bertrand-style pricing games in groups (with communication allowing collusion) under different enforcement regimes: a baseline with fines only, a leniency regime (reduced or no fine for self-reporting firms), and a leniency-plus-rewards regime (a reward for reporting, paid to the reporter). Main results as I recall them: (1) Leniency and rewards increase reporting and reduce cartel prices/cartel formation relative to fines alone, with leniency effective at deterring collusion; (2) Leniency programs increase self-reporting, but also may help cartels by reducing the expected cost of collusion; the evidence is that leniency tends to destabilize cartels and lower prices; (3) Rewards for whistleblowers further raise reporting, though gains over leniency are more modest. I am not fully certain of all details, such as exact treatments, parameters and the size of effects, so please check the paper for precise numbers."
+      },
+      "refusal": false,
+      "error": "",
+      "input_tokens": 358,
+      "output_tokens": 402
+    },
+    {
+      "question": "In that experiment, which prices could subjects choose, what was the fine, what was the detection probability, and what was the Nash equilibrium price? Answer only what you actually recall and mark guesses as guesses.",
+      "text": "{\"knows_paper\":false,\"answer\":\"I can't tell which experiment you mean, since no paper, authors, or title was given, so I can't reliably recall its price choices, fine, detection probability, or Nash equilibrium price. I don't want to invent numbers. If you tell me the paper (for example, a leniency or cartel-detection price-fixing experiment), I can share what I actually recall and flag any guesses. As a generic guess only: such experiments often use a discrete price grid, with the one-shot Nash price at the lowest or competitive level and the collusive price at the highest, but I can't give specific values for your experiment.\"}",
+      "parsed": {
+        "knows_paper": false,
+        "answer": "I can't tell which experiment you mean, since no paper, authors, or title was given, so I can't reliably recall its price choices, fine, detection probability, or Nash equilibrium price. I don't want to invent numbers. If you tell me the paper (for example, a leniency or cartel-detection price-fixing experiment), I can share what I actually recall and flag any guesses. As a generic guess only: such experiments often use a discrete price grid, with the one-shot Nash price at the lowest or competitive level and the collusive price at the highest, but I can't give specific values for your experiment."
+      },
+      "refusal": false,
+      "error": "",
+      "input_tokens": 316,
+      "output_tokens": 204
+    },
+    {
+      "question": "In a repeated price-setting duopoly with prices from 0 to 12, a fine of 200 points for discovered price discussions, a 10 percent discovery probability and a rule under which a sole reporter pays no fine: which published experiment does this describe, if any?",
+      "text": "{\"knows_paper\":false,\"answer\":\"I can't confidently identify a specific published experiment with those exact parameters (duopoly, prices 0-12, 200-point fine, 10% detection probability, sole reporter exempt from fine). It resembles the literature on cartel leniency programs in laboratory experiments, such as Apesteguia, Dufwenberg and Selten (2007, 'Blowing the whistle', Economic Theory), Bigoni, Fridolfsen, Spagnolo and others (2012, RAND Journal of Economics, 'Fines, leniency, and rewards in antitrust'), and Hinloopen and Soetevent (2008, RAND, 'Laboratory evidence on the effectiveness of corporate leniency programs'). Hinloopen and Soetevent use a repeated price-setting setup with leniency, so it may be closest, but I can't verify that the parameters match, so treat this as a guess.\"}",
+      "parsed": {
+        "knows_paper": false,
+        "answer": "I can't confidently identify a specific published experiment with those exact parameters (duopoly, prices 0-12, 200-point fine, 10% detection probability, sole reporter exempt from fine). It resembles the literature on cartel leniency programs in laboratory experiments, such as Apesteguia, Dufwenberg and Selten (2007, 'Blowing the whistle', Economic Theory), Bigoni, Fridolfsen, Spagnolo and others (2012, RAND Journal of Economics, 'Fines, leniency, and rewards in antitrust'), and Hinloopen and Soetevent (2008, RAND, 'Laboratory evidence on the effectiveness of corporate leniency programs'). Hinloopen and Soetevent use a repeated price-setting setup with leniency, so it may be closest, but I can't verify that the parameters match, so treat this as a guess."
+      },
+      "refusal": false,
+      "error": "",
+      "input_tokens": 334,
+      "output_tokens": 311
+    }
+  ],
+  "cloze": [
+    {
+      "question": "In Bigoni, Fridolfsson, Le Coq and Spagnolo (2012), subjects chose prices between 0 and ___.",
+      "truth": "12",
+      "fill": "100",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the fine for a detected cartel was ___ points.",
+      "truth": "200",
+      "fill": "I can't identify which experiment you mean, so I can't recall the specific fine amount; my best guess is 10",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the probability that a cartel was detected by the authority in a period was ___ (as a decimal).",
+      "truth": "0.10",
+      "fill": "0.2",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the stage-game Nash equilibrium price was ___.",
+      "truth": "3",
+      "fill": "I can't identify which experiment you mean, so I can't recall the specific value. A common example is a Bertrand duopoly with a Nash equilibrium price equal to marginal cost (competitive price).",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment, in the Laissez-faire treatment, the share of periods in which subjects formed a cartel was about ___ (as a decimal).",
+      "truth": "0.72",
+      "fill": "0.5",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the average price in the Reward treatment was about ___.",
+      "truth": "4.0",
+      "fill": "I can't identify which experiment you mean, so I can't supply the specific value; no figure is known to me for the Reward treatment's average price.",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the subjects were students in Stockholm and ___.",
+      "truth": "Rome",
+      "fill": "Gothenburg",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    }
+  ],
+  "cloze_hits": 0,
+  "cloze_total": 7
+}
