@@ -44,7 +44,7 @@ At most two long build sessions plus one short session at the same time. One ses
 | 0 | Main session | hackathon-kickoff | main folder | STATUS, FACTS, CORE_IDEA; commits DECISIONS | Julian + Claude | running | AI Collusion Research Sprint · Hauptsession |
 | 1 | Framework research | hackathon-kickoff (research) | main folder | HACKATHON.md, official/, private/JUDGES.md, private/COMPETITION.md | Claude | done (HACKATHON.md, JUDGES.md, COMPETITION.md, official/ committed); kept open for COMPETITION rescans | local_51c0819d-c7e3-4cb4-8036-c263bc6b9c22 |
 | 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | done (two rounds, 39 ideas, I24 chosen with build plan, commit d5e8cf9); archive on Julian's OK | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
-| 3 | Jury | jury-simulation | main folder | private/reviews/ | | not started | |
+| 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | running (R01 on CORE_IDEA, started 2026-10-24 16:40 HKT) | local_525668aa-4f92-4e55-8006-1293f749dce9 |
 | 4 | Website | design-taste-frontend | own worktree or cloud | web/ (branch) | | dropped (not a deliverable) | |
 | 5 | Backend | hackathon-backend | own worktree or cloud | code folder on its branch, README | | not started | |
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
@@ -87,7 +87,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 ## Waiting for
 
 - Julian: Discord check (keys from the organizers, Modal credit redemption, pinned announcements), send the email draft in HACKATHON.md
-- Julian: OK to start Backend (5) and Jury (3, round R01/R02 on CORE_IDEA.md) in parallel; licence decision (proposal: MIT for code, CC BY 4.0 for the report)
+- Julian: start the Backend card (5); licence decided later, before submission
 - Julian: pick project name, one sentence, why sentence, slogan from CORE_IDEA.md "Message"
 - Julian: Anthropic API key into the backend's compute.env when the session asks
 
