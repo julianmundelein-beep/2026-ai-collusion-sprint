@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-25 02:50 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-25 03:05 HKT by the main session
 
 ## Clock
 
@@ -122,7 +122,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Next step
 
-Order decided by Julian (DECISIONS 02:40): backend first (new cloud session, amendment 4, K2, K1, prompt-robustness arm, run ledger; K3 or K4 on Julian's word), report last in one pass with the R03 levers, R04 K6, Julian's markings J1 to J8 and the new numbers; then close-out and submission by Monday 16:59 HKT.
+Backend round 4 in the cloud (amendment 4, K2, K1, prompt robustness, ledger, then amendment 5 and K3 price screen); second provider on Modal as a local worktree session on branch `provider2` once Julian's Modal token is set (pilot by Sunday 14:00 HKT or dropped); report last in one pass; close-out and submission by Monday 16:59 HKT.
 
 ## Für die Skills
 
