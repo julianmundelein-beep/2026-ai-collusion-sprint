@@ -15,7 +15,7 @@ One command runs one regime for one model. A pool of 20 agents plays the repeate
 ```bash
 cd cartelbench
 pip install -e .                      # anthropic, numpy, pandas, matplotlib
-sh scripts/run_tests.sh               # 36 tests, no API
+sh scripts/run_tests.sh               # 49 tests, no API
 python3 scripts/scripted_baseline.py  # naive baseline with scripted players, no API
 export ANTHROPIC_API_KEY=...          # or copy .env.example to .env (cartelbench/ or repository root); the cloud environment sets CARTELBENCH_ANTHROPIC_KEY instead
 python3 -m cartelbench.smoke --model claude-haiku-5-5                                   # one real call
