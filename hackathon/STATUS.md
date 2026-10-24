@@ -20,7 +20,7 @@
 
 ## Gates (in this order)
 
-- [ ] Team and eligibility checked
+- [x] Team and eligibility checked (solo, open globally, no background required)
 - [ ] Rules researched: HACKATHON.md complete (`pruefen.py rahmen` passes), official templates found or ruled out
 - [ ] Registered; questions to the organizers sent, including mandatory content
 - [ ] Idea chosen: CORE_IDEA.md written, decision in DECISIONS.md
@@ -42,8 +42,8 @@ At most two long build sessions plus one short session at the same time. One ses
 | # | Session | Skill | Where | Writes | Owner | State | Session |
 |---|---|---|---|---|---|---|---|
 | 0 | Main session | hackathon-kickoff | main folder | STATUS, FACTS, CORE_IDEA; commits DECISIONS | Julian + Claude | running | AI Collusion Research Sprint · Hauptsession |
-| 1 | Framework research | hackathon-kickoff (research) | main folder | HACKATHON.md, official/, private/JUDGES.md, private/COMPETITION.md | | not started | |
-| 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | | not started | |
+| 1 | Framework research | hackathon-kickoff (research) | main folder | HACKATHON.md, official/, private/JUDGES.md, private/COMPETITION.md | Claude | running (started 2026-10-24 13:45 HKT, max 1 h) | local_51c0819d-c7e3-4cb4-8036-c263bc6b9c22 |
+| 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | running (started 2026-10-24 13:45 HKT, short form) | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
 | 3 | Jury | jury-simulation | main folder | private/reviews/ | | not started | |
 | 4 | Website | design-taste-frontend | own worktree or cloud | web/ (branch) | | dropped (not a deliverable) | |
 | 5 | Backend | hackathon-backend | own worktree or cloud | code folder on its branch, README | | not started | |
