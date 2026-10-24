@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 23:20 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 23:35 HKT by the main session
 
 ## Clock
 
@@ -50,7 +50,7 @@ At most two long build sessions plus one short session at the same time. One ses
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
 | 7 | Demo video | video-studio | main folder | private/video/ | | optional (3 to 5 min, decide after R02 and the clock) | |
 | 8 | Design | hackathon-design | main folder | DESIGN.md, private/design/ | | optional (only if figures or video need a look) | |
-| 9 | Report (paper) | none (skills klare-einreichung, docx) | main folder | paper/report.docx (source), paper/report.md (mirror), paper/report.pdf | Claude | R02 levers and new title applied (7c89414); stopped by Julian 21:50 HKT to save usage until the cloud backend is done; F23 to F30 message queued, uncommitted edits may sit in paper/ | local_d6d6a6d7-12df-4407-b0dd-9efb32c204cd |
+| 9 | Report (paper) | none (skills klare-einreichung, docx) | main folder | paper/report.docx (source), paper/report.md (mirror), paper/report.pdf | Claude | complete draft with all arms (597e56c, 23:30 HKT): 8 pages before References, no "not run", no [F??], PDF text layer clean, submission file exported; waiting for Julian's title decision and R03 | local_d6d6a6d7-12df-4407-b0dd-9efb32c204cd |
 
 Rows the deliverables in HACKATHON.md do not need are set to `dropped` after the research (row 9 only runs when a report is required).
 
@@ -62,7 +62,7 @@ Every deliverable from HACKATHON.md, the one place it is made, and who makes it.
 
 | Deliverable | The one source | Session or person | State | Final file submitted |
 |---|---|---|---|---|
-| Research report (PDF, official template, max 8 pages before references and appendices, plan 4 to 6; abstract 150 to 250 words; authors and affiliations; appendix "Limitations and Dual-Use / Ethical Considerations"; LLM Usage Statement; at least one figure) | `paper/report.docx` on the .docx copy of the official template (Google Doc only if Julian asks); PDF export `paper/report.pdf` is the submission; file `paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf` | 9 Report | draft 7c89414, 8 pages, waits for the backend arms | |
+| Research report (PDF, official template, max 8 pages before references and appendices, plan 4 to 6; abstract 150 to 250 words; authors and affiliations; appendix "Limitations and Dual-Use / Ethical Considerations"; LLM Usage Statement; at least one figure) | `paper/report.docx` on the .docx copy of the official template (Google Doc only if Julian asks); PDF export `paper/report.pdf` is the submission; file `paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf` | 9 Report | complete draft 597e56c, 8 pages, all arms in | |
 | Figure 1 (scorecard dot plot) | `paper/figure1.py` rendered from the backend's `scorecard.json` and `analyze_core_bootstrap.txt` (F19); the backend's own figure files are data, not the report figure | 9 Report (data: 5 Backend) | drawn 7c89414 | |
 | Public GitHub repo (optional) | this repo; harness in `cartel/` (name per Julian's pick) on branch `backend`, README from the backend session | 5 Backend | not started | |
 | Video demo, 3 to 5 min (optional, URL only, judges review the PDF) | private/video/ | 7 Demo video | optional | |
@@ -92,9 +92,9 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 | One paragraph separating strategic deterrence from a reaction to the words fine, leniency, reward, since punishments are only told | jury R01 (4 of 5) | Discussion, Limitations appendix | open |
 | Exact model IDs with date, verbatim prompts, seeds, one replication command | jury R01 (2 of 5) | appendix, README | open |
 | Headline is the divergence from humans with a tested mechanism, not the reproduction count; at least two providers so the claim is about LLMs | jury R01 (5 of 5 levers) | title, abstract, contributions, Figure 1 caption | open |
-| No "[F??]" in the PDF: every gap filled or marked "not run"; pre-registration hash with timestamp (F20) | jury R02 (5 of 5) | whole report | done 7c89414; 14 "not run" remain until the backend delivers |
-| Known-effect arms and shifted-grid result reported even if unfavourable | jury R02 (5 of 5) | Table 1, contamination section | done (F24, F25, F31, F32, F33); report to write it in |
-| Placebo arm: full authority text with prohibition but zero penalty, to separate deterrence from the word "prohibited" | jury R02 (4 of 5) | Table 1 or 2, Discussion | done (F26); report to write it in |
+| No "[F??]" in the PDF: every gap filled or marked "not run"; pre-registration hash with timestamp (F20) | jury R02 (5 of 5) | whole report | done 597e56c, none left |
+| Known-effect arms and shifted-grid result reported even if unfavourable | jury R02 (5 of 5) | Table 1, contamination section | done 597e56c |
+| Placebo arm: full authority text with prohibition but zero penalty, to separate deterrence from the word "prohibited" | jury R02 (4 of 5) | Table 1 or 2, Discussion | done 597e56c |
 | n-table stays in the body, slim | jury R02 (5 of 5) | Results | done 7c89414 |
 | Numbers consistent: seeds, convictions, costs, pilot count, one measure throughout | jury R02 (4 of 5) | Methods, Table 3, Appendix C, abstract | done 7c89414 |
 | Figure 1 honest and legible: no data in untested panels, plain axis labels, regime difference with interval per panel, Stockholm-Rome span defined in Methods | jury R02 (5 of 5) | Figure 1, Methods | done 7c89414 (paper/figure1.py) |
@@ -104,7 +104,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Waiting for
 
-- Julian: tell the cloud backend session: placebo arm (authority text, zero penalty) next to fine_certain and the shifted grid; one sentence on why leniency and reward both average 3.33 and the reward intervals collapse; PREREGISTRATION.md still says pools of 20 in the settings (should be 4 pools of 10); test counts differ (report 43, table 46, log 49)
+- Julian: final title (report session's options a, b, or keep); OK for R03 on the final PDF
 - Report session: apply title, affiliation and the cut to 8 pages (sent 19:55 HKT)
 - Julian: tell the cloud backend session that Figure 1 should be a 4x2 grid or use larger type (2x4 is too small at 6.5 inch width)
 - Julian: confirm the main-model rule (Haiku 5.5 as main model if it passes the pilot, Sonnet 5.5 as one V4 culture with 10 duopoles) and the project name (CartelBench recommended)
@@ -116,7 +116,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Next step
 
-Report session fills every remaining "not run" from F23 to F40 in one pass (controls table, placebo paragraph, contamination b, second model, dose figure, NoReport, ReMatch, clone, final scorecard 2 of 7), then R03 on the final PDF; merge `refs/heads/backend` into main on Julian's word; close-out (translate, remove hackathon/ and CLAUDE.md from the tree), repo public, submission by Monday 16:59 HKT.
+Julian picks the final title; jury R03 on paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf (597e56c); report session applies the R03 levers; then close-out per references/repo-abschluss.md (SUBMISSION.md, licence, translate what stays, remove hackathon/ and CLAUDE.md from the tree), repo public, form by Monday 16:59 HKT.
 
 ## Für die Skills
 
