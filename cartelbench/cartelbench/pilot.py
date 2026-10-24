@@ -39,7 +39,14 @@ def main(argv=None) -> int:
         print("ANTHROPIC_API_KEY (or CARTELBENCH_ANTHROPIC_KEY) is not set; the pilot was not started.", file=sys.stderr)
         return 2
     out_dir = EVIDENCE_DIR / "pilot"
+    # models run earlier (the pilot may be run one model at a time to measure cost before the next paid block)
     results = {}
+    prev_path = out_dir / "pilot_summary.json"
+    if prev_path.exists():
+        try:
+            results = dict(json.loads(prev_path.read_text()).get("models", {}))
+        except (OSError, ValueError):
+            results = {}
     for model in [m.strip() for m in args.models.split(",") if m.strip()]:
         client = make_client(args.provider, model, effort=args.effort, concurrency=args.concurrency,
                              base_url=args.base_url, api_key_env=args.api_key_env)
