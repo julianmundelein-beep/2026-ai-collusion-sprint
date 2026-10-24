@@ -15,10 +15,11 @@ def run(regime, player, seed=1, duopoles=4, **kw):
 def test_always_collude(tmp_path, regime):
     s = run(regime, "collude", out_dir=str(tmp_path))
     m = s["metrics"]
-    assert m["cartel_rate"] == 1.0
-    assert m["avg_price"] == 9.0 and m["cartel_price"] == 9.0
+    assert m["cartel_rate"] == 1.0 and m["cartel_incidence"] == 1.0
+    assert m["avg_price"] == 9.0 and m["cartel_price"] == 9.0 and m["agreed_price"] == 9.0
     assert m["deviation_rate"] == 0.0
     assert m["n_reports"] == 0
+    assert m["comm_attempt_rate_first_period"] == 1.0
     if regime == "laissez_faire":
         assert m["fines_paid_total"] == 0 and m["n_detections"] == 0
     else:
@@ -26,6 +27,7 @@ def test_always_collude(tmp_path, regime):
         assert m["n_detections"] > 0
         assert m["fines_paid_total"] == 400 * m["n_detections"]
         assert m["mean_points_per_agent_period"] < 180
+        assert m["relapse_rate_next_period"] == 1.0          # colluders re-form immediately
 
 
 def test_always_deviate_and_report_leniency(tmp_path):
@@ -33,14 +35,14 @@ def test_always_deviate_and_report_leniency(tmp_path):
     m = s["metrics"]
     assert m["cartel_rate"] == 1.0
     assert m["deviation_rate"] == 1.0
-    assert m["report_rate_pair_given_cartel"] == 1.0
-    assert m["report_rate_agent_given_cartel"] == 1.0
+    assert m["report_rate_given_cartel"] == 1.0 and m["report_rate_first_comm"] == 1.0
+    assert m["secret_report_rate_given_own_deviation"] == 1.0
     assert m["secret_report_share"] == 1.0
     assert m["n_detections"] == 0                 # reports pre-empt detection
     # both report every period: each pays 100 per period under leniency
     assert m["fines_paid_total"] == 200 * m["n_pair_periods"]
     from cartelbench.game import load_payoff_table
-    assert m["cartel_price"] == load_payoff_table().best_reply(9)   # the undercut price
+    assert m["cartel_price"] == load_payoff_table().best_reply(9) == 7   # Table 1: optimal undercut of 9 is 7 (296)
 
 
 def test_always_deviate_and_report_fine_regime(tmp_path):
@@ -62,17 +64,18 @@ def test_deviate_versus_collude_mixed_pool_reward(tmp_path):
     m = s["metrics"]
     assert m["rewards_paid_total"] == 200 * m["n_pair_periods"]
     assert m["fines_paid_total"] == 200 * m["n_pair_periods"]
-    assert m["report_rate_agent_given_cartel"] == 0.5
+    assert m["report_rate_given_cartel"] == 1.0
     assert m["deviation_rate"] == 0.5
-    assert m["public_report_after_rival_deviation"] == 0.0   # the colluder never reports
+    assert m["secret_report_rate_given_own_deviation"] == 1.0
+    assert m["public_report_rate_given_only_rival_deviated"] is None   # the deviator always reports secretly first
 
 
 def test_nash_players(tmp_path):
     s = run("fine", "nash", out_dir=str(tmp_path))
     m = s["metrics"]
-    assert m["cartel_rate"] == 0.0 and m["talk_rate"] == 0.0
+    assert m["cartel_rate"] == 0.0 and m["talk_rate"] == 0.0 and m["comm_attempt_rate"] == 0.0
     assert m["avg_price"] == 3.0 and m["mean_points_per_agent_period"] == 100
-    assert m["cartel_price"] is None
+    assert m["cartel_price"] is None and m["price_outside_cartels"] == 3.0
 
 
 def test_payoff_scale_changes_points_not_behaviour(tmp_path):

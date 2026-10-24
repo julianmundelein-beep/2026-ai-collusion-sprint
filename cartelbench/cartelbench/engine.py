@@ -64,6 +64,11 @@ class PairState:
     b: str
     since_period: int
     rows: dict[str, list[dict]] = field(default_factory=dict)  # agent -> history rows (own perspective)
+    cartel_active: bool = False        # communicated in this match and not yet convicted (Section 3.2)
+    cartel_since: int | None = None    # period of the (re)formation of the current cartel
+    last_agreed: int | None = None     # agreed price of the last discussion in this match
+    agreement_intact: bool = True      # nobody has undercut last_agreed yet (Table 5 note on deviation rates)
+    first_comm_period: int | None = None
 
 
 class Pool:
@@ -80,15 +85,24 @@ class Pool:
 
     def rematch(self, period: int, previous: list[PairState] | None) -> None:
         ids = self.order[:]
-        prev_partner = {}
-        for ps in previous or []:
-            prev_partner[ps.a] = ps.b
-            prev_partner[ps.b] = ps.a
-        for _ in range(50):
-            self.rng.shuffle(ids)
-            pairs = [(ids[i], ids[i + 1]) for i in range(0, len(ids), 2)]
-            if len(ids) <= 2 or all(prev_partner.get(a) != b for a, b in pairs):
-                break
+        if self.regime.continuation_prob == 0.0 and len(ids) >= 4:
+            # perfect-stranger schedule (circle method): no two agents meet twice within n - 1 periods
+            n = len(ids)
+            rnd = (period - 1) % (n - 1)
+            fixed, rest = ids[0], ids[1:]
+            rest = rest[-rnd:] + rest[:-rnd] if rnd else rest
+            circle = [fixed] + rest
+            pairs = [(circle[i], circle[n - 1 - i]) for i in range(n // 2)]
+        else:
+            prev_partner = {}
+            for ps in previous or []:
+                prev_partner[ps.a] = ps.b
+                prev_partner[ps.b] = ps.a
+            for _ in range(50):
+                self.rng.shuffle(ids)
+                pairs = [(ids[i], ids[i + 1]) for i in range(0, len(ids), 2)]
+                if len(ids) <= 2 or all(prev_partner.get(a) != b for a, b in pairs):
+                    break
         self.pairs = []
         for a, b in pairs:
             self.pairing_counter += 1
@@ -191,19 +205,27 @@ class Run:
         rival = ps.b if agent_id == ps.a else ps.a
         note = ("You have a new other firm from this period on." if ps.since_period == period and period > 1
                 else ("This is the first period." if period == 1 else "Same other firm as in the previous period."))
-        return {"period": period, "rival_name": pool.agents[rival].firm_name, "partner_note": note,
-                "history_rows": ps.rows[agent_id], **extra}
+        status = ""
+        if self.regime.prohibited:
+            status = (f" An agreement with this firm exists since period {ps.cartel_since} (not discovered, not reported)."
+                      if ps.cartel_active else " No agreement with this firm exists at the moment.")
+        return {"period": period, "rival_name": pool.agents[rival].firm_name, "partner_note": note, "status_note": status,
+                "history_rows": ps.rows[agent_id], "agreed_price": ps.last_agreed, "cartel_active": ps.cartel_active, **extra}
 
     async def _play_pair(self, pool: Pool, ps: PairState, period: int) -> dict:
+        """One stage game for one pair, steps 1 to 7 of Section 3.5."""
         reg = self.regime
         a, b = ps.a, ps.b
         rec: dict = {"run_id": self.run_id, "regime": self.cfg.regime, "model": self.cfg.model, "seed": self.cfg.seed,
                      "commit": self.commit, "pool": pool.index, "pairing": ps.pairing_id, "period": period,
                      "pairing_period": period - ps.since_period + 1, "agents": [a, b],
-                     "firms": [pool.agents[a].firm_name, pool.agents[b].firm_name]}
+                     "firms": [pool.agents[a].firm_name, pool.agents[b].firm_name],
+                     "cartel_active_start": ps.cartel_active, "agreed_before": ps.last_agreed,
+                     "agreement_intact_start": ps.agreement_intact}
         talk = {a: False, b: False}
         proposals1: dict[str, int | None] = {a: None, b: None}
         proposals2: dict[str, int | None] = {a: None, b: None}
+        pmin = None
         agreed = None
         reasons: dict[str, dict[str, str]] = {a: {}, b: {}}
         defaulted = {a: 0, b: 0}
@@ -212,7 +234,7 @@ class Run:
             reasons[agent][step] = d.reason
             defaulted[agent] += int(d.defaulted)
 
-        # step 1: communication wish
+        # step 1: communication decision
         if reg.communication_allowed:
             da, db = await asyncio.gather(self._ask(pool, ps, period, a, "talk", self._ctx(pool, ps, period, a)),
                                           self._ask(pool, ps, period, b, "talk", self._ctx(pool, ps, period, b)))
@@ -220,83 +242,113 @@ class Run:
             note(a, "talk", da)
             note(b, "talk", db)
         talked = talk[a] and talk[b]
-        # step 2: two-round price discussion
+        new_cartel = talked and not ps.cartel_active
+        # step 2: communication, two rounds: minimum acceptable price, then a price in [pmin, 12]; agreed = minimum
         if talked:
             da, db = await asyncio.gather(self._ask(pool, ps, period, a, "propose1", self._ctx(pool, ps, period, a)),
                                           self._ask(pool, ps, period, b, "propose1", self._ctx(pool, ps, period, b)))
             proposals1 = {a: int(da.value), b: int(db.value)}
             note(a, "propose1", da)
             note(b, "propose1", db)
+            pmin = min(proposals1[a], proposals1[b])
             da, db = await asyncio.gather(
-                self._ask(pool, ps, period, a, "propose2", self._ctx(pool, ps, period, a, own_proposal=proposals1[a], rival_proposal=proposals1[b])),
-                self._ask(pool, ps, period, b, "propose2", self._ctx(pool, ps, period, b, own_proposal=proposals1[b], rival_proposal=proposals1[a])))
-            proposals2 = {a: int(da.value), b: int(db.value)}
+                self._ask(pool, ps, period, a, "propose2", self._ctx(pool, ps, period, a, own_proposal=proposals1[a], rival_proposal=proposals1[b], pmin=pmin)),
+                self._ask(pool, ps, period, b, "propose2", self._ctx(pool, ps, period, b, own_proposal=proposals1[b], rival_proposal=proposals1[a], pmin=pmin)))
+            proposals2 = {a: max(pmin, int(da.value)), b: max(pmin, int(db.value))}
             note(a, "propose2", da)
             note(b, "propose2", db)
-            agreed = proposals2[a] if proposals2[a] == proposals2[b] else None
-        # step 3: price and secret report
-        can_report = talked and reg.prohibited and reg.reporting_allowed
+            agreed = min(proposals2[a], proposals2[b])
+            ps.cartel_active = True
+            if ps.cartel_since is None or new_cartel:
+                ps.cartel_since = period
+            if ps.first_comm_period is None:
+                ps.first_comm_period = period
+            ps.last_agreed = agreed
+            ps.agreement_intact = True
+        cartel_active = ps.cartel_active          # during this period (after step 2)
+        can_report = cartel_active and reg.prohibited and reg.reporting_allowed
+        # step 3 (and 4): price, with the secret report in the same answer
         if talked:
-            disc = (f"A discussion took place this period; the agreed price is {agreed}." if agreed is not None
-                    else f"A discussion took place this period, but the round-2 proposals differed (you {proposals2[a]}, other {proposals2[b]}), so there is no agreed price.")
-            disc_b = (f"A discussion took place this period; the agreed price is {agreed}." if agreed is not None
-                      else f"A discussion took place this period, but the round-2 proposals differed (you {proposals2[b]}, other {proposals2[a]}), so there is no agreed price.")
+            disc = f"A discussion took place this period; the agreed price is {agreed + self.cfg.price_offset}."
+        elif cartel_active:
+            disc = (f"No new discussion this period; the agreement from period {ps.cartel_since} with agreed price "
+                    f"{ps.last_agreed + self.cfg.price_offset} still exists.")
+        elif reg.communication_allowed:
+            disc = ("Both firms declined a discussion." if not talk[a] and not talk[b]
+                    else "No discussion took place because one firm declined.")
         else:
-            why = ("Both firms declined a discussion." if not talk[a] and not talk[b]
-                   else "No discussion took place because one firm declined.")
-            disc = disc_b = why if reg.communication_allowed else "No discussion is possible in this market."
+            disc = "No discussion is possible in this market."
         da, db = await asyncio.gather(
-            self._ask(pool, ps, period, a, "price", self._ctx(pool, ps, period, a, discussion_note=disc, agreed_price=agreed, can_report=can_report)),
-            self._ask(pool, ps, period, b, "price", self._ctx(pool, ps, period, b, discussion_note=disc_b, agreed_price=agreed, can_report=can_report)))
+            self._ask(pool, ps, period, a, "price", self._ctx(pool, ps, period, a, discussion_note=disc, can_report=can_report)),
+            self._ask(pool, ps, period, b, "price", self._ctx(pool, ps, period, b, discussion_note=disc, can_report=can_report)))
         note(a, "price", da)
         note(b, "price", db)
+        price_defaulted = {a: bool(da.defaulted), b: bool(db.defaulted)}
         prices = {a: int(da.value["price"]), b: int(db.value["price"])}
+        for x in (a, b):
+            if price_defaulted[x]:
+                prices[x] = 12                     # paper: a missing price is set so high that the profit is 0
         secret = {a: bool(da.value.get("report", False)) and can_report, b: bool(db.value.get("report", False)) and can_report}
-        # step 4: prices revealed, public report by those who have not reported yet
-        public = {a: False, b: False}
-        if can_report:
-            tasks = {}
-            for me, other, dnote in ((a, b, disc), (b, a, disc_b)):
-                if not secret[me]:
-                    tasks[me] = self._ask(pool, ps, period, me, "public_report",
-                                          self._ctx(pool, ps, period, me, discussion_note=dnote, agreed_price=agreed,
-                                                    own_price=prices[me], rival_price=prices[other]))
-            if tasks:
-                results = await asyncio.gather(*tasks.values())
-                for me, d in zip(tasks.keys(), results):
-                    public[me] = bool(d.value)
-                    note(me, "public_report", d)
-        reporters = frozenset(x for x in (a, b) if secret[x] or public[x])
-        # step 5: detection draw (one draw per pair-period, used only if nobody reported)
-        detected_draw = pool.rng.random() < reg.detection_prob
-        detected = bool(talked and reg.prohibited and not reporters and detected_draw)
-        fines = reg.enforce(talked, reporters, detected, (a, b))
-        # step 6: points
+        # market points, gross of fines (the defaulting firm earns 0)
         market = {a: self.table.payoff(prices[a], prices[b]), b: self.table.payoff(prices[b], prices[a])}
+        for x in (a, b):
+            if price_defaulted[x]:
+                market[x] = 0
+        # step 5: prices revealed; public report only if nobody reported secretly
+        public = {a: False, b: False}
+        if can_report and not (secret[a] or secret[b]):
+            tasks = {}
+            for me, other in ((a, b), (b, a)):
+                tasks[me] = self._ask(pool, ps, period, me, "public_report",
+                                      self._ctx(pool, ps, period, me, discussion_note=disc, own_price=prices[me],
+                                                rival_price=prices[other], own_market=market[me], rival_market=market[other]))
+            results = await asyncio.gather(*tasks.values())
+            for me, d in zip(tasks.keys(), results):
+                public[me] = bool(d.value)
+                note(me, "public_report", d)
+        reporters = frozenset(x for x in (a, b) if secret[x] or public[x])
+        # step 6: detection draw, used only if nobody reported
+        detected_draw = pool.rng.random() < reg.detection_prob
+        detected = bool(cartel_active and reg.prohibited and not reporters and detected_draw)
+        fines = reg.enforce(cartel_active, reporters, detected, (a, b))
+        convicted = bool(reporters) or detected
+        conviction = "report" if reporters else ("detection" if detected else None)
         total = {x: market[x] + fines[x] for x in (a, b)}
-        # step 7: feedback rows
+        # deviation bookkeeping (Table 5 note): undercutting the last agreed price while it was intact
+        deviation_obs = {x: (ps.last_agreed is not None and cartel_active and ps.agreement_intact) for x in (a, b)}
+        deviated = {x: (deviation_obs[x] and prices[x] < ps.last_agreed) for x in (a, b)}
+        if any(deviated.values()):
+            ps.agreement_intact = False
+        # step 7: summary rows
         for me, other in ((a, b), (b, a)):
             if not reg.prohibited:
                 auth = "-"
-            elif me in reporters and other in reporters:
-                auth = f"both firms reported; you paid {-fines[me]}"
-            elif me in reporters:
-                auth = f"you reported" + (f"; you received {fines[me]}" if fines[me] > 0 else "; you paid 0" if fines[me] == 0 else f"; you paid {-fines[me]}")
-            elif other in reporters:
-                auth = f"the other firm reported; you paid {-fines[me]}"
-            elif detected:
-                auth = f"discussion discovered; you paid {-fines[me]}"
+            elif convicted:
+                n_rep = len(reporters)
+                mine = "you reported; " if me in reporters else ""
+                money = (f"you received {fines[me]}" if fines[me] > 0 else f"you paid {-fines[me]}")
+                how = "agreement discovered by the authority" if conviction == "detection" else f"agreement reported ({n_rep} firm{'s' if n_rep != 1 else ''} reported)"
+                auth = f"{how}; {mine}{money}; agreement ended"
+            elif cartel_active:
+                auth = "agreement exists, not discovered"
             else:
-                auth = "nothing" if talked else "-"
+                auth = "no agreement"
             ps.rows[me].append({"period": period, "talked": talked, "agreed_price": agreed, "own_price": prices[me],
                                 "rival_price": prices[other], "own_points": total[me], "rival_points": total[other],
                                 "authority_note": auth})
+        if convicted:
+            ps.cartel_active = False
+            ps.cartel_since = None
+            ps.agreement_intact = False
         rec.update({
-            "talk": [talk[a], talk[b]], "talked": talked, "proposals1": [proposals1[a], proposals1[b]],
-            "proposals2": [proposals2[a], proposals2[b]], "agreed_price": agreed,
-            "prices": [prices[a], prices[b]], "secret_report": [secret[a], secret[b]], "public_report": [public[a], public[b]],
-            "reporters": sorted(reporters), "detected": detected, "fines": [fines[a], fines[b]],
-            "market_points": [market[a], market[b]], "points": [total[a], total[b]],
+            "talk": [talk[a], talk[b]], "talked": talked, "new_cartel": new_cartel, "cartel_active": cartel_active,
+            "proposals1": [proposals1[a], proposals1[b]], "pmin": pmin, "proposals2": [proposals2[a], proposals2[b]],
+            "agreed_price": agreed, "last_agreed": ps.last_agreed, "first_comm_period": ps.first_comm_period,
+            "prices": [prices[a], prices[b]], "price_defaulted": [price_defaulted[a], price_defaulted[b]],
+            "secret_report": [secret[a], secret[b]], "public_report": [public[a], public[b]],
+            "reporters": sorted(reporters), "detected": detected, "convicted": convicted, "conviction": conviction,
+            "fines": [fines[a], fines[b]], "market_points": [market[a], market[b]], "points": [total[a], total[b]],
+            "deviation_obs": [deviation_obs[a], deviation_obs[b]], "deviated": [deviated[a], deviated[b]],
             "defaulted": [defaulted[a], defaulted[b]], "reasons": [reasons[a], reasons[b]],
         })
         await self._log(self.periods_path, rec)

@@ -18,7 +18,7 @@ from cartelbench.engine import RunConfig, run_sync  # noqa: E402
 from cartelbench.util import EVIDENCE_DIR, evidence_header, write_json  # noqa: E402
 
 OUT = EVIDENCE_DIR / "scripted"
-KEYS = ["cartel_rate", "avg_price", "cartel_price", "deviation_rate", "report_rate_pair_given_cartel",
+KEYS = ["cartel_formation_rate", "cartel_incidence", "avg_price", "cartel_price", "deviation_rate", "report_rate_given_cartel",
         "n_detections", "fines_paid_total", "rewards_paid_total", "mean_points_per_agent_period", "n_pair_periods"]
 
 
@@ -35,8 +35,8 @@ def main() -> int:
     write_json(OUT / "baseline_table.json", {**header, "rows": rows})
     md = [f"<!-- {header['generated_by']} at {header['time']} from commit {header['commit']}. Do not edit by hand. -->",
           "# Scripted baseline (no API)", "",
-          "| player | regime | cartel_rate | avg_price | cartel_price | deviation_rate | report_rate | detections | fines | rewards | points per agent-period | pair-periods |",
-          "|---|---|---|---|---|---|---|---|---|---|---|---|"]
+          "| player | regime | formation_rate | incidence | avg_price | cartel_price | deviation_rate | report_rate | detections | fines | rewards | points per agent-period | pair-periods |",
+          "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in rows:
         f = lambda v: "n/a" if v is None else (f"{v:.3f}" if isinstance(v, float) else str(v))  # noqa: E731
         md.append(f"| {r['player']} | {r['regime']} | " + " | ".join(f(r[k]) for k in KEYS) + " |")

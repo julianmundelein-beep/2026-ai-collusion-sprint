@@ -66,7 +66,7 @@ class ScriptedPlayer(Player):
         if step in ("propose1", "propose2"):
             return Decision(JOINT_OPTIMUM_PRICE)
         if step == "price":
-            agreed = ctx.get("agreed_price")
+            agreed = ctx.get("agreed_price") if ctx.get("cartel_active") else None
             if s == "nash":
                 return Decision({"price": NASH_PRICE, "report": False})
             if s == "collude":

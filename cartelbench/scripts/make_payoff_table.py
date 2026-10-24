@@ -1,21 +1,13 @@
-"""Generate data/payoff_table.csv for the Bigoni duopoly.
+"""Payoff table of the Bigoni duopoly (Table 1 of the paper).
 
-The published Table 1 of Bigoni, Fridolfsson, Le Coq and Spagnolo (2009, 2012)
-is not reachable from the cloud session (network policy). Until Julian commits
-the paper, this script reconstructs a 13 x 13 payoff table from a linear
-differentiated-products demand fitted exactly to the four anchor cells the
-idea card quotes from Table 1:
+data/payoff_table.csv is the transcription of Table 1 from Bigoni, Fridolfsson, Le Coq and Spagnolo,
+IFN Working Paper 738 (version 2 November 2011). This script cross-checks the transcription against the
+demand model the paper states (Section 3.1): q_i = a/(1+g) - p_i/(1-g^2) + g p_j/(1-g^2) with a = 36,
+c = 0, g = 4/5, prices in the experiment doubled (choice set 0, 2, ..., 24 relabelled 0 to 12), profits
+rounded to the nearest integer, and monopoly demand a - p_i when the rival's demand is non-positive.
 
-    both at 3 (Nash)            -> 100 each
-    both at 9 (joint optimum)   -> 180 each
-    7 against 9 (undercut)      -> 296 for the undercutter, 20 for the rival
-
-profit_i(p_i, p_j) = (p_i - c) * (a - b * p_i + d * p_j), rounded to integers,
-clamped at 0. The result keeps 3 as the unique symmetric Nash price and 9 as
-the joint optimum (checked below). The header row of the CSV records the
-provenance so that nobody mistakes it for the published table. Replace it by
-`python3 cartelbench/scripts/make_payoff_table.py --from-table1 <csv>` once the
-paper's table has been transcribed; the anchor checks run on that file too.
+    python3 cartelbench/scripts/make_payoff_table.py            # check data/payoff_table.csv, exit 1 on a mismatch
+    python3 cartelbench/scripts/make_payoff_table.py --write-model <csv>   # write the model-generated table
 """
 from __future__ import annotations
 
@@ -25,124 +17,64 @@ import pathlib
 import sys
 
 PRICES = list(range(13))
+A, C, G = 36.0, 0.0, 0.8
 ANCHORS = {(3, 3): 100, (9, 9): 180, (7, 9): 296, (9, 7): 20}
-OUT = pathlib.Path(__file__).resolve().parents[1] / "data" / "payoff_table.csv"
+DEFAULT = pathlib.Path(__file__).resolve().parents[1] / "data" / "payoff_table.csv"
 
 
-def fit_linear() -> tuple[float, float, float, float]:
-    """Newton iteration for (a, b, c, d) through the four anchors."""
-
-    def res(x):
-        a, b, c, d = x
-        f = lambda pi, pj: (pi - c) * (a - b * pi + d * pj)  # noqa: E731
-        return [f(k[0], k[1]) - v for k, v in ANCHORS.items()]
-
-    def solve(m, v):
-        n = len(v)
-        aug = [row[:] + [v[i]] for i, row in enumerate(m)]
-        for i in range(n):
-            piv = max(range(i, n), key=lambda r: abs(aug[r][i]))
-            aug[i], aug[piv] = aug[piv], aug[i]
-            for r in range(n):
-                if r != i:
-                    fct = aug[r][i] / aug[i][i]
-                    aug[r] = [aug[r][k] - fct * aug[i][k] for k in range(n + 1)]
-        return [aug[i][n] / aug[i][i] for i in range(n)]
-
-    x = [50.0, 10.0, 0.0, 10.0]
-    h = 1e-7
-    for _ in range(100):
-        r = res(x)
-        if max(abs(v) for v in r) < 1e-10:
-            break
-        jac = []
-        for i in range(4):
-            xp = x[:]
-            xp[i] += h
-            rp = res(xp)
-            jac.append([(rp[k] - r[k]) / h for k in range(4)])
-        jac_t = [[jac[c][r_] for c in range(4)] for r_ in range(4)]
-        step = solve(jac_t, [-v for v in r])
-        x = [x[i] + step[i] for i in range(4)]
-    return tuple(x)  # type: ignore[return-value]
+def demand(pi: float, pj: float) -> float:
+    lin = A / (1 + G) - pi / (1 - G * G) + G * pj / (1 - G * G)
+    rival = A / (1 + G) - pj / (1 - G * G) + G * pi / (1 - G * G)
+    if rival <= 0:
+        lin = A - pi
+    return max(0.0, lin)
 
 
-def build_table() -> dict[tuple[int, int], int]:
-    a, b, c, d = fit_linear()
-    table = {}
-    for pi in PRICES:
-        for pj in PRICES:
-            val = (pi - c) * (a - b * pi + d * pj)
-            table[(pi, pj)] = max(0, int(round(val)))
-    for k, v in ANCHORS.items():
-        table[k] = v
-    return table
+def model_table() -> dict[tuple[int, int], int]:
+    return {(pi, pj): int(round((2 * pi - C) * demand(2 * pi, 2 * pj))) for pi in PRICES for pj in PRICES}
+
+
+def read_table(path: pathlib.Path) -> dict[tuple[int, int], int]:
+    rows = [r for r in csv.reader(path.open()) if r and not r[0].startswith("#")]
+    header = rows[0]
+    assert header[0] == "own_price"
+    return {(int(r[0]), int(header[j + 1])): int(c) for r in rows[1:] for j, c in enumerate(r[1:])}
 
 
 def check(table: dict[tuple[int, int], int]) -> list[str]:
-    problems = []
-    for k, v in ANCHORS.items():
-        if table[k] != v:
-            problems.append(f"anchor {k} is {table[k]}, expected {v}")
-    for pi in PRICES:
-        for pj in PRICES:
-            if table[(pi, pj)] != table[(pi, pj)]:
-                problems.append("asymmetric table")
-    # unique symmetric Nash price: the only p where p is a best reply to itself
+    problems = [f"anchor {k} is {table[k]}, expected {v}" for k, v in ANCHORS.items() if table[k] != v]
     nash = [p for p in PRICES if max(PRICES, key=lambda q: table[(q, p)]) == p
             and all(table[(q, p)] < table[(p, p)] for q in PRICES if q != p)]
     if nash != [3]:
         problems.append(f"symmetric Nash prices are {nash}, expected [3]")
-    joint = max(PRICES, key=lambda p: table[(p, p)])
-    if joint != 9:
-        problems.append(f"joint optimum is {joint}, expected 9")
+    if max(PRICES, key=lambda p: table[(p, p)]) != 9:
+        problems.append("joint optimum is not 9")
+    model = model_table()
+    mism = [(k, table[k], model[k]) for k in table if table[k] != model[k]]
+    if mism:
+        problems.append(f"{len(mism)} cells differ from the paper's demand model, first: {mism[:5]}")
     return problems
-
-
-def read_table(path: pathlib.Path) -> dict[tuple[int, int], int]:
-    table = {}
-    with path.open() as fh:
-        rows = [r for r in csv.reader(fh) if r and not r[0].startswith("#")]
-    header = rows[0]
-    assert header[0] == "own_price", "first column must be own_price"
-    for row in rows[1:]:
-        pi = int(row[0])
-        for j, cell in enumerate(row[1:]):
-            table[(pi, int(header[j + 1]))] = int(cell)
-    return table
-
-
-def write_table(table: dict[tuple[int, int], int], provenance: str, out: pathlib.Path) -> None:
-    out.parent.mkdir(parents=True, exist_ok=True)
-    with out.open("w", newline="") as fh:
-        fh.write(f"# provenance: {provenance}\n")
-        fh.write("# rows: own price, columns: rival price, cell: own payoff in points\n")
-        w = csv.writer(fh)
-        w.writerow(["own_price"] + [str(p) for p in PRICES])
-        for pi in PRICES:
-            w.writerow([pi] + [table[(pi, pj)] for pj in PRICES])
 
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--from-table1", type=pathlib.Path,
-                    help="CSV transcribed from the paper's Table 1 (own_price header row)")
-    ap.add_argument("--out", type=pathlib.Path, default=OUT)
+    ap.add_argument("--table", type=pathlib.Path, default=DEFAULT)
+    ap.add_argument("--write-model", type=pathlib.Path, help="write the model-generated table to this path")
     args = ap.parse_args(argv)
-    if args.from_table1:
-        table = read_table(args.from_table1)
-        provenance = f"transcribed from Bigoni et al. Table 1 ({args.from_table1.name})"
-    else:
-        table = build_table()
-        a, b, c, d = fit_linear()
-        provenance = ("RECONSTRUCTED from the four anchor cells of Table 1 via linear demand "
-                      f"profit=(p_i-c)(a-b p_i+d p_j), a={a:.4f} b={b:.4f} c={c:.4f} d={d:.4f}; "
-                      "verify against the paper before any claim")
-    problems = check(table)
-    for p in problems:
-        print("PROBLEM:", p, file=sys.stderr)
-    write_table(table, provenance, args.out)
-    print(f"wrote {args.out} ({'ok' if not problems else str(len(problems)) + ' problems'})")
+    if args.write_model:
+        t = model_table()
+        with args.write_model.open("w", newline="") as fh:
+            fh.write("# provenance: generated from the demand model of Bigoni et al. Section 3.1 (a=36, c=0, gamma=0.8)\n")
+            fh.write("# rows: own price, columns: rival price, cell: own payoff in points\n")
+            w = csv.writer(fh)
+            w.writerow(["own_price"] + [str(p) for p in PRICES])
+            for pi in PRICES:
+                w.writerow([pi] + [t[(pi, pj)] for pj in PRICES])
+        print(f"wrote {args.write_model}")
+    problems = check(read_table(args.table))
+    for pr in problems:
+        print("PROBLEM:", pr, file=sys.stderr)
+    print(f"{args.table}: {'ok, 169 cells match Table 1 and the demand model' if not problems else str(len(problems)) + ' problems'}")
     return 1 if problems else 0
 
 

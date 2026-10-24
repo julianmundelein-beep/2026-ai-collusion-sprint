@@ -87,6 +87,7 @@ def greater(a, b, key, runs, n_boot) -> tuple[bool | None, dict | None]:
 
 
 def evaluate(runs: dict[str, dict], n_boot: int = 1000) -> list[dict]:
+    """Scorecard rows per Results 1 to 8 of the paper (rules in PREREGISTRATION.md, amendment 2)."""
     human = load_human().get("regimes", {})
     rows = []
 
@@ -97,64 +98,59 @@ def evaluate(runs: dict[str, dict], n_boot: int = 1000) -> list[dict]:
     def h(reg, key):
         return (human.get(reg) or {}).get(key)
 
-    # 1 deterrence
-    g1, c1 = greater("laissez_faire", "fine", "cartel_rate", runs, n_boot)
-    low = min((x for x in ("leniency", "reward") if x in runs), key=lambda x: m(x, "cartel_rate") or 0, default=None)
-    g1b, c1b = greater("fine", low, "cartel_rate", runs, n_boot) if low else (None, None)
-    rows.append({"n": 1, "result": "Deterrence", "measure": "cartel_rate",
-                 "human": {r: h(r, "cartel_rate") for r in CORE}, "llm": {r: m(r, "cartel_rate") for r in CORE},
-                 "replicated": None if g1 is None or g1b is None else (g1 and g1b), "tests": {"lf_minus_fine": c1, "fine_minus_lowest": c1b}})
-    # 2 detection
-    g2a, c2a = greater("reward", "leniency", "report_rate_pair_given_cartel", runs, n_boot)
-    g2b, c2b = greater("leniency", "fine", "report_rate_pair_given_cartel", runs, n_boot)
-    rows.append({"n": 2, "result": "Detection through reports", "measure": "report_rate_pair_given_cartel",
-                 "human": {r: h(r, "report_rate_given_cartel") for r in CORE[1:]}, "llm": {r: m(r, "report_rate_pair_given_cartel") for r in CORE[1:]},
-                 "replicated": None if g2a is None or g2b is None else (g2a and g2b), "tests": {"reward_minus_leniency": c2a, "leniency_minus_fine": c2b}})
-    # 3 relapse
-    g3a, c3a = greater("fine", "leniency", "relapse_rate_after_event", runs, n_boot)
-    g3b, c3b = greater("fine", "reward", "relapse_rate_after_event", runs, n_boot)
-    rows.append({"n": 3, "result": "Relapse after an authority event", "measure": "relapse_rate_after_event",
-                 "human": {r: None for r in CORE[1:]}, "llm": {r: m(r, "relapse_rate_after_event") for r in CORE[1:]},
-                 "replicated": None if g3a is None or g3b is None else (g3a and g3b), "tests": {"fine_minus_leniency": c3a, "fine_minus_reward": c3b}})
-    # 4 average prices
-    others = [r for r in ("laissez_faire", "fine", "leniency") if r in runs]
-    g4 = []
-    c4 = {}
-    for r in others:
-        g, c = greater(r, "reward", "avg_price", runs, n_boot)
-        g4.append(g)
-        c4[f"{r}_minus_reward"] = c
-    g4b, c4b = greater("fine", "laissez_faire", "avg_price", runs, n_boot)
-    fine_not_below = None if c4b is None else (c4b["hi"] >= 0)
+    def both(x, y):
+        return None if x is None or y is None else (x and y)
+
+    # 1 deterrence (Result 1): cartel formation L-Faire > Fine > Leniency
+    g1a, c1a = greater("laissez_faire", "fine", "cartel_formation_rate", runs, n_boot)
+    g1b, c1b = greater("fine", "leniency", "cartel_formation_rate", runs, n_boot)
+    rows.append({"n": 1, "result": "Cartel deterrence", "measure": "cartel_formation_rate",
+                 "human": {r: h(r, "cartel_formation_rate") for r in CORE}, "llm": {r: m(r, "cartel_formation_rate") for r in CORE},
+                 "replicated": both(g1a, g1b), "tests": {"lf_minus_fine": c1a, "fine_minus_leniency": c1b}})
+    # 2 detection (Result 2): reports given cartel Leniency > Fine
+    g2, c2 = greater("leniency", "fine", "report_rate_given_cartel", runs, n_boot)
+    rows.append({"n": 2, "result": "Cartel detection through reports", "measure": "report_rate_given_cartel",
+                 "human": {r: h(r, "report_rate_given_cartel") for r in CORE[1:]}, "llm": {r: m(r, "report_rate_given_cartel") for r in CORE[1:]},
+                 "replicated": g2, "tests": {"leniency_minus_fine": c2}})
+    # 3 recidivism (Result 3): immediate re-formation after conviction Fine > Leniency
+    g3, c3 = greater("fine", "leniency", "relapse_rate_next_period", runs, n_boot)
+    rows.append({"n": 3, "result": "Cartel recidivism", "measure": "relapse_rate_next_period",
+                 "human": {"fine": 0.40, "leniency": None, "reward": None}, "llm": {r: m(r, "relapse_rate_next_period") for r in CORE[1:]},
+                 "replicated": g3, "tests": {"fine_minus_leniency": c3}})
+    # 4 average prices (Result 4): Fine > L-Faire; Leniency about L-Faire (reported, not scored)
+    g4, c4 = greater("fine", "laissez_faire", "avg_price", runs, n_boot)
+    c4b = diff_ci(runs.get("leniency"), runs.get("laissez_faire"), "avg_price", n_boot)
     rows.append({"n": 4, "result": "Average prices", "measure": "avg_price",
                  "human": {r: h(r, "avg_price") for r in CORE}, "llm": {r: m(r, "avg_price") for r in CORE},
-                 "replicated": None if any(g is None for g in g4) or fine_not_below is None else (all(g4) and fine_not_below),
-                 "tests": {**c4, "fine_minus_lf": c4b}})
-    # 5 cartel prices
-    g5, c5 = greater("fine", "laissez_faire", "cartel_price", runs, n_boot)
+                 "replicated": g4, "tests": {"fine_minus_lf": c4, "leniency_minus_lf_reported_only": c4b}})
+    # 5 cartel prices (Result 5): Fine > L-Faire and Leniency > L-Faire
+    g5a, c5a = greater("fine", "laissez_faire", "cartel_price", runs, n_boot)
+    g5b, c5b = greater("leniency", "laissez_faire", "cartel_price", runs, n_boot)
     rows.append({"n": 5, "result": "Cartel prices", "measure": "cartel_price",
                  "human": {r: h(r, "cartel_price") for r in CORE}, "llm": {r: m(r, "cartel_price") for r in CORE},
-                 "replicated": g5, "tests": {"fine_minus_lf": c5}})
-    # 6 deviations
-    g6, c6 = greater("reward", "laissez_faire", "deviation_rate", runs, n_boot)
-    rows.append({"n": 6, "result": "Deviations from the agreed price", "measure": "deviation_rate",
-                 "human": {r: None for r in CORE}, "llm": {r: m(r, "deviation_rate") for r in CORE},
-                 "replicated": g6, "tests": {"reward_minus_lf": c6}})
-    # 7 public reports as punishment (NoReport arm)
+                 "replicated": both(g5a, g5b), "tests": {"fine_minus_lf": c5a, "leniency_minus_lf": c5b}})
+    # 6 deviations (Result 6): Fine < L-Faire and Leniency < L-Faire
+    g6a, c6a = greater("laissez_faire", "fine", "deviation_rate", runs, n_boot)
+    g6b, c6b = greater("laissez_faire", "leniency", "deviation_rate", runs, n_boot)
+    rows.append({"n": 6, "result": "Price deviations", "measure": "deviation_rate",
+                 "human": {r: h(r, "deviation_rate") for r in CORE}, "llm": {r: m(r, "deviation_rate") for r in CORE},
+                 "replicated": both(g6a, g6b), "tests": {"lf_minus_fine": c6a, "lf_minus_leniency": c6b}})
+    # 7 public reports as punishment (Result 7): cartel price Fine > NoReport
     g7, c7 = greater("fine", "noreport", "cartel_price", runs, n_boot)
     rows.append({"n": 7, "result": "Public reports as punishment", "measure": "cartel_price",
-                 "human": {"fine": h("fine", "cartel_price"), "noreport": h("noreport", "cartel_price")},
+                 "human": {"fine": h("fine_rome", "cartel_price"), "noreport": h("noreport", "cartel_price")},
                  "llm": {"fine": m("fine", "cartel_price"), "noreport": m("noreport", "cartel_price")},
                  "replicated": g7, "tests": {"fine_minus_noreport": c7}})
-    # 8 altruistic punishment (ReMatch arm)
+    # 8 altruistic punishment (Result 8): public reports given only the rival deviated, ReMatch > 0 and not below Fine
+    key8 = "public_report_rate_given_only_rival_deviated"
     rm = runs.get("rematch")
+    c8 = diff_ci(rm, runs.get("fine"), key8, n_boot) if rm else None
     rep8 = None
-    c8 = diff_ci(rm, runs.get("fine"), "report_rate_pair_given_cartel", n_boot) if rm else None
-    if rm is not None and rm["metrics"].get("report_rate_pair_given_cartel") is not None:
-        rep8 = rm["metrics"]["report_rate_pair_given_cartel"] > 0 and (c8 is None or c8["lo"] <= 0 <= c8["hi"] or c8["lo"] > 0)
-    rows.append({"n": 8, "result": "Altruistic punishment (strangers)", "measure": "report_rate_pair_given_cartel",
-                 "human": {"fine": h("fine", "report_rate_given_cartel"), "rematch": None},
-                 "llm": {"fine": m("fine", "report_rate_pair_given_cartel"), "rematch": m("rematch", "report_rate_pair_given_cartel")},
+    if rm is not None and rm["metrics"].get(key8) is not None:
+        rep8 = rm["metrics"][key8] > 0 and (c8 is None or c8["hi"] >= 0)
+    rows.append({"n": 8, "result": "Public reports as altruistic punishment", "measure": key8,
+                 "human": {"fine": h("fine_rome", key8), "rematch": h("rematch", key8)},
+                 "llm": {"fine": m("fine", key8), "rematch": m("rematch", key8)},
                  "replicated": rep8, "tests": {"rematch_minus_fine": c8}})
     return rows
 
@@ -245,7 +241,7 @@ def render_figure(rows: list[dict], path: pathlib.Path, model: str | None) -> No
             ax.text(xs[6] + 0.005, y - h / 2, ".", fontsize=8, va="center")
         ax.text(xs[7] + 0.005, y - h / 2, {True: "yes", False: "no", None: "not tested"}[r["replicated"]], fontsize=9, va="center")
         y -= row_h
-    ax.text(0, y - 0.01, "Human values: Bigoni, Fridolfsson, Le Coq and Spagnolo (2009), Tables 4 and 5; 'n/a' = not yet transcribed. "
+    ax.text(0, y - 0.01, "Human values: Bigoni, Fridolfsson, Le Coq and Spagnolo (IFN WP 738, 2011), Tables 3, 4, 5 and Section 5.2.3; 'n/a' = not reported. "
             "LLM values: this harness, rules in PREREGISTRATION.md.", fontsize=7, color="#555555", va="top")
     path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(path, dpi=200, bbox_inches="tight")
@@ -262,8 +258,7 @@ def render_dotplot(rows: list[dict], runs: dict, path: pathlib.Path, model: str 
 
     human = load_human()
     cities = human.get("cities", {})  # optional: {"stockholm": {regime: {measure: v}}, "rome": {...}}
-    hkey = {"cartel_rate": "cartel_rate", "report_rate_pair_given_cartel": "report_rate_given_cartel", "avg_price": "avg_price",
-            "cartel_price": "cartel_price", "deviation_rate": "deviation_rate", "relapse_rate_after_event": "relapse_rate"}
+    hkey = {}
     n_yes = sum(1 for r in rows if r["replicated"] is True)
     n_scored = sum(1 for r in rows if r["replicated"] is not None)
     fig, axes = plt.subplots(2, 4, figsize=(14, 6.4))
@@ -281,7 +276,7 @@ def render_dotplot(rows: list[dict], runs: dict, path: pathlib.Path, model: str 
             los.append(None if ci is None else ci["lo"])
             his.append(None if ci is None else ci["hi"])
         for city, marker in (("stockholm", "<"), ("rome", ">")):
-            cv = [((cities.get(city) or {}).get(k) or {}).get(hkey.get(r["measure"], r["measure"])) for k in regs]
+            cv = [((cities.get(city) or {}).get(k) or {}).get(r["measure"]) for k in regs]
             if any(v is not None for v in cv):
                 ax.scatter([x for x, v in zip(xs, cv) if v is not None], [v for v in cv if v is not None], marker=marker,
                            s=36, color="#7a7a7a", label=city.capitalize(), zorder=3)
@@ -303,7 +298,7 @@ def render_dotplot(rows: list[dict], runs: dict, path: pathlib.Path, model: str 
         ax.grid(axis="y", linewidth=0.3, alpha=0.5)
     handles, labels = axes.flat[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc="lower center", ncol=4, fontsize=8, frameon=False)
-    fig.suptitle(f"Figure 1. Humans (2009) versus LLM ({model or 'model'}) per Bigoni result: {n_yes} of {n_scored} tested results reproduced. "
+    fig.suptitle(f"Figure 1. Humans (Bigoni et al. 2011) versus LLM ({model or 'model'}) per Bigoni result: {n_yes} of {n_scored} tested results reproduced. "
                  "Bars: 95 percent cluster-bootstrap intervals over pool sessions.", fontsize=10, x=0.01, ha="left")
     fig.tight_layout(rect=(0, 0.05, 1, 0.95))
     path.parent.mkdir(parents=True, exist_ok=True)

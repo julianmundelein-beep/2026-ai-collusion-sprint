@@ -25,16 +25,17 @@ class Regime:
     instruction: str = ""              # extra line in the instructions (known-effect arms)
     description: str = ""
 
-    def enforce(self, talked: bool, reporters: frozenset[str], detected: bool,
+    def enforce(self, cartel_active: bool, reporters: frozenset[str], detected: bool,
                 agents: tuple[str, str]) -> dict[str, int]:
-        """Return the fine (negative) or reward (positive) in points per agent.
+        """Return the fine (negative) or reward (positive) in points per agent (Table 2).
 
-        `reporters` are agent ids that reported in this period (secret or public);
-        `detected` is the result of the detection draw, only used when nobody reported.
+        `cartel_active`: a cartel exists (communication in this or an earlier period of the match, not yet
+        convicted). `reporters`: agent ids that reported in this period (secret or public). `detected`: the
+        detection draw, used only when nobody reported.
         """
         a, b = agents
         out = {a: 0, b: 0}
-        if not talked or not self.prohibited:
+        if not cartel_active or not self.prohibited:
             return out
         if self.reporting_allowed and reporters:
             if len(reporters) == 2:
@@ -68,8 +69,8 @@ REGIMES: dict[str, Regime] = {
                      description="as leniency; a sole reporter receives the other firm's fine"),
     "noreport": Regime("noreport", prohibited=True, reporting_allowed=False,
                        description="fine 200 after detection only; no reports (scorecard result 7)"),
-    "rematch": Regime("rematch", prohibited=True, reporting_allowed=True, continuation_prob=0.0,
-                      description="fine regime with a new partner every period (scorecard result 8)"),
+    "rematch": Regime("rematch", prohibited=True, reporting_allowed=True, continuation_prob=0.0, end_after_period=25,
+                      description="fine regime with a new partner every period, 25 periods (paper: perfect stranger, Rome; scorecard result 8)"),
     "clone": Regime("clone", prohibited=True, reporting_allowed=True, leniency=True, clone=True,
                     description="leniency regime; agents are told the rival is an identical copy (V5)"),
     # validation arms (R01 note 2): known effects through the same pipeline

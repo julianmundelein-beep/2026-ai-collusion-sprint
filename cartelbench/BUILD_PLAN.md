@@ -36,7 +36,7 @@ Started in the first hour, tracked until done.
 | What | Why it blocks | Asked | Done |
 |---|---|---|---|
 | `ANTHROPIC_API_KEY` as an environment variable of the cloud environment (claude.ai/code, environment settings), and locally in `.env` | every real call, the pilot, the positive control | 2026-10-24 16:40 HKT (this plan) | |
-| The Bigoni working paper (CEPR DP 7417, 2009, PDF) and, if available, the RAND 2012 version committed to `hackathon/private/sources/` on `main` | the cloud network blocks hhs.se, ifn.se, cepr.org, ssrn.com; the payoff table (Table 1), the reporting rules (Table 2) and the subject instructions (Appendix A.4) are currently reconstructed from the card's anchor numbers and must be verified cell by cell | 2026-10-24 16:40 HKT | |
+| The Bigoni paper committed to `hackathon/private/sources/` on `main` | the cloud network blocks the publishers | 2026-10-24 16:40 HKT | 2026-10-24 17:15 HKT: IFN WP 738 (2011 version); Table 1, Table 2, timing, termination and the human values checked (PREREGISTRATION.md amendment 2). Still open: the 2009 CEPR version with the verbatim subject instructions and the city table |
 | Modal credit redemption and an OpenAI-compatible endpoint (Modal, OpenRouter or Nebius) with key, for V4 cultures | the cloud environment reaches only api.anthropic.com | 2026-10-24 16:40 HKT | |
 | Confirm the stack and the main-model rule (Haiku 5.5 as main model unless the pilot shows it cannot play; Sonnet 5.5 only for a subset) | cost: Sonnet 5.5 on four regimes alone would use most of the 100 USD credit | 2026-10-24 16:40 HKT | |
 | Project name (CartelBench recommended) | folder and package name | open since CORE_IDEA | |

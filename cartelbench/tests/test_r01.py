@@ -69,7 +69,7 @@ def test_price_offset_shifts_labels_only(tmp_path):
                     price_offset=5, out_dir=str(tmp_path), max_periods=21)
     s = asyncio.run(Run(cfg, client).run())
     assert seen["max_label"] == 17
-    assert s["metrics"]["avg_price"] == 9.0 and s["metrics"]["agreed_price_mean"] == 9.0
+    assert s["metrics"]["avg_price"] == 9.0 and s["metrics"]["agreed_price"] == 9.0
     prompts = read_jsonl(tmp_path / s["run_id"] / "calls.jsonl")[1:]
     assert "between 5 and 17" in prompts[0]["user"] or "between 5 and 17" in next(p["user"] for p in prompts if p["step"] == "price")
     sys_text = system_prompt(REGIMES["laissez_faire"], load_payoff_table(), "Firm X", 5)

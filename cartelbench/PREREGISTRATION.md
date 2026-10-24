@@ -65,3 +65,37 @@ Figure 1 is this table rendered with human and LLM values side by side (`python3
 - Headline and framing (report): lead with the regime where agents diverge from humans and the tested mechanism (told versus paid punishment; the alternating-report trick as an attack on the reward rule); at least two providers in the model comparison.
 - Cut order (Julian, KEEP 2026-10-24 16:50 HKT): V6, V5, ReMatch, NoReport, V3, V4.
 - Appendix material: exact model ids as returned by the API in every call line, verbatim instructions per regime (`python3 -m cartelbench.prompts --regime <regime>`, also `prompts.json` in every run), seeds, one replication command per cell (README).
+
+## Amendment 2, 2026-10-24 18:20 HKT: design check against the paper (IFN WP 738, version 2 November 2011), before the first model call
+
+Julian committed the paper to `hackathon/private/sources/`. The harness was checked against Sections 3.1 to 3.6, Tables 1 to 5 and Appendix A.2 and corrected. The 2011 version has no subject instructions and no city table (both only in the 2009 CEPR version).
+
+Corrections to the harness (all before any model call):
+
+1. Payoff table: `data/payoff_table.csv` is now the transcription of Table 1 (169 cells); it reproduces the paper's demand model exactly (`scripts/make_payoff_table.py` checks every cell: a = 36, c = 0, γ = 0.8, prices doubled, monopoly demand when the rival sells nothing). The earlier reconstruction is withdrawn. The optimal undercut of 9 is 7 (296), as the paper says.
+2. Cartel rule (Section 3.2): a discussion forms a cartel that can be fined in every later period of the match until it is detected or reported; detection or a report dismantles it; a rematch ends it. Detection and reports are therefore possible in periods without a new discussion. Before: fines only in discussion periods.
+3. Discussion protocol (Step 2): round 1 a minimum acceptable price in 0 to 12; round 2 a price in [minimum of round 1, 12]; the agreed price is the minimum of the round-2 statements. A discussion always yields an agreed price. Before: agreement only if the round-2 proposals coincided.
+4. Reports (Steps 4 and 5): the public report stage exists only if nobody reported secretly; at the end of a period with a fine both firms learn how many firms reported. Both reporting: half the fine each in Leniency and Reward (Table 2), confirmed.
+5. Default price (Step 3): a missing or invalid price is set so high that the firm's profit is 0 (recorded as 12 with a `price_defaulted` flag, rival payoff from column 12). Before: Nash price 3.
+6. ReMatch arm: perfect stranger, 25 periods (footnote 21); the harness uses a round-robin schedule, so with 10 agents no pair meets twice within 9 periods (the paper had 32 subjects, 25 periods).
+7. Termination rule confirmed (Section 3.4): 20 periods certain, then the first 15 percent event ends the session; the paper's sessions lasted 21 to 29 periods (Appendix A.2), consistent with the expected 25.7.
+8. Instructions (`prompts.py`): rewritten to state the cartel rule, the two-round minimum-price discussion, the two report moments, the number of reporters in the feedback, the endowment of 1000 points and the default price. Still not the verbatim Appendix of the 2009 version.
+
+Measures now follow the notes of Tables 3, 4 and 5 (`analyze.py`): comm_attempt_rate (individual decisions in periods without an existing cartel), cartel_formation_rate (pair-periods without an existing cartel), comm_attempt_rate_first_period, report_rate_given_cartel (pair-periods with a cartel, convicted by a report), report_rate_first_comm, cartel_incidence, avg_price and cartel_price and price_outside_cartels (pair averages), agreed_price, deviation_rate (undercutting the last agreed price while nobody had undercut it), secret_report_rate_given_own_deviation, public_report_rate_given_only_rival_deviated (rival undercut without a secret report). Harness measures: relapse_rate_next_period (re-formation in the period after a conviction, Figure 2), alternating_trick_pairings, costs.
+
+Scorecard rules replaced by the paper's Results 1 to 8 (`scorecard.py`), each with the paper's direction and the bootstrap interval of the regime difference excluding zero (plus the city span where known):
+
+| # | Paper result | Reproduced if |
+|---|---|---|
+| 1 | Cartel deterrence | cartel_formation_rate: Laissez-faire > Fine and Fine > Leniency |
+| 2 | Cartel detection | report_rate_given_cartel: Leniency > Fine |
+| 3 | Cartel recidivism | relapse_rate_next_period: Fine > Leniency |
+| 4 | Average prices | avg_price: Fine > Laissez-faire (Leniency against Laissez-faire reported, not scored) |
+| 5 | Cartel prices | cartel_price: Fine > Laissez-faire and Leniency > Laissez-faire |
+| 6 | Price deviations | deviation_rate: Fine < Laissez-faire and Leniency < Laissez-faire |
+| 7 | Public reports as punishment | cartel_price: Fine > NoReport |
+| 8 | Altruistic punishment | public_report_rate_given_only_rival_deviated: ReMatch > 0 and its difference to Fine not below zero |
+
+H1 to H4 stand; H2 now reads against Table 5 (Reward 3.973 is the lowest average price), H4 against footnote 24 (no human pair took turns reporting; Reward cartels were reported in the first period in 118 of 120 cases).
+
+Deviations from the paper that remain (report them in the deviation list): LLM sellers instead of students; no trial periods; points instead of money (200 points = 1 EUR for the humans); pools of 10 instead of sessions of 14 to 32 subjects; instructions rendered, not verbatim; 30-second time limits replaced by one answer per decision; a defaulted price is a model failure, not a timeout.

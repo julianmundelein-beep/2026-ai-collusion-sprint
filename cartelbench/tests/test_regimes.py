@@ -48,8 +48,8 @@ def test_noreport_ignores_reports():
     assert r.enforce(True, frozenset(), True, AG) == {A: -200, B: -200}
 
 
-def test_rematch_has_new_partner_every_period():
-    assert REGIMES["rematch"].continuation_prob == 0.0
+def test_rematch_has_new_partner_every_period_for_25_periods():
+    assert REGIMES["rematch"].continuation_prob == 0.0 and REGIMES["rematch"].end_after_period == 25
 
 
 def test_overrides_for_dose_and_fine():
