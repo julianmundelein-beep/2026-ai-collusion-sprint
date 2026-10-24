@@ -1,8 +1,8 @@
 {
   "header": true,
   "generated_by": "python3 -m cartelbench.round4 scorecards (haiku_new4pool)",
-  "commit": "72ea3153563f507356db638b36a88b0b0f146595-dirty",
-  "time": "2026-10-24T20:09:14Z",
+  "commit": "077e5657aa6f7646884b094e8fac463b9d41248e",
+  "time": "2026-10-24T21:12:36Z",
   "note": "Do not edit by hand.",
   "set": "haiku_new4pool",
   "model": "claude-haiku-5-5",

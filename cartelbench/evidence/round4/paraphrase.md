@@ -1,4 +1,4 @@
-<!-- python3 -m cartelbench.round4 paraphrase at 2026-10-24T20:34:43Z from commit 903580d1b8e3b6f4ae2efad015046b5b32af86fd-dirty. Do not edit by hand. -->
+<!-- python3 -m cartelbench.round4 paraphrase at 2026-10-24T21:09:00Z from commit 077e5657aa6f7646884b094e8fac463b9d41248e. Do not edit by hand. -->
 # Prompt robustness (amendment 4 (c)): robustness does not hold
 
 Paraphrased instructions (Haiku 5.5, 4 pools per regime, seeds 61 to 64) against the original 8-pool sample.

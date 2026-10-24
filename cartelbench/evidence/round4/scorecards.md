@@ -1,4 +1,4 @@
-<!-- python3 -m cartelbench.round4 scorecards at 2026-10-24T20:10:32Z from commit 72ea3153563f507356db638b36a88b0b0f146595-dirty. Do not edit by hand. -->
+<!-- python3 -m cartelbench.round4 scorecards at 2026-10-24T21:13:54Z from commit 077e5657aa6f7646884b094e8fac463b9d41248e. Do not edit by hand. -->
 # Scorecards side by side (amendment 4)
 
 | # | Result | haiku_4pool | haiku_8pool | haiku_new4pool | sonnet_2pool | sonnet_4pool |
