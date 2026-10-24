@@ -12,10 +12,10 @@ Share of window is measured on the card's clock (Sat 16:30 to Mon 16:59 HKT = 48
 
 | Stage | Done when | Due (share of window) | Due (clock, HKT) | State |
 |---|---|---|---|---|
-| 1 Toolchain | pytest runs; the Anthropic SDK answers one real call with Julian's key; scripted players play a full session without API | 10 % | Sat 21:20 | engine and tests done 2026-10-24 (cloud); real API call open: `ANTHROPIC_API_KEY` not set in the cloud environment |
-| 2 Happy path | pilot 3 models × 3 duopoles laissez-faire runs with real calls, JSONL evidence in `evidence/runs/`, acceptance tests green, pre-registration committed before the first paid call | 40 % | Sat 23:00 (card) | blocked on the key; pre-registration committed |
+| 1 Toolchain | pytest runs; the Anthropic SDK answers one real call with Julian's key; scripted players play a full session without API | 10 % | Sat 21:20 | done 2026-10-24 17:50 UTC+8 (cloud): 49 tests, smoke call M10; the cloud environment provides the key as `CARTELBENCH_ANTHROPIC_KEY` |
+| 2 Happy path | pilot 3 models × 3 duopoles laissez-faire runs with real calls, JSONL evidence in `evidence/runs/`, acceptance tests green, pre-registration committed before the first paid call | 40 % | Sat 23:00 (card) | done 2026-10-24 18:05 HKT: pilot passed for all three models (M11 to M18, `evidence/pilot/`), contamination M13; core regime runs with Haiku 5.5 started in the cloud |
 | 3 Tests and attacks | test suite and scripted-player suite run by one command, result files in `evidence/`, naive baseline (scripted players) measured | 60 % | Sun 13:00 (card) | scripted suite done in the cloud |
-| 4 Breadth | V4 cultures, V3 dose, NoReport, ReMatch, V5 clone, V6 motives, in this order (cut from the end), only while 1 to 3 are green | until core freeze | Sun 17:00 (card) | regimes and arms configured; runs pending |
+| 4 Breadth | V4 cultures, V3 dose, NoReport, ReMatch, V5 clone, V6 motives, in this order (cut from the end), only while 1 to 3 are green | until core freeze | Sun 17:00 (card) | regimes and arms configured; core runs first, breadth after the clock check Sunday |
 | Core freeze | no change to payoffs, regime logic, prompts or termination that would invalidate recorded runs | 75 % | Mon 04:50 | |
 | 5 Deliverables | README with one command per regime, docs/, scorecard and Figure 1 scripts, `pruefen.py alles` without FEHLT | internal deadline | Mon 16:59 | |
 
@@ -35,7 +35,7 @@ Started in the first hour, tracked until done.
 
 | What | Why it blocks | Asked | Done |
 |---|---|---|---|
-| `ANTHROPIC_API_KEY` as an environment variable of the cloud environment (claude.ai/code, environment settings), and locally in `.env` | every real call, the pilot, the positive control | 2026-10-24 16:40 HKT (this plan) | |
+| `ANTHROPIC_API_KEY` as an environment variable of the cloud environment (claude.ai/code, environment settings), and locally in `.env` | every real call, the pilot, the positive control | 2026-10-24 16:40 HKT (this plan) | 2026-10-24 17:45 HKT: set as `CARTELBENCH_ANTHROPIC_KEY`; the harness reads both names and a local `.env` |
 | The Bigoni paper committed to `hackathon/private/sources/` on `main` | the cloud network blocks the publishers | 2026-10-24 16:40 HKT | 2026-10-24 17:15 HKT: IFN WP 738 (2011 version); Table 1, Table 2, timing, termination and the human values checked (PREREGISTRATION.md amendment 2). Still open: the 2009 CEPR version with the verbatim subject instructions and the city table |
 | Modal credit redemption and an OpenAI-compatible endpoint (Modal, OpenRouter or Nebius) with key, for V4 cultures | the cloud environment reaches only api.anthropic.com | 2026-10-24 16:40 HKT | |
 | Confirm the stack and the main-model rule (Haiku 5.5 as main model unless the pilot shows it cannot play; Sonnet 5.5 only for a subset) | cost: Sonnet 5.5 on four regimes alone would use most of the 100 USD credit | 2026-10-24 16:40 HKT | |
