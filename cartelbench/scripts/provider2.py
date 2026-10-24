@@ -8,10 +8,13 @@ evidence directory pointed at evidence/provider2/, so the Claude pilot files are
 """
 from __future__ import annotations
 
+import pathlib
 import sys
 
-from cartelbench import contamination, pilot
-from cartelbench.util import EVIDENCE_DIR
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
+
+from cartelbench import contamination, pilot  # noqa: E402
+from cartelbench.util import EVIDENCE_DIR  # noqa: E402
 
 P2_DIR = EVIDENCE_DIR / "provider2"
 
