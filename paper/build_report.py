@@ -229,14 +229,13 @@ class Builder:
             if ppr is None:
                 ppr = OxmlElement("w:pPr"); pic_p.insert(0, ppr)
             jc = OxmlElement("w:jc"); jc.set(qn("w:val"), "center"); ppr.append(jc)
-            kn = OxmlElement("w:keepNext"); ppr.append(kn)
         else:
             self.paragraph(f"[Figure missing: {path}]", align="center")
         self.paragraph(caption, size=9.5, space_after=240)
 
     def table(self, rows: list[list[str]], caption: str | None):
         if caption:
-            self.paragraph(caption, size=9.5, keep_next=True, space_after=80)
+            self.paragraph(caption, size=9.5, space_after=80)
         ncols = max(len(r) for r in rows)
         t = self.d.add_table(rows=len(rows), cols=ncols)
         tbl = t._tbl
@@ -252,6 +251,7 @@ class Builder:
         for side in ("left", "right", "insideV"):
             b = OxmlElement(f"w:{side}"); b.set(qn("w:val"), "nil"); borders.append(b)
         tblpr.append(borders)
+        layout = OxmlElement("w:tblLayout"); layout.set(qn("w:type"), "fixed"); tblpr.append(layout)
         tw = tblpr.find(qn("w:tblW"))
         if tw is None:
             tw = OxmlElement("w:tblW"); tblpr.append(tw)
@@ -387,9 +387,9 @@ def main(argv=None) -> int:
         kind = blk[0]
         if kind == "h2":
             ref_mode = blk[1].strip().lower() == "references"
-            b.paragraph(blk[1], proto="h2", keep_next=True)
+            b.paragraph(blk[1], proto="h2")
         elif kind == "h3":
-            b.paragraph(blk[1], proto="h3", keep_next=True)
+            b.paragraph(blk[1], proto="h3")
         elif kind == "p":
             b.paragraph(blk[1])
         elif kind == "bullet":
