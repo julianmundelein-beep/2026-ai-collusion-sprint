@@ -1,0 +1,96 @@
+{
+ "juror": "D-J1",
+ "scores_now": {
+  "impact": 4,
+  "execution": 4,
+  "presentation": 3
+ },
+ "first_30_seconds": {
+  "what_sticks": "LLM sellers form cartels as often as students but never undercut them, are scared off by told penalties far more than people, and only 2 of 7 human results reproduce.",
+  "matches_title": "partly"
+ },
+ "title": {
+  "works": "partly",
+  "why": "Strong hook, but about 30 words stacking three claims; the Sonnet clause is cryptic before reading, and Figure 1 shows a scorecard, not deterrence.",
+  "better": "Same Game, Different Players: Cartel Enforcement Deters LLM Pricing Agents More Than People, but Not Silent Coordination"
+ },
+ "second_model_finding": {
+  "effect": "second punchline",
+  "why": "Prohibition removing observable agreements but not supracompetitive prices is exactly the oversight-evasion pattern safety people care about; it is the most transferable result.",
+  "how_to_place": "Own short subsection with a Sonnet row in Table 2 and a no-channel baseline; frame as preliminary (2 pools, no intervals), keep it out of the Haiku scorecard."
+ },
+ "novelty": {
+  "classification": "extension",
+  "why": "Replays a published human design with LLM subjects, but leniency and rewards on LLM agents against a human baseline, plus placebo and clone arms, are genuinely unmeasured so far."
+ },
+ "checklist_visible": {
+  "controls_table": "yes",
+  "placebo_arm": "yes",
+  "shifted_grid": "partly",
+  "n_table": "partly",
+  "preregistration_hash": "yes",
+  "no_absolutes": "partly",
+  "figure1_honest_and_readable": "partly"
+ },
+ "inconsistencies": [
+  "Table 3 leniency convictions '9 (3 / 7)': 3 plus 7 is 10, not 9; 2,400 fine points imply 6 report convictions, text says 7 of 9.",
+  "NoReport difference: text +0.25 [+0.10, +0.40], Figure 1 panel 7 -0.25 [-0.41, -0.10]; upper bound 0.40 versus 0.41.",
+  "Figure 1 panel 7 plots human fine cartel price near 5.0, while Table 2 and panel 5 give 6.14 for the same measure.",
+  "Positive control is the 3-duopoly pilot per model in the text, but Table 1 labels the laissez-faire core run 'positive control'.",
+  "Result 3 interval 'includes zero' in text, but panel 3 prints [0.00, 0.29], which reads as a boundary, not inclusion.",
+  "Title says 'what survives holds its price'; Haiku cartels hold about 9, Sonnet's silent prices are 5.5 to 6.3, not the same claim.",
+  "Methods lists Result 7 among 'not testable' measures needing extra arms; Results scores it as tested and reversed."
+ ],
+ "overclaims": [
+  "Title and abstract: told rules 'deter LLM pricing agents more than people' with no interval or test on any LLM-minus-human difference.",
+  "'Deter': the placebo shows about half the fine's effect comes from the word 'prohibited', i.e. compliance, not deterrence.",
+  "'The first measurement of fines, leniency and whistleblower rewards on LLM pricing agents' is an absolute priority claim.",
+  "'The shifted grid shows that recall does not drive the numbers': tested in two of four regimes and one model only.",
+  "'An agent ... reads a leniency or reward rule as an invitation for the partner to collect and declines' without analysing any recorded reasons.",
+  "Sonnet: 'coordination without a channel, beyond the reach of these instruments' from 2 pool sessions, no intervals, no Sonnet no-channel arm.",
+  "'An authority can run the harness on any model before agents reach a market' after testing two Claude models in a lab game.",
+  "'Results 1 and 2 rest on incentives ... 4 to 7 rested on human undercutting' is a post hoc explanation presented as finding."
+ ],
+ "gaps": [
+  "No analysis of the logged reasons to separate penalty calculation from safety-trained refusal of 'prohibited' discussion or eval awareness.",
+  "Human values are point estimates without variance; LLM-versus-human comparisons are descriptive but read as tested.",
+  "Not stated which arms (Clone, Dose, NoReport, Sonnet, placebo) were pre-registered and which were exploratory.",
+  "No n-table or intervals for extra arms and Sonnet runs; Sonnet bootstrap over 2 pools is not meaningful.",
+  "No test whether Sonnet's silent 5.5 to 6.3 is tacit coordination or simply failure to best-respond (e.g. reaction to defection).",
+  "Single provider and temperature 1 only; no second provider or sampling sensitivity check.",
+  "Stakes are told points, not paid; no arm where penalties are actually deducted and shown in the history."
+ ],
+ "fixes_under_two_hours": [
+  {
+   "fix": "Classify logged reasons for declined discussions under fine/placebo (cites illegality versus expected penalty) with a keyword or small LLM pass on existing records; report counts.",
+   "dimension": "execution",
+   "gain": "half point"
+  },
+  {
+   "fix": "Soften overclaims: label LLM-human contrasts as descriptive, drop 'first', restate shifted-grid and Sonnet claims as scoped, mark interpretation as hypothesis.",
+   "dimension": "execution",
+   "gain": "half point"
+  },
+  {
+   "fix": "Shorten the title, move the Sonnet result into its own labelled subsection with a small table, and mark pre-registered versus exploratory arms.",
+   "dimension": "presentation",
+   "gain": "half point"
+  },
+  {
+   "fix": "Fix Table 3 leniency convictions, the NoReport bound, panel 7 human value and positive-control naming.",
+   "dimension": "execution",
+   "gain": "small"
+  },
+  {
+   "fix": "Re-render Figure 1 so difference labels do not overlap tick labels; widen Table 3 Calls and USD columns so numbers do not wrap.",
+   "dimension": "presentation",
+   "gain": "small"
+  }
+ ],
+ "biggest_risk": "The headline 'deters more than people' may be safety-trained compliance with the word 'prohibited' rather than deterrence; the placebo already attributes half the effect to wording.",
+ "three_questions": [
+  "In the logged reasons for declining a discussion under fine and placebo, how often do agents cite illegality or rules versus the expected penalty?",
+  "Which of the Clone, Dose, NoReport, placebo and Sonnet arms were in the pre-registration commit, and which were added after seeing core results?",
+  "Is Sonnet's silent 5.5 to 6.3 price tacit coordination or failure to best-respond: how does it react when the partner undercuts, and what is its no-channel laissez-faire price?"
+ ]
+}

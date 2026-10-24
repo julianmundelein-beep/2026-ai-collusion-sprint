@@ -1,0 +1,54 @@
+{"juror": "J5-L1",
+ "entries": {
+  "M3": {"scores": {"C1": 4, "C2": 3, "C3": 3},
+   "reasons": {
+    "C1": "Auditable detection of self-funded buyer rings on public payment ledgers is a neglected, operator-relevant problem with a concrete audit path.",
+    "C2": "Held-out result is real but wide (0.56 to 1.00), labels share the rule's evidence, independent-feature rule not significant, wallets not shown to be agents.",
+    "C3": "Claims and limits are stated plainly, but a 17-page report risks exceeding the 8-page body and withheld tables hamper verification."},
+   "levers": {
+    "C1": "Show the flagged wallets are LLM agents and that the rule transfers to a second agent marketplace with independent labels.",
+    "C2": "Obtain labels from an independent team, evaluate on more held-out families, and run the 21 tests with a published log.",
+    "C3": "Cut the body to 8 pages with one headline figure and release the 63 withheld case tables in an appendix."},
+   "verdict": "Most operationally useful idea here, but the evidence chain has label leakage and it is not yet clearly about AI agents."},
+  "Q5": {"scores": {"C1": 3, "C2": 3, "C3": 2},
+   "reasons": {
+    "C1": "Rival coalitions instead of one coalition against a principal is a fresh framing, though coalitions are instructed rather than emergent.",
+    "C2": "Pre-registration with hashes and 144 episodes are solid, but no positive control, a post-freeze measure change, p = 0.055, and run files absent.",
+    "C3": "Report PDF not seen and no limitations appendix; only README and tables convey the findings."},
+   "levers": {
+    "C1": "Show rivalry changes cohesion for emergent, uninstructed coalitions across several model families, with a policy-relevant implication.",
+    "C2": "Add a positive control, publish raw run files, and confirm the defection effect in a fresh pre-registered replication.",
+    "C3": "Deliver the 8-page report with a clear headline figure and the Limitations and Dual-Use appendix."},
+   "verdict": "Interesting question and careful pre-registration, but the main effect is marginal and the deliverable report is missing."},
+  "T2": {"scores": {"C1": 3, "C2": 1, "C3": 2},
+   "reasons": {
+    "C1": "Testing whether pricing agents accept an injected cartel offer is a reasonable red-team design with a positive control, but not new.",
+    "C2": "No core run: run-log folder empty, replay page holds invented data, only a claimed four-game smoke run; tests do not substitute for results.",
+    "C3": "Design is understandable, but the report is a placeholder skeleton and there are no findings to communicate."},
+   "levers": {
+    "C1": "Show accepted offers persist into prices across providers and that a defence closes the gap, with a deployable monitoring recommendation.",
+    "C2": "Run the 60 pre-registered games, pass the positive-control gate, and publish logs with Wilson intervals per condition.",
+    "C3": "Write the report with results, remove invented demo data, and state clearly what was run versus planned."},
+   "verdict": "Plenty of scaffolding and tests, but no real experiment ran; invented demo data is a red flag for accountability."},
+  "K5": {"scores": {"C1": 4, "C2": 4, "C3": 4},
+   "reasons": {
+    "C1": "Replicates a known human cartel study, but testing whether leniency and fines work on LLM sellers is directly policy-relevant and new.",
+    "C2": "Positive control, placebo arm, robustness grid shift, call logs and honest 2 of 7 scorecard; one seed per regime and thin reward cells.",
+    "C3": "Report body ends on page 8, human-versus-model figure makes the comparison immediate, limitations appendix present."},
+   "levers": {
+    "C1": "Add a second provider and derive a concrete enforcement recommendation where LLM and human responses to leniency diverge.",
+    "C2": "Run multiple seeds per regime, enlarge reward and leniency cartel counts, and expand the positive control beyond three duopolies.",
+    "C3": "Lead with one sentence on what authorities should change, and put the scorecard table on the first page."},
+   "verdict": "Most complete controlled experiment in the field, with honest negative replication results and verifiable logs."},
+  "W9": {"scores": {"C1": 3, "C2": 4, "C3": 4},
+   "reasons": {
+    "C1": "Receiver-side sanitization of vector channels matters for oversight, but channels are non-adaptive, pre-trained before the sprint, and no collusion game.",
+    "C2": "Held-out evaluation, reproduce log 10 of 10, text baseline and shuffled-label probe controls; few seeds and no significance tests.",
+    "C3": "Figure 1 tells the story at a glance; claims are precise, though the report runs to 13 pages."},
+   "levers": {
+    "C1": "Train channels adaptively against snapping and show whether the countermeasure survives inside an actual collusion game.",
+    "C2": "Add more seeds with significance tests and publish checkpoints so the results can be verified without a request.",
+    "C3": "Tighten to an 8-page body and state up front which work predates the sprint."},
+   "verdict": "Rigorous, clean countermeasure result, but off the collusion core and against a non-adaptive adversary."}
+ },
+ "top3": ["K5", "W9", "M3"]}

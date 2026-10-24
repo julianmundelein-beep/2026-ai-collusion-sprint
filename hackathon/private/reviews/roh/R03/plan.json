@@ -1,0 +1,213 @@
+{
+ "repo": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint",
+ "runde": "R03",
+ "gegenstand": "submission",
+ "stand": "submission PDF at commit 19890c4 (title of DECISIONS 2026-10-25 00:05; body as 597e56c), harness at backend c14c944",
+ "datum": "2026-10-25",
+ "modus": "schnell",
+ "laeufe": 1,
+ "modell": "claude-opus-5-5 (session default)",
+ "seed": 62586810,
+ "rubrik": {
+  "kriterien": [
+   {
+    "name": "Dimension 1: Impact Potential & Innovation",
+    "gewicht": 33.33,
+    "wortlaut": "How much would this matter for the field if it worked? How innovative is it? For scores of 4-5: is this actually new to the field, or replicating recent work?\" 1 \"Negligible. No clear problem addressed, or no meaningful novelty.\" 2 \"Limited. Addresses a real problem but with a generic or well-trodden approach. Incremental at best.\" 3 \"Moderate. Clear problem with a reasonable approach; some novelty in framing or method beyond routine application of existing tools.\" 4 \"Significant. Important problem with an original approach, or identifies a neglected problem area. A valuable contribution others could build on.\" 5 \"Exceptional. Tackles a critical problem with a genuinely novel approach, or opens a new research direction. Clear theory of change. You'd be excited to share this with researchers in the area.",
+    "id": "C1"
+   },
+   {
+    "name": "Dimension 2: Execution Quality",
+    "gewicht": 33.33,
+    "wortlaut": "How sound are methodology, implementation, and findings?\" 1 \"Seriously flawed. Methodology broken, results uninterpretable, or implementation doesn't work.\" 2 \"Weak. Approach has significant gaps: missing validation, flawed experimental design, or incomplete implementation.\" 3 \"Competent. Technically solid given the short duration. Methodology makes sense, results are interpretable, limitations acknowledged, work builds toward clear conclusions.\" 4 \"Strong. Thorough methodology with convincing validation. Results clearly support conclusions. Immediately useful for future work.\" 5 \"Exceptional. Ambitious scope executed rigorously. Surprising findings, novel methods, or unusually robust validation.",
+    "id": "C2"
+   },
+   {
+    "name": "Dimension 3: Presentation & Clarity",
+    "gewicht": 33.34,
+    "wortlaut": "How clearly are work, findings, and impact potential communicated?\" 1 \"Incomprehensible. Cannot determine what the project is actually claiming or doing.\" 2 \"Hard to follow. Key information buried, missing, or diluted by excessive length. Significant effort to extract main points.\" 3 \"Clear enough. Can understand the problem, approach, and results without undue effort. Core content clearly present: problem, method, findings, limitations.\" 4 \"Well presented. Easy to follow, well-structured, appropriate level of detail. Target audience would get it quickly.\" 5 \"Exceptionally clear. A pleasure to read. Complex ideas made accessible. Could serve as a model for how to present this type of work.",
+    "id": "C3"
+   }
+  ],
+  "bonus": [],
+  "pflicht": "a controlled experiment on collusion between AI agents (\"build the controlled experiment that answers it\"), quantitative results with variance, seeds and baselines, \"always include the positive control\" (Recommended Report Structure), methodology replicable, the Limitations and Dual-Use appendix, honest limitations (\"Judges evaluate what you accomplished in the timeframe; honest limitations are welcome\")."
+ },
+ "juroren": [
+  {
+   "id": "J1",
+   "name": "Jasmine Li",
+   "proxy": false
+  },
+  {
+   "id": "J2",
+   "name": "Debayan Gupta",
+   "proxy": false
+  },
+  {
+   "id": "J3",
+   "name": "Luis Cosio",
+   "proxy": false
+  },
+  {
+   "id": "J4",
+   "name": "Kaushik Prabhakar",
+   "proxy": false
+  },
+  {
+   "id": "J5",
+   "name": "Neeraj Kumar Singh Beshane",
+   "proxy": false
+  }
+ ],
+ "eintraege": {
+  "eigen-submission": {
+   "name": "CartelBench",
+   "eigen": true,
+   "art": "built",
+   "rang": null,
+   "quelle": "submission PDF at commit 19890c4, harness snapshot at backend commit c14c944",
+   "stand": "2026-10-25"
+  },
+  "vector-channel-countermeasures": {
+   "name": "vector-channel-countermeasures",
+   "eigen": false,
+   "art": "built",
+   "rang": 1,
+   "quelle": "groothaha/vector-channel-countermeasures@7d1bd90",
+   "stand": "2026-10-24"
+  },
+  "plus-factors-on-the-ledger": {
+   "name": "plus-factors-on-the-ledger",
+   "eigen": false,
+   "art": "built",
+   "rang": 2,
+   "quelle": "saltxd/plus-factors-on-the-ledger@6734c0c",
+   "stand": "2026-10-24"
+  },
+  "mole-in-the-market-1025": {
+   "name": "mole-in-the-market",
+   "eigen": false,
+   "art": "built",
+   "rang": 14,
+   "quelle": "adamattar-pixel/mole-in-the-market@55553c0",
+   "stand": "2026-10-24"
+  },
+  "cartel-rivalry-study": {
+   "name": "cartel-rivalry-study",
+   "eigen": false,
+   "art": "built",
+   "rang": 3,
+   "quelle": "horigyns/cartel-rivalry-study@b3f62d8",
+   "stand": "2026-10-24"
+  }
+ },
+ "pakete": [
+  {
+   "id": "J1-L1",
+   "juror": "J1",
+   "lauf": 1,
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/paket-J1-L1.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/ergebnis-J1-L1.json",
+   "codes": {
+    "Q6": "eigen-submission",
+    "D8": "vector-channel-countermeasures",
+    "W9": "cartel-rivalry-study",
+    "R8": "mole-in-the-market-1025",
+    "J3": "plus-factors-on-the-ledger"
+   }
+  },
+  {
+   "id": "J2-L1",
+   "juror": "J2",
+   "lauf": 1,
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/paket-J2-L1.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/ergebnis-J2-L1.json",
+   "codes": {
+    "B2": "vector-channel-countermeasures",
+    "C4": "eigen-submission",
+    "P2": "mole-in-the-market-1025",
+    "N5": "cartel-rivalry-study",
+    "R9": "plus-factors-on-the-ledger"
+   }
+  },
+  {
+   "id": "J3-L1",
+   "juror": "J3",
+   "lauf": 1,
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/paket-J3-L1.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/ergebnis-J3-L1.json",
+   "codes": {
+    "K2": "mole-in-the-market-1025",
+    "R9": "vector-channel-countermeasures",
+    "W8": "cartel-rivalry-study",
+    "Z3": "plus-factors-on-the-ledger",
+    "R4": "eigen-submission"
+   }
+  },
+  {
+   "id": "J4-L1",
+   "juror": "J4",
+   "lauf": 1,
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/paket-J4-L1.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/ergebnis-J4-L1.json",
+   "codes": {
+    "X9": "eigen-submission",
+    "J2": "mole-in-the-market-1025",
+    "W2": "vector-channel-countermeasures",
+    "M4": "plus-factors-on-the-ledger",
+    "W5": "cartel-rivalry-study"
+   }
+  },
+  {
+   "id": "J5-L1",
+   "juror": "J5",
+   "lauf": 1,
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/paket-J5-L1.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/ergebnis-J5-L1.json",
+   "codes": {
+    "M3": "plus-factors-on-the-ledger",
+    "Q5": "cartel-rivalry-study",
+    "T2": "mole-in-the-market-1025",
+    "K5": "eigen-submission",
+    "W9": "vector-channel-countermeasures"
+   }
+  }
+ ],
+ "hinweise": [],
+ "detail": [
+  {
+   "id": "D-J1",
+   "juror": "J1",
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/detail-J1.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/detail-J1.json"
+  },
+  {
+   "id": "D-J2",
+   "juror": "J2",
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/detail-J2.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/detail-J2.json"
+  },
+  {
+   "id": "D-J3",
+   "juror": "J3",
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/detail-J3.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/detail-J3.json"
+  },
+  {
+   "id": "D-J4",
+   "juror": "J4",
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/detail-J4.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/detail-J4.json"
+  },
+  {
+   "id": "D-J5",
+   "juror": "J5",
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/detail-J5.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/detail-J5.json"
+  }
+ ],
+ "kurzfassung": {
+  "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/kurzfassung.md",
+  "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-q8/kurzfassung.json"
+ }
+}

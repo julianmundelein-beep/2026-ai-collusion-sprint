@@ -1,0 +1,96 @@
+{
+ "juror": "D-J4",
+ "scores_now": {
+  "impact": 4,
+  "execution": 4,
+  "presentation": 3
+ },
+ "first_30_seconds": {
+  "what_sticks": "Haiku forms cartels as often as students but holds them near the monopoly price, and told-only fines and leniency deter it far more than humans; 2 of 7 results reproduce.",
+  "matches_title": "partly"
+ },
+ "title": {
+  "works": "partly",
+  "why": "Right substance, but 30 words, two claims, and the cryptic 'with or without a word' clause; the figure's headline (2 of 7 reproduced) is absent.",
+  "better": "Do Antitrust Instruments Deter LLM Cartels? Replaying a Human Leniency Experiment with Claude Pricing Agents"
+ },
+ "second_model_finding": {
+  "effect": "second punchline",
+  "why": "Silent supracompetitive pricing that leniency cannot reach is the most safety-relevant result, but it rests on 2 pools, no intervals and no Sonnet no-channel baseline.",
+  "how_to_place": "Own short subsection after Haiku results with intervals and a Sonnet nocomm comparison; one hedged abstract sentence; drop it from the title."
+ },
+ "novelty": {
+  "classification": "extension",
+  "why": "Extends Werner's human-versus-algorithm comparison and Fish/Agrawal's LLM pricing work to leniency and rewards, measured against a human baseline; first measurement, not a new paradigm."
+ },
+ "checklist_visible": {
+  "controls_table": "yes",
+  "placebo_arm": "yes",
+  "shifted_grid": "yes",
+  "n_table": "partly",
+  "preregistration_hash": "yes",
+  "no_absolutes": "partly",
+  "figure1_honest_and_readable": "partly"
+ },
+ "inconsistencies": [
+  "Leniency: text says 9 convictions, 7 by report; Table 3 shows 9 (3 / 7), which sums to 10.",
+  "Laissez-faire formation 0.7159 over 565 pair-periods is not an integer count (404.5); fine 0.156 x 490 also non-integer, unlike reward 4/475.",
+  "NoReport: text gives +0.25 [+0.10, +0.40]; Figure 1 panel 7 shows -0.26 [-0.41, -0.10]; magnitudes differ beyond sign flip.",
+  "Figure 1 panel 7 human fine cartel price appears near 5.0, while Table 2 gives 6.14 (panel 5 shows about 6.1).",
+  "Positive control is both the 3-duopoly pilot per model and the laissez-faire core run (Table 1); '6 of 6 late episodes' per model or pooled is unclear.",
+  "Abstract says pre-registered before the first model call; Methods says before the first paid call.",
+  "Result 6 scored 'not reproduced' though text says it cannot occur without deviations, the criterion used for 'not testable' on Result 8."
+ ],
+ "overclaims": [
+  "'the word \"prohibited\" removes about half of the fine's effect': the placebo keeps the full authority text, not one word.",
+  "'reads a leniency or reward rule as an invitation for the partner to collect and declines': reasons are explicitly not analysed.",
+  "'expecting the copy's silence, the agent keeps silent': intent attributed without analysing reasons.",
+  "'Sonnet ... coordination without a channel, beyond the reach of these instruments': no Sonnet no-channel baseline, no intervals, 2 pools.",
+  "'the shifted grid shows that recall does not drive the numbers': tested in two cells, one model only.",
+  "'told fine deters it more than it deterred people': point comparison against a human value without variance or a test.",
+  "'An authority would see fewer explicit cartels ... surviving cartels hold the monopoly price': lab game generalised to real enforcement.",
+  "'An authority can run the harness on any model': untested beyond one provider."
+ ],
+ "gaps": [
+  "No statistical test or interval for LLM-versus-human differences; human side has no variance, so H3 decisions are unclear.",
+  "Formation-rate denominators and cartel counts per cell are not in the n-table.",
+  "Unclear whether the extra arms (NoReport, ReMatch, Clone, Dose, placebo) and their decision rules were pre-registered.",
+  "Percentile bootstrap over 4 clusters (2 for Sonnet) is fragile; collapsed reward intervals understate uncertainty.",
+  "No second provider, no prompt paraphrase arm, single temperature.",
+  "Sonnet no-communication baseline missing, needed to call 5.5 to 6.3 'coordination'.",
+  "No qualitative look at agent reasons, even a small sample, to support the mechanism story."
+ ],
+ "fixes_under_two_hours": [
+  {
+   "fix": "Shorten title and abstract to one headline plus scorecard; move Sonnet to one hedged sentence.",
+   "dimension": "presentation",
+   "gain": "half point"
+  },
+  {
+   "fix": "Reconcile leniency convictions (9 vs 3+7), NoReport difference sign and rounding, panel 7 human value, and state formation denominators in Table 3.",
+   "dimension": "execution",
+   "gain": "half point"
+  },
+  {
+   "fix": "Fix Table 3 column widths (broken '4, 37 6', 'US D') and Figure 1 difference labels overlapping x tick labels.",
+   "dimension": "presentation",
+   "gain": "small"
+  },
+  {
+   "fix": "Rephrase mechanism claims (placebo 'word', agent reasoning, Sonnet coordination, 'any model') as hypotheses; mark LLM-vs-human comparisons as point comparisons.",
+   "dimension": "execution",
+   "gain": "small"
+  },
+  {
+   "fix": "Add cartel n next to every cartel-level measure in Table 2 and say which extra arms were pre-registered.",
+   "dimension": "execution",
+   "gain": "small"
+  }
+ ],
+ "biggest_risk": "The 'more than people' headline rests on 4 pool sessions, 4 to 10 cartels under leniency and reward, and human values without variance; a careful evaluator may judge comparisons untested.",
+ "three_questions": [
+  "What exactly is the denominator of the formation rate, and why do 0.7159 x 565 and 0.156 x 490 not give integer counts?",
+  "Were the placebo, Clone, Dose, NoReport and ReMatch arms and their decision rules pre-registered before the first call, or added later?",
+  "Without a Sonnet no-communication baseline, how do you distinguish silent coordination from simply not best-responding at prices of 5.5 to 6.3?"
+ ]
+}
