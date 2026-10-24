@@ -60,3 +60,83 @@ def test_scorecard_picks_first_registered_run(tmp_path):
     _scripted(tmp_path, "fine", "nash", 2, duopoles=2, pools=1)
     runs = pick_runs(tmp_path, "scripted-nash")
     assert runs["fine"]["summary"]["run_id"] == a.name
+
+
+def _prompts_of(run_dir):
+    rows = [json.loads(x) for x in (run_dir / "calls.jsonl").read_text().splitlines()][1:]
+    return [r["user"] for r in rows]
+
+
+def _fake_run(tmp_path, regime, variant, seed=3):
+    import random as _r
+
+    from cartelbench.engine import RunConfig, run_sync
+    from cartelbench.llm import FakeClient
+    rng = _r.Random(seed)
+
+    def script(user, schema):
+        props = schema["properties"]
+        if "talk" in props:
+            return {"talk": rng.random() < 0.7, "reason": "x"}
+        if "proposal" in props:
+            return {"proposal": max(props["proposal"]["minimum"], 9), "reason": "x"}
+        if "price" in props:
+            out = {"price": rng.choice([3, 7, 9]), "reason": "x"}
+            if "report" in props:
+                out["report"] = rng.random() < 0.3
+            return out
+        return {"report": rng.random() < 0.3, "reason": "x"}
+
+    cfg = RunConfig(regime=regime, model="fake", provider="fake", player="llm", duopoles=4, pools=2, seed=seed,
+                    out_dir=str(tmp_path / variant), prompt_variant=variant)
+    s = run_sync(cfg, FakeClient(script))
+    return tmp_path / variant / s["run_id"]
+
+
+def test_paraphrase_keeps_numbers_and_schemas_and_rewords_every_note(tmp_path):
+    import re
+
+    from cartelbench import prompts, prompts_paraphrase as pp
+    from cartelbench.game import load_payoff_table
+    from cartelbench.regimes import REGIMES
+    t = load_payoff_table()
+    for reg in ["laissez_faire", "fine", "leniency", "reward"]:
+        for off in (0, 5):
+            a = prompts.system_prompt(REGIMES[reg], t, "Firm Alder", off)
+            b = pp.system_prompt(REGIMES[reg], t, "Firm Alder", off)
+            assert sorted(re.findall(r"\d+", a)) == sorted(re.findall(r"\d+", b)), (reg, off)
+            assert a != b
+    ctx = {"period": 4, "firm_name": "Firm A", "rival_name": "Firm B", "partner_note": "This is the first period.",
+           "status_note": "", "history": "", "pmin": 4, "own_proposal": 9, "rival_proposal": 4, "discussion_note": "Both firms declined a discussion.",
+           "can_report": True, "own_price": 3, "rival_price": 9, "own_market": 100, "rival_market": 20}
+    for step in ["talk", "propose1", "propose2", "price", "public_report"]:
+        assert prompts.question(step, ctx)[1] == pp.question(step, ctx)[1], step
+    for reg in ["fine", "leniency", "reward", "laissez_faire"]:
+        run = _fake_run(tmp_path, reg, "paraphrase")
+        users = _prompts_of(run)
+        assert users
+        for u in users:
+            for w in ("discussion", "agreement", "authority", "agreed"):
+                assert w not in u, (reg, w, u[:300])
+        system = json.loads((run / "prompts.json").read_text())["system_prompts"]
+        assert all("COMPETITION OFFICE" in v for v in system.values()) == (reg != "laissez_faire")
+
+
+def test_original_variant_unchanged_against_recorded_runs():
+    import pathlib
+
+    from cartelbench import prompts
+    from cartelbench.game import load_payoff_table
+    from cartelbench.regimes import REGIMES
+    runs = pathlib.Path(__file__).resolve().parents[1] / "evidence" / "runs"
+    t = load_payoff_table()
+    checked = 0
+    for reg, seed in [("laissez_faire", 1), ("fine", 2), ("leniency", 3), ("reward", 4)]:
+        for d in runs.glob(f"{reg}_claude-haiku-5-5_*_s{seed}"):
+            rec = json.loads((d / "prompts.json").read_text())["system_prompts"]
+            cfg = json.loads((d / "config.json").read_text())
+            names = {a["id"]: a["firm"] for p in cfg["pools"] for a in p["agents"]}
+            for agent, text in rec.items():
+                assert prompts.system_prompt(REGIMES[reg], t, names[agent], 0) == text
+                checked += 1
+    assert checked == 160
