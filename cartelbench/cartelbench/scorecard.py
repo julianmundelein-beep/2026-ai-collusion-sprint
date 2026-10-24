@@ -31,6 +31,22 @@ def load_run(run_dir: pathlib.Path) -> dict:
     return {"dir": str(run_dir), "summary": summary, "rows": rows, "metrics": metrics_from_rows(rows)}
 
 
+def is_core_run(d: pathlib.Path, s: dict) -> bool:
+    """A run at the regime's registered settings: no shifted grid, no payoff scaling, no detection or fine override.
+    Such runs (contamination, robustness, dose) live in the same folder and must never stand in for a core regime."""
+    if s.get("price_offset"):
+        return False
+    try:
+        c = json.loads((d / "config.json").read_text())
+    except (OSError, ValueError):
+        return True
+    if c.get("price_offset") or (c.get("payoff_scale") not in (None, 1, 1.0)):
+        return False
+    if c.get("detection_prob") is not None or c.get("fine") is not None:
+        return False
+    return True
+
+
 def pick_runs(runs_dir: pathlib.Path, model: str | None) -> dict[str, dict]:
     picked = {}
     for d in sorted(p for p in runs_dir.iterdir() if (p / "summary.json").exists()):
@@ -39,7 +55,9 @@ def pick_runs(runs_dir: pathlib.Path, model: str | None) -> dict[str, dict]:
             continue
         if s.get("player", "llm") != "llm" and model != s.get("model"):
             continue
-        picked[s["regime"]] = d   # sorted by name = by time, so the latest run wins
+        if not is_core_run(d, s):
+            continue
+        picked[s["regime"]] = d   # sorted by name = by time, so the latest core run wins
     return {k: load_run(v) for k, v in picked.items()}
 
 

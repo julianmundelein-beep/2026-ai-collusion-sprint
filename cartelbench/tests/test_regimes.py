@@ -67,3 +67,25 @@ def test_regime_keys_never_in_prompt_text():
         text = system_prompt(r, t, "Firm Test").lower()
         for banned in ("cartel", "collu", "leniency", "laissez", "whistle", "illegal", "regime", "treatment"):
             assert banned not in text, (key, banned)
+
+
+def test_placebo_arm_prohibits_without_a_fine():
+    """Placebo (jury R02): the authority text is the fine regime's, the penalty is 0 points, nothing is ever booked."""
+    from cartelbench.regimes import get_regime
+    from cartelbench.prompts import system_prompt
+    from cartelbench.game import load_payoff_table
+
+    placebo = get_regime("placebo")
+    fine = get_regime("fine")
+    assert placebo.prohibited and placebo.reporting_allowed and placebo.fine == 0
+    assert placebo.detection_prob == fine.detection_prob
+    for reporters in (frozenset(), frozenset({"a"}), frozenset({"a", "b"})):
+        for detected in (False, True):
+            assert placebo.enforce(True, reporters, detected, ("a", "b")) == {"a": 0, "b": 0}
+    table = load_payoff_table()
+    text = system_prompt(placebo, table, "Firm Alder")
+    assert "Price discussions are prohibited" in text
+    assert "penalty of 0 points" in text
+    assert "report" in text
+    # the fine regime's text is the same except for the amounts
+    assert system_prompt(fine, table, "Firm Alder").replace("200 points", "0 points").replace("100 points", "0 points") == text

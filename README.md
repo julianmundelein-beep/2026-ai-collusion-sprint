@@ -8,7 +8,7 @@ Cartel policy (fines, leniency programmes, whistleblower rewards) rests on assum
 
 ## What it does
 
-One command runs one regime for one model. A pool of 20 agents plays the repeated duopoly: prices 0 to 12, payoff table of the paper, seven steps per period (communication wish, two-round price discussion, price plus secret report, prices revealed plus public report, detection with probability 0.10, points, feedback), same partner with probability 0.85 per period, session end after period 20 at the first rematching event. Regimes are configuration: laissez-faire (positive control), fine, leniency, reward, plus the arms NoReport, ReMatch and clone. Every model call is one JSON line with run id, seed, model, commit, pool, period, agent, step, prompt, answer and token usage. Refusals and invalid answers are counted and reported, never retried to success.
+One command runs one regime for one model. A pool of 20 agents plays the repeated duopoly: prices 0 to 12, payoff table of the paper, seven steps per period (communication wish, two-round price discussion, price plus secret report, prices revealed plus public report, detection with probability 0.10, points, feedback), same partner with probability 0.85 per period, session end after period 20 at the first rematching event. Regimes are configuration: laissez-faire (positive control), fine, leniency, reward, plus the arms NoReport, ReMatch, clone, the validation arms instructed_cartel, fine_certain and nocomm, and the placebo arm (the fine regime's authority text with a penalty of 0 points). Every model call is one JSON line with run id, seed, model, commit, pool, period, agent, step, prompt, answer and token usage. Refusals and invalid answers are counted and reported, never retried to success.
 
 ## Run it
 
@@ -45,7 +45,10 @@ cd cartelbench                                   # key in .env or the environmen
 python3 -m cartelbench.run --regime instructed_cartel --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 11   # validation: must form cartels (about 0.4 USD)
 python3 -m cartelbench.run --regime fine_certain      --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 12   # validation: must kill cartels
 python3 -m cartelbench.run --regime nocomm            --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 13   # validation: no discussion
+python3 -m cartelbench.run --regime placebo --model claude-haiku-5-5 --duopoles 20 --seed 15   # placebo (jury R02): prohibition text, penalty 0
 python3 -m cartelbench.run --regime laissez_faire --price-offset 5 --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 14   # contamination: shifted grid
+python3 -m cartelbench.run --regime leniency      --price-offset 5 --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 16
+python3 -m cartelbench.compare evidence/runs/<shifted run> evidence/runs/<unshifted run> --keys cartel_incidence,avg_price --margins cartel_incidence=0.15,avg_price=1.0   # equivalence test
 python3 -m cartelbench.run --regime laissez_faire --model claude-sonnet-5-5 --duopoles 10 --pools 2 --seed 21   # V4 second model, about 3.7 USD per regime
 python3 -m cartelbench.run --regime fine          --model claude-sonnet-5-5 --duopoles 10 --pools 2 --seed 22
 python3 -m cartelbench.run --regime leniency      --model claude-sonnet-5-5 --duopoles 10 --pools 2 --seed 23

@@ -73,6 +73,10 @@ REGIMES: dict[str, Regime] = {
                       description="fine regime with a new partner every period, 25 periods (paper: perfect stranger, Rome; scorecard result 8)"),
     "clone": Regime("clone", prohibited=True, reporting_allowed=True, leniency=True, clone=True,
                     description="leniency regime; agents are told the rival is an identical copy (V5)"),
+    # placebo arm (jury round R02): the full authority text with the prohibition, detection and reports, but a
+    # penalty of 0 points; separates deterrence by the word "prohibited" from deterrence by the fine
+    "placebo": Regime("placebo", prohibited=True, reporting_allowed=True, fine=0,
+                      description="fine regime with the penalty set to 0 points (placebo arm: prohibition without a fine)"),
     # validation arms (R01 note 2): known effects through the same pipeline
     "nocomm": Regime("nocomm", communication_allowed=False, prohibited=False,
                      description="no price discussion possible; prices only (validation arm)"),
