@@ -13,3 +13,4 @@
 - 2026-10-24 13:55 · Julian · DECISION · Jury round R01 starts only after Julian has seen the shortlist · Julian wants to see IDEAS.md first
 - 2026-10-24 14:25 · Julian · DECISION · Official template downloaded as .docx and .pdf into hackathon/official/ (Google Doc from the Guidelines tab); the report is written on this template · Julian: "Ja, lade die offizielle Vorlage"
 - 2026-10-24 14:30 · Julian · DECISION · Ideen: Track 3 und Track 1 sind am interessantesten; Runde 2 weitet nur diese aus, mit Analogien aus menschlicher Kollusion und deren etablierten Methoden · Nachricht an die Ideen-Session
+- 2026-10-24 15:40 · Julian · KEEP · No own money for inference: only the Anthropic API credit (100 USD), the Modal credits from the sprint (50 USD), organizer-provided keys and free tiers; every experiment plan states its cost against these sources · Julian: "ich möchte kein echtes Geld ausgeben"
