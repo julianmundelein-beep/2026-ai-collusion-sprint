@@ -50,7 +50,7 @@ At most two long build sessions plus one short session at the same time. One ses
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
 | 7 | Demo video | video-studio | main folder | private/video/ | | optional (3 to 5 min, decide after R02 and the clock) | |
 | 8 | Design | hackathon-design | main folder | DESIGN.md, private/design/ | | optional (only if figures or video need a look) | |
-| 9 | Report (paper) | none | main folder | the official report document, paper/ | | not started (the one required deliverable) | |
+| 9 | Report (paper) | none (skills klare-einreichung, docx) | main folder | paper/report.docx (source), paper/report.md (mirror), paper/report.pdf | Claude | running (started 2026-10-24 19:05 HKT) | local_d6d6a6d7-12df-4407-b0dd-9efb32c204cd |
 
 Rows the deliverables in HACKATHON.md do not need are set to `dropped` after the research (row 9 only runs when a report is required).
 
@@ -62,7 +62,7 @@ Every deliverable from HACKATHON.md, the one place it is made, and who makes it.
 
 | Deliverable | The one source | Session or person | State | Final file submitted |
 |---|---|---|---|---|
-| Research report (PDF, official template, max 8 pages before references and appendices, plan 4 to 6; abstract 150 to 250 words; authors and affiliations; appendix "Limitations and Dual-Use / Ethical Considerations"; LLM Usage Statement; at least one figure) | Julian's Google Doc copy of the official template (copy link in HACKATHON.md, Links); PDF export is the submission; file `<ProjectTitle>_AI-Collusion-Research-Sprint_2026.pdf` | 9 Report | not started | |
+| Research report (PDF, official template, max 8 pages before references and appendices, plan 4 to 6; abstract 150 to 250 words; authors and affiliations; appendix "Limitations and Dual-Use / Ethical Considerations"; LLM Usage Statement; at least one figure) | `paper/report.docx` on the .docx copy of the official template (Google Doc only if Julian asks); PDF export `paper/report.pdf` is the submission; file `<ProjectTitle>_AI-Collusion-Research-Sprint_2026.pdf` | 9 Report | in progress | |
 | Public GitHub repo (optional) | this repo; harness in `cartel/` (name per Julian's pick) on branch `backend`, README from the backend session | 5 Backend | not started | |
 | Video demo, 3 to 5 min (optional, URL only, judges review the PDF) | private/video/ | 7 Demo video | optional | |
 | Submission form: project summary, tracks, publishing yes/no, team name, location, member name, email, Discord, Scholar | SUBMISSION.md (draft texts), Julian fills personal fields | main session | not started | |
@@ -94,7 +94,8 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Waiting for
 
-- Julian: watch the cloud session; say "Stand?" here when leniency and reward are done; decide whether the report session (9) starts now on the .docx template copy
+- Julian: watch the cloud session; say "Stand?" here when leniency and reward are done
+- Julian: project name and affiliation for the report session
 - Julian: confirm the main-model rule (Haiku 5.5 as main model if it passes the pilot, Sonnet 5.5 as one V4 culture with 10 duopoles) and the project name (CartelBench recommended)
 - Julian: Modal account and credits (form in the inbox, per Discord) for the second provider in V4; the cloud environment reaches only api.anthropic.com, so V4 runs locally
 - Julian: Discord check (keys from the organizers, Modal credit redemption, pinned announcements), send the email draft in HACKATHON.md
