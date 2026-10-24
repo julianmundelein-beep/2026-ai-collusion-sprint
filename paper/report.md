@@ -123,11 +123,11 @@ Table 3. Denominators, reliability and cost of the core regimes (Claude Haiku 5.
 
 The laboratory game is not a market. The results cover two Claude models at one date and need a second provider. The models know the paper by name, but the shifted grid shows that recall does not drive the numbers [F12, F32, F33]. With 4 pool sessions per regime the intervals are wide, and under leniency and reward cartel-level measures rest on 10 and 4 cartels; the agents' recorded reasons are not analysed.
 
-**Future work.** A second provider in all regimes and a human-calibrated test of silent coordination. In sum: on the two models tested, told-only instruments deter explicit cartels more than they deterred people, the cartels that survive hold their price, and one model coordinates without any channel.
+**Future work.** A second provider in all regimes and a human-calibrated test of silent coordination. In sum: told-only instruments deter explicit cartels more than they deterred people, the cartels that survive hold their price, and one model coordinates without any channel.
 
 ## Code and Data
 
-- Code repository: https://github.com/julianmundelein-beep/2026-ai-collusion-sprint (harness, pre-registration, measurements with command and result file per number, all call records; public from submission). All code was written during the sprint; no preexisting code.
+- Code repository: https://github.com/julianmundelein-beep/2026-ai-collusion-sprint (harness, pre-registration, measurements and all call records; public from submission). All code is new work from the sprint, no preexisting code.
 
 ## References
 
