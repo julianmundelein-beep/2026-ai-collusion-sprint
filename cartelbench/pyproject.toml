@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cartelbench"
+version = "0.1.0"
+description = "The Bigoni, Fridolfsson, Le Coq and Spagnolo (2012) cartel experiment replayed with LLM sellers"
+requires-python = ">=3.11"
+dependencies = ["anthropic>=2.0", "numpy", "pandas", "matplotlib"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.setuptools]
+packages = ["cartelbench"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
