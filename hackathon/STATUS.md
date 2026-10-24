@@ -94,7 +94,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Waiting for
 
-- Julian: OK for jury round R02 on the four core regimes (scorecard, Figure 1, README of the branch)
+- Report session: draft with Results; then jury round R02 on the draft (Julian's decision 19:35 HKT)
 - Julian: project name and affiliation for the report session
 - Julian: confirm the main-model rule (Haiku 5.5 as main model if it passes the pilot, Sonnet 5.5 as one V4 culture with 10 duopoles) and the project name (CartelBench recommended)
 - Julian: Modal account and credits (form in the inbox, per Discord) for the second provider in V4; the cloud environment reaches only api.anthropic.com, so V4 runs locally
@@ -105,7 +105,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Next step
 
-Report session writes Results and the abstract from F13 to F19; jury round R02 on the four core regimes once Julian says so; cloud backend runs the extras in cut order (validation arms first, then a second model for V4, dose, NoReport, ReMatch, clone); main session merges `refs/heads/backend` into main on Julian's word before the report is final.
+Report session writes Results and the abstract from F13 to F19; jury round R02 on that draft; cloud backend runs the extras in cut order (validation arms first, then a second model for V4, dose, NoReport, ReMatch, clone); main session merges `refs/heads/backend` into main on Julian's word before the report is final.
 
 ## Für die Skills
 
