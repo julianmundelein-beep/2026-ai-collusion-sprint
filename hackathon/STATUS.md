@@ -50,7 +50,7 @@ At most two long build sessions plus one short session at the same time. One ses
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
 | 7 | Demo video | video-studio | main folder | private/video/ | | optional (3 to 5 min, decide after R02 and the clock) | |
 | 8 | Design | hackathon-design | main folder | DESIGN.md, private/design/ | | optional (only if figures or video need a look) | |
-| 9 | Report (paper) | none (skills klare-einreichung, docx) | main folder | paper/report.docx (source), paper/report.md (mirror), paper/report.pdf | Claude | R02 levers and new title applied (7c89414): 8 pages before References, no [F??], PDF text layer clean, own Figure 1 from the F19 data; 14 "not run" mentions wait for the backend arms | local_d6d6a6d7-12df-4407-b0dd-9efb32c204cd |
+| 9 | Report (paper) | none (skills klare-einreichung, docx) | main folder | paper/report.docx (source), paper/report.md (mirror), paper/report.pdf | Claude | R02 levers and new title applied (7c89414); stopped by Julian 21:50 HKT to save usage until the cloud backend is done; F23 to F30 message queued, uncommitted edits may sit in paper/ | local_d6d6a6d7-12df-4407-b0dd-9efb32c204cd |
 
 Rows the deliverables in HACKATHON.md do not need are set to `dropped` after the research (row 9 only runs when a report is required).
 
