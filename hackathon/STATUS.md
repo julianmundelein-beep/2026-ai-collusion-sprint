@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 19:45 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 19:55 HKT by the main session
 
 ## Clock
 
@@ -44,7 +44,7 @@ At most two long build sessions plus one short session at the same time. One ses
 | 0 | Main session | hackathon-kickoff | main folder | STATUS, FACTS, CORE_IDEA; commits DECISIONS | Julian + Claude | running | AI Collusion Research Sprint · Hauptsession |
 | 1 | Framework research | hackathon-kickoff (research) | main folder | HACKATHON.md, official/, private/JUDGES.md, private/COMPETITION.md | Claude | done (HACKATHON.md, JUDGES.md, COMPETITION.md, official/ committed); kept open for COMPETITION rescans | local_51c0819d-c7e3-4cb4-8036-c263bc6b9c22 |
 | 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | done (two rounds, 39 ideas, I24 chosen with build plan, commit d5e8cf9); archive on Julian's OK | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
-| 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | R01 done (e9f0c70): idea rank 2 of 4, medians 4 / 2 / 3; stays open for R02 on the first running state | local_525668aa-4f92-4e55-8006-1293f749dce9 |
+| 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | R02 done (d12541e): draft rank 2 of 5, medians 4 / 3 / 3, Execution 2 to 3; stays open for R03 on the final PDF | local_525668aa-4f92-4e55-8006-1293f749dce9 |
 | 4 | Website | design-taste-frontend | own worktree or cloud | web/ (branch) | | dropped (not a deliverable) | |
 | 5 | Backend | hackathon-backend | cloud (claude.ai/code), branch `backend` | `cartelbench/` on its branch, README, docs/ | Claude (cloud) | second cloud session running: four core regimes done with scorecard and Figure 1 (F13 to F19), branch `origin/backend` at 883ec87 (19:20 HKT); next: validation arms, second model, dose, NoReport, ReMatch, clone in cut order | cloud |
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
@@ -91,10 +91,20 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 | One paragraph separating strategic deterrence from a reaction to the words fine, leniency, reward, since punishments are only told | jury R01 (4 of 5) | Discussion, Limitations appendix | open |
 | Exact model IDs with date, verbatim prompts, seeds, one replication command | jury R01 (2 of 5) | appendix, README | open |
 | Headline is the divergence from humans with a tested mechanism, not the reproduction count; at least two providers so the claim is about LLMs | jury R01 (5 of 5 levers) | title, abstract, contributions, Figure 1 caption | open |
+| No "[F??]" in the PDF: every gap filled or marked "not run"; pre-registration hash with timestamp (F20) | jury R02 (5 of 5) | whole report | open |
+| Known-effect arms and shifted-grid result reported even if unfavourable | jury R02 (5 of 5) | Table 1, contamination section | open (backend) |
+| Placebo arm: full authority text with prohibition but zero penalty, to separate deterrence from the word "prohibited" | jury R02 (4 of 5) | Table 1 or 2, Discussion | open (backend) |
+| n-table stays in the body, slim | jury R02 (5 of 5) | Results | open |
+| Numbers consistent: seeds, convictions, costs, pilot count, one measure throughout | jury R02 (4 of 5) | Methods, Table 3, Appendix C, abstract | open |
+| Figure 1 honest and legible: no data in untested panels, plain axis labels, regime difference with interval per panel, Stockholm-Rome span defined in Methods | jury R02 (5 of 5) | Figure 1, Methods | open |
+| No absolutes and no "LLMs" from one model: drop "never", scope to the tested model until a second provider runs | jury R02 (5 of 5) | title, abstract, conclusion | open (title is KEEP, Julian decides) |
+| Explain the coincidences: 0.716 formation in laissez-faire for humans and agents, 3.33 under leniency and reward, collapsing reward intervals | jury R02 (4 of 5) | Results | open |
+| PDF text layer: fi and fl ligatures lose their Unicode mapping (pdftotext reads "ne" for "fine"); export with a ToUnicode-mapped font or ligatures off | jury session (machine readability) | export | open |
 
 ## Waiting for
 
-- Jury: round R02 on the draft (sent 19:45 HKT)
+- Julian: release a softer title without "never break" (jury R02, 5 of 5), or keep the KEEP wording
+- Julian: tell the cloud backend session: placebo arm (authority text, zero penalty) next to fine_certain and the shifted grid; one sentence on why leniency and reward both average 3.33 and the reward intervals collapse; PREREGISTRATION.md still says pools of 20 in the settings (should be 4 pools of 10); test counts differ (report 43, table 46, log 49)
 - Report session: apply title, affiliation and the cut to 8 pages (sent 19:55 HKT)
 - Julian: tell the cloud backend session that Figure 1 should be a 4x2 grid or use larger type (2x4 is too small at 6.5 inch width)
 - Julian: confirm the main-model rule (Haiku 5.5 as main model if it passes the pilot, Sonnet 5.5 as one V4 culture with 10 duopoles) and the project name (CartelBench recommended)
@@ -106,7 +116,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Next step
 
-Jury R02 on the report draft; Julian picks title and affiliation and approves the cuts; report session shortens to 8 pages and fills the open arms (validation, shifted grid, second model, dose) as the cloud backend delivers them; then merge `refs/heads/backend`, close-out, submission.
+Report session applies the R02 levers and the corrected cut list (n-table stays), fixes the PDF text layer, pulls the new Figure 1; cloud backend runs the validation arms, the placebo arm, the shifted grid and a second model; then R03 on the final PDF, merge `refs/heads/backend`, close-out, submission by Monday 16:59 HKT.
 
 ## Für die Skills
 
