@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 19:55 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 20:45 HKT by the main session
 
 ## Clock
 
@@ -46,11 +46,11 @@ At most two long build sessions plus one short session at the same time. One ses
 | 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | done (two rounds, 39 ideas, I24 chosen with build plan, commit d5e8cf9); archive on Julian's OK | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
 | 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | R02 done (d12541e): draft rank 2 of 5, medians 4 / 3 / 3, Execution 2 to 3; stays open for R03 on the final PDF | local_525668aa-4f92-4e55-8006-1293f749dce9 |
 | 4 | Website | design-taste-frontend | own worktree or cloud | web/ (branch) | | dropped (not a deliverable) | |
-| 5 | Backend | hackathon-backend | cloud (claude.ai/code), branch `backend` | `cartelbench/` on its branch, README, docs/ | Claude (cloud) | second cloud session running: four core regimes done with scorecard and Figure 1 (F13 to F19), branch `origin/backend` at 883ec87 (19:20 HKT); next: validation arms, second model, dose, NoReport, ReMatch, clone in cut order | cloud |
+| 5 | Backend | hackathon-backend | cloud (claude.ai/code), branch `backend` | `cartelbench/` on its branch, README, docs/ | Claude (cloud) | second cloud session: four core regimes, scorecard, Figure 1 as 4x2 grid (F13 to F19), branch `origin/backend` at 9c8295d (19:48 HKT); no commit since, state unknown (usage limit?); next: validation arms, placebo arm, second model, dose, NoReport, ReMatch, clone | cloud |
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
 | 7 | Demo video | video-studio | main folder | private/video/ | | optional (3 to 5 min, decide after R02 and the clock) | |
 | 8 | Design | hackathon-design | main folder | DESIGN.md, private/design/ | | optional (only if figures or video need a look) | |
-| 9 | Report (paper) | none (skills klare-einreichung, docx) | main folder | paper/report.docx (source), paper/report.md (mirror), paper/report.pdf | Claude | draft with all four regimes committed 4fb96c0 (19:37 HKT): 9 pages before References (cap 8), abstract 250 words, check script without FEHLT; waiting for Julian (title, affiliation, cuts) and R02 | local_d6d6a6d7-12df-4407-b0dd-9efb32c204cd |
+| 9 | Report (paper) | none (skills klare-einreichung, docx) | main folder | paper/report.docx (source), paper/report.md (mirror), paper/report.pdf | Claude | draft cut to 8 pages (a47264b); applying R02 levers and the revised title; interrupted once by Julian's usage limit at 19:55 HKT, restarted 20:45 HKT | local_d6d6a6d7-12df-4407-b0dd-9efb32c204cd |
 
 Rows the deliverables in HACKATHON.md do not need are set to `dropped` after the research (row 9 only runs when a report is required).
 
