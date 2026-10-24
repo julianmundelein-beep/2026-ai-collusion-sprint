@@ -87,18 +87,25 @@ class ScriptedPlayer(Player):
 class LLMPlayer(Player):
     kind = "llm"
 
-    def __init__(self, client: ModelClient, *args, offset: int = 0):
+    def __init__(self, client: ModelClient, *args, offset: int = 0, prompt_variant: str = "original"):
         super().__init__(*args)
         self.client = client
         self.offset = offset
-        self.system = system_prompt(self.regime, self.table, self.firm_name, offset)
+        if prompt_variant == "original":
+            self._system_prompt, self._history_table, self._question = system_prompt, history_table, question
+        elif prompt_variant == "paraphrase":   # amendment 4 (c): same rules and numbers, new wording
+            from . import prompts_paraphrase as pp
+            self._system_prompt, self._history_table, self._question = pp.system_prompt, pp.history_table, pp.question
+        else:
+            raise ValueError(f"unknown prompt variant {prompt_variant!r}")
+        self.system = self._system_prompt(self.regime, self.table, self.firm_name, offset)
 
     async def decide(self, step: str, ctx: dict) -> Decision:
         ctx = dict(ctx)
         ctx["firm_name"] = self.firm_name
         ctx["offset"] = self.offset
-        ctx["history"] = history_table(ctx.get("history_rows") or [], self.regime, self.offset)
-        user, schema = question(step, ctx)
+        ctx["history"] = self._history_table(ctx.get("history_rows") or [], self.regime, self.offset)
+        user, schema = self._question(step, ctx)
         resp = await self.client.complete(self.system, user, schema)
         resp.prompt_user = user
         if not resp.ok:

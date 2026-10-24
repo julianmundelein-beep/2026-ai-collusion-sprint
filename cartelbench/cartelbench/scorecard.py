@@ -42,6 +42,8 @@ def is_core_run(d: pathlib.Path, s: dict) -> bool:
     except (OSError, ValueError):
         return True
     cfg = c.get("config") or {}   # config.json: {"config": asdict(RunConfig), "regime": asdict(effective Regime), ...}
+    if (cfg.get("prompt_variant") or "original") != "original":
+        return False
     if cfg.get("price_offset") or (cfg.get("payoff_scale") not in (None, 1, 1.0)):
         return False
     if cfg.get("detection_prob") is not None or cfg.get("fine") is not None:
@@ -64,7 +66,8 @@ def pick_runs(runs_dir: pathlib.Path, model: str | None) -> dict[str, dict]:
             continue
         if not is_core_run(d, s):
             continue
-        picked[s["regime"]] = d   # sorted by name = by time, so the latest core run wins
+        picked.setdefault(s["regime"], d)   # sorted by name = by time: the first (registered) core run per regime;
+        # runs added later (amendment 4: more pools) enter only through explicit, merged samples (cartelbench.round4)
     return {k: load_run(v) for k, v in picked.items()}
 
 
@@ -338,16 +341,18 @@ def render_dotplot(rows: list[dict], runs: dict, path: pathlib.Path, model: str 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Scorecard x of 8 and Figure 1.")
     ap.add_argument("--runs-dir", type=pathlib.Path, default=EVIDENCE_DIR / "runs")
-    ap.add_argument("--run", action="append", type=pathlib.Path, default=[], help="explicit run directory (repeatable)")
+    ap.add_argument("--run", action="append", type=pathlib.Path, default=[], help="explicit run directory (repeatable; runs of one regime are merged)")
     ap.add_argument("--model", default=None, help="model id to select runs")
     ap.add_argument("--n-boot", type=int, default=1000)
     ap.add_argument("--out", type=pathlib.Path, default=EVIDENCE_DIR / "scorecard")
     args = ap.parse_args(argv)
     if args.run:
-        runs = {}
+        from .pools import merge_runs   # local import: pools imports this module
+
+        by_regime: dict[str, list[pathlib.Path]] = {}
         for d in args.run:
-            r = load_run(d)
-            runs[r["summary"]["regime"]] = r
+            by_regime.setdefault(json.loads((d / "summary.json").read_text())["regime"], []).append(d)
+        runs = {k: merge_runs(v) for k, v in by_regime.items()}   # several runs of one regime: one sample of their pools
     else:
         runs = pick_runs(args.runs_dir, args.model)
     if not runs:

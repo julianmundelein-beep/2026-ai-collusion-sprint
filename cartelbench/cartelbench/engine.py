@@ -47,6 +47,7 @@ class RunConfig:
     label: str = ""
     base_url: str = ""
     api_key_env: str = "OPENAI_API_KEY"
+    prompt_variant: str = "original"    # "paraphrase": prompt-robustness arm (amendment 4 (c)); instructions only
 
     def regime_obj(self) -> Regime:
         overrides = {}
@@ -136,7 +137,8 @@ class Run:
         if self.cfg.player == "llm":
             if self.client is None:
                 raise RuntimeError("player=llm needs a model client")
-            p = LLMPlayer(self.client, agent_id, name, self.regime, self.table, rng, offset=self.cfg.price_offset)
+            p = LLMPlayer(self.client, agent_id, name, self.regime, self.table, rng, offset=self.cfg.price_offset,
+                          prompt_variant=self.cfg.prompt_variant)
             self.systems[agent_id] = p.system
             return p
         return ScriptedPlayer(self.cfg.player, agent_id, name, self.regime, self.table, rng)
