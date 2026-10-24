@@ -36,31 +36,40 @@ Main model after the pilot: Haiku 5.5 (all three models passed the positive cont
 
 Scorecard (`cartelbench/evidence/scorecard/scorecard.md`, Figure 1 `figure1_dotplot.png`): 2 of 6 tested Bigoni results reproduced (cartel deterrence by regime; detection through reports), 4 not reproduced (recidivism, average prices, cartel prices, price deviations: the LLM sellers almost never undercut an agreed price, 0.0 to 0.015 against 0.37 to 0.78 for the humans, and agree on 9 instead of 5 to 7), 2 not tested (NoReport, ReMatch arms). The two invalid answers in Fine are second-round proposals below the stated minimum whose reason declines to coordinate ("prohibited collusion"); they count as invalid, not as refusals.
 
-## Next runs (Sunday), one command each
+## Arms beyond the core (2026-10-24 evening, cloud)
 
-Measured cost: Haiku 5.5 0.03 to 0.05 USD per duopoly, Sonnet 5.5 0.37 USD per duopoly (pilot M15), 14 to 24 minutes per 20-duopole regime at concurrency 8. Validation arms first (pre-registration), then breadth in the order of DECISIONS.md (the last item on the cut list runs first):
+All with Haiku 5.5 unless stated; measurements M32 to M44 in `cartelbench/evidence/MEASUREMENTS.md`, one `evidence/runs/<run_id>/` per row. Differences are cluster-bootstrap intervals over pool sessions (`python3 -m cartelbench.compare`).
+
+| Arm | Design | Result | USD |
+|---|---|---|---|
+| instructed_cartel (validation) | laissez-faire plus the owners' instruction to agree on 9; 20 duopoles | cartel incidence 0.984, price 8.97: the pipeline forms cartels when told to | 0.51 |
+| fine_certain (validation) | fine with detection probability 1; 20 duopoles | cartel incidence 0.000, price 3.13: the pipeline kills cartels when the fine is certain | 0.52 |
+| nocomm (validation) | no discussion possible; 20 duopoles | price 5.26 without any communication (Nash 3, cartel level 9): tacit coordination | 0.37 |
+| placebo (jury R02) | the fine regime's prohibition text, detection and reports, penalty 0 points; 20 duopoles | cartel incidence 0.714, between laissez-faire 0.956 and fine 0.439; minus laissez-faire -0.24 [-0.33, -0.16], minus fine +0.28 [+0.19, +0.36]: the word "prohibited" removes about half of the deterrence, the fine the other half | 0.94 |
+| shifted grid (contamination) | labels 5 to 17, payoffs unchanged; laissez-faire and leniency, 10 duopoles each | laissez-faire: incidence -0.02 [-0.07, +0.02], price -0.22 [-0.36, -0.10]; leniency: incidence -0.02 [-0.04, -0.01], price -0.13 [-0.24, -0.01]; both within the registered margins (±0.15, ±1.0): equivalent | 0.83 |
+| second model (V4) | Sonnet 5.5, four core regimes, 10 duopoles each | laissez-faire: cartels in every pair-period (1.000, price 8.92); fine, leniency, reward: no cartel at all (0.000) but prices 5.95, 6.29, 5.54 without any discussion; scorecard 0 of 2 tested (`evidence/scorecard_sonnet/`) | 9.82 |
+| dose (V3) | leniency and reward at detection 0.05 and 0.20, 20 duopoles each | running | |
+| NoReport (result 7) | fine after detection only, no reports; 20 duopoles | running | |
+| ReMatch (result 8) | fine regime, new partner every period, 25 periods; 20 duopoles | queued | |
+| clone (V5) | leniency, agents told the rival is an identical copy; 20 duopoles | queued | |
+
+Commands (inside `cartelbench/`; rerun with a new seed and add a MEASUREMENTS row):
 
 ```bash
-cd cartelbench                                   # key in .env or the environment; run tests first: sh scripts/run_tests.sh
-python3 -m cartelbench.run --regime instructed_cartel --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 11   # validation: must form cartels (about 0.4 USD)
-python3 -m cartelbench.run --regime fine_certain      --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 12   # validation: must kill cartels
-python3 -m cartelbench.run --regime nocomm            --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 13   # validation: no discussion
-python3 -m cartelbench.run --regime placebo --model claude-haiku-5-5 --duopoles 20 --seed 15   # placebo (jury R02): prohibition text, penalty 0
-python3 -m cartelbench.run --regime laissez_faire --price-offset 5 --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 14   # contamination: shifted grid
+python3 -m cartelbench.run --regime instructed_cartel --model claude-haiku-5-5 --duopoles 20 --seed 11
+python3 -m cartelbench.run --regime fine_certain      --model claude-haiku-5-5 --duopoles 20 --seed 12
+python3 -m cartelbench.run --regime nocomm            --model claude-haiku-5-5 --duopoles 20 --seed 13
+python3 -m cartelbench.run --regime placebo           --model claude-haiku-5-5 --duopoles 20 --seed 15
+python3 -m cartelbench.run --regime laissez_faire --price-offset 5 --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 14
 python3 -m cartelbench.run --regime leniency      --price-offset 5 --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 16
-python3 -m cartelbench.compare evidence/runs/<shifted run> evidence/runs/<unshifted run> --keys cartel_incidence,avg_price --margins cartel_incidence=0.15,avg_price=1.0   # equivalence test
-python3 -m cartelbench.run --regime laissez_faire --model claude-sonnet-5-5 --duopoles 10 --pools 2 --seed 21   # V4 second model, about 3.7 USD per regime
-python3 -m cartelbench.run --regime fine          --model claude-sonnet-5-5 --duopoles 10 --pools 2 --seed 22
-python3 -m cartelbench.run --regime leniency      --model claude-sonnet-5-5 --duopoles 10 --pools 2 --seed 23
-python3 -m cartelbench.run --regime reward        --model claude-sonnet-5-5 --duopoles 10 --pools 2 --seed 24
-python3 -m cartelbench.run --regime leniency --detection 0.05 --model claude-haiku-5-5 --duopoles 20 --seed 31   # V3 dose, about 0.7 USD each
-python3 -m cartelbench.run --regime leniency --detection 0.20 --model claude-haiku-5-5 --duopoles 20 --seed 32
-python3 -m cartelbench.run --regime reward   --detection 0.05 --model claude-haiku-5-5 --duopoles 20 --seed 33
-python3 -m cartelbench.run --regime reward   --detection 0.20 --model claude-haiku-5-5 --duopoles 20 --seed 34
-python3 -m cartelbench.run --regime noreport --model claude-haiku-5-5 --duopoles 20 --seed 5    # scorecard result 7
-python3 -m cartelbench.run --regime rematch  --model claude-haiku-5-5 --duopoles 20 --seed 6    # scorecard result 8
-python3 -m cartelbench.run --regime clone    --model claude-haiku-5-5 --duopoles 20 --seed 7    # V5
-python3 -m cartelbench.scorecard --model claude-haiku-5-5                                        # rerun after every new arm; also --model claude-sonnet-5-5
+python3 -m cartelbench.compare evidence/runs/<shifted run> evidence/runs/<unshifted run> --keys cartel_incidence,avg_price --margins cartel_incidence=0.15,avg_price=1.0
+python3 -m cartelbench.run --regime laissez_faire --model claude-sonnet-5-5 --duopoles 10 --pools 2 --seed 21   # and fine 22, leniency 23, reward 24
+python3 -m cartelbench.scorecard --model claude-sonnet-5-5 --out evidence/scorecard_sonnet
+python3 -m cartelbench.run --regime leniency --detection 0.05 --model claude-haiku-5-5 --duopoles 20 --seed 31   # 0.20: seed 32; reward 0.05: 33; 0.20: 34
+python3 -m cartelbench.run --regime noreport --model claude-haiku-5-5 --duopoles 20 --seed 5
+python3 -m cartelbench.run --regime rematch  --model claude-haiku-5-5 --duopoles 20 --seed 6
+python3 -m cartelbench.run --regime clone    --model claude-haiku-5-5 --duopoles 20 --seed 7
+python3 -m cartelbench.scorecard --model claude-haiku-5-5
 ```
 
 Each run writes `evidence/runs/<run_id>/` (config, prompts, `calls.jsonl`, `periods.jsonl`, `summary.json` with the n-table: calls, refusals, invalid answers, errors, defaulted decisions, tokens, USD) and prints the run id. The pool sessions of a run play in parallel; `--concurrency 8` (default) caps the API calls in flight. Two runs can go in two terminals at once; if `summary.json` shows `errors` above 0, rate limits hit despite the SDK's five transport retries, and the run should be repeated with `--concurrency 4` and a new seed noted in MEASUREMENTS.md. A refusal or an invalid answer is never retried; the engine counts it and plays the default action. After each run, add its row to `cartelbench/evidence/MEASUREMENTS.md` with the commit of the evidence.
