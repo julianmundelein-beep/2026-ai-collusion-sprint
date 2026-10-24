@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 19:30 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 19:45 HKT by the main session
 
 ## Clock
 
@@ -50,7 +50,7 @@ At most two long build sessions plus one short session at the same time. One ses
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
 | 7 | Demo video | video-studio | main folder | private/video/ | | optional (3 to 5 min, decide after R02 and the clock) | |
 | 8 | Design | hackathon-design | main folder | DESIGN.md, private/design/ | | optional (only if figures or video need a look) | |
-| 9 | Report (paper) | none (skills klare-einreichung, docx) | main folder | paper/report.docx (source), paper/report.md (mirror), paper/report.pdf | Claude | running (started 2026-10-24 19:05 HKT) | local_d6d6a6d7-12df-4407-b0dd-9efb32c204cd |
+| 9 | Report (paper) | none (skills klare-einreichung, docx) | main folder | paper/report.docx (source), paper/report.md (mirror), paper/report.pdf | Claude | draft with all four regimes committed 4fb96c0 (19:37 HKT): 9 pages before References (cap 8), abstract 250 words, check script without FEHLT; waiting for Julian (title, affiliation, cuts) and R02 | local_d6d6a6d7-12df-4407-b0dd-9efb32c204cd |
 
 Rows the deliverables in HACKATHON.md do not need are set to `dropped` after the research (row 9 only runs when a report is required).
 
@@ -62,7 +62,7 @@ Every deliverable from HACKATHON.md, the one place it is made, and who makes it.
 
 | Deliverable | The one source | Session or person | State | Final file submitted |
 |---|---|---|---|---|
-| Research report (PDF, official template, max 8 pages before references and appendices, plan 4 to 6; abstract 150 to 250 words; authors and affiliations; appendix "Limitations and Dual-Use / Ethical Considerations"; LLM Usage Statement; at least one figure) | `paper/report.docx` on the .docx copy of the official template (Google Doc only if Julian asks); PDF export `paper/report.pdf` is the submission; file `<ProjectTitle>_AI-Collusion-Research-Sprint_2026.pdf` | 9 Report | in progress | |
+| Research report (PDF, official template, max 8 pages before references and appendices, plan 4 to 6; abstract 150 to 250 words; authors and affiliations; appendix "Limitations and Dual-Use / Ethical Considerations"; LLM Usage Statement; at least one figure) | `paper/report.docx` on the .docx copy of the official template (Google Doc only if Julian asks); PDF export `paper/report.pdf` is the submission; file `<ProjectTitle>_AI-Collusion-Research-Sprint_2026.pdf` | 9 Report | draft 4fb96c0, 9 pages, needs cut to 8 | |
 | Public GitHub repo (optional) | this repo; harness in `cartel/` (name per Julian's pick) on branch `backend`, README from the backend session | 5 Backend | not started | |
 | Video demo, 3 to 5 min (optional, URL only, judges review the PDF) | private/video/ | 7 Demo video | optional | |
 | Submission form: project summary, tracks, publishing yes/no, team name, location, member name, email, Discord, Scholar | SUBMISSION.md (draft texts), Julian fills personal fields | main session | not started | |
@@ -94,7 +94,9 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Waiting for
 
-- Report session: draft with Results; then jury round R02 on the draft (Julian's decision 19:35 HKT)
+- Jury: round R02 on the draft (sent 19:45 HKT)
+- Julian: title or headline (options under the abstract in paper/report.md), affiliation "Independent, Hong Kong", docx stays the source, cut to 8 pages (proposal: n-table to the appendix, pilot row out of Table 1, Related Work to three paragraphs)
+- Julian: tell the cloud backend session that Figure 1 should be a 4x2 grid or use larger type (2x4 is too small at 6.5 inch width)
 - Julian: project name and affiliation for the report session
 - Julian: confirm the main-model rule (Haiku 5.5 as main model if it passes the pilot, Sonnet 5.5 as one V4 culture with 10 duopoles) and the project name (CartelBench recommended)
 - Julian: Modal account and credits (form in the inbox, per Discord) for the second provider in V4; the cloud environment reaches only api.anthropic.com, so V4 runs locally
@@ -105,7 +107,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Next step
 
-Report session writes Results and the abstract from F13 to F19; jury round R02 on that draft; cloud backend runs the extras in cut order (validation arms first, then a second model for V4, dose, NoReport, ReMatch, clone); main session merges `refs/heads/backend` into main on Julian's word before the report is final.
+Jury R02 on the report draft; Julian picks title and affiliation and approves the cuts; report session shortens to 8 pages and fills the open arms (validation, shifted grid, second model, dose) as the cloud backend delivers them; then merge `refs/heads/backend`, close-out, submission.
 
 ## Für die Skills
 
@@ -114,3 +116,4 @@ Append only, every session, one line each: `YYYY-MM-DD · <session> · <skill> �
 - 2026-10-24 · Ideen · hackathon-ideen · Research-Sprint-Format: Kurzkarte und Prüfkarte kennen keine Felder für Forschungsfrage, Hypothese, Variable, Metrik, Baseline mit Positivkontrolle, Runs und Seeds, Kosten, Null-Ergebnis-Risiko, Replikationsprüfung gegen Vorarbeiten; Kurzform erlaubt nur zwei Tracks, der Auftrag nannte drei · Variante „Research Sprint" im Skill: diese Felder in die Kurzkarte, Prüfskript liest sie, Trackzahl in der Kurzform als Parameter; Platzhalter „–" in der Vorlage (Nichtkunden-Ebene, „0–5") verstößt gegen die Gedankenstrich-Regel des Dateivertrags, Vorlage auf „keine" und „0 bis 5" ändern
 - 2026-10-24 · Jury · jury-simulation · `runde.py` liest „not published (plan: equal)“ nicht als Gewicht und bricht ab; die Juroren-Vorlage erzwingt 0 bis 10 und „Total 0 to 100“, obwohl die Rubrik 1 bis 5 mit wörtlichen Stufen hat (hier per `--rubrik` JSON und Nachbearbeitung der Pakete gelöst) · Option `--gleich` für gleiche Gewichte bei unveröffentlichten Gewichten; Skala aus der Rubrik übernehmen (`--skala 1-5`), Totaltext danach richten
 - 2026-10-24 · Jury · jury-simulation · Kein Paket für ideenspezifische Fragen (Replikation oder neu, trägt die Positivkontrolle, Streichreihenfolge); Juroren bewerten Ideen in Dimension 2 nach dem Stand statt nach dem Potenzial · eigener Pakettyp „Detailprüfung“ je Juror (wie die Vortragsprüfung, frischer Kontext, ohne Konkurrenz) mit Auswertung im Bericht; Hinweis in der Vorlage schärfen, dass Ideen in Execution nach dem Plan bewertet werden
+- 2026-10-24 · Bericht · klare-einreichung · `pruefen.py --rubrik` verlangt je Kriterium eine eigene Überschrift, obwohl die offizielle Vorlage die Gliederung vorgibt und der Skill selbst sagt, dass die Kriterien dann als Unterpunkte hineinkommen; im Report steht deshalb eine dreizeilige Leseanleitung mit den Kriteriennamen, damit kein FEHLT bleibt · Option `--rubrik-unterpunkte`: Kriterium gilt als abgedeckt, wenn sein Name in einer Zeile unter 120 Zeichen vorkommt; Glossar-Warnung „Begriffe nicht benutzt“ listet auch benutzte Begriffe (research question, positive control), weil die ganze Tabellenzelle gesucht wird, besser je Begriff vor dem Semikolon prüfen
