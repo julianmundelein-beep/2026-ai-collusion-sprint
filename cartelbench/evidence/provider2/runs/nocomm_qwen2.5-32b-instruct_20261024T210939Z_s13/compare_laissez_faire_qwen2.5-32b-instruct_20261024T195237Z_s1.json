@@ -1,0 +1,25 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.compare evidence/provider2/runs/nocomm_qwen2.5-32b-instruct_20261024T210939Z_s13 evidence/provider2/runs/laissez_faire_qwen2.5-32b-instruct_20261024T195237Z_s1 --keys avg_price",
+  "commit": "071d8b2396a34705885dffb22ed80b3ae234f354-dirty",
+  "time": "2026-10-24T22:36:14Z",
+  "note": "Do not edit by hand.",
+  "run_a": "nocomm_qwen2.5-32b-instruct_20261024T210939Z_s13",
+  "run_b": "laissez_faire_qwen2.5-32b-instruct_20261024T195237Z_s1",
+  "model_a": "qwen2.5-32b-instruct",
+  "model_b": "qwen2.5-32b-instruct",
+  "clusters_a": 4,
+  "clusters_b": 4,
+  "differences": {
+    "avg_price": {
+      "a": 7.7342342342342345,
+      "b": 6.846017699115044,
+      "diff": {
+        "point": 0.8882165351191906,
+        "lo": 0.608144796380091,
+        "hi": 1.1494629156010232,
+        "n_boot": 1000
+      }
+    }
+  }
+}
