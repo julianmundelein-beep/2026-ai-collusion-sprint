@@ -22,14 +22,14 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
 LABEL = {"laissez_faire": "LF", "fine": "Fine", "leniency": "Len.", "reward": "Rew.",
-         "noreport": "NoReport", "rematch": "ReMatch"}
+         "noreport": "NoRep.", "rematch": "ReMatch"}
 SHORT = {1: "Deterrence", 2: "Detection by reports", 3: "Recidivism", 4: "Average prices", 5: "Cartel prices",
          6: "Price deviations", 7: "Reports as punishment", 8: "Altruistic reports"}
 YLABEL = {"cartel_formation_rate": "cartel formation rate", "report_rate_given_cartel": "report rate given cartel",
           "relapse_rate_next_period": "relapse rate, next period", "avg_price": "average price",
           "cartel_price": "cartel price", "deviation_rate": "deviation rate",
           "public_report_rate_given_only_rival_deviated": "public reports after rival deviation"}
-TEST_LABEL = {"lf_minus_fine": "LF-Fine", "fine_minus_leniency": "Fine-Len.",
+TEST_LABEL = {"lf_minus_fine": "LF-Fine", "fine_minus_leniency": "Fine-Len.", "fine_minus_noreport": "Fine-NoRep.",
               "leniency_minus_fine": "Len.-Fine", "fine_minus_lf": "Fine-LF",
               "leniency_minus_lf": "Len.-LF", "lf_minus_leniency": "LF-Len."}
 HUMAN = "#6b6a66"
@@ -37,19 +37,20 @@ LLM = "#2a78d6"
 GREEN, RED, GREY = "#1b7f3b", "#b3261e", "#8a8984"
 
 
-def read_bootstrap(path: pathlib.Path) -> dict[str, dict[str, tuple[float, float]]]:
-    out: dict[str, dict[str, tuple[float, float]]] = {}
-    regime = None
+def read_bootstrap(path: pathlib.Path, runs: dict[str, str]) -> dict[str, dict[str, tuple[float, float]]]:
+    """Per-regime intervals, taken from the run that the scorecard picked for that regime."""
+    by_run: dict[str, dict[str, tuple[float, float]]] = {}
+    run_id = None
     for line in path.read_text().splitlines():
-        m = re.match(r"== \S+ \((\w+),", line)
+        m = re.match(r"== (\S+) \(", line)
         if m:
-            regime = m.group(1)
-            out[regime] = {}
+            run_id = m.group(1)
+            by_run[run_id] = {}
             continue
         m = re.match(r"\s+(\w+)\s+([\d.]+)\s+\[([\d.]+), ([\d.]+)\]", line)
-        if m and regime:
-            out[regime][m.group(1)] = (float(m.group(3)), float(m.group(4)))
-    return out
+        if m and run_id:
+            by_run[run_id][m.group(1)] = (float(m.group(3)), float(m.group(4)))
+    return {regime: by_run.get(rid, {}) for regime, rid in runs.items()}
 
 
 def main(argv=None) -> int:
@@ -59,12 +60,12 @@ def main(argv=None) -> int:
     ap.add_argument("--out", type=pathlib.Path, default=pathlib.Path("paper/figures/figure1_landscape.png"))
     args = ap.parse_args(argv)
     sc = json.loads(args.scorecard.read_text())
-    ci = read_bootstrap(args.bootstrap)
+    ci = read_bootstrap(args.bootstrap, sc.get("runs", {}))
     plt.rcParams.update({"font.family": "sans-serif", "font.size": 8, "axes.titlesize": 8, "axes.labelsize": 8})
     fig, axes = plt.subplots(2, 4, figsize=(6.5, 3.5))
     for ax, row in zip(axes.flat, sc["rows"]):
         state = row.get("replicated")
-        verdict, color = ("reproduced", GREEN) if state else (("not tested", GREY) if state is None else ("not reproduced", RED))
+        verdict, color = ("reproduced", GREEN) if state else (("not testable", GREY) if state is None else ("not reproduced", RED))
         ax.set_title(f"{row['n']}. {SHORT[row['n']]}\n{verdict}", loc="left", color=color, fontsize=7.5)
         key = row["measure"]
         if state is not None:
@@ -74,9 +75,8 @@ def main(argv=None) -> int:
             ax.set_xticks([]); ax.set_yticks([])
             for side in ax.spines.values():
                 side.set_color("#d9d8d2")
-            arm = [r for r in regimes if r not in ("laissez_faire", "fine", "leniency", "reward")]
-            ax.text(0.5, 0.5, f"{LABEL.get(arm[0], 'extra')} arm\nnot run", ha="center", va="center", fontsize=7.5, color=GREY,
-                    transform=ax.transAxes)
+            ax.text(0.5, 0.5, "no cartel formed\nin the ReMatch arm:\nno public report\ncan occur", ha="center", va="center",
+                    fontsize=6.5, color=GREY, transform=ax.transAxes)
             continue
         xs = list(range(len(regimes)))
         for x, r in zip(xs, regimes):
