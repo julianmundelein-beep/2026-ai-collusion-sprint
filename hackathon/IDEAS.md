@@ -3,8 +3,8 @@
 > Geschrieben von der Ideen-Session (Skill hackathon-ideen, Kurzform). Sprache: Deutsch, auch im Repo; übersetzt wird nur auf Wunsch (`references/uebersetzen.md`), weil die Datei beim Repo-Abschluss den Baum verlässt. Dies ist ein Research Sprint: Eine Idee ist eine Forschungsfrage mit einem kontrollierten Experiment, das solo in etwa 24 Arbeitsstunden auf einem 16-GB-Laptop ohne GPU mit günstigen API-Modellen läuft (20 bis 50 USD plus 50 USD Modal-Credits) und ein Ergebnis mit Varianz und Baseline liefert. Der „Demo-Moment" ist die eine Abbildung oder Tabelle, die ein Judge nach 30 Sekunden versteht. Jede Kurzkarte trägt deshalb zusätzlich: Frage des Veranstalters, Hypothese, Variable, Metrik, Baseline mit Positivkontrolle, Runs und Seeds, Kosten, Null-Ergebnis-Risiko, warum es keine Replikation ist, und den Abgleich mit den Vorarbeiten. IDs sind fest (I01, I02 …): nie neu nummeriert, nie gelöscht. Status: `offen` · `shortlist` · `gewählt` · `verworfen`. Die Wahl schreibt die Hauptsession in DECISIONS.md und CORE_IDEA.md; `gewählt` steht hier erst, wenn diese Zeile existiert. Zahlen im Kern sind Beispiele; im Pitch tragen sie `(Beispiel)`, eine FACTS-ID oder einen Link.
 
 - Stand: 2026-10-24 14:00 HKT · Restzeit bis zur internen Deadline: etwa 51 Stunden (Mo 2026-10-26 16:59 HKT)
-- Gelesen: CLAUDE.md, STATUS.md, DECISIONS.md, FACTS.md (leer), HACKATHON.md (bei Abruf noch Vorlage), private/JUDGES.md und private/COMPETITION.md (bei Abruf noch Vorlage); Sprint-Seite mit Tabs Overview, Resources und Guidelines (https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25, abgerufen 2026-10-24); README des Starter-Repos (https://github.com/poseidon-research/collusion_hackathon, abgerufen 2026-10-24)
-- Fehlende Eingaben und Annahmen: Rubrik und Pflichtinhalte direkt aus dem Guidelines-Tab statt aus HACKATHON.md (Abgleich folgt, sobald die Recherche-Session sie füllt). Jury unbekannt (JUDGES.md leer): Juror-Zeilen in Prüfkarten müssen warten. Konkurrenz unbekannt (COMPETITION.md leer): Feldkurve aus den Wochenendprojekten des Resources-Tabs abgeleitet und als Vermutung markiert. Vorarbeiten nur nach den Zusammenfassungen des Resources-Tabs geprüft, nicht nach den Volltexten; wo eine Lücke behauptet wird, steht `[Vermutung]`.
+- Gelesen: CLAUDE.md, STATUS.md, DECISIONS.md, FACTS.md (leer); HACKATHON.md, private/JUDGES.md und private/COMPETITION.md (Stand der Recherche-Session 14:05 bis 14:15 HKT, nach der Runde abgeglichen); Sprint-Seite mit Tabs Overview, Resources und Guidelines (https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25, abgerufen 2026-10-24); README des Starter-Repos (https://github.com/poseidon-research/collusion_hackathon, abgerufen 2026-10-24)
+- Fehlende Eingaben und Annahmen: Runde 1 entstand aus dem Guidelines- und Resources-Tab, bevor HACKATHON.md stand; der Abgleich danach ergab keine Abweichung bei Rubrik (drei Dimensionen, keine Gewichte, gleich geplant) und Pflichtinhalten. Begriffe für den Report nach dem Glossar in HACKATHON.md: „collusion between AI agents", „coalition" (nicht cartel), „positive control", „logged agent trajectories", „plus factors", „trusted agents", „monitor", „countermeasures"; die deutschen Kurzkarten hier dürfen „Kartell" sagen, der Report nicht. Jury (41 Juroren, JUDGES.md) und Konkurrenz (27 frühe Repos, COMPETITION.md, Snapshot 14:05 HKT) fließen erst in die volle Prüfung ein. Feldkurve zuerst aus dem Resources-Tab abgeleitet, Mindeststandard danach mit COMPETITION.md bestätigt. Vorarbeiten nur nach den Zusammenfassungen des Resources-Tabs geprüft, nicht nach den Volltexten; wo eine Lücke behauptet wird, steht `[Vermutung]`.
 - Richtung von Julian: keine Nachricht vor Runde 1 (autonome Untersession). Alle drei Tracks, weil der Auftrag alle nennt (Kurzform sieht höchstens zwei vor); Finanzbezug willkommen, keine Pflicht (Hub-Titel Hong Kong: „Solve AI Agent Collusion in Financial Systems").
 - Gewichte: IP 33.4 · EQ 33.3 · PC 33.3 (Rubrik ohne Gewichte, drei Dimensionen je 1 bis 5 gleichwertig; Kürzel: IP Impact Potential & Innovation, EQ Execution Quality, PC Presentation & Clarity; Quelle Guidelines-Tab, abgerufen 2026-10-24)
 - Pflicht-Fähigkeiten: Positivkontrolle immer berichten; Varianz, Seeds und Baselines; Methodik replizierbar (Modelle, Prompts, Umgebung, Seeds, Metriken); neue Arbeit klar von Vorarbeit getrennt; Anhang „Limitations and Dual-Use / Ethical Considerations"; Abstract 150 bis 250 Wörter; höchstens 8 Seiten vor Referenzen und Anhängen; offizielle Vorlage
@@ -24,6 +24,8 @@ Die fünf stärksten Ideen aller Runden (Kurzform), dazu eine bewusst unbequeme 
 
 Warum diese und nicht die naheliegenden: Die Wochenendprojekte des Resources-Tabs (I01, I09, I17) laufen bei vielen der 1.650 Angemeldeten gleich, und Rubrik-Dimension 1 fragt ausdrücklich, ob etwas neu ist oder jüngere Arbeit repliziert. Jede der fünf setzt einen Hebel, den keine Sprint-Quelle testet, bleibt aber im Starter-Harness mit Positivkontrolle, einer Variable und 3 bis 5 Seeds je Zelle, also im Budget und in der Zeit.
 
+Konkurrenz-Lage (COMPETITION.md, Snapshot 2026-10-24 14:05 HKT): I19 und I22 treffen die Lücken 3.2 und 3.4, I02 und I03 die Lücke „Kosten einer Restriktion" und den Finanzrahmen, I20 die Lücke „Schelling-Salienz über Anbieter"; kein frühes Repo deckt einen dieser Mechanismen. Besetzt sind dagegen I05 (SupratikB23/LLM-Cartel-Succession fragt genau nach vererbter Preishistorie) und teilweise I14 (saltxd/plus-factors-on-the-ledger) und I15 (Dolos, mindestens vier Repos).
+
 Knapp dahinter (Schätzung 63 bis 67): I10 Getrenntes Verhör, I21 Angesagte Blindstelle, I04 Zwangsurlaub, I06 Odd Eighths, I18 Fußnoten, I13 Omertà, I07 Gegenmacht.
 
 ## Geprüfte Ideen
@@ -37,23 +39,23 @@ Kurzform: höchstens 20 Minuten, Quellen sind die Sprint-Seite (Tabs Overview, R
 
 ### Beobachtungen
 
-Linse: `Alltag` · `Kultur × Technik` · `KI-Schub` · `Nichtkunden` · `Feld`. Nichtkunden-Ebene: `1 bald abspringend` · `2 verweigernd` · `3 nie bedacht` · `–`. Quelle: Link mit Abrufdatum oder `[Vermutung]`.
+Linse: `Alltag` · `Kultur × Technik` · `KI-Schub` · `Nichtkunden` · `Feld`. Nichtkunden-Ebene: `1 bald abspringend` · `2 verweigernd` · `3 nie bedacht` · `keine`. Quelle: Link mit Abrufdatum oder `[Vermutung]`.
 
 | # | Beobachtung | Wer | Linse | Maslow | Nichtkunden-Ebene | Quelle |
 |---|---|---|---|---|---|---|
-| O01 | Der Hong-Kong-Hub heißt „Solve AI Agent Collusion in Financial Systems"; die Veranstalter wünschen sich ausdrücklich Quant-Finance-Profis, weil Marktintuition und Datenkompetenz direkt übertragbar seien | Teilnehmer am HK-Hub, Quants | Alltag | 2 | – | Sprint-Seite, Overview, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
-| O02 | 1.650 Angemeldete; je Forschungsfrage ist ein Wochenendprojekt mit Starter-Code, Budget und Seeds vorgegeben, alle Teams starten vom selben Punkt | alle Teams | Feld | 4 | – | Sprint-Seite, Overview und Resources, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
+| O01 | Der Hong-Kong-Hub heißt „Solve AI Agent Collusion in Financial Systems"; die Veranstalter wünschen sich ausdrücklich Quant-Finance-Profis, weil Marktintuition und Datenkompetenz direkt übertragbar seien | Teilnehmer am HK-Hub, Quants | Alltag | 2 | keine | Sprint-Seite, Overview, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
+| O02 | 1.650 Angemeldete; je Forschungsfrage ist ein Wochenendprojekt mit Starter-Code, Budget und Seeds vorgegeben, alle Teams starten vom selben Punkt | alle Teams | Feld | 4 | keine | Sprint-Seite, Overview und Resources, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
 | O03 | Das Kartellrecht kennt das Beweisproblem seit Jahrzehnten: paralleles Verhalten allein ist legal, Gerichte verlangen Plus-Faktoren; die ML-Literatur leitet das neu her, ohne die ältere Literatur zu lesen (Berger et al. 2025) | Juristen, Wettbewerbsbehörden, ML-Forscher | Kultur × Technik | 2 | 2 verweigernd | Sprint-Seite, Resources 2.3, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
-| O04 | Agentenkommunikation nimmt zu (Verweis auf den OpenAI/Hugging-Face-Vorfall); ein Agent, der weiß, dass er beobachtet wird, senkt die Genauigkeit des Monitors stärker, als Zusatzinformation sie hebt (Kale et al. 2025) | Betreiber von Monitoren | KI-Schub | 2 | – | Sprint-Seite, Overview und Resources 3.4, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
-| O05 | Die Modellfamilie hinter einem Text ist am Stil erkennbar, auch in zugewiesener Rolle; Anonymisieren oder Umbenennen verbirgt nicht, welches Modell spricht (Dietrich 2026) | Betreiber pseudonymer Agentensysteme | KI-Schub | 2 | – | Sprint-Seite, Resources 3.3, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
+| O04 | Agentenkommunikation nimmt zu (Verweis auf den OpenAI/Hugging-Face-Vorfall); ein Agent, der weiß, dass er beobachtet wird, senkt die Genauigkeit des Monitors stärker, als Zusatzinformation sie hebt (Kale et al. 2025) | Betreiber von Monitoren | KI-Schub | 2 | keine | Sprint-Seite, Overview und Resources 3.4, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
+| O05 | Die Modellfamilie hinter einem Text ist am Stil erkennbar, auch in zugewiesener Rolle; Anonymisieren oder Umbenennen verbirgt nicht, welches Modell spricht (Dietrich 2026) | Betreiber pseudonymer Agentensysteme | KI-Schub | 2 | keine | Sprint-Seite, Resources 3.3, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
 | O06 | Rubrik-Dimension 1 fragt für 4 bis 5 Punkte ausdrücklich: „is this actually new to the field, or replicating recent work?"; wer das Wochenendprojekt unverändert abgibt, liefert Replikation | Teams, die beim Starter bleiben | Nichtkunden | 4 | 1 bald abspringend | Sprint-Seite, Guidelines, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
 | O07 | In allen Harnesses ist der Aufseher eine feste neutrale Instanz außerhalb des Spiels, und Interventionen in 1.5 und 3.4 zielen nur auf Verkäufer; die Käufer-Agenten der Doppelauktion werden nie als Hebel genutzt | Monitor, Käufer-Agenten | Nichtkunden | 2 | 3 nie bedacht | Sprint-Seite, Resources 1.5 und 3.4, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25; dass niemand die Käufer bewaffnet: [Vermutung] |
-| O08 | Rubrik: drei Dimensionen je 1 bis 5 ohne Gewichte; Execution verlangt Varianz, Seeds, Baselines und immer die Positivkontrolle; ein Judge darf einen unklaren Report ungewertet lassen | Judges | Feld | 4 | – | Sprint-Seite, Guidelines, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
-| O09 | Budgetrahmen aller Wochenendprojekte: 0 bis 120 USD, 16-GB-Laptop ohne GPU, 3 bis 5 Seeds je Bedingung, erst nach gelungener Positivkontrolle auf 10 bis 20 erweitern | alle Teams | Feld | 2 | – | Sprint-Seite, Resources „Planning assumptions", abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
+| O08 | Rubrik: drei Dimensionen je 1 bis 5 ohne Gewichte; Execution verlangt Varianz, Seeds, Baselines und immer die Positivkontrolle; ein Judge darf einen unklaren Report ungewertet lassen | Judges | Feld | 4 | keine | Sprint-Seite, Guidelines, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
+| O09 | Budgetrahmen aller Wochenendprojekte: 0 bis 120 USD, 16-GB-Laptop ohne GPU, 3 bis 5 Seeds je Bedingung, erst nach gelungener Positivkontrolle auf 10 bis 20 erweitern | alle Teams | Feld | 2 | keine | Sprint-Seite, Resources „Planning assumptions", abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
 | O10 | Menschliche Kartelle werden am häufigsten durch Kronzeugenregelungen aufgebrochen: Wer zuerst gesteht, geht straffrei aus; die Wettbewerbsbehörde Hongkongs hat eine solche Leniency Policy | Wettbewerbsbehörden, auch in Hongkong | Kultur × Technik | 2 | 2 verweigernd | [Vermutung] (aus Erinnerung; vor dem Report mit HKCC-Quelle und OECD-Literatur belegen) |
 | O11 | Finanzmärkte haben eigene, erprobte Kollusionsbrecher: 1997 verkleinerte NASDAQ nach dem Odd-Eighths-Befund (Christie und Schultz 1994) das Preisraster, und Banken schreiben Händlern Pflicht-Blockurlaub vor, damit Kollegen ihre Bücher sehen | Börsen, Bankenaufsicht | Kultur × Technik | 2 | 3 nie bedacht | [Vermutung] (aus Erinnerung; vor dem Report belegen) |
-| O12 | Dolos-1.5B: Claude Code und Codex fanden das versteckte Verhalten nicht in einem Durchgang; ein früheres, offensichtlicheres Modell wurde teilweise entdeckt | Red-Teamer | KI-Schub | 2 | – | Sprint-Seite, Resources Red-Teaming, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
-| O13 | Vokabular der Partner: Poseidon arbeitet an Steganographie, Aktionen als Kanal, Black-Box- und White-Box-Abwehr; AE Studio an Self-Other Overlap, Gradient Routing, Sleeper Agents | Partner und ihre Leute in der Jury | Alltag | 4 | – | Sprint-Seite, Overview „Partners" und Speaker-Profile, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
+| O12 | Dolos-1.5B: Claude Code und Codex fanden das versteckte Verhalten nicht in einem Durchgang; ein früheres, offensichtlicheres Modell wurde teilweise entdeckt | Red-Teamer | KI-Schub | 2 | keine | Sprint-Seite, Resources Red-Teaming, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
+| O13 | Vokabular der Partner: Poseidon arbeitet an Steganographie, Aktionen als Kanal, Black-Box- und White-Box-Abwehr; AE Studio an Self-Other Overlap, Gradient Routing, Sleeper Agents | Partner und ihre Leute in der Jury | Alltag | 4 | keine | Sprint-Seite, Overview „Partners" und Speaker-Profile, abgerufen 2026-10-24: https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25 |
 | O14 | Im Kartellrecht gilt „countervailing power": organisierte Gegenseite (Einkaufsgemeinschaften, Gewerkschaften) drückt Kartellpreise ohne Aufsicht | Käufer, Gegenseite eines Kartells | Kultur × Technik | 2 | 3 nie bedacht | [Vermutung] (Galbraith 1952, aus Erinnerung; vor dem Report belegen) |
 
 ### Was der KI-Schub bricht
@@ -66,7 +68,7 @@ Linse: `Alltag` · `Kultur × Technik` · `KI-Schub` · `Nichtkunden` · `Feld`.
 
 Aus den Wochenendprojekten des Resources-Tabs abgeleitet, weil COMPETITION.md bei Abruf leer war. Niveau 0 bis 5 ist das vermutete typische Niveau einer Einreichung.
 
-| Faktor, auf dem das Feld konkurriert | Typisches Niveau (0–5) | Quelle |
+| Faktor, auf dem das Feld konkurriert | Typisches Niveau (0 bis 5) | Quelle |
 |---|---|---|
 | Positivkontrolle reproduziert | 4 | Sprint-Seite, Resources (jedes Wochenendprojekt beginnt damit), abgerufen 2026-10-24 |
 | Ein-Variablen-Ablation im Starter-Harness | 4 | Sprint-Seite, Resources, abgerufen 2026-10-24 |
@@ -76,7 +78,7 @@ Aus den Wochenendprojekten des Resources-Tabs abgeleitet, weil COMPETITION.md be
 | Eine Abbildung, die in 30 Sekunden trägt | 2 | [Vermutung] |
 | Modell-Interna (Probes, Steering) | 1 | Sprint-Seite, Resources (nur Rose 2026, llm-cartel-Steering optional), abgerufen 2026-10-24 |
 
-Mindeststandard (bringt allein keine Punkte): Positivkontrolle, 3 bis 5 Seeds, Baseline, Limitations-Anhang, Starter-Harness unverändert, LLM-Judge als Detektor.
+Mindeststandard (bringt allein keine Punkte): Positivkontrolle, 3 bis 5 Seeds, Baseline, Limitations-Anhang, Starter-Harness unverändert, LLM-Judge als Detektor; bestätigt durch COMPETITION.md (Abschnitt „Minimum standard", Snapshot 2026-10-24 14:05 HKT). Lücken laut COMPETITION.md („Gaps"): 3.2 vertrauenswürdige Agenten (kein Repo), 3.4 Koalition unter Teilüberwachung (keins), 1.5 Kosten einer Restriktion gegen legitime Leistung (keins), Finanzrahmen des HK-Hubs (nur Energiehandel und Ledger), 1.3 Schelling-Salienz über Anbieter (ein Gerüst). Dicht besetzt: Dolos (mindestens 4 Repos), 1.2 Austausch (2, darunter LLM-Cartel-Succession), 1.4 Net Influence (2).
 
 Was hier gewinnt: Veranstalter-Typ KI-Sicherheitslabor mit Forschungsformat. Gewinner-Muster [Vermutung, `gewinner-recherche.md` hat keine Apart-Einträge]: ein kleines, sauberes Experiment mit einem überraschenden und klar belegten Befund, eine Abbildung, ehrliche Grenzen, und eine Frage, an die ein Fellowship anschließen kann.
 
@@ -193,7 +195,7 @@ Je Track zuerst die Messlatte (W0, das Wochenendprojekt des Resources-Tabs, nie 
 - Kosten: 20 bis 50 USD
 - Null-Ergebnis: Neue kolludieren nie: dann ist Austausch ein wirksamer Hebel, ebenfalls berichtbar
 - Neu: nahe am 1.2-Wochenendprojekt (Notizen an oder aus); neu sind nur die Stufung der Information und das Werbe-Maß; Replikationsrisiko hoch
-- Vorarbeit: Resources 1.2 nennt genau diesen Austausch als Wochenendprojekt; Eschenbaum 2022, Keppo 2026
+- Vorarbeit: Resources 1.2 nennt genau diesen Austausch als Wochenendprojekt; Eschenbaum 2022, Keppo 2026; Konkurrenz besetzt: https://github.com/SupratikB23/LLM-Cartel-Succession (COMPETITION.md, 2026-10-24)
 
 #### I06 · Odd Eighths
 
@@ -353,7 +355,7 @@ Je Track zuerst die Messlatte (W0, das Wochenendprojekt des Resources-Tabs, nie 
 - Kosten: 10 bis 40 USD
 - Null-Ergebnis: Checkliste nicht besser: dann gilt „Recht hilft nicht ohne Interna", auch berichtbar
 - Neu: ist das 2.3-Wochenendprojekt mit der Checkliste als einzigem Zusatz; Replikationsrisiko mittel
-- Vorarbeit: Berger 2025, Nakamura 2026; Resources 2.3 beschreibt genau diesen Aufbau
+- Vorarbeit: Berger 2025, Nakamura 2026; Resources 2.3 beschreibt genau diesen Aufbau; Konkurrenz teilweise: https://github.com/saltxd/plus-factors-on-the-ledger (COMPETITION.md, 2026-10-24)
 
 #### I15 · Dolos am Tisch
 
@@ -370,7 +372,7 @@ Je Track zuerst die Messlatte (W0, das Wochenendprojekt des Resources-Tabs, nie 
 - Kosten: 0 bis 10 USD API für die Gegner; Modal-Credits für Dolos
 - Null-Ergebnis: keine Differenz: dann liegt das Verhalten nicht im Kollusionsraum, und der Report dokumentiert ein sauberes Ausschlussverfahren
 - Neu: Niemand kennt das Verhalten; die Challenge ist per Definition neu, der Spielansatz ist unser Zusatz
-- Vorarbeit: Resources Red-Teaming (O12), Zeng 2026
+- Vorarbeit: Resources Red-Teaming (O12), Zeng 2026; Konkurrenz dicht: mindestens vier Dolos-Repos, darunter https://github.com/777sun77/dolos-compromised-overseer (COMPETITION.md, 2026-10-24)
 
 #### I16 · Kontrafaktischer Zwilling
 
