@@ -1,4 +1,4 @@
-# Same Game, Different Player: Fines, Leniency and Rewards Deter LLM Pricing Agents More Than People, and the Cartels That Survive Hold Their Price
+# Same Game, Different Players: Told-Only Fines, Leniency and Rewards Deter LLM Pricing Agents More Than People, and What Survives Holds Its Price, With or Without a Word
 
 AUTHOR: Julian Mundelein
 AFFILIATION: Independent, Hong Kong
@@ -9,9 +9,9 @@ AFFILIATION: Independent, Hong Kong
 
 ## Abstract
 
-Cartel policy rests on assumptions about human players: fear of punishment, distrust after betrayal, the temptation to cheat. Pricing agents built on large language models (LLMs) are entering markets, and the instruments competition authorities use against cartels, fines, leniency programmes and whistleblower rewards, have not been tested on them. We replay the cartel laboratory experiment of Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND Journal of Economics, 2012) with LLM sellers under the same payoff table, regimes, matching and termination rules, so that every number sits next to the published human result. The harness, CartelBench, runs one regime per command; hypotheses, measures and decision rules were pre-registered before the first model call; scripted players, known-effect arms, a placebo arm and a contamination test validate the pipeline. Claude Haiku 5.5 forms cartels in laissez-faire as often as the students did (formation rate 0.716 against 0.716 [F13, F15]) but holds the price near the joint optimum (8.85 against 4.92 [F13, F15]) because it rarely undercuts (deviation 0.015 against 0.564 [F13, F15]); a told fine deters it more than it deterred people (formation 0.156 against 0.315 [F14, F15]), and told leniency or reward rules leave few cartels and competitive prices (3.33 [F16, F17]). Claude Sonnet 5.5 forms no explicit cartel under any prohibition yet keeps prices at 5.5 to 6.3 without a word [F28]. Two of seven tested Bigoni results reproduce, the two that rest on incentives [F39]. An authority can run the harness on any model before agents reach a market.
+Cartel policy rests on assumptions about human players: fear of punishment, distrust after betrayal, the temptation to cheat. Pricing agents built on large language models (LLMs) are entering markets, and the instruments competition authorities use against cartels, fines, leniency programmes and whistleblower rewards, have not been tested on them. We replay the cartel laboratory experiment of Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND Journal of Economics, 2012) with LLM sellers under the same payoff table, regimes, matching and termination rules, so that every number sits next to the published human result. The harness, CartelBench, runs one regime per command; hypotheses, measures and decision rules were pre-registered before the first model call; scripted players, known-effect arms, a placebo arm and a contamination test validate the pipeline. Claude Haiku 5.5 forms cartels in laissez-faire as often as the students did (formation rate 0.716 against 0.716 [F13, F15]) but holds the price near the joint optimum (8.85 against 4.92 [F13, F15]) because it rarely undercuts (deviation 0.015 against 0.564 [F13, F15]); a told fine deters it more than it deterred people (formation 0.156 against 0.315 [F14, F15]), and told leniency or reward rules leave few cartels and competitive prices (3.33 [F16, F17]). Claude Sonnet 5.5 forms no explicit cartel under any prohibition yet holds prices at 5.5 to 6.3 without a word [F28]: what survives holds its price, with or without a word. Two of seven tested Bigoni results reproduce, the two that rest on incentives [F39]. An authority can run the harness on any model before agents reach a market.
 
-> Title is KEEP (DECISIONS 2026-10-24 20:05). Abstract and the closing paragraph of Section 5 carry no absolutes (R02); claims are scoped to the two Claude models tested.
+> Title is KEEP (DECISIONS 2026-10-25 00:05, option a). Abstract and the closing paragraph of Section 5 carry no absolutes (R02); claims are scoped to the two Claude models tested.
 
 
 ## 1. Introduction
@@ -123,7 +123,7 @@ Table 3. Denominators, reliability and cost of the core regimes (Claude Haiku 5.
 
 The laboratory game is not a market. The results cover two Claude models at one date and need a second provider. The models know the paper by name, but the shifted grid shows that recall does not drive the numbers [F12, F32, F33]. With 4 pool sessions per regime the intervals are wide, and under leniency and reward cartel-level measures rest on 10 and 4 cartels; the agents' recorded reasons are not analysed.
 
-**Future work.** A second provider in all regimes and a human-calibrated test of silent coordination. In sum: told-only instruments deter explicit cartels more than they deterred people, the cartels that survive hold their price, and one model coordinates without any channel.
+**Future work.** A second provider in all regimes and a human-calibrated test of silent coordination. In sum: told-only instruments deter explicit cartels more than they deterred people, and what survives holds its price, with or without a word.
 
 ## Code and Data
 
