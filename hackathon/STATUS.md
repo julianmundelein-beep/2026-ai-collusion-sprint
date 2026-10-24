@@ -101,7 +101,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Next step
 
-Backend (cloud) builds harness, tests and pilot by Sat 23:00 HKT with the jury's design notes (independent unit, shifted-grid contamination test, pilot threshold, cost per duopoly). Julian decides the cut order (jury: V4 after V3). Then fetch `origin/backend`, main regimes locally Sunday morning, R02 on the first running state, report session (9).
+Backend (cloud) builds harness, tests and pilot by Sat 23:00 HKT with the jury's design notes (independent unit, shifted-grid contamination test, pilot threshold, cost per duopoly). Cut order fixed (KEEP): V6, V5, ReMatch, NoReport, V3, V4. Then fetch `origin/backend`, main regimes locally Sunday morning, R02 on the first running state, report session (9).
 
 ## Für die Skills
 
