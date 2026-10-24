@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 17:15 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 19:00 HKT by the main session
 
 ## Clock
 
@@ -25,8 +25,8 @@
 - [ ] Registered; questions to the organizers sent, including mandatory content
 - [x] Idea chosen: I24 Bigoni twin, CORE_IDEA.md written 2026-10-24 16:25 HKT, decision in DECISIONS.md 15:58 HKT
 - [ ] Licence decided with the team (DECISIONS.md)
-- [x] Toolchain proven: engine, tests and scripted players run in the cloud (F01 to F06); real API call still open
-- [ ] Happy path runs end to end with real evidence
+- [x] Toolchain proven: engine, tests, scripted players and real model calls (F01 to F06, F09)
+- [x] Happy path runs end to end with real evidence (pilot F09, core runs F13 and F14, 2026-10-24)
 - [ ] Tests green
 - [ ] Deck, video and docs final; numbers checked against FACTS.md; talk time measured
 - [ ] Repo closed out: SUBMISSION.md, DESIGN.md and everything else left in the tree in English, working notes, private/ and the session CLAUDE.md out of the tree (`pruefen.py abgabe` passes), repo public, release with video
@@ -46,7 +46,7 @@ At most two long build sessions plus one short session at the same time. One ses
 | 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | done (two rounds, 39 ideas, I24 chosen with build plan, commit d5e8cf9); archive on Julian's OK | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
 | 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | R01 done (e9f0c70): idea rank 2 of 4, medians 4 / 2 / 3; stays open for R02 on the first running state | local_525668aa-4f92-4e55-8006-1293f749dce9 |
 | 4 | Website | design-taste-frontend | own worktree or cloud | web/ (branch) | | dropped (not a deliverable) | |
-| 5 | Backend | hackathon-backend | cloud (claude.ai/code), branch `backend` | `cartelbench/` on its branch, README, docs/ | Claude (cloud) | first cloud session built the harness (branch `origin/backend` 4f90714, 43 tests green, pre-registration, R01 notes) but its VM never read the key; second cloud session "Backend Pilot" requested 17:45 HKT (task_e0535ed6) for paper check, smoke, contamination and pilot | cloud |
+| 5 | Backend | hackathon-backend | cloud (claude.ai/code), branch `backend` | `cartelbench/` on its branch, README, docs/ | Claude (cloud) | second cloud session running: paper check done (F08), pilot passed for 3 models (F09), Haiku 5.5 main model, core runs laissez-faire and fine done (F13, F14), branch `origin/backend` at dd377dd (18:50 HKT); leniency and reward next, then extras in cut order | cloud |
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
 | 7 | Demo video | video-studio | main folder | private/video/ | | optional (3 to 5 min, decide after R02 and the clock) | |
 | 8 | Design | hackathon-design | main folder | DESIGN.md, private/design/ | | optional (only if figures or video need a look) | |
@@ -94,7 +94,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Waiting for
 
-- Julian: watch the second cloud session on claude.ai/code; say "Stand?" here when it reports the pilot
+- Julian: watch the cloud session; say "Stand?" here when leniency and reward are done; decide whether the report session (9) starts now on the .docx template copy
 - Julian: confirm the main-model rule (Haiku 5.5 as main model if it passes the pilot, Sonnet 5.5 as one V4 culture with 10 duopoles) and the project name (CartelBench recommended)
 - Julian: Modal account and credits (form in the inbox, per Discord) for the second provider in V4; the cloud environment reaches only api.anthropic.com, so V4 runs locally
 - Julian: Discord check (keys from the organizers, Modal credit redemption, pinned announcements), send the email draft in HACKATHON.md
@@ -104,7 +104,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Next step
 
-Backend (cloud) builds harness, tests and pilot by Sat 23:00 HKT with the jury's design notes (independent unit, shifted-grid contamination test, pilot threshold, cost per duopoly). Cut order fixed (KEEP): V6, V5, ReMatch, NoReport, V3, V4. Then fetch `origin/backend`, main regimes locally Sunday morning, R02 on the first running state, report session (9).
+Cloud backend finishes leniency and reward (about 25 min each, under 1 USD each), then NoReport, ReMatch, clone, dose and the V4 cultures in cut order; Julian's local Sunday runs are no longer needed unless the cloud session expires. Report session (9) starts on the template copy as soon as Julian says so; jury round R02 on the four core regimes once they are in.
 
 ## Für die Skills
 
