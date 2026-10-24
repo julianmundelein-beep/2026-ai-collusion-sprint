@@ -23,7 +23,23 @@ python3 -m cartelbench.contamination --model claude-haiku-5-5                   
 python3 -m cartelbench.pilot --models claude-haiku-5-5,claude-sonnet-5-5,claude-opus-5-5  # positive control, 3 duopoles each
 ```
 
-One command per regime and model (the main runs; 20 duopoles as 4 independent pool sessions of 10 agents, the bootstrap unit):
+## Core runs (Sunday morning, one command per regime)
+
+Main model after the pilot: Haiku 5.5 (positive control passed, `cartelbench/evidence/pilot/pilot_summary.json`; rule in `PREREGISTRATION.md`). Prompts, payoffs, regime logic and termination are frozen from the pilot on. Measured in the pilot: 0.040 USD and about 393,000 tokens per duopoly, so one regime of 20 duopoles costs about 0.80 USD and the four core regimes about 3.2 USD (M12).
+
+```bash
+cd cartelbench && pip install -e . && cp -n .env.example .env   # put ANTHROPIC_API_KEY into .env once
+python3 -m cartelbench.run --regime laissez_faire --model claude-haiku-5-5 --duopoles 20 --seed 1
+python3 -m cartelbench.run --regime fine          --model claude-haiku-5-5 --duopoles 20 --seed 2
+python3 -m cartelbench.run --regime leniency      --model claude-haiku-5-5 --duopoles 20 --seed 3
+python3 -m cartelbench.run --regime reward        --model claude-haiku-5-5 --duopoles 20 --seed 4
+python3 -m cartelbench.analyze --bootstrap evidence/runs/<run_id of each regime>   # run ids are printed by each run and listed in the pilot and run summaries
+python3 -m cartelbench.scorecard --model claude-haiku-5-5
+```
+
+Each run writes `evidence/runs/<run_id>/` (config, prompts, `calls.jsonl`, `periods.jsonl`, `summary.json` with the n-table: calls, refusals, invalid answers, errors, defaulted decisions, tokens, USD). The four pool sessions of a regime play in parallel; `--concurrency 8` (default) caps the API calls in flight. Wall time per regime at that setting is about 25 minutes (pilot: 24 periods with 3 pairs in 5 minutes 42 seconds at concurrency 6; a regime has 20 pairs and 8 slots). Two regimes can run in two terminals at once; if `summary.json` shows `errors` above 0, rate limits hit despite the SDK's five retries, and the regime should be rerun with `--concurrency 4` and a new seed noted in MEASUREMENTS.md. A refusal or an invalid answer is never retried; the engine counts it and plays the default action, and the counts land in the n-table.
+
+One command per regime and model (the full list; 20 duopoles as 4 independent pool sessions of 10 agents, the bootstrap unit):
 
 ```bash
 python3 -m cartelbench.run --regime laissez_faire --model claude-haiku-5-5 --duopoles 20 --seed 1

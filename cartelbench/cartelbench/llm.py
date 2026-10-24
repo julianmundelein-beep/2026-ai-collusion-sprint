@@ -148,7 +148,9 @@ class AnthropicClient:
         key = anthropic_api_key()
         if not key:
             raise RuntimeError("neither ANTHROPIC_API_KEY nor CARTELBENCH_ANTHROPIC_KEY is set")
-        self._client = anthropic.AsyncAnthropic(api_key=key, timeout=timeout_s, max_retries=2)
+        # transport retries only (429, 5xx, connection errors; SDK backoff): a refusal or an invalid answer is a
+        # 200 response and is never retried; a call that still fails is logged as an error and the decision defaults
+        self._client = anthropic.AsyncAnthropic(api_key=key, timeout=timeout_s, max_retries=5)
         self._sem = asyncio.Semaphore(concurrency)
         self._anthropic = anthropic
 
