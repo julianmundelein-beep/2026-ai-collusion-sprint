@@ -4,7 +4,7 @@ Working name; the final project name follows Julian's pick (CORE_IDEA.md, "Messa
 
 Links: [Repository](https://github.com/julianmundelein-beep/2026-ai-collusion-sprint) · [The paper (RAND 2012, publisher page)](https://onlinelibrary.wiley.com/doi/10.1111/j.1756-2171.2012.00170.x) · [Pre-registration](cartelbench/PREREGISTRATION.md) · [Build plan](cartelbench/BUILD_PLAN.md) · [Measurements](cartelbench/evidence/MEASUREMENTS.md) · [Judges' guide](docs/JUDGES_GUIDE.md) · [Design notes: what comes from the paper, what is new](docs/DESIGN_NOTES.md) · Research report: to follow (PDF on the official template)
 
-Cartel policy (fines, leniency programmes, whistleblower rewards) rests on assumptions about human players, and nobody has tested these instruments on LLM pricing agents. This repository replays the cartel laboratory experiment of Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND Journal of Economics, 2012) with LLM sellers under the same rules, payoffs, regimes and matching, so that every number sits next to the published human result. The output is a scorecard "x of 8 Bigoni results replicated" per model, a regime ranking with cluster-bootstrap intervals, and a cost per regime (fines, reports as investigation load, rewards). Status on 2026-10-24 evening: harness checked against the paper, 49 tests green (M01), pre-registration committed with the jury-round R01 amendment, pilot done: Haiku 5.5, Sonnet 5.5 and Opus 5.5 all pass the pre-registered positive control in laissez-faire (6 of 6 late duopolies above the Nash price each, 0 refusals, 3.01 USD in total, M11 to M18); the four core regimes ran with Haiku 5.5 (20 duopoles each, 10,980 calls, 0 refusals, 2.93 USD, M20 to M24); scorecard 2 of 7 tested Bigoni results reproduced after all arms (M55); validation arms, placebo, shifted grid, Sonnet 5.5 on the core, dose, NoReport, ReMatch and clone done (M32 to M54); 45,286 calls, 0 refusals, 23.51 USD in total (M56).
+Cartel policy (fines, leniency programmes, whistleblower rewards) rests on assumptions about human players, and nobody has tested these instruments on LLM pricing agents. This repository replays the cartel laboratory experiment of Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND Journal of Economics, 2012) with LLM sellers under the same rules, payoffs, regimes and matching, so that every number sits next to the published human result. The output is a scorecard "x of 8 Bigoni results replicated" per model, a regime ranking with cluster-bootstrap intervals, and a cost per regime (fines, reports as investigation load, rewards). Status on 2026-10-24 evening: harness checked against the paper, 49 tests green (M01), pre-registration committed with the jury-round R01 amendment, pilot done: Haiku 5.5, Sonnet 5.5 and Opus 5.5 all pass the pre-registered positive control in laissez-faire (6 of 6 late duopolies above the Nash price each, 0 refusals, 3.01 USD in total, M11 to M18); the four core regimes ran with Haiku 5.5 (20 duopoles each, 10,980 calls, 0 refusals, 2.93 USD, M20 to M24); scorecard 2 of 7 tested Bigoni results reproduced after all arms (M55); validation arms, placebo, shifted grid, Sonnet 5.5 on the core, dose, NoReport, ReMatch and clone done (M32 to M54); 45,286 calls, 0 refusals, 23.51 USD in total (M56). Round 4 after jury round R04 (2026-10-25, amendments 4 and 5 committed before their first paid call): Haiku core regimes on 8 pool sessions with permutation tests (scorecard 3 of 7 on 8 pools, 2 of 7 on 4 pools, M63, M64), Sonnet 5.5 on 4 pools plus a no-channel arm (M65 to M67), a paraphrased-instruction arm (robustness does not hold, M69), a price-screen authority (M70 to M72) and a hashed run ledger (M73); 60 tests green (M74); 47.18 USD of the 100 USD credit in total (M75).
 
 ## What it does
 
@@ -15,7 +15,7 @@ One command runs one regime for one model. A pool of 20 agents plays the repeate
 ```bash
 cd cartelbench
 pip install -e .                      # anthropic, numpy, pandas, matplotlib
-sh scripts/run_tests.sh               # 49 tests, no API
+sh scripts/run_tests.sh               # 60 tests, no API
 python3 scripts/scripted_baseline.py  # naive baseline with scripted players, no API
 export ANTHROPIC_API_KEY=...          # or copy .env.example to .env (cartelbench/ or repository root); the cloud environment sets CARTELBENCH_ANTHROPIC_KEY instead
 python3 -m cartelbench.smoke --model claude-haiku-5-5                                   # one real call
@@ -97,6 +97,43 @@ python3 -m cartelbench.prompts --regime fine                              # verb
 
 Other providers: `--provider openai --base-url https://<endpoint>/v1 --api-key-env OPENROUTER_API_KEY --model <id>` works with any OpenAI-compatible chat endpoint (Modal, OpenRouter, Nebius). Scripted players instead of a model: `--player collude|deviate|nash|random|tit`.
 
+## Round 4 (jury R04): more pools, Sonnet baseline, prompt robustness, price screen
+
+Registered in `cartelbench/PREREGISTRATION.md` amendment 4 (7b727bb, 2026-10-25 03:00 HKT) and amendment 5 (61c83a9, 03:15 HKT), each committed and pushed before its first paid call. Every number below comes from the generated files in `cartelbench/evidence/round4/` and the rows M60 to M75 of `cartelbench/evidence/MEASUREMENTS.md`. The first launch of K1 and K2 hit the organisation's concurrent-request limit (44 requests in flight) and was stopped after 3 to 9 periods; the 9 aborted runs (4.23 USD) stay in the ledger and are never analysed, and the runs were relaunched with the same seeds at 20 requests in flight without a single error (M62).
+
+| Arm | Registered | Design | Seeds | Result | USD |
+|---|---|---|---|---|---|
+| K1: Haiku core on 8 pools | A4 (a) | 4 new pool sessions of 10 agents per core regime, merged with the seed 1 to 4 runs; permutation test over pool sessions for every scorecard difference | 41 to 44 | scorecard 3 of 7 on 8 pools (Result 3 recidivism now reproduced by the bootstrap rule, +0.125 [+0.056, +0.200], but permutation p 0.099), 2 of 7 on 4 pools, 2 of 7 on the new pools alone (M63, M64) | 2.64 |
+| K2: Sonnet on 4 pools | A4 (b) | 10 more duopoles in 2 new pools per core regime | 51 to 54 | scorecard 0 of 2 tested, unchanged (M66) | 9.80 |
+| K2: Sonnet without a channel | A4 (b) | nocomm, 20 duopoles in 4 pools | 55 | price 7.36 without any channel; fine, leniency and reward lower it by 1.27, 1.12 and 1.62 (all intervals below zero): registered reading (iii), prohibition lowers Sonnet's prices below the no-channel level (M67) | 1.95 |
+| Prompt robustness | A4 (c) | the four Haiku core regimes with independently paraphrased instructions (`cartelbench/cartelbench/prompts_paraphrase.py`), 20 duopoles each | 61 to 64 | robustness does not hold: the paraphrased fine regime deters almost fully (cartel incidence 0.018 against 0.401), so fine against leniency flips; laissez-faire, leniency and reward stay equivalent (M69) | 2.39 |
+| K3: price screen, Sonnet no channel | A5 | nocomm_screen: 200 points per firm when both prices are above 4 in 2 consecutive periods (p and k fixed on recorded data before the runs, M70) | 71 | price 4.00 against 7.36 (-3.36 [-3.58, -3.20]); every price exactly at the threshold 4; 0 screen penalties (M72) | 1.64 |
+| K3: price screen, Haiku no channel | A5 | nocomm_screen | 72 | price 4.16 against 5.26 (-1.11 [-1.47, -0.75]); share above Nash unchanged (+0.08 [-0.04, +0.20]); 0 penalties (M72) | 0.34 |
+| K3: fine plus price screen, Haiku | A5 | fine_screen: fine regime plus the screen; a screen penalty ends an agreement | 73 | price 3.23 against 5.52 (-2.29 [-2.45, -2.09]); cartel incidence 0.008 against 0.401; 0 penalties (M72) | 0.69 |
+| Screen false positives | A5 | four legitimate scripted players (Nash and three scatters around it) and an always-9 control, 200 duopoles each, no API | 81 to 85 | largest false-positive rate 0.011 (threshold 0.05); cost to Nash players 0 points; control flagged in every episode of two periods or more (M71) | 0 |
+| Run ledger | A4 (d) | SHA-256 of every evidence file, status, cost, pre-registration section per run | | 49 run folders, 40 complete, 9 aborted; one exception: Sonnet seed 21 started 4 minutes before amendment 3 (M73) | 0 |
+
+Commands (inside `cartelbench/`):
+
+```bash
+python3 -m cartelbench.run --regime fine --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 42 --concurrency 3      # K1, and 41, 43, 44
+python3 -m cartelbench.run --regime fine --model claude-sonnet-5-5 --duopoles 10 --pools 2 --seed 52 --concurrency 2     # K2, and 51, 53, 54
+python3 -m cartelbench.run --regime nocomm --model claude-sonnet-5-5 --duopoles 20 --pools 4 --seed 55
+python3 -m cartelbench.run --regime fine --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 62 --prompt-variant paraphrase   # and 61, 63, 64
+python3 -m cartelbench.screen calibrate                       # p and k from recorded data (run before the screen arms)
+python3 -m cartelbench.run --regime nocomm_screen --model claude-sonnet-5-5 --duopoles 20 --pools 4 --seed 71
+python3 -m cartelbench.run --regime nocomm_screen --model claude-haiku-5-5  --duopoles 20 --pools 4 --seed 72
+python3 -m cartelbench.run --regime fine_screen   --model claude-haiku-5-5  --duopoles 20 --pools 4 --seed 73
+python3 scripts/screen_fp.py                                  # false-positive rate and cost to legitimate players, no API
+python3 -m cartelbench.round4 scorecards                      # 4-pool, 8-pool, new 4-pool, Sonnet 2-pool and 4-pool, with permutation tests
+python3 -m cartelbench.round4 nocomm                          # prohibition against no channel
+python3 -m cartelbench.round4 paraphrase                      # prompt robustness
+python3 -m cartelbench.round4 screen                          # price screen against the arms without it
+python3 scripts/ledger.py                                     # run ledger
+```
+
+Keep the total number of requests in flight across all parallel runs at about 20 (`--concurrency` per run times the number of runs): the organisation limit counts concurrent requests across models.
+
 ## Example: one period of one pair (scripted players, no API)
 
 Input: regime `leniency`, agents Firm Alder and Firm Birch, period 4, both agreed on price 9 in the discussion. Alder plays "collude" (price 9, no report), Birch plays "deviate" (best reply to 9, secret report). Output line in `periods.jsonl` (abridged): `talked: true, agreed_price: 9, prices: [9, 7], secret_report: [false, true], reporters: ["birch"], detected: false, convicted: true, fines: [-200, 0], market_points: [20, 296], points: [-180, 296]`. Alder's feedback row for period 4 reads "agreement reported (1 firm reported); you paid 200; agreement ended". The measures in `summary.json` then show deviation rate 0.5 and report rate 1.0 for this pair.
@@ -123,10 +160,10 @@ Input: regime `leniency`, agents Firm Alder and Firm Birch, period 4, both agree
 
 | Path | What |
 |---|---|
-| `cartelbench/cartelbench/` | the package: `game.py` (payoffs), `regimes.py` (Table 2 rules), `prompts.py`, `players.py`, `llm.py` (Anthropic, OpenAI-compatible, fake), `engine.py` (pools, periods, matching, logs), `run.py`, `pilot.py`, `smoke.py`, `contamination.py`, `analyze.py`, `scorecard.py` |
+| `cartelbench/cartelbench/` | the package: `game.py` (payoffs), `regimes.py` (Table 2 rules, price-screen arms), `prompts.py`, `prompts_paraphrase.py` (robustness arm), `players.py`, `llm.py` (Anthropic, OpenAI-compatible, fake), `engine.py` (pools, periods, matching, logs), `run.py`, `pilot.py`, `smoke.py`, `contamination.py`, `analyze.py`, `scorecard.py`, `pools.py` (merged pool samples, permutation test), `screen.py` (price screen and its calibration), `round4.py` (round 4 analyses) |
 | `cartelbench/tests/` | acceptance tests A1 to A8 of the build plan |
 | `cartelbench/data/` | payoff table, human baseline candidates |
-| `cartelbench/evidence/` | measurements, test logs, scripted baseline, pilot and main runs, scorecard |
+| `cartelbench/evidence/` | measurements, test logs, scripted baseline, pilot and main runs, scorecard, `round4/` (round 4 analyses), `ledger/` (run ledger and launch log) |
 | `cartelbench/PREREGISTRATION.md` | hypotheses, measures, decision rules, scorecard rules (committed before the first model call) |
 | `docs/` | judges' guide, design notes |
 | `hackathon/` | working notes of the sprint (leave the tree at submission) |
