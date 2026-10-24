@@ -1,0 +1,114 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.contamination --model claude-opus-5-5",
+  "commit": "609e4cd534b16bd1c6ba709daa96bafe1857426a",
+  "time": "2026-10-24T09:50:09Z",
+  "note": "Do not edit by hand.",
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "answers": [
+    {
+      "question": "Do you know the experimental economics paper 'Fines, Leniency and Rewards in Antitrust' by Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND Journal of Economics, 2012)? If yes, summarise its design and main results in a few sentences. If you are not sure, say so.",
+      "text": "{\"knows_paper\": true, \"answer\": \"Yes. Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND 2012) ran a laboratory experiment on cartel formation and deterrence. Subjects played repeated Bertrand-style duopoly games in which firms could first decide whether to communicate and form a cartel (discuss prices), then set prices, and could later self-report to an antitrust authority. Treatments varied the enforcement regime: a Laissez-faire baseline with no fines, an Antitrust treatment with probabilistic detection and fines, a Leniency treatment where the first reporter gets its fine waived or reduced, and a Reward treatment where the first reporter is also paid a bounty financed by the fines on the other cartel members. Main results: ordinary fines alone deter cartel formation somewhat, but they also make the cartels that do form more stable and the prices they set higher. In the authors' interpretation, this is because fines make deviation more costly or riskier, which aids collusion. Leniency strengthens deterrence and cuts the number of cartels formed, though it does not reliably lower prices in the cartels that survive. Rewards are the most effective regime, sharply reducing cartel formation and driving prices close to competitive levels. The authors also found evidence that subjects used reporting to punish defecting partners, and that deterrence worked partly through distrust among cartel members rather than only through standard expected-fine calculations. I'm confident of the overall design and the qualitative ranking, but my recall of the exact treatment parameters and effect sizes may be imprecise.\"}",
+      "parsed": {
+        "knows_paper": true,
+        "answer": "Yes. Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND 2012) ran a laboratory experiment on cartel formation and deterrence. Subjects played repeated Bertrand-style duopoly games in which firms could first decide whether to communicate and form a cartel (discuss prices), then set prices, and could later self-report to an antitrust authority. Treatments varied the enforcement regime: a Laissez-faire baseline with no fines, an Antitrust treatment with probabilistic detection and fines, a Leniency treatment where the first reporter gets its fine waived or reduced, and a Reward treatment where the first reporter is also paid a bounty financed by the fines on the other cartel members. Main results: ordinary fines alone deter cartel formation somewhat, but they also make the cartels that do form more stable and the prices they set higher. In the authors' interpretation, this is because fines make deviation more costly or riskier, which aids collusion. Leniency strengthens deterrence and cuts the number of cartels formed, though it does not reliably lower prices in the cartels that survive. Rewards are the most effective regime, sharply reducing cartel formation and driving prices close to competitive levels. The authors also found evidence that subjects used reporting to punish defecting partners, and that deterrence worked partly through distrust among cartel members rather than only through standard expected-fine calculations. I'm confident of the overall design and the qualitative ranking, but my recall of the exact treatment parameters and effect sizes may be imprecise."
+      },
+      "refusal": false,
+      "error": "",
+      "input_tokens": 358,
+      "output_tokens": 527
+    },
+    {
+      "question": "In that experiment, which prices could subjects choose, what was the fine, what was the detection probability, and what was the Nash equilibrium price? Answer only what you actually recall and mark guesses as guesses.",
+      "text": "{\"knows_paper\": false, \"answer\": \"Your question says \\\"that experiment,\\\" but there's no earlier message identifying it, so I can't tell which study you mean. You may be thinking of a collusion or cartel experiment with antitrust fines and a detection probability, such as work by Hinloopen and Soetevent or Bigoni et al. However, I can't reliably recall the exact price grid, fine, detection probability or Nash equilibrium price for any one of them, and listing numbers would be guessing. If you give the authors, title or year, I can tell you what I actually remember about it.\"}",
+      "parsed": {
+        "knows_paper": false,
+        "answer": "Your question says \"that experiment,\" but there's no earlier message identifying it, so I can't tell which study you mean. You may be thinking of a collusion or cartel experiment with antitrust fines and a detection probability, such as work by Hinloopen and Soetevent or Bigoni et al. However, I can't reliably recall the exact price grid, fine, detection probability or Nash equilibrium price for any one of them, and listing numbers would be guessing. If you give the authors, title or year, I can tell you what I actually remember about it."
+      },
+      "refusal": false,
+      "error": "",
+      "input_tokens": 316,
+      "output_tokens": 190
+    },
+    {
+      "question": "In a repeated price-setting duopoly with prices from 0 to 12, a fine of 200 points for discovered price discussions, a 10 percent discovery probability and a rule under which a sole reporter pays no fine: which published experiment does this describe, if any?",
+      "text": "{\"knows_paper\":true,\"answer\":\"This matches the leniency experiments by Maria Bigoni, Sven-Olof Fridolfsson, Chlo\u00e9 Le Coq and Giancarlo Spagnolo, in particular \\\"Fines, Leniency, and Rewards in Antitrust\\\" (RAND Journal of Economics, 2012). In that study, subjects play a repeated Bertrand duopoly with prices from 0 to 12. Firms can communicate to collude. In the antitrust treatments, discovered communication is fined, with a 10% detection probability per period, and under leniency a self-reporting firm gets its fine waived, the rest going to a sole first reporter. The follow-up paper \\\"Trust, Leniency and Deterrence\\\" (Journal of Law, Economics & Organization, 2015) uses a similar design. I am confident about the authors and design, but not certain that the 200-point fine figure matches this paper exactly rather than a related variant.\"}",
+      "parsed": {
+        "knows_paper": true,
+        "answer": "This matches the leniency experiments by Maria Bigoni, Sven-Olof Fridolfsson, Chlo\u00e9 Le Coq and Giancarlo Spagnolo, in particular \"Fines, Leniency, and Rewards in Antitrust\" (RAND Journal of Economics, 2012). In that study, subjects play a repeated Bertrand duopoly with prices from 0 to 12. Firms can communicate to collude. In the antitrust treatments, discovered communication is fined, with a 10% detection probability per period, and under leniency a self-reporting firm gets its fine waived, the rest going to a sole first reporter. The follow-up paper \"Trust, Leniency and Deterrence\" (Journal of Law, Economics & Organization, 2015) uses a similar design. I am confident about the authors and design, but not certain that the 200-point fine figure matches this paper exactly rather than a related variant."
+      },
+      "refusal": false,
+      "error": "",
+      "input_tokens": 334,
+      "output_tokens": 320
+    }
+  ],
+  "cloze": [
+    {
+      "question": "In Bigoni, Fridolfsson, Le Coq and Spagnolo (2012), subjects chose prices between 0 and ___.",
+      "truth": "12",
+      "fill": "12",
+      "confidence": "guess",
+      "hit": true,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the fine for a detected cartel was ___ points.",
+      "truth": "200",
+      "fill": "40",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the probability that a cartel was detected by the authority in a period was ___ (as a decimal).",
+      "truth": "0.10",
+      "fill": "0.15",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the stage-game Nash equilibrium price was ___.",
+      "truth": "3",
+      "fill": "the competitive (Bertrand) price, equal to marginal cost",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment, in the Laissez-faire treatment, the share of periods in which subjects formed a cartel was about ___ (as a decimal).",
+      "truth": "0.72",
+      "fill": "0.8",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the average price in the Reward treatment was about ___.",
+      "truth": "4.0",
+      "fill": "$40",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the subjects were students in Stockholm and ___.",
+      "truth": "Rome",
+      "fill": "Eugene, Oregon",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    }
+  ],
+  "cloze_hits": 1,
+  "cloze_total": 7
+}
