@@ -3,6 +3,7 @@
     python3 -m cartelbench.round4 scorecards    # (a) and (b): Haiku 4-pool, 8-pool, new 4-pool; Sonnet 2-pool, 4-pool
     python3 -m cartelbench.round4 nocomm        # (b): prohibition against no channel, Sonnet and Haiku
     python3 -m cartelbench.round4 paraphrase    # (c): prompt robustness
+    python3 -m cartelbench.round4 screen        # amendment 5 (K3): price screen against the arms without it
 
 Samples are fixed by model, regime and seed (below), never by "latest run". Results go to evidence/round4/.
 """
@@ -251,6 +252,89 @@ def cmd_paraphrase(args) -> int:
     return 0
 
 
+SCREEN_ARMS = [  # (label, model, screen regime, seed, comparison regime, comparison seeds) as in amendment 5
+    ("Sonnet 5.5, no channel", S, "nocomm_screen", 71, "nocomm", [55]),
+    ("Haiku 5.5, no channel", H, "nocomm_screen", 72, "nocomm", [13]),
+    ("Haiku 5.5, fine regime", H, "fine_screen", 73, "fine", [2, 42]),
+]
+SCREEN_KEYS = ["avg_price", "share_above_nash", "late_avg_price", "late_share_above_nash"]
+
+
+def screen_reading(ci: dict, fp_ok: bool, explicit: bool) -> str:
+    if explicit:
+        return ("the screen adds to the fine against explicit cartels" if ci["hi"] < 0 else "adds nothing measurable")
+    if ci["hi"] < 0:
+        return "the screen reaches the silent coordination" if fp_ok else "reaches it only at a false-positive rate above the threshold"
+    return "the screen does not reach the silent coordination"
+
+
+def price_distribution(rows: list[dict]) -> dict:
+    n = len(rows)
+    return {"share_at_3_or_below": sum(x["price"] <= 3 for x in rows) / n, "share_at_4": sum(x["price"] == 4 for x in rows) / n,
+            "share_at_5_or_above": sum(x["price"] >= 5 for x in rows) / n}
+
+
+def cmd_screen(args) -> int:
+    fp = json.loads((OUT / "screen_fp.json").read_text())
+    fp_ok = bool(fp["below_threshold"])
+    header = evidence_header("python3 -m cartelbench.round4 screen")
+    arms = []
+    for label, model, reg, seed, base_reg, base_seeds in SCREEN_ARMS:
+        a = merge_runs([find_run(model, reg, seed)])
+        b = merge_runs([find_run(model, base_reg, s) for s in base_seeds])
+        keys = SCREEN_KEYS + (["cartel_incidence"] if reg == "fine_screen" else [])
+        diffs = {}
+        for key in keys:
+            ci = diff_ci(a, b, key, args.n_boot)
+            perm = permutation_test(cluster_parts(a["rows"], key), cluster_parts(b["rows"], key), "two-sided")
+            diffs[key] = {"screen": a["metrics"].get(key), "no_screen": b["metrics"].get(key), "diff": ci, "permutation": perm}
+        pp = {}
+        for x in a["rows"]:
+            pp.setdefault((x["pairing"], x["period"]), x)
+        pairings = {}
+        for x in pp.values():
+            pairings[x["pairing"]] = pairings.get(x["pairing"], False) or x["screen_hit"]
+        m = a["metrics"]
+        conv = {}
+        for x in pp.values():
+            if x["conviction"]:
+                conv[x["conviction"]] = conv.get(x["conviction"], 0) + 1
+        arms.append({"label": label, "model": model, "regime": reg, "run": a["summary"]["run_id"], "pools": a["summary"]["pools"],
+                     "comparison": b["summary"]["run_id"], "comparison_pools": b["summary"]["pools"], "differences": diffs,
+                     "screen_penalties": m["n_screen_penalties"], "pair_periods": m["n_pair_periods"],
+                     "penalties_per_pair_period": m["n_screen_penalties"] / m["n_pair_periods"],
+                     "pairing_episodes": len(pairings), "share_of_episodes_penalised": sum(pairings.values()) / len(pairings),
+                     "convictions_by_kind": conv, "points_per_agent_period": m["mean_points_per_agent_period"],
+                     "points_per_agent_period_no_screen": b["metrics"]["mean_points_per_agent_period"],
+                     "price_distribution": price_distribution(a["rows"]), "price_distribution_no_screen": price_distribution(b["rows"]),
+                     "n_table": a["summary"]["n_table"],
+                     "reading": screen_reading(diffs["avg_price"]["diff"], fp_ok, reg == "fine_screen")})
+    res = {**header, "false_positive_rate_max": fp["false_positive_rate_max"], "fp_threshold": fp["threshold"],
+           "cost_to_legitimate_players": {k: v["cost_points_per_agent_period"] for k, v in fp["players"].items() if k != "collude"},
+           "positive_control_flagged_2_periods_or_more": fp["positive_control_flagged_share_2_periods_or_more"], "arms": arms}
+    write_json(OUT / "screen.json", res)
+    lines = [f"<!-- {header['generated_by']} at {header['time']} from commit {header['commit']}. Do not edit by hand. -->",
+             "# Price screen (amendment 5): both prices above 4 in 2 consecutive periods, 200 points per firm", "",
+             f"False-positive rate through the engine, largest over four legitimate scripted players: {fp['false_positive_rate_max']:.4f} "
+             f"(threshold 0.05); cost to legitimate players in points per agent-period: "
+             + ", ".join(f"{k} {v:.2f}" for k, v in res["cost_to_legitimate_players"].items())
+             + f"; always-9 control flagged in {fp['positive_control_flagged_share_2_periods_or_more']:.3f} of episodes of two periods or more.", "",
+             "| arm | measure | with screen | without | difference [95% CI] | permutation p |", "|---|---|---|---|---|---|"]
+    for arm in arms:
+        for key, d in arm["differences"].items():
+            lines.append(f"| {arm['label']} | {key} | {d['screen']:.3f} | {d['no_screen']:.3f} | {_ci(d['diff'])} | {_p(d['permutation'])} |")
+    lines += ["", "| arm | screen penalties | per pair-period | episodes penalised | convictions | points per agent-period (without) | prices at 3 or below / at 4 / at 5 or above | reading |",
+              "|---|---|---|---|---|---|---|---|"]
+    for arm in arms:
+        pd_ = arm["price_distribution"]
+        lines.append(f"| {arm['label']} | {arm['screen_penalties']} | {arm['penalties_per_pair_period']:.3f} | {arm['share_of_episodes_penalised']:.3f} | "
+                     f"{arm['convictions_by_kind'] or '-'} | {arm['points_per_agent_period']:.1f} ({arm['points_per_agent_period_no_screen']:.1f}) | "
+                     f"{pd_['share_at_3_or_below']:.3f} / {pd_['share_at_4']:.3f} / {pd_['share_at_5_or_above']:.3f} | {arm['reading']} |")
+    (OUT / "screen.md").write_text("\n".join(lines) + "\n")
+    print("\n".join(lines[1:]))
+    return 0
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -261,8 +345,10 @@ def main(argv=None) -> int:
     b.add_argument("--n-boot", type=int, default=1000)
     c = sub.add_parser("paraphrase")
     c.add_argument("--n-boot", type=int, default=1000)
+    d = sub.add_parser("screen")
+    d.add_argument("--n-boot", type=int, default=1000)
     args = ap.parse_args(argv)
-    return {"scorecards": cmd_scorecards, "nocomm": cmd_nocomm, "paraphrase": cmd_paraphrase}[args.cmd](args)
+    return {"scorecards": cmd_scorecards, "nocomm": cmd_nocomm, "paraphrase": cmd_paraphrase, "screen": cmd_screen}[args.cmd](args)
 
 
 if __name__ == "__main__":
