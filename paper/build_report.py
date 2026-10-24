@@ -250,8 +250,12 @@ class Builder:
             borders.append(b)
         for side in ("left", "right", "insideV"):
             b = OxmlElement(f"w:{side}"); b.set(qn("w:val"), "nil"); borders.append(b)
-        tblpr.append(borders)
-        layout = OxmlElement("w:tblLayout"); layout.set(qn("w:type"), "fixed"); tblpr.append(layout)
+        layout = OxmlElement("w:tblLayout"); layout.set(qn("w:type"), "fixed")
+        look = tblpr.find(qn("w:tblLook"))
+        if look is not None:  # schema order: tblW, jc, tblInd, tblBorders, tblLayout, tblLook
+            look.addprevious(borders); look.addprevious(layout)
+        else:
+            tblpr.append(borders); tblpr.append(layout)
         tw = tblpr.find(qn("w:tblW"))
         if tw is None:
             tw = OxmlElement("w:tblW"); tblpr.append(tw)
@@ -276,7 +280,10 @@ class Builder:
                 cell = t.cell(ri, ci)
                 tc = cell._tc
                 tcpr = tc.get_or_add_tcPr()
-                tcw = OxmlElement("w:tcW"); tcw.set(qn("w:w"), str(widths[ci])); tcw.set(qn("w:type"), "dxa"); tcpr.append(tcw)
+                tcw = tcpr.find(qn("w:tcW"))
+                if tcw is None:
+                    tcw = OxmlElement("w:tcW"); tcpr.insert(0, tcw)
+                tcw.set(qn("w:w"), str(widths[ci])); tcw.set(qn("w:type"), "dxa")
                 mar = OxmlElement("w:tcMar")
                 for side, v in (("top", 30), ("bottom", 30), ("left", 60), ("right", 60)):
                     e = OxmlElement(f"w:{side}"); e.set(qn("w:w"), str(v)); e.set(qn("w:type"), "dxa"); mar.append(e)
