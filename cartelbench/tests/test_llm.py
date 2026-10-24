@@ -20,3 +20,13 @@ def test_parse_json_still_enforces_bounds():
     assert parse_json('{"price": 9, "reason": "ok"}', PRICE_SCHEMA) == {"price": 9, "reason": "ok"}
     assert parse_json('{"price": 13, "reason": "too high"}', PRICE_SCHEMA) is None
     assert parse_json('{"price": -1, "reason": "too low"}', PRICE_SCHEMA) is None
+
+
+def test_dotenv_fallback(tmp_path, monkeypatch):
+    from cartelbench import llm
+    for name in llm.ANTHROPIC_KEY_ENVS:
+        monkeypatch.delenv(name, raising=False)
+    monkeypatch.chdir(tmp_path)
+    assert llm.anthropic_api_key() == ""
+    (tmp_path / ".env").write_text("# local\nexport ANTHROPIC_API_KEY='sk-test-123'\n")
+    assert llm.anthropic_api_key() == "sk-test-123"

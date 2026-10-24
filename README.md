@@ -17,7 +17,7 @@ cd cartelbench
 pip install -e .                      # anthropic, numpy, pandas, matplotlib
 sh scripts/run_tests.sh               # 36 tests, no API
 python3 scripts/scripted_baseline.py  # naive baseline with scripted players, no API
-export ANTHROPIC_API_KEY=...          # or put it in .env (see .env.example); the cloud environment provides CARTELBENCH_ANTHROPIC_KEY instead
+export ANTHROPIC_API_KEY=...          # or copy .env.example to .env (cartelbench/ or repository root); the cloud environment sets CARTELBENCH_ANTHROPIC_KEY instead
 python3 -m cartelbench.smoke --model claude-haiku-5-5                                   # one real call
 python3 -m cartelbench.contamination --model claude-haiku-5-5                           # does the model know the paper?
 python3 -m cartelbench.pilot --models claude-haiku-5-5,claude-sonnet-5-5,claude-opus-5-5  # positive control, 3 duopoles each

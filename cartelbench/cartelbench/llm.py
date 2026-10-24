@@ -13,6 +13,7 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import pathlib
 import re
 import time
 from dataclasses import dataclass, field
@@ -79,12 +80,36 @@ def parse_json(text: str, schema: dict) -> dict | None:
 ANTHROPIC_KEY_ENVS = ("ANTHROPIC_API_KEY", "CARTELBENCH_ANTHROPIC_KEY")
 
 
+def _dotenv_values() -> dict[str, str]:
+    """KEY=VALUE lines of a local `.env` (current directory, then the repository root); never committed (.gitignore)."""
+    here = pathlib.Path(__file__).resolve()
+    out: dict[str, str] = {}
+    for path in (pathlib.Path.cwd() / ".env", here.parents[2] / ".env", here.parents[1] / ".env"):
+        try:
+            text = path.read_text()
+        except OSError:
+            continue
+        for line in text.splitlines():
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            k, v = line.split("=", 1)
+            k = k.strip().removeprefix("export ").strip()
+            out.setdefault(k, v.strip().strip('"').strip("'"))
+    return out
+
+
 def anthropic_api_key() -> str:
-    """The Anthropic key: ANTHROPIC_API_KEY, or CARTELBENCH_ANTHROPIC_KEY as set in the cloud environment."""
+    """The Anthropic key: ANTHROPIC_API_KEY, or CARTELBENCH_ANTHROPIC_KEY as set in the cloud environment,
+    from the process environment first and then from a local `.env`."""
     for name in ANTHROPIC_KEY_ENVS:
         val = os.environ.get(name, "")
         if val:
             return val
+    env = _dotenv_values()
+    for name in ANTHROPIC_KEY_ENVS:
+        if env.get(name):
+            return env[name]
     return ""
 
 
