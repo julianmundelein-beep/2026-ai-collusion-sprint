@@ -56,3 +56,21 @@ What a 4 or 5 report has, from these: one new attack or evidence class with a na
 ## Rescans
 
 (none yet; the main session sends "Rescan COMPETITION.md" and the result goes here as a new dated section)
+
+### Rescan 2026-10-24 16:20 HKT (08:20 UTC), on request of the main session
+
+Searched: `gh search repos` with `created:>=2026-10-24` for collusion, collude, dolos; `created:>=2026-10-23` for price-fixing, duopoly; without date filter for leniency (with program, cartel, collusion agents), whistleblower (collusion, reward agents), bigoni, kronzeuge, antitrust llm agents, human baseline collusion, cartel experiment llm. Plus the two repos the ideas session found at 15:15 HKT.
+
+New since the 14:05 HKT snapshot (5 repos, all created 2026-10-24):
+
+| # | Entry (link) | Track | What it is, in one sentence | State and why it matters |
+|---|---|---|---|---|
+| 14 | https://github.com/adamattar-pixel/mole-in-the-market | 3.2 | "Do AI sellers accept a secret price-fixing offer from a peer, and do they change their prices?": a scripted spy offers both sellers of a two-firm price game the same secret deal; measures what they say (accept or decline) and what they do (prices over the next 3 rounds) | Most mature repo so far: PREREGISTRATION.md, SPEC.md, THIRD_PARTY.md with a `preexisting-baseline` tag, AUDIT.md, TRACEABILITY.md, harness, tests, `reproduce` recomputes tables from `runs/` without an API key, frozen offer texts and a dual-use note. Work in progress at 16:11 HKT push. Touches our fallback I19 (mole in the Agrawal auction) and I35, not I24: no fine, leniency, reward or human baseline |
+| 15 | https://github.com/maiyasaliha/undercover-collusion | 3.2 | "Can an undercover agent expose a model's willingness to collude, and do the model's internal activations reveal its true intention better than its words?": Liar's Bar secret-alliance offers from the starter folder `llm-agent-collusion-2`, Qwen2.5-7B-Instruct on Modal A10G, per-layer activation similarity, six offer conditions plus a rigged decision | Not empty: three scripts, results folder, TASKS.md (a team). White-box angle on 3.2. No overlap with I24 |
+| 16 | https://github.com/Hello-Sarah/Detection-and-Audit-of-Agent-Collusion | 2 | "Can Two Agents Collude to Cover Up a Data Release Violation?": processing agent and review agent in a synthetic data-release workflow, condition A formal handoff vs B private channel, evidence from logged trajectories | README with a clean one-factor design, index.html and workspaces; outside markets (2.1 spirit). No overlap with I24 |
+| 17 | https://github.com/rkstu/AI_Collusion | unclear | README with the title only | scaffold |
+| 18 | https://github.com/Diabostyle/Agent-Collusion-Hackathon | unclear | empty repository | scaffold |
+
+Is I24 (Bigoni twin: fine, leniency, whistleblower reward on LLM duopolies with the human lab baseline) taken? **No.** No public repo created since 2026-10-01 mentions leniency, Kronzeuge, whistleblower rewards, Bigoni, cartel experiments with LLM agents, or a human baseline; the leniency hits are unrelated (LLM graders, encodings). The only cartel-policy-adjacent entries remain the market repos from the first snapshot (succession, undercuts, net influence) and the "mole" offers above, which test a trusted agent's offer, not an authority's instrument. Track 3.2 is now covered by two serious repos (14, 15), so the fallback I19 would compete directly with them; if the switch trigger fires, differentiate on the Agrawal auction, the rumour framing and the detection metrics rather than on the offer itself.
+
+Running total: 32 public repos naming the sprint or its terms (1 ours, private), of which about 10 are empty scaffolds. Gaps unchanged except 3.2, which is no longer a gap.
