@@ -44,7 +44,7 @@ At most two long build sessions plus one short session at the same time. One ses
 | 0 | Main session | hackathon-kickoff | main folder | STATUS, FACTS, CORE_IDEA; commits DECISIONS | Julian + Claude | running | AI Collusion Research Sprint · Hauptsession |
 | 1 | Framework research | hackathon-kickoff (research) | main folder | HACKATHON.md, official/, private/JUDGES.md, private/COMPETITION.md | Claude | done (HACKATHON.md, JUDGES.md, COMPETITION.md, official/ committed); kept open for COMPETITION rescans | local_51c0819d-c7e3-4cb4-8036-c263bc6b9c22 |
 | 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | done (two rounds, 39 ideas, I24 chosen with build plan, commit d5e8cf9); archive on Julian's OK | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
-| 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | R02 done (d12541e): draft rank 2 of 5, medians 4 / 3 / 3, Execution 2 to 3; stays open for R03 on the final PDF | local_525668aa-4f92-4e55-8006-1293f749dce9 |
+| 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | R03 running on the final PDF (sent 2026-10-25 00:05 HKT); R02 d12541e: rank 2 of 5, 4 / 3 / 3 | local_525668aa-4f92-4e55-8006-1293f749dce9 |
 | 4 | Website | design-taste-frontend | own worktree or cloud | web/ (branch) | | dropped (not a deliverable) | |
 | 5 | Backend | hackathon-backend | cloud (claude.ai/code), branch `backend` | `cartelbench/` on its branch, README, docs/ | Claude (cloud) | all arms done (F13 to F40): core, validation, placebo, shifted grid, Sonnet second model, dose, NoReport, ReMatch, clone; V6 cut; branch `origin/backend` at c14c944 (23:10 HKT), 51 tests green, 23.51 USD spent; ready to merge | cloud |
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
@@ -104,7 +104,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Waiting for
 
-- Julian: final title (report session's options a, b, or keep); OK for R03 on the final PDF
+- Report session: apply the final title and re-export (sent 00:05 HKT); Jury: R03 running on the final PDF
 - Report session: apply title, affiliation and the cut to 8 pages (sent 19:55 HKT)
 - Julian: tell the cloud backend session that Figure 1 should be a 4x2 grid or use larger type (2x4 is too small at 6.5 inch width)
 - Julian: confirm the main-model rule (Haiku 5.5 as main model if it passes the pilot, Sonnet 5.5 as one V4 culture with 10 duopoles) and the project name (CartelBench recommended)

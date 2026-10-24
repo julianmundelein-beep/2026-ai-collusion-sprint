@@ -66,10 +66,10 @@ Flow (three to five steps):
 
 The single source for wording on the deck, website, video and forms. Julian picks the wording; the pick goes to DECISIONS.md as KEEP.
 
-- Project name (KEEP 2026-10-24 19:55): CartelBench. Report title (KEEP, revised 20:05 after R02): "Same game, different player: fines, leniency and rewards deter LLM pricing agents more than people, and the cartels that survive hold their price". Author Julian Mundelein, affiliation "Independent, Hong Kong".
+- Project name (KEEP 2026-10-24 19:55): CartelBench. Report title (KEEP, final 2026-10-25 00:05): "Same game, different players: told-only fines, leniency and rewards deter LLM pricing agents more than people, and what survives holds its price, with or without a word". Author Julian Mundelein, affiliation "Independent, Hong Kong".
 - One sentence (for forms), options: (a) "We replay a published cartel lab experiment with LLM pricing agents under identical rules, payoffs and instructions, and report where fines, leniency and whistleblower rewards work on agents as on humans and where they flip." (recommended); (b) "A human-calibrated testbed that measures how cartel policy instruments act on LLM pricing agents."
 - Why sentence, options: (a) "Cartel policy rests on assumptions about human players; pricing agents are a different player, and nobody has checked whether the rules still hold." (recommended); (b) "Authorities will face agent cartels before they have tested a single instrument against them."
-- Slogan (KEEP, carried by the title): "Same game, different player."
+- Slogan (KEEP, carried by the title): "Same game, different players."
 - Website headline and subline: not applicable (no website); the report title doubles as headline.
 - Three proofs (FACTS IDs): to be filled from FACTS.md after the runs (scorecard count, regime ranking versus humans, dose curve).
 - Elevator pitch (30 seconds): In 2009, students in Stockholm and Rome played a repeated price game under four cartel-policy regimes; only rewards for whistleblowers brought the average price down, from 4.9 to 4.0 against a competitive price of 3. We let LLM pricing agents play the same game with the same instructions and payoffs. The result is a scorecard: which of the paper's eight findings an agent reproduces, which it breaks, and how much monitoring the cheapest rule needs. An authority can run it on any model before pricing agents reach a market.
