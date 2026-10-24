@@ -95,7 +95,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 ## Waiting for
 
 - Julian: Discord check (keys from the organizers, Modal credit redemption, pinned announcements), send the email draft in HACKATHON.md
-- Julian: `ANTHROPIC_API_KEY` as a secret of the cloud environment (the cloud session stops before the pilot without it); licence decided later, before submission
+- Julian: tell the cloud backend session that `ANTHROPIC_API_KEY` is set (entered 2026-10-24 16:55 HKT; the VM reads it after its next pause) and to merge main for the jury notes; licence decided later, before submission
 - Julian: pick project name, one sentence, why sentence, slogan from CORE_IDEA.md "Message"
 - Julian: Anthropic API key into the backend's compute.env when the session asks
 
