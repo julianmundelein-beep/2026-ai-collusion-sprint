@@ -1,0 +1,25 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.compare evidence/provider2/runs/reward_llama-3.1-8b-instruct_20261024T224158Z_s4 evidence/provider2/runs/fine_llama-3.1-8b-instruct_20261024T224158Z_s2 --keys avg_price",
+  "commit": "f21083c1134a871207777321b698e53bccc512e3-dirty",
+  "time": "2026-10-24T23:01:02Z",
+  "note": "Do not edit by hand.",
+  "run_a": "reward_llama-3.1-8b-instruct_20261024T224158Z_s4",
+  "run_b": "fine_llama-3.1-8b-instruct_20261024T224158Z_s2",
+  "model_a": "llama-3.1-8b-instruct",
+  "model_b": "llama-3.1-8b-instruct",
+  "clusters_a": 4,
+  "clusters_b": 4,
+  "differences": {
+    "avg_price": {
+      "a": 6.3978947368421055,
+      "b": 6.637755102040816,
+      "diff": {
+        "point": -0.23986036519871057,
+        "lo": -0.8113782051282046,
+        "hi": 0.41735177865612627,
+        "n_boot": 1000
+      }
+    }
+  }
+}

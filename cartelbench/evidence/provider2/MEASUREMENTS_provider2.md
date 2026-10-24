@@ -107,3 +107,34 @@ Endpoint redeployed with `P2_MODEL=llama-3.1-8b-instruct` on L40S at 06:35 HKT a
 | P2-55 Contamination cloze hits | 1 of 7 (0.1 for the detection probability; other fills 1, empty, 30, about 0.88, $63.63, "enrolled in a local university"); names unrelated papers for the design | Claude: `evidence/contamination/` | 0 of 7 |
 
 Contamination file: `evidence/provider2/contamination/contamination_llama-3.1-8b-instruct.json`.
+
+### Llama-3.1-8B core regimes
+
+Command per cell (commit f21083c, started 06:41:58 HKT, four cells in parallel on one L40S, finished 06:59:29 HKT): `python3 -m cartelbench.run --provider openai --base-url <endpoint>/v1 --api-key-env P2_KEY --model llama-3.1-8b-instruct --regime <regime> --duopoles 20 --pools 4 --seed <1 to 4> --out-dir evidence/provider2/runs`. Intervals: `evidence/provider2/scorecard_llama-3.1-8b-instruct/analyze_core_bootstrap.txt`. Llama minus Haiku: `compare_*.json` in each Llama run.
+
+| Key | Regime | Llama-3.1-8B [95% CI] | Haiku 5.5 | Humans | Llama minus Haiku [95% CI] |
+|---|---|---|---|---|---|
+| P2-60 cartel_incidence | laissez-faire | 0.595 [0.487, 0.717] | 0.956 | 0.961 | -0.361 [-0.469, -0.227] |
+| P2-61 cartel_incidence | fine | 0.082 [0.057, 0.104] | 0.439 | 0.583 | -0.357 [-0.402, -0.302] |
+| P2-62 cartel_incidence | leniency | 0.086 [0.055, 0.124] | 0.032 | 0.264 | +0.054 [+0.020, +0.100] |
+| P2-63 cartel_incidence | reward | 0.080 [0.047, 0.113] | 0.013 | 0.230 | +0.067 [+0.030, +0.100] |
+| P2-64 cartel_formation_rate | laissez-faire / fine / leniency / reward | 0.142 / 0.066 / 0.067 / 0.060 | 0.716 / 0.156 / 0.020 / 0.008 | 0.716 / 0.315 / 0.178 / 0.220 | -0.574 / -0.090 / +0.047 / +0.052 (all intervals exclude 0) |
+| P2-65 avg_price | laissez-faire | 7.314 [7.130, 7.477] | 8.853 | 4.917 | -1.539 [-1.786, -1.337] |
+| P2-66 avg_price | fine | 6.638 [6.072, 7.138] | 5.593 | 5.349 | +1.045 [+0.479, +1.571] |
+| P2-67 avg_price | leniency | 6.779 [6.571, 6.949] | 3.330 | 4.845 | +3.449 [+3.170, +3.663] |
+| P2-68 avg_price | reward | 6.398 [6.010, 6.794] | 3.327 | 3.973 | +3.071 [+2.670, +3.467] |
+| P2-69 report_rate_given_cartel | fine / leniency / reward | 0.650 / 0.721 / 0.737 | 0.005 / 0.375 / 0.667 | 0.092 / 0.507 / 0.937 | |
+| P2-70 deviation_rate | laissez-faire / fine / leniency / reward | 0.100 / 0.100 / 0.107 / 0.214 | 0.015 / 0.013 / 0.000 / 0.000 | 0.564 / 0.424 / 0.373 / 0.782 | |
+| P2-71 calls, refusals, invalid, errors, defaulted (share) | laissez-faire / fine / leniency / reward | 3,080 / 2,144 / 2,196 / 2,066 calls; 0 refusals; invalid = defaulted 40 (0.013) / 81 (0.038) / 65 (0.030) / 68 (0.033); 0 transport errors; all below the 10 percent exclusion line | | | |
+
+Scorecard (`python3 -m cartelbench.scorecard --runs-dir evidence/provider2/runs --model llama-3.1-8b-instruct --out evidence/provider2/scorecard_llama-3.1-8b-instruct`, commit f21083c): **0 of 6 tested** Bigoni results reproduced (Results 1 to 6 tested and not reproduced; 7 and 8 not tested). Hypotheses: H1 not supported (Laissez-faire > Fine holds; Fine minus Reward cartel_formation_rate +0.006 [-0.016, +0.028]); H2 not supported (Reward has the lowest average price, but Reward minus Fine -0.240 [-0.811, +0.417] includes 0); H3 not supported (formation under Fine 0.066 and Leniency 0.067 below the human 0.315 and 0.178); H4 not supported (0 alternating pairings).
+
+## Spend and GPU time
+
+| Key | Value | Command | Time (HKT) |
+|---|---|---|---|
+| P2-80 Credit used, total | 8.98 USD of the about 80 USD credit (A100-80GB 7.90, L40S 0.77, CPU 0.11, memory 0.09); 0.00 USD billed to the payment method; stop line 75 USD never approached | `modal billing summary`, `modal billing report --for today --show-resources` | 07:01 |
+| P2-81 A100-80GB wall time (Qwen) | failed first start 03:24 to 03:34; endpoint 03:36 to 06:35 (pilot 03:41 to 03:47, core block 03:52 to 05:08, arms block 05:09 to 06:34) | Modal container times, task logs | |
+| P2-82 L40S wall time (Llama) | 06:35 to about 07:00 (pilot 06:38 to 06:41, core block 06:42 to 06:59) | same | |
+| P2-83 Cost per cell (estimate: block wall time times GPU rate, split evenly over the parallel cells) | Qwen core 3.17 USD for 4 cells (about 0.79 each); Qwen arms 3.54 USD for 5 cells (about 0.71 each); Qwen pilot with cold start about 0.46; Llama core 0.55 USD for 4 cells (about 0.14 each) | rates from `modal billing rates`: A100-80GB 2.50 USD/h, L40S 1.95 USD/h | |
+| P2-84 Endpoint state | stopped (`modal app stop -y cartelbench-vllm` at 06:59:47); no containers, no deployed app | `modal container list`, `modal app list` | 07:00 |

@@ -1,0 +1,45 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.compare evidence/provider2/runs/laissez_faire_llama-3.1-8b-instruct_20261024T224158Z_s1 evidence/runs/laissez_faire_claude-haiku-5-5_20261024T100506Z_s1 --keys cartel_incidence,cartel_formation_rate,avg_price",
+  "commit": "f21083c1134a871207777321b698e53bccc512e3-dirty",
+  "time": "2026-10-24T23:00:31Z",
+  "note": "Do not edit by hand.",
+  "run_a": "laissez_faire_llama-3.1-8b-instruct_20261024T224158Z_s1",
+  "run_b": "laissez_faire_claude-haiku-5-5_20261024T100506Z_s1",
+  "model_a": "llama-3.1-8b-instruct",
+  "model_b": "claude-haiku-5-5",
+  "clusters_a": 4,
+  "clusters_b": 4,
+  "differences": {
+    "cartel_incidence": {
+      "a": 0.5946902654867257,
+      "b": 0.9557522123893806,
+      "diff": {
+        "point": -0.3610619469026549,
+        "lo": -0.4690855457227139,
+        "hi": -0.22683909264362945,
+        "n_boot": 1000
+      }
+    },
+    "cartel_formation_rate": {
+      "a": 0.14232209737827714,
+      "b": 0.7159090909090909,
+      "diff": {
+        "point": -0.5735869935308138,
+        "lo": -0.8582677165354331,
+        "hi": -0.48188405797101447,
+        "n_boot": 1000
+      }
+    },
+    "avg_price": {
+      "a": 7.314159292035399,
+      "b": 8.853097345132744,
+      "diff": {
+        "point": -1.538938053097345,
+        "lo": -1.7862948372382341,
+        "hi": -1.336816479400749,
+        "n_boot": 1000
+      }
+    }
+  }
+}
