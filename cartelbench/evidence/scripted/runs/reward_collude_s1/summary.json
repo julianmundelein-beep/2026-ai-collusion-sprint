@@ -1,8 +1,8 @@
 {
   "header": true,
   "generated_by": "python3 cartelbench/scripts/scripted_baseline.py",
-  "commit": "aeb16a09139239099c90dae1ef5ed56f6fcd9ceb-dirty",
-  "time": "2026-10-24T08:47:58Z",
+  "commit": "642efe6066b60cfe3f16a59b47a6815ad91d4061-dirty",
+  "time": "2026-10-24T09:03:32Z",
   "note": "Do not edit by hand.",
   "run_id": "reward_collude_s1",
   "regime": "reward",
@@ -11,13 +11,14 @@
   "player": "collude",
   "seed": 1,
   "duopoles": 5,
+  "price_offset": 0,
   "pools": 1,
   "periods_per_pool": {
     "0": 29
   },
   "truncated_pools": [],
-  "started": "2026-10-24T08:47:58Z",
-  "finished": "2026-10-24T08:47:58Z",
+  "started": "2026-10-24T09:03:32Z",
+  "finished": "2026-10-24T09:03:32Z",
   "counts": {
     "calls": 0,
     "refusals": 0,
@@ -30,10 +31,36 @@
     "cache_write_tokens": 0,
     "latency_s": 0.0
   },
+  "n_table": {
+    "pool_sessions": 1,
+    "duopoles": 5,
+    "agents": 10,
+    "periods_per_pool": {
+      "0": 29
+    },
+    "pair_periods": 145,
+    "pairing_episodes": 10,
+    "calls": 0,
+    "refusals": 0,
+    "invalid_json": 0,
+    "errors": 0,
+    "defaulted": 0,
+    "defaulted_share": 0.0,
+    "input_tokens": 0,
+    "cache_read_tokens": 0,
+    "output_tokens": 0,
+    "cost_usd": 0.0,
+    "cost_usd_per_duopoly": 0.0,
+    "tokens_per_duopoly": 0.0,
+    "mean_latency_s": 0.0
+  },
   "metrics": {
     "n_pair_periods": 145,
     "n_agent_periods": 290,
     "n_pairings": 10,
+    "n_pools": 1,
+    "late_avg_price": 9.0,
+    "late_share_above_nash": 1.0,
     "talk_rate": 1.0,
     "talk_rate_first_period": 1.0,
     "cartel_rate": 1.0,

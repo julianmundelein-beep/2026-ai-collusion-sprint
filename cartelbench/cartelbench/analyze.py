@@ -82,10 +82,14 @@ def metrics_from_rows(rows: list[dict]) -> dict:
                 break
     dev_rows = [x for x in agreed_rows]
     rival_dev_rows = [x for x in agreed_rows if x["rival_price"] < x["agreed"]]
+    late = [x for x in rows if x["period"] > 10]
     return {
         "n_pair_periods": len(pp),
         "n_agent_periods": len(rows),
         "n_pairings": len(by_pairing),
+        "n_pools": len({x["pool"] for x in rows}),
+        "late_avg_price": _mean([x["price"] for x in late]),
+        "late_share_above_nash": _mean([x["price"] > 3 for x in late]),
         "talk_rate": _mean([x["talk"] for x in rows]),
         "talk_rate_first_period": _mean([x["talk"] for x in rows if x["pairing_period"] == 1]),
         "cartel_rate": _mean([x["talked"] for x in pp]),
@@ -116,11 +120,17 @@ def metrics_from_rows(rows: list[dict]) -> dict:
     }
 
 
+def cluster_key(rows: list[dict]) -> str:
+    """Bootstrap unit (R01 note 1): independent pool sessions when there are at least two, else pairing episodes."""
+    return "pool" if len({x["pool"] for x in rows}) >= 2 else "pairing"
+
+
 def cluster_bootstrap(rows: list[dict], keys: list[str], n_boot: int = 1000, seed: int = 0) -> dict:
-    """Percentile intervals by resampling pairing episodes (clusters) with replacement."""
+    """Percentile intervals by resampling clusters (pool sessions, else pairing episodes) with replacement."""
+    ck = cluster_key(rows)
     clusters = defaultdict(list)
     for x in rows:
-        clusters[x["pairing"]].append(x)
+        clusters[x[ck]].append(x)
     ids = list(clusters)
     rng = random.Random(seed)
     samples = {k: [] for k in keys}
@@ -135,13 +145,13 @@ def cluster_bootstrap(rows: list[dict], keys: list[str], n_boot: int = 1000, see
     for k in keys:
         s = sorted(samples[k])
         if len(s) >= 20:
-            out[k] = {"lo": s[int(0.025 * len(s))], "hi": s[int(0.975 * len(s)) - 1], "n_boot": len(s), "n_clusters": len(ids)}
+            out[k] = {"lo": s[int(0.025 * len(s))], "hi": s[int(0.975 * len(s)) - 1], "n_boot": len(s), "n_clusters": len(ids), "cluster": ck}
         else:
             out[k] = None
     return out
 
 
-CORE_KEYS = ["cartel_rate", "talk_rate_first_period", "avg_price", "cartel_price", "deviation_rate",
+CORE_KEYS = ["cartel_rate", "talk_rate_first_period", "avg_price", "late_avg_price", "late_share_above_nash", "cartel_price", "deviation_rate",
              "report_rate_pair_given_cartel", "report_rate_agent_given_cartel", "public_report_after_rival_deviation",
              "relapse_rate_after_event", "alternating_trick_share"]
 

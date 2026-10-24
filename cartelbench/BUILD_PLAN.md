@@ -15,7 +15,7 @@ Share of window is measured on the card's clock (Sat 16:30 to Mon 16:59 HKT = 48
 | 1 Toolchain | pytest runs; the Anthropic SDK answers one real call with Julian's key; scripted players play a full session without API | 10 % | Sat 21:20 | engine and tests done 2026-10-24 (cloud); real API call open: `ANTHROPIC_API_KEY` not set in the cloud environment |
 | 2 Happy path | pilot 3 models × 3 duopoles laissez-faire runs with real calls, JSONL evidence in `evidence/runs/`, acceptance tests green, pre-registration committed before the first paid call | 40 % | Sat 23:00 (card) | blocked on the key; pre-registration committed |
 | 3 Tests and attacks | test suite and scripted-player suite run by one command, result files in `evidence/`, naive baseline (scripted players) measured | 60 % | Sun 13:00 (card) | scripted suite done in the cloud |
-| 4 Breadth | V3 dose, V4 cultures, NoReport, ReMatch, V5 clone, V6 motives, in this order, only while 1 to 3 are green | until core freeze | Sun 17:00 (card) | regimes and arms configured; runs pending |
+| 4 Breadth | V4 cultures, V3 dose, NoReport, ReMatch, V5 clone, V6 motives, in this order (cut from the end), only while 1 to 3 are green | until core freeze | Sun 17:00 (card) | regimes and arms configured; runs pending |
 | Core freeze | no change to payoffs, regime logic, prompts or termination that would invalidate recorded runs | 75 % | Mon 04:50 | |
 | 5 Deliverables | README with one command per regime, docs/, scorecard and Figure 1 scripts, `pruefen.py alles` without FEHLT | internal deadline | Mon 16:59 | |
 
@@ -79,12 +79,27 @@ Here "attacks" are threats to the validity of the measurement, not security atta
 
 In this order (CORE_IDEA.md). Never cut: four regimes, pilot, contamination test, scorecard.
 
+Decided by Julian (KEEP 2026-10-24 16:50 HKT, R01 note 7):
+
 1. V6 motive classification by a judge
 2. V5 clone regime
 3. ReMatch arm
 4. NoReport arm
-5. V4 three further models
-6. V3 detection-probability dose
+5. V3 detection-probability dose
+6. V4 three further models (cut last: the testbed claim needs several models)
+
+## Jury round R01 (applied 2026-10-24 17:40 HKT, before any model call)
+
+| Note | Done in the harness |
+|---|---|
+| 1 independent unit | `--pools 4` default (4 pool sessions of 10 agents), bootstrap over pool sessions, n-table with cost in every summary.json and in scorecard.md |
+| 2 validation package | scripted baseline (`scripts/scripted_baseline.py`), arms `instructed_cartel`, `fine_certain`, `nocomm` as regimes |
+| 3 pilot threshold | `pilot.py`: more than half of the late duopolies above 3; tokens and cost per duopoly; projected cost per regime and duopoles within budget |
+| 4 contamination | `--price-offset 5` (shifted labels, payoffs unchanged), cloze probes in `contamination.py`, equivalence margin pre-registered |
+| 5 scorecard rule | three states, "x of k tested", span rule once `city_span` is transcribed, Figure 1 dot plot plus Figure 1b table |
+| 6 headline | report; harness keeps `--provider openai` for a second provider |
+| 7 cut order | V6, V5, ReMatch, NoReport, V3, V4 |
+| 8 appendix | `python3 -m cartelbench.prompts --regime <r>` prints verbatim instructions; model ids per call line; seeds and commands in README |
 
 ## Platform limits
 

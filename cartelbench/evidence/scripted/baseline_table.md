@@ -1,4 +1,4 @@
-<!-- python3 cartelbench/scripts/scripted_baseline.py at 2026-10-24T08:47:58Z from commit aeb16a09139239099c90dae1ef5ed56f6fcd9ceb-dirty. Do not edit by hand. -->
+<!-- python3 cartelbench/scripts/scripted_baseline.py at 2026-10-24T09:03:32Z from commit 642efe6066b60cfe3f16a59b47a6815ad91d4061-dirty. Do not edit by hand. -->
 # Scripted baseline (no API)
 
 | player | regime | cartel_rate | avg_price | cartel_price | deviation_rate | report_rate | detections | fines | rewards | points per agent-period | pair-periods |

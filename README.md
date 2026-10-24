@@ -4,7 +4,7 @@ Working name; the final project name follows Julian's pick (CORE_IDEA.md, "Messa
 
 Links: [Repository](https://github.com/julianmundelein-beep/2026-ai-collusion-sprint) · [The paper (RAND 2012, publisher page)](https://onlinelibrary.wiley.com/doi/10.1111/j.1756-2171.2012.00170.x) · [Pre-registration](cartelbench/PREREGISTRATION.md) · [Build plan](cartelbench/BUILD_PLAN.md) · [Measurements](cartelbench/evidence/MEASUREMENTS.md) · [Judges' guide](docs/JUDGES_GUIDE.md) · [Design notes: what comes from the paper, what is new](docs/DESIGN_NOTES.md) · Research report: to follow (PDF on the official template)
 
-Cartel policy (fines, leniency programmes, whistleblower rewards) rests on assumptions about human players, and nobody has tested these instruments on LLM pricing agents. This repository replays the cartel laboratory experiment of Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND Journal of Economics, 2012) with LLM sellers under the same rules, payoffs, regimes and matching, so that every number sits next to the published human result. The output is a scorecard "x of 8 Bigoni results replicated" per model, a regime ranking with cluster-bootstrap intervals, and a cost per regime (fines, reports as investigation load, rewards). Status on 2026-10-24: harness and tests done (36 tests green, M01), pre-registration committed, pilot with real models pending the API key.
+Cartel policy (fines, leniency programmes, whistleblower rewards) rests on assumptions about human players, and nobody has tested these instruments on LLM pricing agents. This repository replays the cartel laboratory experiment of Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND Journal of Economics, 2012) with LLM sellers under the same rules, payoffs, regimes and matching, so that every number sits next to the published human result. The output is a scorecard "x of 8 Bigoni results replicated" per model, a regime ranking with cluster-bootstrap intervals, and a cost per regime (fines, reports as investigation load, rewards). Status on 2026-10-24: harness and tests done (43 tests green, M01), pre-registration committed with the jury-round R01 amendment, pilot with real models pending the API key.
 
 ## What it does
 
@@ -23,7 +23,7 @@ python3 -m cartelbench.contamination --model claude-haiku-5-5                   
 python3 -m cartelbench.pilot --models claude-haiku-5-5,claude-sonnet-5-5,claude-opus-5-5  # positive control, 3 duopoles each
 ```
 
-One command per regime and model (the main runs):
+One command per regime and model (the main runs; 20 duopoles as 4 independent pool sessions of 10 agents, the bootstrap unit):
 
 ```bash
 python3 -m cartelbench.run --regime laissez_faire --model claude-haiku-5-5 --duopoles 20 --seed 1
@@ -33,10 +33,15 @@ python3 -m cartelbench.run --regime reward        --model claude-haiku-5-5 --duo
 python3 -m cartelbench.run --regime noreport      --model claude-haiku-5-5 --duopoles 20 --seed 5
 python3 -m cartelbench.run --regime rematch       --model claude-haiku-5-5 --duopoles 20 --seed 6
 python3 -m cartelbench.run --regime clone         --model claude-haiku-5-5 --duopoles 20 --seed 7
+python3 -m cartelbench.run --regime instructed_cartel --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 11  # validation: must form cartels
+python3 -m cartelbench.run --regime fine_certain      --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 12  # validation: must kill cartels
+python3 -m cartelbench.run --regime nocomm            --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 13  # validation: no discussion
+python3 -m cartelbench.run --regime laissez_faire --price-offset 5 --model claude-haiku-5-5 --duopoles 10 --pools 2 --seed 14  # contamination: shifted grid
 python3 -m cartelbench.run --regime leniency --detection 0.05 --model claude-haiku-5-5 --duopoles 20 --seed 8   # dose
 python3 -m cartelbench.run --regime laissez_faire --payoff-scale 2 --model claude-haiku-5-5 --duopoles 10 --seed 9  # robustness
-python3 -m cartelbench.analyze --bootstrap evidence/runs/<run_id> ...     # measures with 95 percent intervals
-python3 -m cartelbench.scorecard --model claude-haiku-5-5                 # scorecard.md, scorecard.json, figure1_scorecard.png
+python3 -m cartelbench.analyze --bootstrap evidence/runs/<run_id> ...     # measures with 95 percent intervals over pool sessions
+python3 -m cartelbench.scorecard --model claude-haiku-5-5                 # scorecard.md, scorecard.json, figure1_dotplot.png, figure1b_scorecard_table.png
+python3 -m cartelbench.prompts --regime fine                              # verbatim instructions for the appendix
 ```
 
 Other providers: `--provider openai --base-url https://<endpoint>/v1 --api-key-env OPENROUTER_API_KEY --model <id>` works with any OpenAI-compatible chat endpoint (Modal, OpenRouter, Nebius). Scripted players instead of a model: `--player collude|deviate|nash|random|tit`.
@@ -47,7 +52,7 @@ Input: regime `leniency`, agents Firm Alder and Firm Birch, period 4, both agree
 
 ## What is real, what is simulated
 
-- Real: every model decision in `evidence/runs/` and `evidence/pilot/` comes from a live API call, logged with token usage and model id. The payoff points are computed by the harness from the table, not by the model.
+- Real: every model decision in `evidence/runs/` and `evidence/pilot/` comes from a live API call, logged with token usage and the model id the API returned. The payoff points are computed by the harness from the table, not by the model. Every `summary.json` carries an n-table: pool sessions, duopoles, periods, calls, refusals, invalid answers, errors, defaulted decisions, tokens and cost.
 - Simulated: the market is the laboratory game of the paper, not a real market; fines and rewards are points told to the agents, not money. Scripted players (`--player ...`) are simulations by construction and are labelled `provider: scripted` in every file.
 - Reconstructed: `cartelbench/data/payoff_table.csv` is reconstructed from the four anchor cells of Table 1 quoted in the idea card (header line says so) until the paper's table is transcribed; the subject instructions in `cartelbench/cartelbench/prompts.py` render the paper's design in neutral words and are to be aligned with Appendix A.4 of the paper. See `docs/DESIGN_NOTES.md`.
 

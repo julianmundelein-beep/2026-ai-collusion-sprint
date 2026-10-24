@@ -32,8 +32,10 @@ class RunConfig:
     provider: str = "scripted"          # anthropic | openai | scripted | fake
     player: str = "llm"                 # llm | collude | deviate | nash | random | tit
     duopoles: int = 20
-    pool_size: int = 20                 # agents per matching group
+    pools: int = 4                      # independent pool sessions (R01 note 1): the bootstrap unit
+    pool_size: int = 0                  # agents per pool; 0 = 2 * duopoles / pools
     seed: int = 1
+    price_offset: int = 0               # shifted price grid for the contamination test (labels only)
     payoff_scale: float = 1.0
     detection_prob: float | None = None
     fine: int | None = None
@@ -120,14 +122,15 @@ class Run:
         if self.cfg.player == "llm":
             if self.client is None:
                 raise RuntimeError("player=llm needs a model client")
-            p = LLMPlayer(self.client, agent_id, name, self.regime, self.table, rng)
+            p = LLMPlayer(self.client, agent_id, name, self.regime, self.table, rng, offset=self.cfg.price_offset)
             self.systems[agent_id] = p.system
             return p
         return ScriptedPlayer(self.cfg.player, agent_id, name, self.regime, self.table, rng)
 
     def build_pools(self) -> None:
         n_agents = 2 * self.cfg.duopoles
-        pool_size = max(2, min(self.cfg.pool_size, n_agents))
+        pool_size = self.cfg.pool_size or max(2, n_agents // max(1, self.cfg.pools))
+        pool_size = max(2, min(pool_size, n_agents))
         if pool_size % 2:
             pool_size += 1
         n_pools = max(1, -(-n_agents // pool_size))
@@ -336,12 +339,26 @@ class Run:
         t0 = now_iso()
         await asyncio.gather(*(self._play_pool(p) for p in self.pools))
         from .analyze import run_metrics  # local import: analyze imports nothing from engine
+        from .pricing import cost_usd
 
         metrics = run_metrics(self.out)
+        c = self.counts
+        cost = cost_usd(self.cfg.model, c["input_tokens"], c["output_tokens"], c["cache_read_tokens"], c["cache_write_tokens"]) \
+            if self.cfg.provider == "anthropic" else (0.0 if self.cfg.provider in ("scripted", "fake") else None)
+        n_pair_periods = metrics.get("n_pair_periods") or 0
+        n_table = {"pool_sessions": len(self.pools), "duopoles": self.cfg.duopoles, "agents": sum(len(p.order) for p in self.pools),
+                   "periods_per_pool": self.periods_played, "pair_periods": n_pair_periods,
+                   "pairing_episodes": metrics.get("n_pairings"),
+                   "calls": c["calls"], "refusals": c["refusals"], "invalid_json": c["invalid_json"], "errors": c["errors"],
+                   "defaulted": c["defaulted"], "defaulted_share": (c["defaulted"] / c["calls"]) if c["calls"] else 0.0,
+                   "input_tokens": c["input_tokens"], "cache_read_tokens": c["cache_read_tokens"], "output_tokens": c["output_tokens"],
+                   "cost_usd": cost, "cost_usd_per_duopoly": (cost / self.cfg.duopoles) if cost is not None else None,
+                   "tokens_per_duopoly": ((c["input_tokens"] + c["cache_read_tokens"] + c["output_tokens"]) / self.cfg.duopoles),
+                   "mean_latency_s": (c["latency_s"] / c["calls"]) if c["calls"] else 0.0}
         summary = {**header, "run_id": self.run_id, "regime": self.cfg.regime, "model": self.cfg.model, "provider": self.cfg.provider,
-                   "player": self.cfg.player, "seed": self.cfg.seed, "duopoles": self.cfg.duopoles,
+                   "player": self.cfg.player, "seed": self.cfg.seed, "duopoles": self.cfg.duopoles, "price_offset": self.cfg.price_offset,
                    "pools": len(self.pools), "periods_per_pool": self.periods_played, "truncated_pools": self.truncated,
-                   "started": t0, "finished": now_iso(), "counts": self.counts, "metrics": metrics}
+                   "started": t0, "finished": now_iso(), "counts": self.counts, "n_table": n_table, "metrics": metrics}
         write_json(self.out / "summary.json", summary)
         return summary
 

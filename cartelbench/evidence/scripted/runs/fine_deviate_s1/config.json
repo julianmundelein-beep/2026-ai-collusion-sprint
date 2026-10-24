@@ -1,8 +1,8 @@
 {
   "header": true,
   "generated_by": "python3 cartelbench/scripts/scripted_baseline.py",
-  "commit": "aeb16a09139239099c90dae1ef5ed56f6fcd9ceb-dirty",
-  "time": "2026-10-24T08:47:58Z",
+  "commit": "642efe6066b60cfe3f16a59b47a6815ad91d4061-dirty",
+  "time": "2026-10-24T09:03:32Z",
   "note": "Do not edit by hand.",
   "run_id": "fine_deviate_s1",
   "config": {
@@ -11,8 +11,10 @@
     "provider": "scripted",
     "player": "deviate",
     "duopoles": 5,
+    "pools": 4,
     "pool_size": 10,
     "seed": 1,
+    "price_offset": 0,
     "payoff_scale": 1.0,
     "detection_prob": null,
     "fine": null,
@@ -38,6 +40,7 @@
     "continuation_prob": 0.85,
     "end_after_period": 20,
     "clone": false,
+    "instruction": "",
     "description": "fine 200 after detection (p=0.10) or report; reporters pay too"
   },
   "payoff_provenance": "RECONSTRUCTED from the four anchor cells of Table 1 via linear demand profit=(p_i-c)(a-b p_i+d p_j), a=40.8665 b=11.2481 c=0.0546 d=8.9432; verify against the paper before any claim",
@@ -285,5 +288,5 @@
       ]
     }
   ],
-  "started": "2026-10-24T08:47:58Z"
+  "started": "2026-10-24T09:03:32Z"
 }

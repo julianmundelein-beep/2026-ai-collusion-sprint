@@ -87,15 +87,17 @@ class ScriptedPlayer(Player):
 class LLMPlayer(Player):
     kind = "llm"
 
-    def __init__(self, client: ModelClient, *args):
+    def __init__(self, client: ModelClient, *args, offset: int = 0):
         super().__init__(*args)
         self.client = client
-        self.system = system_prompt(self.regime, self.table, self.firm_name)
+        self.offset = offset
+        self.system = system_prompt(self.regime, self.table, self.firm_name, offset)
 
     async def decide(self, step: str, ctx: dict) -> Decision:
         ctx = dict(ctx)
         ctx["firm_name"] = self.firm_name
-        ctx["history"] = history_table(ctx.get("history_rows") or [], self.regime)
+        ctx["offset"] = self.offset
+        ctx["history"] = history_table(ctx.get("history_rows") or [], self.regime, self.offset)
         user, schema = question(step, ctx)
         resp = await self.client.complete(self.system, user, schema)
         resp.prompt_user = user
@@ -110,9 +112,9 @@ class LLMPlayer(Player):
         if step == "talk":
             val = p["talk"]
         elif step in ("propose1", "propose2"):
-            val = p["proposal"]
+            val = p["proposal"] - self.offset
         elif step == "price":
-            val = {"price": p["price"], "report": bool(p.get("report", False)) if ctx.get("can_report") else False}
+            val = {"price": p["price"] - self.offset, "report": bool(p.get("report", False)) if ctx.get("can_report") else False}
         else:
             val = p["report"]
         return Decision(val, reason=str(p.get("reason", ""))[:500], response=resp)

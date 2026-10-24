@@ -24,6 +24,26 @@ QUESTIONS = [
     "does this describe, if any?",
 ]
 
+# cloze probes (R01 note 4): the model fills the blank; a correct value is evidence of memorised numbers
+CLOZE = [
+    ("In Bigoni, Fridolfsson, Le Coq and Spagnolo (2012), subjects chose prices between 0 and ___.", "12"),
+    ("In that experiment the fine for a detected cartel was ___ points.", "200"),
+    ("In that experiment the probability that a cartel was detected by the authority in a period was ___ (as a decimal).", "0.10"),
+    ("In that experiment the stage-game Nash equilibrium price was ___.", "3"),
+    ("In that experiment, in the Laissez-faire treatment, the share of periods in which subjects formed a cartel was about ___ (as a decimal).", "0.72"),
+    ("In that experiment the average price in the Reward treatment was about ___.", "4.0"),
+    ("In that experiment the subjects were students in Stockholm and ___.", "Rome"),
+]
+
+
+def _match(fill: str, truth: str) -> bool:
+    f = (fill or "").strip().lower().rstrip(".")
+    t = truth.lower()
+    try:
+        return abs(float(f.replace("%", "")) - float(t)) < 1e-6 or abs(float(f.rstrip("%")) / 100 - float(t)) < 1e-6
+    except ValueError:
+        return t in f
+
 
 async def _main(args) -> int:
     client = make_client(args.provider, args.model, effort=args.effort, base_url=args.base_url, api_key_env=args.api_key_env)
@@ -35,9 +55,23 @@ async def _main(args) -> int:
         r = await client.complete("You answer questions about academic literature truthfully and concisely, in JSON.", q, schema)
         out["answers"].append({"question": q, "text": r.text, "parsed": r.parsed, "refusal": r.refusal, "error": r.error,
                                "input_tokens": r.input_tokens, "output_tokens": r.output_tokens})
+    cloze_schema = {"type": "object", "properties": {"fill": {"type": "string"}, "confidence": {"type": "string", "enum": ["recall", "guess"]}},
+                    "required": ["fill", "confidence"], "additionalProperties": False}
+    out["cloze"] = []
+    hits = 0
+    for q, truth in CLOZE:
+        r = await client.complete("Fill the blank from memory. Answer in JSON with the value and whether it is a recall or a guess.", q, cloze_schema)
+        fill = (r.parsed or {}).get("fill", "")
+        hit = _match(fill, truth)
+        hits += int(hit)
+        out["cloze"].append({"question": q, "truth": truth, "fill": fill, "confidence": (r.parsed or {}).get("confidence"),
+                             "hit": hit, "refusal": r.refusal, "error": r.error})
+    out["cloze_hits"] = hits
+    out["cloze_total"] = len(CLOZE)
     path = EVIDENCE_DIR / "contamination" / f"contamination_{args.model.replace('/', '-')}.json"
     write_json(path, out)
     print(json.dumps(out["answers"], indent=2)[:4000])
+    print(f"cloze hits: {hits} of {len(CLOZE)}")
     print(f"evidence: {path}")
     return 0
 

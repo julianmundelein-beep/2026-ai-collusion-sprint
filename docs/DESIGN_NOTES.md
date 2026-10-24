@@ -23,7 +23,8 @@ Source design: Bigoni, Fridolfsson, Le Coq and Spagnolo, "Fines, Leniency and Re
 
 - LLM sellers instead of students; random firm names; seed per run and pool; API default sampling (temperature 1); effort low; structured JSON answers with a short reason.
 - Counting of refusals, invalid answers and transport errors with a default action (no discussion, price 3, no report).
-- Arms beyond the four regimes: NoReport (fine regime without reports), ReMatch (new partner every period), clone (leniency, agents told the rival is an identical copy).
+- Arms beyond the four regimes: NoReport (fine regime without reports), ReMatch (new partner every period), clone (leniency, agents told the rival is an identical copy); validation arms `instructed_cartel`, `fine_certain` (detection 1.0) and `nocomm` (no discussion); shifted price labels (`--price-offset`) for the contamination test.
+- Independent pool sessions as the unit of analysis: 20 duopoles run as 4 pools of 10 agents (the paper used pools of 20), bootstrap over pools.
 - Alternating-trick detector (H4), relapse rate after an authority event, cost per regime (fines, rewards, number of reports).
 - Cluster bootstrap over pairing episodes; scorecard rules in `PREREGISTRATION.md`.
 

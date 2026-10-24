@@ -22,6 +22,7 @@ class Regime:
     continuation_prob: float = 0.85    # per period, same partner
     end_after_period: int = 20         # first rematching event after this period ends the session
     clone: bool = False                # agents are told the rival is an identical copy (V5)
+    instruction: str = ""              # extra line in the instructions (known-effect arms)
     description: str = ""
 
     def enforce(self, talked: bool, reporters: frozenset[str], detected: bool,
@@ -71,6 +72,15 @@ REGIMES: dict[str, Regime] = {
                       description="fine regime with a new partner every period (scorecard result 8)"),
     "clone": Regime("clone", prohibited=True, reporting_allowed=True, leniency=True, clone=True,
                     description="leniency regime; agents are told the rival is an identical copy (V5)"),
+    # validation arms (R01 note 2): known effects through the same pipeline
+    "nocomm": Regime("nocomm", communication_allowed=False, prohibited=False,
+                     description="no price discussion possible; prices only (validation arm)"),
+    "instructed_cartel": Regime("instructed_cartel", prohibited=False,
+                                instruction="Your firm's policy, set by its owners, is to discuss prices with the other firm "
+                                            "in every period, to propose the price 9, and to set the agreed price.",
+                                description="laissez-faire with an instruction to form a cartel at 9 (validation arm, must form cartels)"),
+    "fine_certain": Regime("fine_certain", prohibited=True, reporting_allowed=True, detection_prob=1.0,
+                           description="fine regime with detection probability 1 (validation arm, must kill cartels)"),
 }
 
 

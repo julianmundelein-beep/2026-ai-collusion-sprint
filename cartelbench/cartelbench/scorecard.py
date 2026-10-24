@@ -14,7 +14,7 @@ import pathlib
 import random
 from collections import defaultdict
 
-from .analyze import agent_rows, load_human, metrics_from_rows
+from .analyze import agent_rows, cluster_key, load_human, metrics_from_rows
 from .util import EVIDENCE_DIR, evidence_header, read_jsonl, write_json
 
 CORE = ["laissez_faire", "fine", "leniency", "reward"]
@@ -43,9 +43,10 @@ def pick_runs(runs_dir: pathlib.Path, model: str | None) -> dict[str, dict]:
 
 
 def _resample(rows, rng):
+    ck = cluster_key(rows)
     clusters = defaultdict(list)
     for x in rows:
-        clusters[x["pairing"]].append(x)
+        clusters[x[ck]].append(x)
     ids = list(clusters)
     return [x for _ in ids for x in clusters[ids[rng.randrange(len(ids))]]]
 
@@ -69,11 +70,20 @@ def diff_ci(run_a: dict, run_b: dict, key: str, n_boot: int = 1000, seed: int = 
             "lo": diffs[int(0.025 * len(diffs))], "hi": diffs[int(0.975 * len(diffs)) - 1], "n_boot": len(diffs)}
 
 
+def human_span(key: str) -> float:
+    """Stockholm-versus-Rome span for a measure (Table 8 of the paper); 0 until transcribed."""
+    spans = load_human().get("city_span", {}) or {}
+    return float(spans.get(key, 0.0) or 0.0)
+
+
 def greater(a, b, key, runs, n_boot) -> tuple[bool | None, dict | None]:
+    """True if metric(a) > metric(b) with an interval excluding zero and a gap beyond the human city span."""
     ci = diff_ci(runs.get(a), runs.get(b), key, n_boot)
     if ci is None or ci["point"] is None:
         return None, ci
-    return (ci["lo"] > 0), ci
+    span = human_span(key)
+    ci["span_required"] = span
+    return (ci["lo"] > span), ci
 
 
 def evaluate(runs: dict[str, dict], n_boot: int = 1000) -> list[dict]:
@@ -155,23 +165,33 @@ def fmt(v):
     return f"{v:.3f}" if isinstance(v, float) else str(v)
 
 
+CAPTION = ("Rule (pre-registered): a result counts as reproduced when the LLM shows the same direction as the humans and the "
+           "95 percent cluster-bootstrap interval of the regime difference (clusters: independent pool sessions) excludes zero "
+           "and, where the Stockholm-versus-Rome span of the measure is known, exceeds that span. Three states: reproduced, "
+           "not reproduced, not tested (arm not run). Denominator: results tested.")
+
+
 def render_md(rows: list[dict], runs: dict, model: str | None) -> str:
     n_yes = sum(1 for r in rows if r["replicated"] is True)
     n_scored = sum(1 for r in rows if r["replicated"] is not None)
-    out = [f"# Scorecard: {n_yes} of {n_scored} scored Bigoni results replicated ({model or 'all models'})", "",
+    out = [f"# Scorecard: {n_yes} of {n_scored} tested Bigoni results reproduced ({model or 'all models'})", "", CAPTION, "",
            "| # | Result | Measure | Human | LLM | Replicated |", "|---|---|---|---|---|---|"]
     for r in rows:
         hum = ", ".join(f"{LABEL.get(k, k)} {fmt(v)}" for k, v in r["human"].items())
         llm = ", ".join(f"{LABEL.get(k, k)} {fmt(v)}" for k, v in r["llm"].items())
-        rep = {True: "yes", False: "no", None: "not scored"}[r["replicated"]]
+        rep = {True: "reproduced", False: "not reproduced", None: "not tested"}[r["replicated"]]
         out.append(f"| {r['n']} | {r['result']} | {r['measure']} | {hum} | {llm} | {rep} |")
-    out += ["", "Runs used:"]
+    out += ["", "## n-table", "", "| regime | run | model | pool sessions | duopoles | periods per pool | pair-periods | calls | refusals | invalid JSON | errors | defaulted | cost USD |",
+            "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for reg, run in runs.items():
         s = run["summary"]
         c = s.get("counts", {})
-        out.append(f"- {LABEL.get(reg, reg)}: `{s['run_id']}` (model {s['model']}, seed {s['seed']}, pools {s.get('pools')}, "
-                   f"pair-periods {run['metrics']['n_pair_periods']}, defaulted {c.get('defaulted', 0)} of {c.get('calls', 0)} calls, "
-                   f"refusals {c.get('refusals', 0)})")
+        n = s.get("n_table", {})
+        cost = n.get("cost_usd")
+        out.append(f"| {LABEL.get(reg, reg)} | `{s['run_id']}` | {s['model']} | {s.get('pools')} | {s.get('duopoles')} | "
+                   f"{', '.join(str(v) for v in (s.get('periods_per_pool') or {}).values())} | {run['metrics']['n_pair_periods']} | "
+                   f"{c.get('calls', 0)} | {c.get('refusals', 0)} | {c.get('invalid_json', 0)} | {c.get('errors', 0)} | "
+                   f"{c.get('defaulted', 0)} | {'n/a' if cost is None else f'{cost:.2f}'} |")
     return "\n".join(out) + "\n"
 
 
@@ -193,7 +213,7 @@ def render_figure(rows: list[dict], path: pathlib.Path, model: str | None) -> No
     ax.set_ylim(0, 1)
     ax.axis("off")
     top = 0.97
-    ax.text(0, top + 0.015, f"Figure 1. Scorecard: {n_yes} of {n_scored} scored Bigoni results replicated by {model or 'the model'}",
+    ax.text(0, top + 0.015, f"Figure 1b. Scorecard: {n_yes} of {n_scored} tested Bigoni results reproduced by {model or 'the model'}",
             fontsize=12, weight="bold", va="bottom")
     y = top - 0.06
     for x, w, c in zip(xs, widths, cols):
@@ -223,12 +243,71 @@ def render_figure(rows: list[dict], path: pathlib.Path, model: str | None) -> No
             ax.text(xs[6] + 0.005, y - h / 2, f"{LABEL.get(k, k)}: {fmt(r['human'].get(k))} / {fmt(r['llm'].get(k))}", fontsize=8, va="center")
         else:
             ax.text(xs[6] + 0.005, y - h / 2, ".", fontsize=8, va="center")
-        ax.text(xs[7] + 0.005, y - h / 2, {True: "yes", False: "no", None: "not scored"}[r["replicated"]], fontsize=9, va="center")
+        ax.text(xs[7] + 0.005, y - h / 2, {True: "yes", False: "no", None: "not tested"}[r["replicated"]], fontsize=9, va="center")
         y -= row_h
     ax.text(0, y - 0.01, "Human values: Bigoni, Fridolfsson, Le Coq and Spagnolo (2009), Tables 4 and 5; 'n/a' = not yet transcribed. "
             "LLM values: this harness, rules in PREREGISTRATION.md.", fontsize=7, color="#555555", va="top")
     path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+
+
+def render_dotplot(rows: list[dict], runs: dict, path: pathlib.Path, model: str | None, n_boot: int = 300) -> None:
+    """Figure 1: one panel per Bigoni result, x = regime, dots = humans (pooled, Stockholm, Rome) and LLM with interval."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    from .analyze import cluster_bootstrap
+
+    human = load_human()
+    cities = human.get("cities", {})  # optional: {"stockholm": {regime: {measure: v}}, "rome": {...}}
+    hkey = {"cartel_rate": "cartel_rate", "report_rate_pair_given_cartel": "report_rate_given_cartel", "avg_price": "avg_price",
+            "cartel_price": "cartel_price", "deviation_rate": "deviation_rate", "relapse_rate_after_event": "relapse_rate"}
+    n_yes = sum(1 for r in rows if r["replicated"] is True)
+    n_scored = sum(1 for r in rows if r["replicated"] is not None)
+    fig, axes = plt.subplots(2, 4, figsize=(14, 6.4))
+    for r, ax in zip(rows, axes.flat):
+        regs = list(r["llm"].keys())
+        xs = list(range(len(regs)))
+        hv = [r["human"].get(k) for k in regs]
+        lv = [r["llm"].get(k) for k in regs]
+        los, his = [], []
+        for k in regs:
+            run = runs.get(k)
+            ci = None
+            if run is not None and run["metrics"].get(r["measure"]) is not None:
+                ci = cluster_bootstrap(run["rows"], [r["measure"]], n_boot=n_boot).get(r["measure"])
+            los.append(None if ci is None else ci["lo"])
+            his.append(None if ci is None else ci["hi"])
+        for city, marker in (("stockholm", "<"), ("rome", ">")):
+            cv = [((cities.get(city) or {}).get(k) or {}).get(hkey.get(r["measure"], r["measure"])) for k in regs]
+            if any(v is not None for v in cv):
+                ax.scatter([x for x, v in zip(xs, cv) if v is not None], [v for v in cv if v is not None], marker=marker,
+                           s=36, color="#7a7a7a", label=city.capitalize(), zorder=3)
+        ax.scatter([x for x, v in zip(xs, hv) if v is not None], [v for v in hv if v is not None], marker="o", s=48,
+                   facecolors="white", edgecolors="#333333", label="Humans (pooled)", zorder=4)
+        for x, v, lo, hi in zip(xs, lv, los, his):
+            if v is None:
+                continue
+            if lo is not None:
+                ax.plot([x + 0.15, x + 0.15], [lo, hi], color="#1f5fa8", linewidth=1.5, zorder=2)
+            ax.scatter([x + 0.15], [v], marker="s", s=44, color="#1f5fa8", label="LLM" if x == xs[0] else None, zorder=5)
+        state = {True: "reproduced", False: "not reproduced", None: "not tested"}[r["replicated"]]
+        ax.set_title(f"{r['n']}. {r['result']}\n{state}", fontsize=9, loc="left",
+                     color={True: "#2a7a2a", False: "#a83232", None: "#666666"}[r["replicated"]])
+        ax.set_xticks(xs)
+        ax.set_xticklabels([LABEL.get(k, k) for k in regs], fontsize=7, rotation=20)
+        ax.set_ylabel(r["measure"], fontsize=7)
+        ax.tick_params(axis="y", labelsize=7)
+        ax.grid(axis="y", linewidth=0.3, alpha=0.5)
+    handles, labels = axes.flat[0].get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=4, fontsize=8, frameon=False)
+    fig.suptitle(f"Figure 1. Humans (2009) versus LLM ({model or 'model'}) per Bigoni result: {n_yes} of {n_scored} tested results reproduced. "
+                 "Bars: 95 percent cluster-bootstrap intervals over pool sessions.", fontsize=10, x=0.01, ha="left")
+    fig.tight_layout(rect=(0, 0.05, 1, 0.95))
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(path, dpi=200)
     plt.close(fig)
 
 
@@ -258,9 +337,10 @@ def main(argv=None) -> int:
                                               "metrics": {k: v["metrics"] for k, v in runs.items()}})
     md = render_md(rows, runs, args.model)
     (args.out / "scorecard.md").write_text(f"<!-- {header['generated_by']} at {header['time']} from commit {header['commit']}. Do not edit by hand. -->\n" + md)
-    render_figure(rows, args.out / "figure1_scorecard.png", args.model)
+    render_figure(rows, args.out / "figure1b_scorecard_table.png", args.model)
+    render_dotplot(rows, runs, args.out / "figure1_dotplot.png", args.model, n_boot=min(300, args.n_boot))
     print(md)
-    print(f"wrote {args.out}/scorecard.json, scorecard.md, figure1_scorecard.png")
+    print(f"wrote {args.out}/scorecard.json, scorecard.md, figure1_dotplot.png, figure1b_scorecard_table.png")
     return 0
 
 
