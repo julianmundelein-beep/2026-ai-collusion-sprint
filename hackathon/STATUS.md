@@ -95,9 +95,8 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 ## Waiting for
 
 - Jury: round R02 on the draft (sent 19:45 HKT)
-- Julian: title or headline (options under the abstract in paper/report.md), affiliation "Independent, Hong Kong", docx stays the source, cut to 8 pages (proposal: n-table to the appendix, pilot row out of Table 1, Related Work to three paragraphs)
+- Report session: apply title, affiliation and the cut to 8 pages (sent 19:55 HKT)
 - Julian: tell the cloud backend session that Figure 1 should be a 4x2 grid or use larger type (2x4 is too small at 6.5 inch width)
-- Julian: project name and affiliation for the report session
 - Julian: confirm the main-model rule (Haiku 5.5 as main model if it passes the pilot, Sonnet 5.5 as one V4 culture with 10 duopoles) and the project name (CartelBench recommended)
 - Julian: Modal account and credits (form in the inbox, per Discord) for the second provider in V4; the cloud environment reaches only api.anthropic.com, so V4 runs locally
 - Julian: Discord check (keys from the organizers, Modal credit redemption, pinned announcements), send the email draft in HACKATHON.md
