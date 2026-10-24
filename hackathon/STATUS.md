@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 23:35 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-25 02:30 HKT by the main session
 
 ## Clock
 
@@ -44,13 +44,13 @@ At most two long build sessions plus one short session at the same time. One ses
 | 0 | Main session | hackathon-kickoff | main folder | STATUS, FACTS, CORE_IDEA; commits DECISIONS | Julian + Claude | running | AI Collusion Research Sprint · Hauptsession |
 | 1 | Framework research | hackathon-kickoff (research) | main folder | HACKATHON.md, official/, private/JUDGES.md, private/COMPETITION.md | Claude | done (HACKATHON.md, JUDGES.md, COMPETITION.md, official/ committed); kept open for COMPETITION rescans | local_51c0819d-c7e3-4cb4-8036-c263bc6b9c22 |
 | 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | done (two rounds, 39 ideas, I24 chosen with build plan, commit d5e8cf9); archive on Julian's OK | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
-| 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | R03 running on the final PDF (sent 2026-10-25 00:05 HKT); R02 d12541e: rank 2 of 5, 4 / 3 / 3 | local_525668aa-4f92-4e55-8006-1293f749dce9 |
+| 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | R03 done (8f3ac56): rank 1 of 5, 4 / 4 / 4 in the scoring round, Presentation 3 in the full read; levers sent to the report session; done unless Julian wants R04 | local_525668aa-4f92-4e55-8006-1293f749dce9 |
 | 4 | Website | design-taste-frontend | own worktree or cloud | web/ (branch) | | dropped (not a deliverable) | |
 | 5 | Backend | hackathon-backend | cloud (claude.ai/code), branch `backend` | `cartelbench/` on its branch, README, docs/ | Claude (cloud) | all arms done (F13 to F40): core, validation, placebo, shifted grid, Sonnet second model, dose, NoReport, ReMatch, clone; V6 cut; branch `origin/backend` at c14c944 (23:10 HKT), 51 tests green, 23.51 USD spent; ready to merge | cloud |
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
 | 7 | Demo video | video-studio | main folder | private/video/ | | optional (3 to 5 min, decide after R02 and the clock) | |
 | 8 | Design | hackathon-design | main folder | DESIGN.md, private/design/ | | optional (only if figures or video need a look) | |
-| 9 | Report (paper) | none (skills klare-einreichung, docx) | main folder | paper/report.docx (source), paper/report.md (mirror), paper/report.pdf | Claude | complete draft with all arms (597e56c, 23:30 HKT): 8 pages before References, no "not run", no [F??], PDF text layer clean, submission file exported; waiting for Julian's title decision and R03 | local_d6d6a6d7-12df-4407-b0dd-9efb32c204cd |
+| 9 | Report (paper) | none (skills klare-einreichung, docx) | main folder | paper/report.docx (source), paper/report.md (mirror), paper/report.pdf | Claude | final title in (19890c4); applying the R03 levers (numbers, pre-registration sentence, layout, scoping, Sonnet as exploratory subsection); title length waits for Julian | local_d6d6a6d7-12df-4407-b0dd-9efb32c204cd |
 
 Rows the deliverables in HACKATHON.md do not need are set to `dropped` after the research (row 9 only runs when a report is required).
 
@@ -92,6 +92,11 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 | One paragraph separating strategic deterrence from a reaction to the words fine, leniency, reward, since punishments are only told | jury R01 (4 of 5) | Discussion, Limitations appendix | open |
 | Exact model IDs with date, verbatim prompts, seeds, one replication command | jury R01 (2 of 5) | appendix, README | open |
 | Headline is the divergence from humans with a tested mechanism, not the reproduction count; at least two providers so the claim is about LLMs | jury R01 (5 of 5 levers) | title, abstract, contributions, Figure 1 caption | open |
+| Numbers consistent across abstract, text, tables, figure and caption: leniency convictions 9 (3 by detection, 6 by report; 7 reporters), NoReport sign and interval, human fine value in panel 7, Result 7 tested and Result 8 not testable | jury R03 (5 of 5) | Table 3, Results, Methods, Figure 1 | open (report) |
+| Pre-registration sentence true: amendment 2 before the first paid call, amendment 3 (placebo, second model, pools of 10) after it; hypotheses and decision rules unchanged; pre-registered versus exploratory arms marked | jury R03 (red line) | Methods | open (report) |
+| Print layout: no wrapping numbers in Table 3, no label overlap in Figure 1 | jury R03 (5 of 5) | page 7 | open (report) |
+| Title under about 15 words with one claim | jury R03 (5 of 5) | page 1 | Julian decides |
+| Claims scoped: "to our knowledge", no "any model", mechanisms as interpretation, human values as point estimates; Sonnet as an exploratory subsection with the no-channel caveat | jury R03 (5 of 5) | abstract, Results, Discussion | open (report) |
 | No "[F??]" in the PDF: every gap filled or marked "not run"; pre-registration hash with timestamp (F20) | jury R02 (5 of 5) | whole report | done 597e56c, none left |
 | Known-effect arms and shifted-grid result reported even if unfavourable | jury R02 (5 of 5) | Table 1, contamination section | done 597e56c |
 | Placebo arm: full authority text with prohibition but zero penalty, to separate deterrence from the word "prohibited" | jury R02 (4 of 5) | Table 1 or 2, Discussion | done 597e56c |
@@ -104,7 +109,8 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Waiting for
 
-- Report session: apply the final title and re-export (sent 00:05 HKT); Jury: R03 running on the final PDF
+- Julian: shorter title (jury R03 options) or keep; decide whether the 82 cloud commits authored "Claude <noreply@anthropic.com>" stay in the public history (rewriting would change the pre-registration hashes cited in the report)
+- Julian: licence (gate open since 2026-10-24)
 - Report session: apply title, affiliation and the cut to 8 pages (sent 19:55 HKT)
 - Julian: tell the cloud backend session that Figure 1 should be a 4x2 grid or use larger type (2x4 is too small at 6.5 inch width)
 - Julian: confirm the main-model rule (Haiku 5.5 as main model if it passes the pilot, Sonnet 5.5 as one V4 culture with 10 duopoles) and the project name (CartelBench recommended)
@@ -116,7 +122,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Next step
 
-Julian picks the final title; jury R03 on paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf (597e56c); report session applies the R03 levers; then close-out per references/repo-abschluss.md (SUBMISSION.md, licence, translate what stays, remove hackathon/ and CLAUDE.md from the tree), repo public, form by Monday 16:59 HKT.
+Report session applies the R03 levers (no new run); Julian decides title length, commit authorship and licence; then close-out per references/repo-abschluss.md: SUBMISSION.md, LICENSE, translate what stays, remove hackathon/, CLAUDE.md and .claude/settings.json from the tree, repo public, form texts drafted; submission by Monday 16:59 HKT.
 
 ## Für die Skills
 
