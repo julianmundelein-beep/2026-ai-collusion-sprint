@@ -12,3 +12,4 @@
 - 2026-10-24 13:40 · main session · DROPPED · Website (4) and pitch deck (6): the only required deliverable is the research report PDF; repo and 3 to 5 min video are optional · Guidelines tab
 - 2026-10-24 13:55 · Julian · DECISION · Jury round R01 starts only after Julian has seen the shortlist · Julian wants to see IDEAS.md first
 - 2026-10-24 14:25 · Julian · DECISION · Official template downloaded as .docx and .pdf into hackathon/official/ (Google Doc from the Guidelines tab); the report is written on this template · Julian: "Ja, lade die offizielle Vorlage"
+- 2026-10-24 14:30 · Julian · DECISION · Ideen: Track 3 und Track 1 sind am interessantesten; Runde 2 weitet nur diese aus, mit Analogien aus menschlicher Kollusion und deren etablierten Methoden · Nachricht an die Ideen-Session
