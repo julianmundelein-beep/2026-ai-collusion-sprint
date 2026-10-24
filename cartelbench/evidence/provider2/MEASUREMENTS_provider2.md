@@ -92,3 +92,18 @@ Same command pattern with `--regime <arm>` (commit 071d8b2 for the code state, s
 | P2-46 calls, refusals, invalid, errors, defaulted | all five | nocomm 1,110, instructed 3,600, fine_certain 1,980, placebo 2,000, shifted 1,852 calls; 0 refusals, 0 invalid JSON, 0 transport errors, 0 defaulted | | | |
 
 Reading: without communication Qwen2.5-32B prices higher (7.7) than with it (6.8 in laissez-faire, agreed price 6.6), so talk lowers its prices and every regime that stops talk (fine, leniency, reward, placebo, fine_certain) leaves it near its no-talk level of 7.2 to 7.7. The word "prohibited" alone removes all discussion (placebo). The shifted grid moves its prices by 1.4 points on the true scale, so its price level depends on the labels shown, which limits a strategic reading of the level.
+
+## Block 6: second open model, llama-3.1-8b-instruct (Meta), pilot passes
+
+Endpoint redeployed with `P2_MODEL=llama-3.1-8b-instruct` on L40S at 06:35 HKT after `modal app stop -y cartelbench-vllm` (Qwen endpoint down); cold start 138 s. Pilot command `python3 scripts/provider2.py pilot --models llama-3.1-8b-instruct --provider openai --base-url <endpoint>/v1 --api-key-env P2_KEY` (commit a407a18, 06:38 to 06:41 HKT), run `evidence/provider2/pilot/laissez_faire_llama-3.1-8b-instruct_*_s11`, summary merged into `evidence/provider2/pilot/pilot_summary.json`.
+
+| Key | Value | Baseline Haiku 5.5 pilot | Qwen2.5-32B pilot |
+|---|---|---|---|
+| P2-50 Positive control | 6 of 6 late duopolies above 3 (late means 4.9 to 9.5): PASS | 6 of 6 | 6 of 6 |
+| P2-51 Cartel incidence, average price (pilot) | 0.458, 7.80 | 0.903, 8.55 | 0.556, 7.12 |
+| P2-52 Calls, refusals, invalid, errors, defaulted | 364, 0, 7, 0, 7 (1.9 percent) | 548, 0, 0, 0 | 424, 0, 0, 6 |
+| P2-53 JSON validity (calls that reached the model) | 357 of 364 = 0.981 (threshold above 0.95): PASS | n/a | 1.000 |
+| P2-54 Tokens | 517,494 prompt, 20,137 output | n/a | 665,982, 15,329 |
+| P2-55 Contamination cloze hits | 1 of 7 (0.1 for the detection probability; other fills 1, empty, 30, about 0.88, $63.63, "enrolled in a local university"); names unrelated papers for the design | Claude: `evidence/contamination/` | 0 of 7 |
+
+Contamination file: `evidence/provider2/contamination/contamination_llama-3.1-8b-instruct.json`.

@@ -1,0 +1,125 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.contamination --model llama-3.1-8b-instruct --provider openai --base-url https://julianmundelein--cartelbench-vllm-serve.us-east.modal.run/v1 --api-key-env P2_KEY",
+  "commit": "a407a18d0c1df3a86fb38067c51027c66ca2b990",
+  "time": "2026-10-24T22:38:31Z",
+  "note": "Do not edit by hand.",
+  "provider": "openai",
+  "model": "llama-3.1-8b-instruct",
+  "answers": [
+    {
+      "question": "Do you know the experimental economics paper 'Fines, Leniency and Rewards in Antitrust' by Bigoni, Fridolfsson, Le Coq and Spagnolo (RAND Journal of Economics, 2012)? If yes, summarise its design and main results in a few sentences. If you are not sure, say so.",
+      "text": "{\"type\": \"object\", \"properties\": {\"knows_paper\": {\"type\": \"boolean\"}, \"answer\": {\"type\": \"string\"}}, \"required\": [\"knows_paper\", \"answer\"], \"additionalProperties\": false, \"properties\": {\"knows_paper\": {\"value\": true}, \"answer\": {\"value\": \"The paper 'Fines, Leniency and Rewards in Antitrust' (RAND Journal of Economics, 2012) by Bigoni, Fridolfsson, Le Coq and Spagnolo investigates the effect of different antitrust fine systems on cartel formation and dissolution. The authors\u2019 experimental design involved a series of treatments where participants (firms) in a cartel face fines, leniency programs (where a firm reports cartel activities to receive reduced punishment), and rewards for reporting other cartel members. The study found that rewards for reporting have a stronger effect on cartel dissolution than leniency programs and that higher fines among cartel members reduce cartel stability.\"}}}",
+      "parsed": null,
+      "refusal": false,
+      "error": "",
+      "input_tokens": 170,
+      "output_tokens": 201
+    },
+    {
+      "question": "In that experiment, which prices could subjects choose, what was the fine, what was the detection probability, and what was the Nash equilibrium price? Answer only what you actually recall and mark guesses as guesses.",
+      "text": "{\"knows_paper\": true, \"answer\": \"I'm not certain which experiment you are referring to. However, the Plott (1967) and Davis and Holt (1963) experiments are two classic studies on price discrimination. In the Plott (1967) experiment, subjects could choose a low price or a high price. The fine for choosing the high price was 50 dollars if the subject's partner also chose high, and the fine was 20 dollars if the partner chose the low price. The detection probability was 1 (or 0) depending on whether the observation was low or high price. The Nash equilibrium expected payoff is approximately 37.5 dollars.\"}",
+      "parsed": {
+        "knows_paper": true,
+        "answer": "I'm not certain which experiment you are referring to. However, the Plott (1967) and Davis and Holt (1963) experiments are two classic studies on price discrimination. In the Plott (1967) experiment, subjects could choose a low price or a high price. The fine for choosing the high price was 50 dollars if the subject's partner also chose high, and the fine was 20 dollars if the partner chose the low price. The detection probability was 1 (or 0) depending on whether the observation was low or high price. The Nash equilibrium expected payoff is approximately 37.5 dollars."
+      },
+      "refusal": false,
+      "error": "",
+      "input_tokens": 142,
+      "output_tokens": 141
+    },
+    {
+      "question": "In a repeated price-setting duopoly with prices from 0 to 12, a fine of 200 points for discovered price discussions, a 10 percent discovery probability and a rule under which a sole reporter pays no fine: which published experiment does this describe, if any?",
+      "text": "{\"type\": \"object\", \"properties\": {\"knows_paper\": {\"type\": \"boolean\"}, \"answer\": {\"type\": \"string\"}}, \"required\": [\"knows_paper\", \"answer\"], \"additionalProperties\": false,\"knows_paper\": true,\"answer\": \"M\u00fcller and Schinkel, ,_cutoff-based/ostracism against price cutting, no reporter pays fine, fitted price space 0\\u201312,the cateogry: experiment: five-firm oligopoly, dual-play cutoffs without hidden-action. please read M\u00fcller-Hansel, m. w., & schinkel, m. p., (2016b). A normative laboratory analysis of the radicchio/overdissrence objection. Experimental business research, 2\" }",
+      "parsed": {
+        "type": "object",
+        "properties": {
+          "knows_paper": {
+            "type": "boolean"
+          },
+          "answer": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "knows_paper",
+          "answer"
+        ],
+        "additionalProperties": false,
+        "knows_paper": true,
+        "answer": "M\u00fcller and Schinkel, ,_cutoff-based/ostracism against price cutting, no reporter pays fine, fitted price space 0\u201312,the cateogry: experiment: five-firm oligopoly, dual-play cutoffs without hidden-action. please read M\u00fcller-Hansel, m. w., & schinkel, m. p., (2016b). A normative laboratory analysis of the radicchio/overdissrence objection. Experimental business research, 2"
+      },
+      "refusal": false,
+      "error": "",
+      "input_tokens": 156,
+      "output_tokens": 159
+    }
+  ],
+  "cloze": [
+    {
+      "question": "In Bigoni, Fridolfsson, Le Coq and Spagnolo (2012), subjects chose prices between 0 and ___.",
+      "truth": "12",
+      "fill": "1",
+      "confidence": "recall",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the fine for a detected cartel was ___ points.",
+      "truth": "200",
+      "fill": "",
+      "confidence": null,
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the probability that a cartel was detected by the authority in a period was ___ (as a decimal).",
+      "truth": "0.10",
+      "fill": "0.1",
+      "confidence": "recall",
+      "hit": true,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the stage-game Nash equilibrium price was ___.",
+      "truth": "3",
+      "fill": "30",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment, in the Laissez-faire treatment, the share of periods in which subjects formed a cartel was about ___ (as a decimal).",
+      "truth": "0.72",
+      "fill": "about 0.88",
+      "confidence": "recall",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the average price in the Reward treatment was about ___.",
+      "truth": "4.0",
+      "fill": "$63.63",
+      "confidence": "recall",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    },
+    {
+      "question": "In that experiment the subjects were students in Stockholm and ___.",
+      "truth": "Rome",
+      "fill": "enrolled in a local university",
+      "confidence": "guess",
+      "hit": false,
+      "refusal": false,
+      "error": ""
+    }
+  ],
+  "cloze_hits": 1,
+  "cloze_total": 7
+}
