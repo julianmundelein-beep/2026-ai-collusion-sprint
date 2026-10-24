@@ -111,7 +111,6 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 - Julian: shorter title (jury R03 options) or keep; decide whether the 82 cloud commits authored "Claude <noreply@anthropic.com>" stay in the public history (rewriting would change the pre-registration hashes cited in the report)
 - Julian: licence (gate open since 2026-10-24)
-- Julian: Modal refuses any GPU without a payment method on file; decide whether to add one (with a spend limit at the 50 USD credits) or drop the second provider; session provider2 waits at 4325d3e, 0.06 USD used, no endpoint running; time box Sunday 14:00 HKT
 - Report session: apply title, affiliation and the cut to 8 pages (sent 19:55 HKT)
 - Julian: tell the cloud backend session that Figure 1 should be a 4x2 grid or use larger type (2x4 is too small at 6.5 inch width)
 - Julian: confirm the main-model rule (Haiku 5.5 as main model if it passes the pilot, Sonnet 5.5 as one V4 culture with 10 duopoles) and the project name (CartelBench recommended)
