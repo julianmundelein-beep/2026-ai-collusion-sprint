@@ -66,7 +66,7 @@ Flow (three to five steps):
 
 The single source for wording on the deck, website, video and forms. Julian picks the wording; the pick goes to DECISIONS.md as KEEP.
 
-- Project name (KEEP 2026-10-24 19:55): CartelBench. Report title (KEEP): "Same game, different player: fines, leniency and rewards deter LLM pricing agents more than people, and the cartels that survive never break". Author Julian Mundelein, affiliation "Independent, Hong Kong".
+- Project name (KEEP 2026-10-24 19:55): CartelBench. Report title (KEEP, revised 20:05 after R02): "Same game, different player: fines, leniency and rewards deter LLM pricing agents more than people, and the cartels that survive hold their price". Author Julian Mundelein, affiliation "Independent, Hong Kong".
 - One sentence (for forms), options: (a) "We replay a published cartel lab experiment with LLM pricing agents under identical rules, payoffs and instructions, and report where fines, leniency and whistleblower rewards work on agents as on humans and where they flip." (recommended); (b) "A human-calibrated testbed that measures how cartel policy instruments act on LLM pricing agents."
 - Why sentence, options: (a) "Cartel policy rests on assumptions about human players; pricing agents are a different player, and nobody has checked whether the rules still hold." (recommended); (b) "Authorities will face agent cartels before they have tested a single instrument against them."
 - Slogan (KEEP, carried by the title): "Same game, different player."

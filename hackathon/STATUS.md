@@ -97,13 +97,12 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 | n-table stays in the body, slim | jury R02 (5 of 5) | Results | open |
 | Numbers consistent: seeds, convictions, costs, pilot count, one measure throughout | jury R02 (4 of 5) | Methods, Table 3, Appendix C, abstract | open |
 | Figure 1 honest and legible: no data in untested panels, plain axis labels, regime difference with interval per panel, Stockholm-Rome span defined in Methods | jury R02 (5 of 5) | Figure 1, Methods | open |
-| No absolutes and no "LLMs" from one model: drop "never", scope to the tested model until a second provider runs | jury R02 (5 of 5) | title, abstract, conclusion | open (title is KEEP, Julian decides) |
+| No absolutes and no "LLMs" from one model: drop "never", scope to the tested model until a second provider runs | jury R02 (5 of 5) | title, abstract, conclusion | title decided 20:05, abstract and conclusion open |
 | Explain the coincidences: 0.716 formation in laissez-faire for humans and agents, 3.33 under leniency and reward, collapsing reward intervals | jury R02 (4 of 5) | Results | open |
 | PDF text layer: fi and fl ligatures lose their Unicode mapping (pdftotext reads "ne" for "fine"); export with a ToUnicode-mapped font or ligatures off | jury session (machine readability) | export | open |
 
 ## Waiting for
 
-- Julian: release a softer title without "never break" (jury R02, 5 of 5), or keep the KEEP wording
 - Julian: tell the cloud backend session: placebo arm (authority text, zero penalty) next to fine_certain and the shifted grid; one sentence on why leniency and reward both average 3.33 and the reward intervals collapse; PREREGISTRATION.md still says pools of 20 in the settings (should be 4 pools of 10); test counts differ (report 43, table 46, log 49)
 - Report session: apply title, affiliation and the cut to 8 pages (sent 19:55 HKT)
 - Julian: tell the cloud backend session that Figure 1 should be a 4x2 grid or use larger type (2x4 is too small at 6.5 inch width)
