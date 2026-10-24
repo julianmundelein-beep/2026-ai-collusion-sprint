@@ -1,8 +1,8 @@
 {
   "header": true,
   "generated_by": "python3 cartelbench/scripts/ledger.py",
-  "commit": "fd0ea833aea61708fb131903bd58838b4da4b23c",
-  "time": "2026-10-24T21:14:20Z",
+  "commit": "fd02009bf046d52341abee7e4f2b232768323522-dirty",
+  "time": "2026-10-24T21:22:56Z",
   "note": "Do not edit by hand.",
   "sections": {
     "base": {
@@ -1924,8 +1924,8 @@
         "nocomm_scripted-nash_s81"
       ],
       "periods_sha256_without_header": [
-        "367abd7123904e97e00349951c9630f30262604ae59335125292a469136de37e",
-        "5764831fb6f358d5b1fc2d646dec4bcfe94254914a238e7285da2be7bc6135a7"
+        "5cac38cf0188ef90a77febcd156d1b7abb92c723213441e0323072c5b5fe0073",
+        "71ae8c3c65d8941936a0136d6df2fa78ac3873c35edfa37822fc1fe31320bc3a"
       ],
       "note": "not committed (52 MB, deterministic); rebuilt by python3 cartelbench/scripts/screen_fp.py"
     },
@@ -1936,8 +1936,8 @@
         "nocomm_scripted-scatter_emp_s82"
       ],
       "periods_sha256_without_header": [
-        "ae2dbbad5b4cc9ecd75334931b978d6399bc2a703fb5fc6960fd08eaf8a4f3e6",
-        "71b230bc17c34caf5b1961ffb84b58a9d4fd8d7d14cd510f33587d629ab00de9"
+        "d387de72b834cfc8d48bd8a973737ae83395cbe089c4538d03f20f5de35302a9",
+        "dfb9148a6302b9913b4121200bd93bf1a80361743d4d2cdc219879b50d3b868a"
       ],
       "note": "not committed (52 MB, deterministic); rebuilt by python3 cartelbench/scripts/screen_fp.py"
     },
@@ -1948,8 +1948,8 @@
         "nocomm_scripted-scatter24_s83"
       ],
       "periods_sha256_without_header": [
-        "116b3ede79bdd410392aa8de3fa9f0c3636aa0dbba84aeca0dab3fffb3e1755c",
-        "776611de199ed51616dedf2093be41a5a9ca72d87eece4c552dde38307d1136a"
+        "3f68bc6cf46b6dd585db8c64dd20cb89e40eab290af62c36f9e562a5e145414d",
+        "147e0f5db1be3cee4b5dbd1a6066e55eebb82ee299e53ca6e2abb558deeaa634"
       ],
       "note": "not committed (52 MB, deterministic); rebuilt by python3 cartelbench/scripts/screen_fp.py"
     },
@@ -1960,8 +1960,8 @@
         "nocomm_scripted-scatter15_s84"
       ],
       "periods_sha256_without_header": [
-        "8524655f1c5cd0496d2e076d0462bb026fde4880ea37e023374bcbfd4780c86e",
-        "b74894c0cfd64f0521ef9efdff3ce764b1e32240eb6030cb2b26832d9497a04a"
+        "5f8156330e52c3875aaddb811aa0b23032064f804fc5f33500a13cc3f27a304f",
+        "de955c1027bc6f0007899c3fd9e8d480f6282083f10bc09bd638b7844af5631e"
       ],
       "note": "not committed (52 MB, deterministic); rebuilt by python3 cartelbench/scripts/screen_fp.py"
     },
@@ -1972,8 +1972,8 @@
         "nocomm_scripted-collude_s85"
       ],
       "periods_sha256_without_header": [
-        "edf30cc111c515839781d7b468f0d80e8333a1e46823aec034226340418f944e",
-        "a08042ae20204899cb37e20171d13331d9129276440f43dabdbc658d9a1baac0"
+        "1200827ebf5e474d984eccbbfe18941f7b2ddd658a7448f55203998fcd56860f",
+        "efa8fb420a580d3d80eff93424a12da22b1b2eae1fc4a345290abc1e44b0db21"
       ],
       "note": "not committed (52 MB, deterministic); rebuilt by python3 cartelbench/scripts/screen_fp.py"
     }
