@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 16:40 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-24 17:15 HKT by the main session
 
 ## Clock
 
@@ -25,7 +25,7 @@
 - [ ] Registered; questions to the organizers sent, including mandatory content
 - [x] Idea chosen: I24 Bigoni twin, CORE_IDEA.md written 2026-10-24 16:25 HKT, decision in DECISIONS.md 15:58 HKT
 - [ ] Licence decided with the team (DECISIONS.md)
-- [ ] Toolchain proven (hello world runs or is deployed)
+- [x] Toolchain proven: engine, tests and scripted players run in the cloud (F01 to F06); real API call still open
 - [ ] Happy path runs end to end with real evidence
 - [ ] Tests green
 - [ ] Deck, video and docs final; numbers checked against FACTS.md; talk time measured
@@ -46,7 +46,7 @@ At most two long build sessions plus one short session at the same time. One ses
 | 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | done (two rounds, 39 ideas, I24 chosen with build plan, commit d5e8cf9); archive on Julian's OK | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
 | 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | R01 done (e9f0c70): idea rank 2 of 4, medians 4 / 2 / 3; stays open for R02 on the first running state | local_525668aa-4f92-4e55-8006-1293f749dce9 |
 | 4 | Website | design-taste-frontend | own worktree or cloud | web/ (branch) | | dropped (not a deliverable) | |
-| 5 | Backend | hackathon-backend | cloud (claude.ai/code), branch `backend` | `cartelbench/` on its branch, README, docs/ | Claude (cloud) | requested 2026-10-24 16:30 HKT (task_3bb7fe33); reports only on claude.ai, main session reads the branch on "Stand?" | cloud |
+| 5 | Backend | hackathon-backend | cloud (claude.ai/code), branch `backend` | `cartelbench/` on its branch, README, docs/ | Claude (cloud) | running; branch `origin/backend` at 4f90714 (17:08 HKT): harness, 43 tests green, scripted baseline, pre-registration, R01 notes applied; pilot blocked until the VM reads the key | cloud |
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
 | 7 | Demo video | video-studio | main folder | private/video/ | | optional (3 to 5 min, decide after R02 and the clock) | |
 | 8 | Design | hackathon-design | main folder | DESIGN.md, private/design/ | | optional (only if figures or video need a look) | |
@@ -94,6 +94,9 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Waiting for
 
+- Julian: download OK for the Bigoni working paper PDF into hackathon/private/sources/ (the cloud network blocks the publishers; the backend reconstructed the payoff table from four anchor cells and must verify it cell by cell)
+- Julian: confirm the main-model rule (Haiku 5.5 as main model if it passes the pilot, Sonnet 5.5 as one V4 culture with 10 duopoles) and the project name (CartelBench recommended)
+- Julian: Modal account and credits (form in the inbox, per Discord) for the second provider in V4; the cloud environment reaches only api.anthropic.com, so V4 runs locally
 - Julian: Discord check (keys from the organizers, Modal credit redemption, pinned announcements), send the email draft in HACKATHON.md
 - Julian: tell the cloud backend session that `ANTHROPIC_API_KEY` is set (entered 2026-10-24 16:55 HKT; the VM reads it after its next pause) and to merge main for the jury notes; licence decided later, before submission
 - Julian: pick project name, one sentence, why sentence, slogan from CORE_IDEA.md "Message"
