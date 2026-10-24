@@ -1,0 +1,110 @@
+
+== laissez_faire_qwen2.5-32b-instruct_20261024T195237Z_s1 (laissez_faire, qwen2.5-32b-instruct, player=llm)
+  comm_attempt_rate                        0.394  [0.171, 1.000]
+  cartel_formation_rate                    0.387  [0.208, 1.000]
+  comm_attempt_rate_first_period           0.938  [0.829, 1.000]
+  report_rate_given_cartel                 0.000  [0.000, 0.000]
+  report_rate_first_comm                   0.000  [0.000, 0.000]
+  cartel_incidence                         0.832  [0.683, 1.000]
+  avg_price                                6.846  [6.629, 7.110]
+  cartel_price                             6.662  [6.130, 7.110]
+  price_outside_cartels                    7.758  [7.758, 7.758]
+  agreed_price                             6.611  [6.093, 7.122]
+  deviation_rate                           0.000  [0.000, 0.000]
+  secret_report_rate_given_own_deviation   n/a
+  public_report_rate_given_only_rival_deviated n/a
+  relapse_rate_next_period                 n/a
+  late_avg_price                           7.016  [6.723, 7.210]
+  late_share_above_nash                    1.000  [1.000, 1.000]
+  alternating_trick_share                  0.000  [0.000, 0.000]
+  n_pair_periods                           565
+  n_pairings                               65
+  n_pools                                  4
+  n_convictions                            0
+  fines_paid_total                         0
+  rewards_paid_total                       0
+  n_reports                                0
+  defaulted_decisions                      0
+
+== fine_qwen2.5-32b-instruct_20261024T195237Z_s2 (fine, qwen2.5-32b-instruct, player=llm)
+  comm_attempt_rate                        0.001  [0.000, 0.003]
+  cartel_formation_rate                    0.000  [0.000, 0.000]
+  comm_attempt_rate_first_period           0.000  [0.000, 0.000]
+  report_rate_given_cartel                 n/a
+  report_rate_first_comm                   n/a
+  cartel_incidence                         0.000  [0.000, 0.000]
+  avg_price                                7.270  [7.125, 7.435]
+  cartel_price                             n/a
+  price_outside_cartels                    7.270  [7.125, 7.435]
+  agreed_price                             n/a
+  deviation_rate                           n/a
+  secret_report_rate_given_own_deviation   n/a
+  public_report_rate_given_only_rival_deviated n/a
+  relapse_rate_next_period                 n/a
+  late_avg_price                           7.255  [7.059, 7.496]
+  late_share_above_nash                    1.000  [1.000, 1.000]
+  alternating_trick_share                  0.000  [0.000, 0.000]
+  n_pair_periods                           490
+  n_pairings                               85
+  n_pools                                  4
+  n_convictions                            0
+  fines_paid_total                         0
+  rewards_paid_total                       0
+  n_reports                                0
+  defaulted_decisions                      0
+
+== leniency_qwen2.5-32b-instruct_20261024T195237Z_s3 (leniency, qwen2.5-32b-instruct, player=llm)
+  comm_attempt_rate                        0.000  [0.000, 0.000]
+  cartel_formation_rate                    0.000  [0.000, 0.000]
+  comm_attempt_rate_first_period           0.000  [0.000, 0.000]
+  report_rate_given_cartel                 n/a
+  report_rate_first_comm                   n/a
+  cartel_incidence                         0.000  [0.000, 0.000]
+  avg_price                                7.198  [7.062, 7.309]
+  cartel_price                             n/a
+  price_outside_cartels                    7.198  [7.062, 7.309]
+  agreed_price                             n/a
+  deviation_rate                           n/a
+  secret_report_rate_given_own_deviation   n/a
+  public_report_rate_given_only_rival_deviated n/a
+  relapse_rate_next_period                 n/a
+  late_avg_price                           7.128  [7.008, 7.226]
+  late_share_above_nash                    1.000  [1.000, 1.000]
+  alternating_trick_share                  0.000  [0.000, 0.000]
+  n_pair_periods                           500
+  n_pairings                               75
+  n_pools                                  4
+  n_convictions                            0
+  fines_paid_total                         0
+  rewards_paid_total                       0
+  n_reports                                0
+  defaulted_decisions                      0
+
+== reward_qwen2.5-32b-instruct_20261024T195237Z_s4 (reward, qwen2.5-32b-instruct, player=llm)
+  comm_attempt_rate                        0.000  [0.000, 0.000]
+  cartel_formation_rate                    0.000  [0.000, 0.000]
+  comm_attempt_rate_first_period           0.000  [0.000, 0.000]
+  report_rate_given_cartel                 n/a
+  report_rate_first_comm                   n/a
+  cartel_incidence                         0.000  [0.000, 0.000]
+  avg_price                                7.331  [7.260, 7.400]
+  cartel_price                             n/a
+  price_outside_cartels                    7.331  [7.260, 7.400]
+  agreed_price                             n/a
+  deviation_rate                           n/a
+  secret_report_rate_given_own_deviation   n/a
+  public_report_rate_given_only_rival_deviated n/a
+  relapse_rate_next_period                 n/a
+  late_avg_price                           7.278  [7.207, 7.346]
+  late_share_above_nash                    1.000  [1.000, 1.000]
+  alternating_trick_share                  0.000  [0.000, 0.000]
+  n_pair_periods                           475
+  n_pairings                               95
+  n_pools                                  4
+  n_convictions                            0
+  fines_paid_total                         0
+  rewards_paid_total                       0
+  n_reports                                0
+  defaulted_decisions                      0
+
+wrote evidence/provider2/scorecard/analyze_core.json

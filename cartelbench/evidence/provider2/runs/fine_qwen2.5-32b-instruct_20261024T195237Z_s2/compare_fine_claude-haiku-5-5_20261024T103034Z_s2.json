@@ -1,0 +1,45 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.compare evidence/provider2/runs/fine_qwen2.5-32b-instruct_20261024T195237Z_s2 evidence/runs/fine_claude-haiku-5-5_20261024T103034Z_s2 --keys cartel_incidence,cartel_formation_rate,avg_price",
+  "commit": "c7dfe43eade66a5263646c9b9e5f6fbd51029660-dirty",
+  "time": "2026-10-24T21:11:17Z",
+  "note": "Do not edit by hand.",
+  "run_a": "fine_qwen2.5-32b-instruct_20261024T195237Z_s2",
+  "run_b": "fine_claude-haiku-5-5_20261024T103034Z_s2",
+  "model_a": "qwen2.5-32b-instruct",
+  "model_b": "claude-haiku-5-5",
+  "clusters_a": 4,
+  "clusters_b": 4,
+  "differences": {
+    "cartel_incidence": {
+      "a": 0.0,
+      "b": 0.4387755102040816,
+      "diff": {
+        "point": -0.4387755102040816,
+        "lo": -0.4823529411764706,
+        "hi": -0.39148936170212767,
+        "n_boot": 1000
+      }
+    },
+    "cartel_formation_rate": {
+      "a": 0.0,
+      "b": 0.15644171779141106,
+      "diff": {
+        "point": -0.15644171779141106,
+        "lo": -0.18421052631578946,
+        "hi": -0.11764705882352941,
+        "n_boot": 1000
+      }
+    },
+    "avg_price": {
+      "a": 7.270408163265306,
+      "b": 5.5928571428571425,
+      "diff": {
+        "point": 1.6775510204081634,
+        "lo": 1.4334087481146307,
+        "hi": 1.9757700857415053,
+        "n_boot": 1000
+      }
+    }
+  }
+}
