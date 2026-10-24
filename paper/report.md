@@ -117,7 +117,7 @@ Table 3. Denominators, reliability and cost of the core regimes (Claude Haiku 5.
 
 **Deterrence or a reaction to the words.** Punishments here are told, not paid, so a drop in formation could be deterrence or a reaction to the vocabulary of prohibition. The fine, leniency and reward instructions share every word and differ only in the two sentences on who pays after a report, yet formation falls from 0.156 to 0.020 to 0.008 and the report rate rises from 0.005 to 0.375 to 0.667 [F14, F16, F17]. The placebo arm keeps the full authority text but sets the penalty to zero: incidence 0.714, between laissez-faire 0.956 and fine 0.439 (placebo minus laissez-faire -0.242 [-0.325, -0.158], placebo minus fine +0.275 [+0.191, +0.356]) [F26]: the word "prohibited" removes about half of the fine's effect, the penalty the other half.
 
-**What this means for a competition authority.** The Hong Kong Competition Commission's leniency policy offers immunity to the first cartel member that reports (HKCC, 2024); its logic is the race to confess. For Haiku 5.5 the race is run before the cartel forms; for Sonnet 5.5 there is no race, because nothing is said. An authority would see fewer explicit cartels and fewer cases than with human firms, while surviving cartels hold the monopoly price.
+**What this means for a competition authority.** The Hong Kong Competition Commission's leniency policy offers immunity to the first cartel member that reports (HKCC, 2024), a race to confess. For Haiku 5.5 the race is run before the cartel forms; for Sonnet 5.5 nothing is said. An authority would see fewer explicit cartels and fewer cases than with human firms, while surviving cartels hold the monopoly price.
 
 ### Limitations
 
@@ -127,7 +127,7 @@ The laboratory game is not a market. The results cover two Claude models at one 
 
 ## Code and Data
 
-- Code repository: https://github.com/julianmundelein-beep/2026-ai-collusion-sprint (harness, pre-registration, measurements with command and result file per number, every call, period and summary per run under `cartelbench/evidence/`; public from submission). All code was written during the sprint; there is no preexisting code.
+- Code repository: https://github.com/julianmundelein-beep/2026-ai-collusion-sprint (harness, pre-registration, measurements with command and result file per number, all call records; public from submission). All code was written during the sprint; no preexisting code.
 
 ## References
 
