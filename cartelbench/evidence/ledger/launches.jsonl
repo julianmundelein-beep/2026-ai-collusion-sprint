@@ -40,3 +40,4 @@
 {"event": "end", "run_id": "laissez_faire_claude-haiku-5-5_20261024T190829Z_s41", "status": "complete", "cost_usd": 0.7943232050000001, "calls": 3976, "time": "2026-10-24T20:05:02Z"}
 {"event": "end", "run_id": "reward_claude-haiku-5-5_20261024T195637Z_s64", "status": "complete", "cost_usd": 0.50202952, "calls": 1960, "time": "2026-10-24T20:20:55Z"}
 {"event": "end", "run_id": "leniency_claude-haiku-5-5_20261024T195637Z_s63", "status": "complete", "cost_usd": 0.51611825, "calls": 1908, "time": "2026-10-24T20:20:56Z"}
+{"event": "end", "run_id": "fine_claude-haiku-5-5_20261024T195637Z_s62", "status": "complete", "cost_usd": 0.63655368, "calls": 2288, "time": "2026-10-24T20:25:47Z"}
