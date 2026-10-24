@@ -140,3 +140,51 @@ def test_original_variant_unchanged_against_recorded_runs():
                 assert prompts.system_prompt(REGIMES[reg], t, names[agent], 0) == text
                 checked += 1
     assert checked == 160
+
+
+def test_screen_step_counts_and_resets():
+    from cartelbench.screen import episode_hits, screen_step
+    assert screen_step(0, 5, 5, 4, 2) == (1, False)
+    assert screen_step(1, 5, 9, 4, 2) == (0, True)
+    assert screen_step(1, 4, 9, 4, 2) == (0, False)        # 4 is not above 4
+    assert episode_hits([(9, 9)] * 5, 4, 2) == 2           # hit in periods 2 and 4, the count restarts after a hit
+    assert episode_hits([(9, 9), (3, 3), (9, 9)], 4, 2) == 0
+
+
+def test_screen_regimes_in_the_engine(tmp_path):
+    from cartelbench.analyze import run_metrics
+    from cartelbench.prompts import system_prompt
+    from cartelbench.game import load_payoff_table
+    from cartelbench.regimes import REGIMES
+    t = load_payoff_table()
+    assert "PRICE SCREEN" in system_prompt(REGIMES["nocomm_screen"], t, "Firm A")
+    assert "above 4 in 2 consecutive periods" in system_prompt(REGIMES["fine_screen"], t, "Firm A")
+    for reg in ("laissez_faire", "fine", "leniency", "reward", "nocomm"):
+        assert "PRICE SCREEN" not in system_prompt(REGIMES[reg], t, "Firm A")
+    nash = _scripted(tmp_path, "nocomm_screen", "nash", 7, duopoles=4, pools=2)
+    m = run_metrics(nash)
+    assert m["n_screen_penalties"] == 0 and m["mean_points_per_agent_period"] == 100
+    hi = _scripted(tmp_path, "nocomm_screen", "collude", 8, duopoles=4, pools=2)
+    periods = [json.loads(x) for x in (hi / "periods.jsonl").read_text().splitlines()][1:]
+    for r in periods:   # always 9: penalty in every second period of a pairing
+        assert r["screen_hit"] == (r["pairing_period"] % 2 == 0)
+        assert r["fines"] == ([-200, -200] if r["screen_hit"] else [0, 0])
+    fs = _scripted(tmp_path, "fine_screen", "collude", 9, duopoles=4, pools=2)
+    periods = [json.loads(x) for x in (fs / "periods.jsonl").read_text().splitlines()][1:]
+    assert any(r["conviction"] == "screen" for r in periods)
+    for r in periods:
+        assert r["fines"] in ([0, 0], [-200, -200])          # never a second penalty in one period
+        if r["conviction"] in ("detection", "report"):
+            assert not r["screen_hit"]
+    plain = _scripted(tmp_path, "fine", "collude", 9, duopoles=2, pools=1)
+    rec = json.loads((plain / "periods.jsonl").read_text().splitlines()[1])
+    assert "screen_hit" not in rec
+
+
+def test_scatter_players_price_around_nash(tmp_path):
+    from cartelbench.analyze import run_metrics
+    d = _scripted(tmp_path, "nocomm", "scatter24", 5, duopoles=10, pools=2)
+    rows = [json.loads(x) for x in (d / "periods.jsonl").read_text().splitlines()][1:]
+    prices = {p for r in rows for p in r["prices"]}
+    assert prices == {2, 3, 4}
+    assert run_metrics(d)["cartel_incidence"] == 0

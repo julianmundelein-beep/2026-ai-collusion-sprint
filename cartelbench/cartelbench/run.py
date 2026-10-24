@@ -34,7 +34,8 @@ def build_parser() -> argparse.ArgumentParser:
     ap.add_argument("--provider", choices=["anthropic", "openai"], default="anthropic")
     ap.add_argument("--base-url", default=os.environ.get("OPENAI_BASE_URL", ""), help="OpenAI-compatible endpoint (provider openai)")
     ap.add_argument("--api-key-env", default="OPENAI_API_KEY", help="env var holding the key for provider openai")
-    ap.add_argument("--player", choices=["llm", "collude", "deviate", "nash", "random", "tit"], default="llm")
+    ap.add_argument("--player", choices=["llm", "collude", "deviate", "nash", "random", "tit", "scatter_emp", "scatter24", "scatter15"],
+                    default="llm")
     ap.add_argument("--duopoles", type=int, default=20)
     ap.add_argument("--pools", type=int, default=4, help="independent pool sessions, the bootstrap unit (default 4 pools of 10 agents)")
     ap.add_argument("--pool-size", type=int, default=0, help="agents per pool; 0 = 2 * duopoles / pools (paper: 20)")
