@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-25 03:05 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-25 07:15 HKT by the main session
 
 ## Clock
 
@@ -122,7 +122,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Next step
 
-Backend round 4 in the cloud (amendment 4, K2, K1, prompt robustness, ledger, then amendment 5 and K3 price screen); second provider on Modal as a local worktree session on branch `provider2` once Julian's Modal token is set (pilot by Sunday 14:00 HKT or dropped); report last in one pass; close-out and submission by Monday 16:59 HKT.
+Both backend strands are done (cloud round 4 on `origin/backend` 923fa17: K1, K2, prompt robustness, K3 price screen, ledger; provider2 on local branch `claude/inspiring-khorana-59467e` b8823c5: Qwen2.5-32B and Llama-3.1-8B). Facts F45 to F62 entered. On Julian's word: merge both into main, then the report session writes the final version in one pass (R03 levers, R04 K6, Julian's markings J1 to J8, F45 to F62, reframed results across four models and three families, the price screen as "what helps"), then R05 on the final PDF, close-out, submission by Monday 16:59 HKT.
 
 ## Für die Skills
 
@@ -134,3 +134,4 @@ Append only, every session, one line each: `YYYY-MM-DD · <session> · <skill> �
 - 2026-10-24 · Bericht · klare-einreichung · `pruefen.py --rubrik` verlangt je Kriterium eine eigene Überschrift, obwohl die offizielle Vorlage die Gliederung vorgibt und der Skill selbst sagt, dass die Kriterien dann als Unterpunkte hineinkommen; im Report steht deshalb eine dreizeilige Leseanleitung mit den Kriteriennamen, damit kein FEHLT bleibt · Option `--rubrik-unterpunkte`: Kriterium gilt als abgedeckt, wenn sein Name in einer Zeile unter 120 Zeichen vorkommt; Glossar-Warnung „Begriffe nicht benutzt“ listet auch benutzte Begriffe (research question, positive control), weil die ganze Tabellenzelle gesucht wird, besser je Begriff vor dem Semikolon prüfen
 - 2026-10-24 · Backend (cloud) · hackathon-backend · Die Standard-Cloud-Umgebung erreicht keine Verlags- und Preprint-Server (hhs.se, ifn.se, cepr.org, ssrn.com, arxiv.org); das Backend musste die Auszahlungstabelle des Quellpapiers aus vier Ankerwerten rekonstruieren statt sie abzuschreiben · Abschnitt „In der Cloud“: die Hauptsession legt Quellpapiere und Vorlagen vor dem Start einer Cloud-Backend-Session unter hackathon/private/sources/ ab und pusht main; BUILD_PLAN-Vorlage bekommt eine Zeile „Quellen im Checkout“
 - 2026-10-25 · Jury · jury-simulation · Reine Detailrunden (R04 „was fehlt für eine 5“, Kandidatenbewertung) kennt `runde.py` nicht: kein Pakettyp, kein Bericht-Gerüst, kein Datenblock, sodass die nächste Bewertungsrunde keinen Vorrundenvergleich findet · Pakettyp `detail` mit Fragenkatalog als Datei (`--fragen`), Auswertung zu Konsens-Tabellen und ein Datenblock, der auf die letzte Bewertungsrunde verweist
+- 2026-10-25 · Zweiter Anbieter · hackathon-backend · Modal startet GPU-Funktionen erst mit hinterlegter Zahlungsmethode, auch wenn Sprint-Credits da sind (alle GPU-Typen); vLLM 0.31 im debian_slim-Image stürzt beim Start ab, weil der FlashInfer-Sampler nvcc per JIT braucht · Abschnitt „Offene Modelle auf Modal“: Zahlungsmethode vor dem Start prüfen lassen (Credits decken die Läufe), Gewichte per CPU-Funktion ins Volume laden, VLLM_USE_FLASHINFER_SAMPLER=0 setzen oder CUDA-devel-Image nehmen; Startbefehl in zsh als Funktion statt als Variable
