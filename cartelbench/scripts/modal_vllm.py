@@ -61,7 +61,10 @@ image = (
     modal.Image.debian_slim(python_version="3.12")
     .uv_pip_install(f"vllm=={VLLM_VERSION}", "huggingface_hub[hf_transfer]")
     .env({"HF_HUB_ENABLE_HF_TRANSFER": "1", "HF_HOME": "/root/.cache/huggingface", "P2_MODEL": MODEL, "P2_GPU": GPU,
-          "P2_DOWNLOAD_ONLY": "1" if DOWNLOAD_ONLY else ""})
+          "P2_DOWNLOAD_ONLY": "1" if DOWNLOAD_ONLY else "",
+          # PyTorch sampler instead of FlashInfer's, which JIT-compiles with nvcc (absent in this slim image);
+          # same distribution at temperature 1 without top-p or top-k
+          "VLLM_USE_FLASHINFER_SAMPLER": "0"})
 )
 
 app = modal.App("cartelbench-vllm", image=image)
