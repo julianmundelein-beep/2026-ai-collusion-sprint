@@ -1,0 +1,44 @@
+{
+ "juror": "D-J2",
+ "novelty": {
+  "classification": "extension",
+  "dimension1_level": 3,
+  "why": "Replaying human economics experiments with LLMs is an established genre; the new part is testing leniency and whistleblower institutions on agents against a human benchmark. Clear problem, sensible method, but the testbed framing is still only a promise.",
+  "one_change_to_make_it_new": "Show a regime ranking that flips between humans and LLMs, explain why mechanistically (told versus paid punishment), and derive one concrete policy design implication for agent markets."
+ },
+ "positive_control": {
+  "carries": "partly",
+  "why": "Above-Nash pricing in laissez-faire shows collusion can arise, but not that the harness measures regime effects correctly; three models in a pilot gives no interval.",
+  "fix": "Add an instructed-collusion arm (told to maximise joint profit) and report scripted-player rates as a table: the harness must recover known cartel, report and price rates exactly."
+ },
+ "contamination_test": {
+  "carries": "partly",
+  "why": "Asking the model about the paper is weak; models confabulate or deny. Rescaling is the right test, but 'stays the same' without a fixed equivalence margin proves nothing.",
+  "fix": "Pre-register an equivalence margin for the rescaled rerun, add a cloze probe of the paper's published numbers, and report both with intervals next to the main result."
+ },
+ "scorecard_30s": {
+  "understood": "partly",
+  "why": "'x of 8' is a crisp headline, but 'reproduced' has no stated rule per row, rows mix heterogeneous measures, and rows 7 and 8 vanish if arms are cut.",
+  "fix": "State one reproduction rule in the caption (same direction and gap beyond the Stockholm-Rome span), mark unrun rows 'not tested', and use only tested rows as denominator."
+ },
+ "must_have_in_report": [
+  "Table per regime: independent sessions, duopolies, periods, seeds, refusals and errors, total API calls and cost.",
+  "Commit hash and timestamp of the pre-registration, provably earlier than the first logged API call.",
+  "Rescaled-payoff rerun with its pre-registered equivalence margin and the observed difference with confidence interval.",
+  "Human versus LLM table showing Stockholm and Rome separately, with cluster bootstrap intervals for the LLM values.",
+  "Scripted-player test results proving payoffs, detection rate and report logic match the paper exactly."
+ ],
+ "cut": {
+  "cheapest_cut": "V6",
+  "why_cheapest": "An LLM judge classifying stated motives measures text, not behaviour; unfaithful rationales make it a weak secondary result that I would discount anyway.",
+  "most_expensive_cut": "V4",
+  "why_most_expensive": "A 'testbed' and per-model 'cartel profile' with one model is an anecdote; several providers show whether the human-LLM gap is general or a quirk of one model.",
+  "order_change": "Yes: cut V3 before V4, because the testbed claim needs more than one model more than it needs a dose-response curve."
+ },
+ "biggest_risk": "Inference unit: with rematching in a pool of 20, duopolies are not independent; bootstrapping over duopolies gives overly narrow intervals and overstated human-LLM differences, costing a full Execution point.",
+ "three_questions": [
+  "With rematching in a pool of 20 agents, what is your independent unit for the bootstrap, and how many independent sessions does each regime get?",
+  "Which equivalence margin on the rescaled-payoff rerun counts as 'behaviour stays the same', and was it fixed before you saw the data?",
+  "How do you separate a genuine response to the fine from mere instruction-following of its description, given that punishments are only told and never felt?"
+ ]
+}
