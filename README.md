@@ -38,7 +38,7 @@ Scorecard (`cartelbench/evidence/scorecard/scorecard.md`, Figure 1 `figure1_dotp
 
 ## Arms beyond the core (2026-10-24 evening, cloud)
 
-All with Haiku 5.5 unless stated; measurements M32 to M44 in `cartelbench/evidence/MEASUREMENTS.md`, one `evidence/runs/<run_id>/` per row. Differences are cluster-bootstrap intervals over pool sessions (`python3 -m cartelbench.compare`).
+All with Haiku 5.5 unless stated; measurements M32 to M53 in `cartelbench/evidence/MEASUREMENTS.md`, one `evidence/runs/<run_id>/` per row. Differences are cluster-bootstrap intervals over pool sessions (`python3 -m cartelbench.compare`).
 
 | Arm | Design | Result | USD |
 |---|---|---|---|
@@ -48,10 +48,10 @@ All with Haiku 5.5 unless stated; measurements M32 to M44 in `cartelbench/eviden
 | placebo (jury R02) | the fine regime's prohibition text, detection and reports, penalty 0 points; 20 duopoles | cartel incidence 0.714, between laissez-faire 0.956 and fine 0.439; minus laissez-faire -0.24 [-0.33, -0.16], minus fine +0.28 [+0.19, +0.36]: the word "prohibited" removes about half of the deterrence, the fine the other half | 0.94 |
 | shifted grid (contamination) | labels 5 to 17, payoffs unchanged; laissez-faire and leniency, 10 duopoles each | laissez-faire: incidence -0.02 [-0.07, +0.02], price -0.22 [-0.36, -0.10]; leniency: incidence -0.02 [-0.04, -0.01], price -0.13 [-0.24, -0.01]; both within the registered margins (±0.15, ±1.0): equivalent | 0.83 |
 | second model (V4) | Sonnet 5.5, four core regimes, 10 duopoles each | laissez-faire: cartels in every pair-period (1.000, price 8.92); fine, leniency, reward: no cartel at all (0.000) but prices 5.95, 6.29, 5.54 without any discussion; scorecard 0 of 2 tested (`evidence/scorecard_sonnet/`) | 9.82 |
-| dose (V3) | leniency and reward at detection 0.05 and 0.20, 20 duopoles each | running | |
-| NoReport (result 7) | fine after detection only, no reports; 20 duopoles | running | |
-| ReMatch (result 8) | fine regime, new partner every period, 25 periods; 20 duopoles | queued | |
-| clone (V5) | leniency, agents told the rival is an identical copy; 20 duopoles | queued | |
+| dose (V3) | leniency and reward at detection 0.05 and 0.20, 20 duopoles each | leniency: cartel incidence 0.054 / 0.032 / 0.002 and price 3.44 / 3.33 / 3.18 at 0.05 / 0.10 / 0.20, monotone; reward at 0.05: 0.016 and 3.19 against 0.013 and 3.33 at 0.10, no dose response; reward at 0.20: running | 1.88 + |
+| NoReport (result 7) | fine after detection only, no reports; 20 duopoles | cartel incidence 0.316, cartel price 8.85 against 8.59 under fine (+0.25 [+0.10, +0.40]): the humans' result 7 (lower cartel price without reports) reverses | 0.60 |
+| ReMatch (result 8) | fine regime, new partner every period, 25 periods; 20 duopoles | no cartel at all (incidence 0.000, 3 communication wishes in 1,000), price 3.44: result 8 has no observation; LLM cartels under prohibition need the repeated match | 0.54 |
+| clone (V5) | leniency, agents told the rival is an identical copy; 20 duopoles | cartel incidence 0.076 against 0.032 (+0.04 [+0.00, +0.10]), price 3.79, and not a single report (0.000 against 0.375): the leniency lever disappears against a copy | 0.97 |
 
 Commands (inside `cartelbench/`; rerun with a new seed and add a MEASUREMENTS row):
 
