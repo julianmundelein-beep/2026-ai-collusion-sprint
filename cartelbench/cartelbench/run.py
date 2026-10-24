@@ -8,11 +8,23 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import pathlib
 import sys
 
 from .engine import RunConfig, run_sync
 from .llm import anthropic_api_key, make_client
 from .regimes import REGIMES
+from .util import EVIDENCE_DIR, git_commit, now_iso
+
+LAUNCH_LOG = EVIDENCE_DIR / "ledger" / "launches.jsonl"
+
+
+def log_launch(row: dict, path=None) -> None:
+    """Run ledger (amendment 4 (d)): one line when a run starts and one when it ends, so aborted runs stay listed."""
+    path = pathlib.Path(path or LAUNCH_LOG)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a") as fh:
+        fh.write(json.dumps(row, default=str) + "\n")
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -59,7 +71,17 @@ def main(argv=None) -> int:
             return 2
         client = make_client(args.provider, args.model, effort=args.effort, concurrency=args.concurrency,
                              base_url=args.base_url, api_key_env=args.api_key_env)
-    summary = run_sync(cfg, client, generated_by="python3 -m cartelbench.run " + " ".join(argv or sys.argv[1:]))
+    if not cfg.run_id:
+        cfg.run_id = f"{cfg.regime}_{cfg.model.replace('/', '-')}_{now_iso().replace(':', '').replace('-', '')}_s{cfg.seed}"
+    argline = " ".join(argv or sys.argv[1:])
+    log_launch({"event": "start", "run_id": cfg.run_id, "args": argline, "out_dir": cfg.out_dir, "commit": git_commit(), "time": now_iso()})
+    try:
+        summary = run_sync(cfg, client, generated_by="python3 -m cartelbench.run " + argline)
+    except BaseException as exc:  # noqa: BLE001 (also KeyboardInterrupt: the run is listed as aborted)
+        log_launch({"event": "end", "run_id": cfg.run_id, "status": "aborted", "error": f"{type(exc).__name__}: {str(exc)[:300]}", "time": now_iso()})
+        raise
+    log_launch({"event": "end", "run_id": cfg.run_id, "status": "complete", "cost_usd": summary["n_table"].get("cost_usd"),
+                "calls": summary["n_table"].get("calls"), "time": now_iso()})
     m = summary["metrics"]
     print(json.dumps({"run_id": summary["run_id"], "periods_per_pool": summary["periods_per_pool"],
                       "n_table": summary["n_table"],
