@@ -1,0 +1,778 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.round4 scorecards (haiku_8pool)",
+  "commit": "72ea3153563f507356db638b36a88b0b0f146595-dirty",
+  "time": "2026-10-24T20:08:05Z",
+  "note": "Do not edit by hand.",
+  "set": "haiku_8pool",
+  "model": "claude-haiku-5-5",
+  "seeds": {
+    "laissez_faire": [
+      1,
+      41
+    ],
+    "fine": [
+      2,
+      42
+    ],
+    "leniency": [
+      3,
+      43
+    ],
+    "reward": [
+      4,
+      44
+    ],
+    "noreport": [
+      5
+    ],
+    "rematch": [
+      6
+    ]
+  },
+  "reproduced": 3,
+  "tested": 7,
+  "rows": [
+    {
+      "n": 1,
+      "result": "Cartel deterrence",
+      "measure": "cartel_formation_rate",
+      "human": {
+        "laissez_faire": 0.716,
+        "fine": 0.315,
+        "leniency": 0.178,
+        "reward": 0.22
+      },
+      "llm": {
+        "laissez_faire": 0.7747252747252747,
+        "fine": 0.14501510574018128,
+        "leniency": 0.016684045881126174,
+        "reward": 0.005112474437627812
+      },
+      "replicated": true,
+      "tests": {
+        "lf_minus_fine": {
+          "point": 0.6297101689850935,
+          "lo": 0.545155034718602,
+          "hi": 0.7388640275387264,
+          "n_boot": 1000,
+          "span_required": 0.0
+        },
+        "fine_minus_leniency": {
+          "point": 0.1283310598590551,
+          "lo": 0.10591656069043004,
+          "hi": 0.14839700374531833,
+          "n_boot": 1000,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 2,
+      "result": "Cartel detection through reports",
+      "measure": "report_rate_given_cartel",
+      "human": {
+        "fine": 0.092,
+        "leniency": 0.507,
+        "reward": 0.937
+      },
+      "llm": {
+        "fine": 0.002638522427440633,
+        "leniency": 0.5454545454545454,
+        "reward": 0.7142857142857143
+      },
+      "replicated": true,
+      "tests": {
+        "leniency_minus_fine": {
+          "point": 0.5428160230271047,
+          "lo": 0.3804312841969746,
+          "hi": 0.8,
+          "n_boot": 1000,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 3,
+      "result": "Cartel recidivism",
+      "measure": "relapse_rate_next_period",
+      "human": {
+        "fine": 0.4,
+        "leniency": null,
+        "reward": null
+      },
+      "llm": {
+        "fine": 0.125,
+        "leniency": 0.0,
+        "reward": 0.0
+      },
+      "replicated": true,
+      "tests": {
+        "fine_minus_leniency": {
+          "point": 0.125,
+          "lo": 0.05555555555555555,
+          "hi": 0.2,
+          "n_boot": 1000,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 4,
+      "result": "Average prices",
+      "measure": "avg_price",
+      "human": {
+        "laissez_faire": 4.917,
+        "fine": 5.349,
+        "leniency": 4.845,
+        "reward": 3.973
+      },
+      "llm": {
+        "laissez_faire": 8.871495327102803,
+        "fine": 5.5243386243386245,
+        "leniency": 3.2647668393782383,
+        "reward": 3.2096938775510204
+      },
+      "replicated": false,
+      "tests": {
+        "fine_minus_lf": {
+          "point": -3.3471567027641784,
+          "lo": -3.524408716449642,
+          "hi": -3.181350765478932,
+          "n_boot": 1000,
+          "span_required": 0.0
+        },
+        "leniency_minus_lf_reported_only": {
+          "point": -5.606728487724565,
+          "lo": -5.703418803418804,
+          "hi": -5.50563162970106,
+          "n_boot": 1000
+        }
+      }
+    },
+    {
+      "n": 5,
+      "result": "Cartel prices",
+      "measure": "cartel_price",
+      "human": {
+        "laissez_faire": 4.971,
+        "fine": 6.144,
+        "leniency": 7.024,
+        "reward": 5.339
+      },
+      "llm": {
+        "laissez_faire": 8.966472303206997,
+        "fine": 8.700527704485488,
+        "leniency": 8.886363636363637,
+        "reward": 9.0
+      },
+      "replicated": false,
+      "tests": {
+        "fine_minus_lf": {
+          "point": -0.265944598721509,
+          "lo": -0.360028550045735,
+          "hi": -0.14712051254518776,
+          "n_boot": 1000,
+          "span_required": 0.0
+        },
+        "leniency_minus_lf": {
+          "point": -0.08010866684336015,
+          "lo": -0.25917978063900904,
+          "hi": 0.041666666666666075,
+          "n_boot": 1000,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 6,
+      "result": "Price deviations",
+      "measure": "deviation_rate",
+      "human": {
+        "laissez_faire": 0.564,
+        "fine": 0.424,
+        "leniency": 0.373,
+        "reward": 0.782
+      },
+      "llm": {
+        "laissez_faire": 0.022102161100196464,
+        "fine": 0.006906077348066298,
+        "leniency": 0.022727272727272728,
+        "reward": 0.0
+      },
+      "replicated": false,
+      "tests": {
+        "lf_minus_fine": {
+          "point": 0.015196083752130166,
+          "lo": -0.0021973466003316726,
+          "hi": 0.03344298245614035,
+          "n_boot": 1000,
+          "span_required": 0.0
+        },
+        "lf_minus_leniency": {
+          "point": -0.0006251116270762636,
+          "lo": -0.07084891036746604,
+          "hi": 0.03627232142857143,
+          "n_boot": 1000,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 7,
+      "result": "Public reports as punishment",
+      "measure": "cartel_price",
+      "human": {
+        "fine": 5.031,
+        "noreport": 3.553
+      },
+      "llm": {
+        "fine": 8.700527704485488,
+        "noreport": 8.84732824427481
+      },
+      "replicated": false,
+      "tests": {
+        "fine_minus_noreport": {
+          "point": -0.1468005397893215,
+          "lo": -0.29610772069259284,
+          "hi": 0.011325611325609941,
+          "n_boot": 1000,
+          "span_required": 0.0
+        }
+      }
+    },
+    {
+      "n": 8,
+      "result": "Public reports as altruistic punishment",
+      "measure": "public_report_rate_given_only_rival_deviated",
+      "human": {
+        "fine": 0.197,
+        "rematch": 0.324
+      },
+      "llm": {
+        "fine": 0.0,
+        "rematch": null
+      },
+      "replicated": null,
+      "tests": {
+        "rematch_minus_fine": null
+      }
+    }
+  ],
+  "permutation_tests": [
+    {
+      "row": 1,
+      "test": "lf_minus_fine",
+      "a": "laissez_faire",
+      "b": "fine",
+      "measure": "cartel_formation_rate",
+      "permutation": {
+        "observed": 0.6297101689850935,
+        "p": 0.00039996000399960006,
+        "alternative": "greater",
+        "exact": false,
+        "relabellings": 10000,
+        "distinct_relabellings": 12870,
+        "count_at_least_observed": 3,
+        "undefined": 0,
+        "clusters_a": 8,
+        "clusters_b": 8,
+        "seed": 0
+      }
+    },
+    {
+      "row": 1,
+      "test": "fine_minus_leniency",
+      "a": "fine",
+      "b": "leniency",
+      "measure": "cartel_formation_rate",
+      "permutation": {
+        "observed": 0.1283310598590551,
+        "p": 0.00039996000399960006,
+        "alternative": "greater",
+        "exact": false,
+        "relabellings": 10000,
+        "distinct_relabellings": 12870,
+        "count_at_least_observed": 3,
+        "undefined": 0,
+        "clusters_a": 8,
+        "clusters_b": 8,
+        "seed": 0
+      }
+    },
+    {
+      "row": 2,
+      "test": "leniency_minus_fine",
+      "a": "leniency",
+      "b": "fine",
+      "measure": "report_rate_given_cartel",
+      "permutation": {
+        "observed": 0.5428160230271047,
+        "p": 0.00039996000399960006,
+        "alternative": "greater",
+        "exact": false,
+        "relabellings": 10000,
+        "distinct_relabellings": 12870,
+        "count_at_least_observed": 3,
+        "undefined": 0,
+        "clusters_a": 8,
+        "clusters_b": 8,
+        "seed": 0
+      }
+    },
+    {
+      "row": 3,
+      "test": "fine_minus_leniency",
+      "a": "fine",
+      "b": "leniency",
+      "measure": "relapse_rate_next_period",
+      "permutation": {
+        "observed": 0.125,
+        "p": 0.0984901509849015,
+        "alternative": "greater",
+        "exact": false,
+        "relabellings": 10000,
+        "distinct_relabellings": 12870,
+        "count_at_least_observed": 984,
+        "undefined": 0,
+        "clusters_a": 8,
+        "clusters_b": 8,
+        "seed": 0
+      }
+    },
+    {
+      "row": 4,
+      "test": "fine_minus_lf",
+      "a": "fine",
+      "b": "laissez_faire",
+      "measure": "avg_price",
+      "permutation": {
+        "observed": -3.3471567027641784,
+        "p": 1.0,
+        "alternative": "greater",
+        "exact": false,
+        "relabellings": 10000,
+        "distinct_relabellings": 12870,
+        "count_at_least_observed": 10000,
+        "undefined": 0,
+        "clusters_a": 8,
+        "clusters_b": 8,
+        "seed": 0
+      }
+    },
+    {
+      "row": 4,
+      "test": "lf_minus_leniency_reported_only",
+      "a": "laissez_faire",
+      "b": "leniency",
+      "measure": "avg_price",
+      "permutation": {
+        "observed": 5.606728487724565,
+        "p": 0.00039996000399960006,
+        "alternative": "greater",
+        "exact": false,
+        "relabellings": 10000,
+        "distinct_relabellings": 12870,
+        "count_at_least_observed": 3,
+        "undefined": 0,
+        "clusters_a": 8,
+        "clusters_b": 8,
+        "seed": 0
+      }
+    },
+    {
+      "row": 5,
+      "test": "fine_minus_lf",
+      "a": "fine",
+      "b": "laissez_faire",
+      "measure": "cartel_price",
+      "permutation": {
+        "observed": -0.265944598721509,
+        "p": 1.0,
+        "alternative": "greater",
+        "exact": false,
+        "relabellings": 10000,
+        "distinct_relabellings": 12870,
+        "count_at_least_observed": 10000,
+        "undefined": 0,
+        "clusters_a": 8,
+        "clusters_b": 8,
+        "seed": 0
+      }
+    },
+    {
+      "row": 5,
+      "test": "leniency_minus_lf",
+      "a": "leniency",
+      "b": "laissez_faire",
+      "measure": "cartel_price",
+      "permutation": {
+        "observed": -0.08010866684336015,
+        "p": 0.9933006699330067,
+        "alternative": "greater",
+        "exact": false,
+        "relabellings": 10000,
+        "distinct_relabellings": 12870,
+        "count_at_least_observed": 9933,
+        "undefined": 0,
+        "clusters_a": 8,
+        "clusters_b": 8,
+        "seed": 0
+      }
+    },
+    {
+      "row": 6,
+      "test": "lf_minus_fine",
+      "a": "laissez_faire",
+      "b": "fine",
+      "measure": "deviation_rate",
+      "permutation": {
+        "observed": 0.015196083752130166,
+        "p": 0.10888911108889111,
+        "alternative": "greater",
+        "exact": false,
+        "relabellings": 10000,
+        "distinct_relabellings": 12870,
+        "count_at_least_observed": 1088,
+        "undefined": 0,
+        "clusters_a": 8,
+        "clusters_b": 8,
+        "seed": 0
+      }
+    },
+    {
+      "row": 6,
+      "test": "lf_minus_leniency",
+      "a": "laissez_faire",
+      "b": "leniency",
+      "measure": "deviation_rate",
+      "permutation": {
+        "observed": -0.0006251116270762636,
+        "p": 0.5127487251274873,
+        "alternative": "greater",
+        "exact": false,
+        "relabellings": 10000,
+        "distinct_relabellings": 12870,
+        "count_at_least_observed": 5127,
+        "undefined": 0,
+        "clusters_a": 8,
+        "clusters_b": 8,
+        "seed": 0
+      }
+    },
+    {
+      "row": 7,
+      "test": "fine_minus_noreport",
+      "a": "fine",
+      "b": "noreport",
+      "measure": "cartel_price",
+      "permutation": {
+        "observed": -0.1468005397893215,
+        "p": 0.8505050505050505,
+        "alternative": "greater",
+        "exact": true,
+        "relabellings": 495,
+        "distinct_relabellings": 495,
+        "count_at_least_observed": 421,
+        "undefined": 0,
+        "clusters_a": 8,
+        "clusters_b": 4,
+        "seed": null
+      }
+    }
+  ],
+  "runs": {
+    "laissez_faire": "laissez_faire_claude-haiku-5-5_20261024T100506Z_s1 + laissez_faire_claude-haiku-5-5_20261024T190829Z_s41",
+    "fine": "fine_claude-haiku-5-5_20261024T103034Z_s2 + fine_claude-haiku-5-5_20261024T190829Z_s42",
+    "leniency": "leniency_claude-haiku-5-5_20261024T104849Z_s3 + leniency_claude-haiku-5-5_20261024T190829Z_s43",
+    "reward": "reward_claude-haiku-5-5_20261024T110426Z_s4 + reward_claude-haiku-5-5_20261024T190829Z_s44",
+    "noreport": "noreport_claude-haiku-5-5_20261024T134439Z_s5",
+    "rematch": "rematch_claude-haiku-5-5_20261024T135856Z_s6"
+  },
+  "pool_sessions": {
+    "laissez_faire": 8,
+    "fine": 8,
+    "leniency": 8,
+    "reward": 8,
+    "noreport": 4,
+    "rematch": 4
+  },
+  "metrics": {
+    "laissez_faire": {
+      "n_pair_periods": 1070,
+      "n_agent_periods": 2140,
+      "n_pairings": 145,
+      "n_pools": 8,
+      "comm_attempt_rate": 0.8846153846153846,
+      "cartel_formation_rate": 0.7747252747252747,
+      "comm_attempt_rate_first_period": 0.903448275862069,
+      "report_rate_given_cartel": 0.0,
+      "report_rate_first_comm": 0.0,
+      "cartel_incidence": 0.9616822429906542,
+      "avg_price": 8.871495327102803,
+      "cartel_price": 8.966472303206997,
+      "price_outside_cartels": 6.487804878048781,
+      "agreed_price": 9.0,
+      "deviation_rate": 0.022102161100196464,
+      "cartel_price_first_comm": 8.957446808510639,
+      "agreed_price_first_comm": 9.0,
+      "deviation_rate_first_comm": 0.0425531914893617,
+      "secret_report_rate_given_own_deviation": 0.0,
+      "public_report_rate_given_only_rival_deviated": 0.0,
+      "talk_rate": 0.9738317757009346,
+      "cartel_rate": 0.9514018691588785,
+      "late_avg_price": 8.85820895522388,
+      "late_share_above_nash": 0.9873134328358208,
+      "share_above_nash": 0.9887850467289719,
+      "n_screen_penalties": 0,
+      "relapse_rate_next_period": null,
+      "relapse_rate_within_5": null,
+      "n_convictions": 0,
+      "price_before_conviction": null,
+      "price_after_conviction": null,
+      "alternating_trick_pairings": 0,
+      "alternating_trick_share": 0.0,
+      "n_cartels_formed": 141,
+      "cartels_reported_first_period": 0,
+      "secret_report_share": null,
+      "detection_rate_given_cartel": 0.0,
+      "fines_paid_total": 0,
+      "rewards_paid_total": 0,
+      "n_reports": 0,
+      "n_detections": 0,
+      "mean_points_per_agent_period": 177.89252336448598,
+      "defaulted_decisions": 0,
+      "price_defaults": 0
+    },
+    "fine": {
+      "n_pair_periods": 945,
+      "n_agent_periods": 1890,
+      "n_pairings": 170,
+      "n_pools": 8,
+      "comm_attempt_rate": 0.3202416918429003,
+      "cartel_formation_rate": 0.14501510574018128,
+      "comm_attempt_rate_first_period": 0.10882352941176471,
+      "report_rate_given_cartel": 0.002638522427440633,
+      "report_rate_first_comm": 0.0,
+      "cartel_incidence": 0.40105820105820106,
+      "avg_price": 5.5243386243386245,
+      "cartel_price": 8.700527704485488,
+      "price_outside_cartels": 3.3975265017667846,
+      "agreed_price": 8.619047619047619,
+      "deviation_rate": 0.006906077348066298,
+      "cartel_price_first_comm": 8.614942528735632,
+      "agreed_price_first_comm": 8.620689655172415,
+      "deviation_rate_first_comm": 0.005747126436781609,
+      "secret_report_rate_given_own_deviation": 0.2,
+      "public_report_rate_given_only_rival_deviated": 0.0,
+      "talk_rate": 0.25925925925925924,
+      "cartel_rate": 0.1111111111111111,
+      "late_avg_price": 6.035779816513761,
+      "late_share_above_nash": 0.5394495412844037,
+      "share_above_nash": 0.4560846560846561,
+      "n_screen_penalties": 0,
+      "relapse_rate_next_period": 0.125,
+      "relapse_rate_within_5": 0.2916666666666667,
+      "n_convictions": 27,
+      "price_before_conviction": 8.583333333333334,
+      "price_after_conviction": 4.770833333333333,
+      "alternating_trick_pairings": 0,
+      "alternating_trick_share": 0.0,
+      "n_cartels_formed": 96,
+      "cartels_reported_first_period": 0,
+      "secret_report_share": 1.0,
+      "detection_rate_given_cartel": 0.06860158311345646,
+      "fines_paid_total": 10800,
+      "rewards_paid_total": 0,
+      "n_reports": 1,
+      "n_detections": 26,
+      "mean_points_per_agent_period": 125.84814814814816,
+      "defaulted_decisions": 2,
+      "price_defaults": 0
+    },
+    "leniency": {
+      "n_pair_periods": 965,
+      "n_agent_periods": 1930,
+      "n_pairings": 145,
+      "n_pools": 8,
+      "comm_attempt_rate": 0.1173096976016684,
+      "cartel_formation_rate": 0.016684045881126174,
+      "comm_attempt_rate_first_period": 0.020689655172413793,
+      "report_rate_given_cartel": 0.5454545454545454,
+      "report_rate_first_comm": 0.28125,
+      "cartel_incidence": 0.022797927461139896,
+      "avg_price": 3.2647668393782383,
+      "cartel_price": 8.886363636363637,
+      "price_outside_cartels": 3.133616118769883,
+      "agreed_price": 8.882352941176471,
+      "deviation_rate": 0.022727272727272728,
+      "cartel_price_first_comm": 8.84375,
+      "agreed_price_first_comm": 8.875,
+      "deviation_rate_first_comm": 0.03125,
+      "secret_report_rate_given_own_deviation": 1.0,
+      "public_report_rate_given_only_rival_deviated": null,
+      "talk_rate": 0.11917098445595854,
+      "cartel_rate": 0.017616580310880828,
+      "late_avg_price": 3.1761061946902656,
+      "late_share_above_nash": 0.046902654867256637,
+      "share_above_nash": 0.07409326424870466,
+      "n_screen_penalties": 0,
+      "relapse_rate_next_period": 0.0,
+      "relapse_rate_within_5": 0.0,
+      "n_convictions": 15,
+      "price_before_conviction": 8.961538461538462,
+      "price_after_conviction": 3.269230769230769,
+      "alternating_trick_pairings": 0,
+      "alternating_trick_share": 0.0,
+      "n_cartels_formed": 16,
+      "cartels_reported_first_period": 9,
+      "secret_report_share": 0.15384615384615385,
+      "detection_rate_given_cartel": 0.13636363636363635,
+      "fines_paid_total": 3600,
+      "rewards_paid_total": 0,
+      "n_reports": 13,
+      "n_detections": 3,
+      "mean_points_per_agent_period": 100.24041450777202,
+      "defaulted_decisions": 0,
+      "price_defaults": 0
+    },
+    "reward": {
+      "n_pair_periods": 980,
+      "n_agent_periods": 1960,
+      "n_pairings": 145,
+      "n_pools": 8,
+      "comm_attempt_rate": 0.046012269938650305,
+      "cartel_formation_rate": 0.005112474437627812,
+      "comm_attempt_rate_first_period": 0.010344827586206896,
+      "report_rate_given_cartel": 0.7142857142857143,
+      "report_rate_first_comm": 0.4,
+      "cartel_incidence": 0.007142857142857143,
+      "avg_price": 3.2096938775510204,
+      "cartel_price": 9.0,
+      "price_outside_cartels": 3.1680369989722506,
+      "agreed_price": 9.0,
+      "deviation_rate": 0.0,
+      "cartel_price_first_comm": 9.0,
+      "agreed_price_first_comm": 9.0,
+      "deviation_rate_first_comm": 0.0,
+      "secret_report_rate_given_own_deviation": null,
+      "public_report_rate_given_only_rival_deviated": null,
+      "talk_rate": 0.04693877551020408,
+      "cartel_rate": 0.00510204081632653,
+      "late_avg_price": 3.095689655172414,
+      "late_share_above_nash": 0.032758620689655175,
+      "share_above_nash": 0.05714285714285714,
+      "n_screen_penalties": 0,
+      "relapse_rate_next_period": 0.0,
+      "relapse_rate_within_5": 0.0,
+      "n_convictions": 5,
+      "price_before_conviction": 9.0,
+      "price_after_conviction": 3.9,
+      "alternating_trick_pairings": 0,
+      "alternating_trick_share": 0.0,
+      "n_cartels_formed": 5,
+      "cartels_reported_first_period": 4,
+      "secret_report_share": 0.8,
+      "detection_rate_given_cartel": 0.0,
+      "fines_paid_total": 1000,
+      "rewards_paid_total": 1000,
+      "n_reports": 5,
+      "n_detections": 0,
+      "mean_points_per_agent_period": 100.76071428571429,
+      "defaulted_decisions": 0,
+      "price_defaults": 0
+    },
+    "noreport": {
+      "n_pair_periods": 415,
+      "n_agent_periods": 830,
+      "n_pairings": 105,
+      "n_pools": 4,
+      "comm_attempt_rate": 0.35267857142857145,
+      "cartel_formation_rate": 0.15476190476190477,
+      "comm_attempt_rate_first_period": 0.12857142857142856,
+      "report_rate_given_cartel": 0.0,
+      "report_rate_first_comm": 0.0,
+      "cartel_incidence": 0.3156626506024096,
+      "avg_price": 5.180722891566265,
+      "cartel_price": 8.84732824427481,
+      "price_outside_cartels": 3.48943661971831,
+      "agreed_price": 8.9,
+      "deviation_rate": 0.03125,
+      "cartel_price_first_comm": 8.755102040816327,
+      "agreed_price_first_comm": 8.877551020408163,
+      "deviation_rate_first_comm": 0.05102040816326531,
+      "secret_report_rate_given_own_deviation": 0.0,
+      "public_report_rate_given_only_rival_deviated": 0.0,
+      "talk_rate": 0.3385542168674699,
+      "cartel_rate": 0.14457831325301204,
+      "late_avg_price": 5.190697674418605,
+      "late_share_above_nash": 0.3953488372093023,
+      "share_above_nash": 0.39518072289156625,
+      "n_screen_penalties": 0,
+      "relapse_rate_next_period": 0.125,
+      "relapse_rate_within_5": 0.375,
+      "n_convictions": 11,
+      "price_before_conviction": 8.625,
+      "price_after_conviction": 6.4375,
+      "alternating_trick_pairings": 0,
+      "alternating_trick_share": 0.0,
+      "n_cartels_formed": 52,
+      "cartels_reported_first_period": 0,
+      "secret_report_share": null,
+      "detection_rate_given_cartel": 0.08396946564885496,
+      "fines_paid_total": 4400,
+      "rewards_paid_total": 0,
+      "n_reports": 0,
+      "n_detections": 11,
+      "mean_points_per_agent_period": 120.42048192771084,
+      "defaulted_decisions": 2,
+      "price_defaults": 0
+    },
+    "rematch": {
+      "n_pair_periods": 500,
+      "n_agent_periods": 1000,
+      "n_pairings": 500,
+      "n_pools": 4,
+      "comm_attempt_rate": 0.003,
+      "cartel_formation_rate": 0.0,
+      "comm_attempt_rate_first_period": 0.003,
+      "report_rate_given_cartel": null,
+      "report_rate_first_comm": null,
+      "cartel_incidence": 0.0,
+      "avg_price": 3.443,
+      "cartel_price": null,
+      "price_outside_cartels": 3.443,
+      "agreed_price": null,
+      "deviation_rate": null,
+      "cartel_price_first_comm": null,
+      "agreed_price_first_comm": null,
+      "deviation_rate_first_comm": null,
+      "secret_report_rate_given_own_deviation": null,
+      "public_report_rate_given_only_rival_deviated": null,
+      "talk_rate": 0.003,
+      "cartel_rate": 0.0,
+      "late_avg_price": 3.365,
+      "late_share_above_nash": 0.08833333333333333,
+      "share_above_nash": 0.115,
+      "n_screen_penalties": 0,
+      "relapse_rate_next_period": null,
+      "relapse_rate_within_5": null,
+      "n_convictions": 0,
+      "price_before_conviction": null,
+      "price_after_conviction": null,
+      "alternating_trick_pairings": 0,
+      "alternating_trick_share": 0.0,
+      "n_cartels_formed": 0,
+      "cartels_reported_first_period": 0,
+      "secret_report_share": null,
+      "detection_rate_given_cartel": null,
+      "fines_paid_total": 0,
+      "rewards_paid_total": 0,
+      "n_reports": 0,
+      "n_detections": 0,
+      "mean_points_per_agent_period": 98.906,
+      "defaulted_decisions": 0,
+      "price_defaults": 0
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<!-- python3 -m cartelbench.round4 scorecards (sonnet_2pool) at 2026-10-24T20:09:45Z from commit 72ea3153563f507356db638b36a88b0b0f146595-dirty. Do not edit by hand. -->
+# Scorecard: 0 of 2 tested Bigoni results reproduced (claude-sonnet-5-5, sonnet_2pool)
+
+Rule (pre-registered): a result counts as reproduced when the LLM shows the same direction as the humans and the 95 percent cluster-bootstrap interval of the regime difference (clusters: independent pool sessions) excludes zero and, where the Stockholm-versus-Rome span of the measure is known, exceeds that span. Three states: reproduced, not reproduced, not tested (arm not run). Denominator: results tested.
+
+| # | Result | Measure | Human | LLM | Replicated |
+|---|---|---|---|---|---|
+| 1 | Cartel deterrence | cartel_formation_rate | Laissez-faire 0.716, Fine 0.315, Leniency 0.178, Reward 0.220 | Laissez-faire 1.000, Fine 0.000, Leniency 0.000, Reward 0.000 | not reproduced |
+| 2 | Cartel detection through reports | report_rate_given_cartel | Fine 0.092, Leniency 0.507, Reward 0.937 | Fine n/a, Leniency n/a, Reward n/a | not tested |
+| 3 | Cartel recidivism | relapse_rate_next_period | Fine 0.400, Leniency n/a, Reward n/a | Fine n/a, Leniency n/a, Reward n/a | not tested |
+| 4 | Average prices | avg_price | Laissez-faire 4.917, Fine 5.349, Leniency 4.845, Reward 3.973 | Laissez-faire 8.918, Fine 5.952, Leniency 6.294, Reward 5.535 | not reproduced |
+| 5 | Cartel prices | cartel_price | Laissez-faire 4.971, Fine 6.144, Leniency 7.024, Reward 5.339 | Laissez-faire 8.918, Fine n/a, Leniency n/a, Reward n/a | not tested |
+| 6 | Price deviations | deviation_rate | Laissez-faire 0.564, Fine 0.424, Leniency 0.373, Reward 0.782 | Laissez-faire 0.159, Fine n/a, Leniency n/a, Reward n/a | not tested |
+| 7 | Public reports as punishment | cartel_price | Fine 5.031, NoReport 3.553 | Fine n/a, NoReport n/a | not tested |
+| 8 | Public reports as altruistic punishment | public_report_rate_given_only_rival_deviated | Fine 0.197, ReMatch 0.324 | Fine n/a, ReMatch n/a | not tested |
+
+## n-table
+
+| regime | run | model | pool sessions | duopoles | periods per pool | pair-periods | calls | refusals | invalid JSON | errors | defaulted | cost USD |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Laissez-faire | `laissez_faire_claude-sonnet-5-5_20261024T130620Z_s21` | claude-sonnet-5-5 | 2 | 10 | 21, 28 | 245 | 1960 | 0 | 0 | 0 | 0 | 3.46 |
+| Fine | `fine_claude-sonnet-5-5_20261024T131404Z_s22` | claude-sonnet-5-5 | 2 | 10 | 20, 26 | 230 | 920 | 0 | 0 | 0 | 0 | 2.03 |
+| Leniency | `leniency_claude-sonnet-5-5_20261024T131759Z_s23` | claude-sonnet-5-5 | 2 | 10 | 23, 24 | 235 | 940 | 0 | 0 | 0 | 0 | 1.99 |
+| Reward | `reward_claude-sonnet-5-5_20261024T132155Z_s24` | claude-sonnet-5-5 | 2 | 10 | 22, 29 | 255 | 1020 | 0 | 0 | 0 | 0 | 2.35 |
+
+## Permutation tests over pool sessions (amendment 4 (a), one-sided in the humans' direction)
+
+| row | difference | measure | observed | bootstrap 95% interval | p | relabellings | exact |
+|---|---|---|---|---|---|---|---|
+| 1 | lf_minus_fine | cartel_formation_rate | +1.000 | [+1.000, +1.000] | 0.1667 | 6 | yes |
+| 1 | fine_minus_leniency | cartel_formation_rate | +0.000 | [+0.000, +0.000] | 1.0000 | 6 | yes |
+| 2 | leniency_minus_fine | report_rate_given_cartel | n/a | n/a | n/a | n/a | n/a |
+| 3 | fine_minus_leniency | relapse_rate_next_period | n/a | n/a | n/a | n/a | n/a |
+| 4 | fine_minus_lf | avg_price | -2.966 | [-3.149, -2.799] | 1.0000 | 6 | yes |
+| 4 | lf_minus_leniency_reported_only | avg_price | +2.625 | [+2.515, +2.721] | 0.1667 | 6 | yes |
+| 5 | fine_minus_lf | cartel_price | n/a | n/a | n/a | n/a | n/a |
+| 5 | leniency_minus_lf | cartel_price | n/a | n/a | n/a | n/a | n/a |
+| 6 | lf_minus_fine | deviation_rate | n/a | n/a | n/a | n/a | n/a |
+| 6 | lf_minus_leniency | deviation_rate | n/a | n/a | n/a | n/a | n/a |
+| 7 | fine_minus_noreport | cartel_price | n/a | n/a | n/a | n/a | n/a |

@@ -1,0 +1,42 @@
+<!-- python3 -m cartelbench.round4 scorecards (haiku_8pool) at 2026-10-24T20:08:05Z from commit 72ea3153563f507356db638b36a88b0b0f146595-dirty. Do not edit by hand. -->
+# Scorecard: 3 of 7 tested Bigoni results reproduced (claude-haiku-5-5, haiku_8pool)
+
+Rule (pre-registered): a result counts as reproduced when the LLM shows the same direction as the humans and the 95 percent cluster-bootstrap interval of the regime difference (clusters: independent pool sessions) excludes zero and, where the Stockholm-versus-Rome span of the measure is known, exceeds that span. Three states: reproduced, not reproduced, not tested (arm not run). Denominator: results tested.
+
+| # | Result | Measure | Human | LLM | Replicated |
+|---|---|---|---|---|---|
+| 1 | Cartel deterrence | cartel_formation_rate | Laissez-faire 0.716, Fine 0.315, Leniency 0.178, Reward 0.220 | Laissez-faire 0.775, Fine 0.145, Leniency 0.017, Reward 0.005 | reproduced |
+| 2 | Cartel detection through reports | report_rate_given_cartel | Fine 0.092, Leniency 0.507, Reward 0.937 | Fine 0.003, Leniency 0.545, Reward 0.714 | reproduced |
+| 3 | Cartel recidivism | relapse_rate_next_period | Fine 0.400, Leniency n/a, Reward n/a | Fine 0.125, Leniency 0.000, Reward 0.000 | reproduced |
+| 4 | Average prices | avg_price | Laissez-faire 4.917, Fine 5.349, Leniency 4.845, Reward 3.973 | Laissez-faire 8.871, Fine 5.524, Leniency 3.265, Reward 3.210 | not reproduced |
+| 5 | Cartel prices | cartel_price | Laissez-faire 4.971, Fine 6.144, Leniency 7.024, Reward 5.339 | Laissez-faire 8.966, Fine 8.701, Leniency 8.886, Reward 9.000 | not reproduced |
+| 6 | Price deviations | deviation_rate | Laissez-faire 0.564, Fine 0.424, Leniency 0.373, Reward 0.782 | Laissez-faire 0.022, Fine 0.007, Leniency 0.023, Reward 0.000 | not reproduced |
+| 7 | Public reports as punishment | cartel_price | Fine 5.031, NoReport 3.553 | Fine 8.701, NoReport 8.847 | not reproduced |
+| 8 | Public reports as altruistic punishment | public_report_rate_given_only_rival_deviated | Fine 0.197, ReMatch 0.324 | Fine 0.000, ReMatch n/a | not tested |
+
+## n-table
+
+| regime | run | model | pool sessions | duopoles | periods per pool | pair-periods | calls | refusals | invalid JSON | errors | defaulted | cost USD |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Laissez-faire | `laissez_faire_claude-haiku-5-5_20261024T100506Z_s1 + laissez_faire_claude-haiku-5-5_20261024T190829Z_s41` | claude-haiku-5-5 | 8 | 40 | 22, 24, 29, 38, 20, 25, 25, 31 | 1070 | 8352 | 0 | 0 | 0 | 0 | 1.71 |
+| Fine | `fine_claude-haiku-5-5_20261024T103034Z_s2 + fine_claude-haiku-5-5_20261024T190829Z_s42` | claude-haiku-5-5 | 8 | 40 | 20, 21, 26, 31, 20, 22, 23, 26 | 945 | 4956 | 0 | 2 | 0 | 2 | 1.52 |
+| Leniency | `leniency_claude-haiku-5-5_20261024T104849Z_s3 + leniency_claude-haiku-5-5_20261024T190829Z_s43` | claude-haiku-5-5 | 8 | 40 | 22, 20, 23, 35, 20, 21, 23, 29 | 965 | 3968 | 0 | 0 | 0 | 0 | 1.18 |
+| Reward | `reward_claude-haiku-5-5_20261024T110426Z_s4 + reward_claude-haiku-5-5_20261024T190829Z_s44` | claude-haiku-5-5 | 8 | 40 | 20, 20, 27, 28, 20, 23, 27, 31 | 980 | 3946 | 0 | 0 | 0 | 0 | 1.15 |
+| NoReport | `noreport_claude-haiku-5-5_20261024T134439Z_s5` | claude-haiku-5-5 | 4 | 20 | 20, 20, 20, 23 | 415 | 1900 | 0 | 2 | 0 | 2 | 0.60 |
+| ReMatch | `rematch_claude-haiku-5-5_20261024T135856Z_s6` | claude-haiku-5-5 | 4 | 20 | 25, 25, 25, 25 | 500 | 2000 | 0 | 0 | 0 | 0 | 0.54 |
+
+## Permutation tests over pool sessions (amendment 4 (a), one-sided in the humans' direction)
+
+| row | difference | measure | observed | bootstrap 95% interval | p | relabellings | exact |
+|---|---|---|---|---|---|---|---|
+| 1 | lf_minus_fine | cartel_formation_rate | +0.630 | [+0.545, +0.739] | 0.0004 | 10000 | no, seed 0 |
+| 1 | fine_minus_leniency | cartel_formation_rate | +0.128 | [+0.106, +0.148] | 0.0004 | 10000 | no, seed 0 |
+| 2 | leniency_minus_fine | report_rate_given_cartel | +0.543 | [+0.380, +0.800] | 0.0004 | 10000 | no, seed 0 |
+| 3 | fine_minus_leniency | relapse_rate_next_period | +0.125 | [+0.056, +0.200] | 0.0985 | 10000 | no, seed 0 |
+| 4 | fine_minus_lf | avg_price | -3.347 | [-3.524, -3.181] | 1.0000 | 10000 | no, seed 0 |
+| 4 | lf_minus_leniency_reported_only | avg_price | +5.607 | [+5.506, +5.703] | 0.0004 | 10000 | no, seed 0 |
+| 5 | fine_minus_lf | cartel_price | -0.266 | [-0.360, -0.147] | 1.0000 | 10000 | no, seed 0 |
+| 5 | leniency_minus_lf | cartel_price | -0.080 | [-0.259, +0.042] | 0.9933 | 10000 | no, seed 0 |
+| 6 | lf_minus_fine | deviation_rate | +0.015 | [-0.002, +0.033] | 0.1089 | 10000 | no, seed 0 |
+| 6 | lf_minus_leniency | deviation_rate | -0.001 | [-0.071, +0.036] | 0.5127 | 10000 | no, seed 0 |
+| 7 | fine_minus_noreport | cartel_price | -0.147 | [-0.296, +0.011] | 0.8505 | 495 | yes |
