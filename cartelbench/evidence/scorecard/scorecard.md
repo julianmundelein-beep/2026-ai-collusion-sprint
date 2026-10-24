@@ -1,4 +1,4 @@
-<!-- python3 -m cartelbench.scorecard  at 2026-10-24T11:19:21Z from commit edf0535d81c94aef7a50fcc97f7bdaf9dc2b2713-dirty. Do not edit by hand. -->
+<!-- python3 -m cartelbench.scorecard  at 2026-10-24T11:45:42Z from commit 883ec870e3a3caa076c67c25d9211ba5f7944466-dirty. Do not edit by hand. -->
 # Scorecard: 2 of 6 tested Bigoni results reproduced (claude-haiku-5-5)
 
 Rule (pre-registered): a result counts as reproduced when the LLM shows the same direction as the humans and the 95 percent cluster-bootstrap interval of the regime difference (clusters: independent pool sessions) excludes zero and, where the Stockholm-versus-Rome span of the measure is known, exceeds that span. Three states: reproduced, not reproduced, not tested (arm not run). Denominator: results tested.

@@ -9,6 +9,7 @@ scorecard.json, scorecard.md and figure1_scorecard.png.
 from __future__ import annotations
 
 import argparse
+import textwrap
 import json
 import pathlib
 import random
@@ -261,7 +262,8 @@ def render_dotplot(rows: list[dict], runs: dict, path: pathlib.Path, model: str 
     hkey = {}
     n_yes = sum(1 for r in rows if r["replicated"] is True)
     n_scored = sum(1 for r in rows if r["replicated"] is not None)
-    fig, axes = plt.subplots(2, 4, figsize=(14, 6.4))
+    # 4 rows by 2 columns at 6.5 inches width: the text column of the report; fonts stay at 8 to 9 pt
+    fig, axes = plt.subplots(4, 2, figsize=(6.5, 9.6))
     for r, ax in zip(rows, axes.flat):
         regs = list(r["llm"].keys())
         xs = list(range(len(regs)))
@@ -289,20 +291,22 @@ def render_dotplot(rows: list[dict], runs: dict, path: pathlib.Path, model: str 
                 ax.plot([x + 0.15, x + 0.15], [lo, hi], color="#1f5fa8", linewidth=1.5, zorder=2)
             ax.scatter([x + 0.15], [v], marker="s", s=44, color="#1f5fa8", label="LLM" if x == xs[0] else None, zorder=5)
         state = {True: "reproduced", False: "not reproduced", None: "not tested"}[r["replicated"]]
-        ax.set_title(f"{r['n']}. {r['result']}\n{state}", fontsize=9, loc="left",
+        ax.set_title(textwrap.fill(f"{r['n']}. {r['result']}: {state}", 38), fontsize=9, loc="left",
                      color={True: "#2a7a2a", False: "#a83232", None: "#666666"}[r["replicated"]])
         ax.set_xticks(xs)
-        ax.set_xticklabels([LABEL.get(k, k) for k in regs], fontsize=7, rotation=20)
-        ax.set_ylabel(r["measure"], fontsize=7)
-        ax.tick_params(axis="y", labelsize=7)
+        ax.set_xticklabels([LABEL.get(k, k) for k in regs], fontsize=8)
+        ax.set_ylabel(textwrap.fill(r["measure"].replace("_", " "), 26), fontsize=8)
+        ax.tick_params(axis="y", labelsize=8)
+        ax.set_xlim(-0.5, len(regs) - 0.5 + 0.15)
         ax.grid(axis="y", linewidth=0.3, alpha=0.5)
     handles, labels = axes.flat[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="lower center", ncol=4, fontsize=8, frameon=False)
-    fig.suptitle(f"Figure 1. Humans (Bigoni et al. 2011) versus LLM ({model or 'model'}) per Bigoni result: {n_yes} of {n_scored} tested results reproduced. "
-                 "Bars: 95 percent cluster-bootstrap intervals over pool sessions.", fontsize=10, x=0.01, ha="left")
-    fig.tight_layout(rect=(0, 0.05, 1, 0.95))
+    fig.legend(handles, labels, loc="lower center", ncol=4, fontsize=9, frameon=False)
+    fig.suptitle(f"Humans (Bigoni et al. 2011) versus LLM ({model or 'model'}): {n_yes} of {n_scored} tested results reproduced.\n"
+                 "Squares: LLM with 95 percent cluster-bootstrap intervals over pool sessions. Circles: humans, pooled.", fontsize=9, x=0.01, y=0.995, ha="left")
+    fig.tight_layout(rect=(0, 0.03, 1, 0.97))
     path.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(path, dpi=200)
+    fig.savefig(path, dpi=300)
+    fig.savefig(path.with_suffix(".pdf"))  # vector copy for the report
     plt.close(fig)
 
 

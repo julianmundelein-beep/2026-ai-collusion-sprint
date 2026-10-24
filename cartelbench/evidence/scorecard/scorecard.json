@@ -1,8 +1,8 @@
 {
   "header": true,
   "generated_by": "python3 -m cartelbench.scorecard ",
-  "commit": "edf0535d81c94aef7a50fcc97f7bdaf9dc2b2713-dirty",
-  "time": "2026-10-24T11:19:21Z",
+  "commit": "883ec870e3a3caa076c67c25d9211ba5f7944466-dirty",
+  "time": "2026-10-24T11:45:42Z",
   "note": "Do not edit by hand.",
   "model": "claude-haiku-5-5",
   "rows": [
