@@ -281,7 +281,10 @@ Julian Mundelein
 
 | Date | Question | Answer | Source |
 |---|---|---|---|
-| | | | |
+| 2026-10-24 | Do participants get Nebius or OpenRouter keys (COMPUTE.md says "from the event Slack/Luma")? | No. Kamil Alaa: that line was a placeholder left in by mistake; the organizers hand out no keys and no API credits, "put your own key in the config. OpenRouter has free models if you don't want to pay." | Discord, organizer Kamil Alaa, 2026-10-24 01:46 and 06:59 (screenshot and transcript from Julian) |
+| 2026-10-24 | What do the Modal credits cover and how are they claimed? | Compute only: Functions, Sandboxes and Dedicated Endpoints; shared (per-token) endpoints are not covered. Account approval and the credit application run on Modal's side, "you'll find the form in your inbox"; more than a thousand people apply at once, expect delay. | Discord, Kamil Alaa, 2026-10-24 02:35, 03:42, 05:07 |
+| 2026-10-24 | Is Dolos-1.5B sandboxed, does the harness give it tools? | Text only, generate.py, no tools, files or code execution; Poseidon used no isolation in their own testing. Not relevant to I24. | Discord, Kamil Alaa, 2026-10-23 22:51 and 2026-10-24 06:21 |
+| 2026-10-24 | Note for the report | A participant (edsgerdijkstra) argues "collusion" is ill-defined in this sprint (secret communication, benign alliances, reward hacking, deception, profit-maximising cartels on instruction). Our report states its definition explicitly: explicit agreement after Bigoni, that is consent to the price talk. | Discord, 2026-10-24 13:47 |
 
 ## Sources
 
