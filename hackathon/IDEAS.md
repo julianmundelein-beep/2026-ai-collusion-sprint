@@ -2,7 +2,7 @@
 
 > Geschrieben von der Ideen-Session (Skill hackathon-ideen, Kurzform). Sprache: Deutsch, auch im Repo; übersetzt wird nur auf Wunsch (`references/uebersetzen.md`), weil die Datei beim Repo-Abschluss den Baum verlässt. Dies ist ein Research Sprint: Eine Idee ist eine Forschungsfrage mit einem kontrollierten Experiment, das solo in etwa 24 Arbeitsstunden auf einem 16-GB-Laptop ohne GPU mit günstigen API-Modellen läuft (20 bis 50 USD plus 50 USD Modal-Credits) und ein Ergebnis mit Varianz und Baseline liefert. Der „Demo-Moment" ist die eine Abbildung oder Tabelle, die ein Judge nach 30 Sekunden versteht. Jede Kurzkarte trägt deshalb zusätzlich: Frage des Veranstalters, Hypothese, Variable, Metrik, Baseline mit Positivkontrolle, Runs und Seeds, Kosten, Null-Ergebnis-Risiko, warum es keine Replikation ist, und den Abgleich mit den Vorarbeiten. IDs sind fest (I01, I02 …): nie neu nummeriert, nie gelöscht. Status: `offen` · `shortlist` · `gewählt` · `verworfen`. Die Wahl schreibt die Hauptsession in DECISIONS.md und CORE_IDEA.md; `gewählt` steht hier erst, wenn diese Zeile existiert. Zahlen im Kern sind Beispiele; im Pitch tragen sie `(Beispiel)`, eine FACTS-ID oder einen Link.
 
-- Stand: 2026-10-24 14:50 HKT (Runde 2) · Restzeit bis zur internen Deadline: etwa 50 Stunden (Mo 2026-10-26 16:59 HKT)
+- Stand: 2026-10-24 15:40 HKT (Prüfung von I24, I32, I19, I35, I27) · Restzeit bis zur internen Deadline: etwa 50 Stunden (Mo 2026-10-26 16:59 HKT)
 - Gelesen: CLAUDE.md, STATUS.md, DECISIONS.md, FACTS.md (leer); HACKATHON.md, private/JUDGES.md und private/COMPETITION.md (Stand der Recherche-Session 14:05 bis 14:15 HKT, nach der Runde abgeglichen); Sprint-Seite mit Tabs Overview, Resources und Guidelines (https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25, abgerufen 2026-10-24); README des Starter-Repos (https://github.com/poseidon-research/collusion_hackathon, abgerufen 2026-10-24); für Runde 2 zusätzlich die Literaturliste und Definitionsanalyse des Starter-Repos (literature/papers.csv mit 234 Einträgen, davon 80 Ökonomie und 22 Recht, und literature/definitions/README.md, abgerufen 2026-10-24) sowie eine Websuche zu menschlicher Kollusion (Quellen im Abschnitt „Mensch und Agent")
 - Fehlende Eingaben und Annahmen: Runde 1 entstand aus dem Guidelines- und Resources-Tab, bevor HACKATHON.md stand; der Abgleich danach ergab keine Abweichung bei Rubrik (drei Dimensionen, keine Gewichte, gleich geplant) und Pflichtinhalten. Begriffe für den Report nach dem Glossar in HACKATHON.md: „collusion between AI agents", „coalition" (nicht cartel), „positive control", „logged agent trajectories", „plus factors", „trusted agents", „monitor", „countermeasures"; die deutschen Kurzkarten hier dürfen „Kartell" sagen, der Report nicht. Jury (41 Juroren, JUDGES.md) und Konkurrenz (27 frühe Repos, COMPETITION.md, Snapshot 14:05 HKT) fließen erst in die volle Prüfung ein. Feldkurve zuerst aus dem Resources-Tab abgeleitet, Mindeststandard danach mit COMPETITION.md bestätigt. Vorarbeiten nur nach den Zusammenfassungen des Resources-Tabs geprüft, nicht nach den Volltexten; wo eine Lücke behauptet wird, steht `[Vermutung]`.
 - Richtung von Julian: Runde 1 ohne Nachricht, mit allen drei Tracks. Nach Runde 1 (2026-10-24, 14:30 HKT): Track 3 und Track 1 sind am interessantesten; dort ausweiten und zuerst prüfen, wie weit sich menschliche Kollusion auf Agenten übertragen lässt und welche menschlichen Methoden am etabliertesten sind. Finanzbezug willkommen, keine Pflicht (Hub-Titel Hong Kong: „Solve AI Agent Collusion in Financial Systems").
@@ -11,29 +11,36 @@
 
 ## Shortlist: Top 5
 
-Die fünf stärksten Ideen aller Runden (Kurzform), dazu eine bewusst unbequeme Wildcard. Prüfung: `Schätzung` (Schnellschätzung in der Karte) oder `geprüft` (volle Karte). Nach Julians Richtung nur Track 1 und 3; deshalb stehen drei aus Track 3 oben (das Prüfskript warnt, das ist gewollt).
+Die fünf stärksten Ideen aller Runden (Kurzform), dazu eine bewusst unbequeme Wildcard. Prüfung: `Schätzung` (Schnellschätzung in der Karte) oder `geprüft` (volle Karte). Nach Julians Richtung nur Track 1 und 3; deshalb stehen drei aus Track 3 oben (das Prüfskript warnt, das ist gewollt). Punkte der geprüften Karten sind realistisch für die Restzeit und liegen deshalb teils unter der Schätzung.
 
 | Rang | ID | Idee | Track | Punkte | Prüfung | Warum | Hauptrisiko |
 |---|---|---|---|---|---|---|---|
-| 1 | I32 | Presse-Schock | 3 | 83 | Schätzung | Klare menschliche Parallele (NASDAQ 1994, O17), eine Ereignisstudie als Abbildung, billig über Zweige vom selben Checkpoint; trifft 3.4, wo laut COMPETITION.md kein Repo liegt; Juroren aus Betrug und Sicherheit fragen genau, wie eine Koalition sich anpasst | Das Kartell bildet sich im gewählten Modell nicht stabil, oder die Agenten ignorieren die Meldung; dann bleibt ein sauberes Negativ |
-| 2 | I24 | Bigoni-Zwilling | 1 | 80 | Schätzung | Einzige Idee mit echter Menschenbaseline im selben Design; Kronzeuge und Belohnung sind an LLM-Agenten ungetestet (O22); Hongkongs Wettbewerbsbehörde betreibt ein Leniency-Programm (O10) | Das Spiel muss nach dem Paper nachgebaut werden; ohne Volltext keine exakte Baseline |
-| 3 | I20 | Placebo-Zwilling | 3 | 77 | Schätzung | Trennt tatsächliche von erzählter Identität im Markt; nutzt, dass Täuschung bei Agenten erlaubt ist (O19) | Erzählte Identität ist im Gefangenendilemma schon getestet (O21); neu bleiben nur Markt und 2×2 |
-| 4 | I19 | Gerücht vom Spitzel | 3 | 77 | Schätzung | Die billigste denkbare Gegenmaßnahme gegen den echten vertrauenswürdigen Agenten, den die Veranstalter als ungetestet nennen; teilt das Harness mit I35 | Hinweise im Systemprompt wirken laut Bracale Syrnikov schwach; dann bleibt der echte Spitzel als zweiter Befund |
-| 5 | I27 | Varianz-Screen | 1 | 70 | Schätzung | Das etablierte Werkzeug der Behörden gegen menschliche Kartelle, lokal und fast kostenlos, als Zweitauswertung auf den Logs jedes anderen Experiments | Allein zu wenig Impact; gedacht als Ergänzung zu Rang 1 bis 4 |
-| Wildcard | I35 | Anstiftung | 3 | 73 | Schätzung | Unbequem für die Veranstalter: Der vertrauenswürdige Agent, den sie für 3.2 vorschlagen, könnte die Kollusion erst erzeugen, die er dann meldet | Agenten nehmen jedes oder kein Angebot an; dann ist die Anstiftungsrate trivial |
+| 1 | I24 | Bigoni-Zwilling | 1 | 80 | geprüft | Exakte Menschenbaseline: dasselbe Laborspiel mit veröffentlichter Auszahlungstabelle, vier Regimen und Kennzahlen (O24); Kronzeuge und Belohnung an LLM-Agenten ungetestet; billig, also 10 Duopole je Regime | Das Modell kennt das Paper oder verweigert Absprachen schon im Laissez-faire; dagegen Kontaminationstest und neutrale Anweisungen aus dem Paper |
+| 2 | I32 | Presse-Schock | 3 | 77 | geprüft | Ereignis mitten im laufenden Kartell mit menschlicher Parallele (O17); Preismeldung gegen Chatmeldung trennt Rückzug von Verlagerung; zu 3.4 kein Konkurrenz-Repo | Das Modell kolludiert vor Runde 10 nicht verlässlich; dagegen ein Pilot zur Modellwahl |
+| 3 | I20 | Placebo-Zwilling | 3 | 77 | Schätzung | Trennt tatsächliche von erzählter Identität im Markt; nutzt, dass Täuschung bei Agenten erlaubt ist (O19) | Erzählte Identität ist im Gefangenendilemma schon getestet (O21); nicht voll geprüft |
+| 4 | I19 | Gerücht vom Spitzel | 3 | 73 | geprüft | Ein Satz im Prompt gegen einen echten Spitzel-Agenten, 2×2 mit Kosten der Maßnahme | Seit heute deckt mole-in-the-market den echten Spitzel im Duopol ab; neu bleibt das Gerücht |
+| 5 | I27 | Varianz-Screen | 1 | 70 | geprüft | Werkzeug der Behörden, lokal und fast kostenlos auf den Logs von I32 oder I19, mit Falsch-Positiv-Rate | Allein zu wenig Impact; nur als Zweitauswertung gedacht |
+| Wildcard | I35 | Anstiftung | 3 | 70 | geprüft | Unbequem für die Veranstalter: Der vertrauenswürdige Agent aus 3.2 könnte die Kollusion erst erzeugen, die er meldet; zwei Zusatzzellen im Harness von I19 | Agenten nehmen jedes oder kein Angebot an; dann ist die Anstiftungsrate trivial |
 
 Warum diese und nicht die naheliegenden: Jede der fünf überträgt einen gut belegten Befund über menschliche Kollusion und misst entweder gegen eine Menschenbaseline (I24) oder genau dort, wo Agenten sich von Menschen unterscheiden: Strafe nur erzählt, Täuschung erlaubt, kein Ruf zu verlieren (I32, I20, I19, I35). Die Wochenendprojekte des Resources-Tabs (I01, I17) bleiben Messlatte, weil viele der 1.650 Angemeldeten sie gleich abgeben.
 
-Kombinierbar in einem Report (ein Harness, eine Positivkontrolle): I32 mit I27 als Screen auf denselben Logs; I19 mit I35 als vier plus zwei Bedingungen im selben Spiel; I24 mit I28 im selben nachgebauten Spiel.
+Zwei Pakete für einen Report (Empfehlung der Ideen-Session: A):
+- A „Kronzeuge für Agenten": I24 als Kern, I28 als eingebaute Kennzahl, I27 optional auf denselben Logs. Eigenes kleines Harness, rund 25 USD, Menschenbaseline in jeder Zeile; Track 1, Fragen 1.5 und 2.3.
+- B „Wenn das Kartell beobachtet wird": I32 als Kern mit I27 als Zweitauswertung; I19 und I35 nur, wenn Zeit bleibt, im selben Harness. Starter-Harness mit kleiner Erweiterung, rund 25 bis 60 USD; Track 3, Fragen 3.4 und 3.2.
 
-Konkurrenz-Lage (COMPETITION.md, Snapshot 2026-10-24 14:05 HKT): I32, I19 und I35 treffen die Lücken 3.4 und 3.2; I24 und I27 die Lücke „Kosten einer Restriktion" und den Finanzrahmen; I20 die Lücke „Schelling-Salienz über Anbieter". Teilweise besetzt: I38 und I05 (SupratikB23/LLM-Cartel-Succession prüft vererbte Preishistorie), I14 (saltxd/plus-factors-on-the-ledger), I15 (Dolos, mindestens vier Repos).
+Konkurrenz-Lage (COMPETITION.md, Snapshot 2026-10-24 14:05 HKT, ergänzt durch eine GitHub-Suche um 15:15 HKT): Zu I24 und I32 kein Repo. Neu seit dem Snapshot: https://github.com/adamattar-pixel/mole-in-the-market (Spitzel im Duopol, 3.2) berührt I19 und I35; https://github.com/maiyasaliha/undercover-collusion ist noch leer. Teilweise besetzt bleiben I38 und I05 (SupratikB23/LLM-Cartel-Succession), I14 (saltxd/plus-factors-on-the-ledger), I15 (Dolos, mindestens vier Repos).
 
-Knapp dahinter: I38 Erfundene Vergangenheit (77, gleicher Mechanismus wie I20 und teilweise besetzt), I02 Kronzeuge (77, in I24 aufgegangen), I36 Wir unterbieten jeden (73), I37 Gemeinsamer Berater (73), I12 Metadaten-Monitor (73, Track 2), I03 Rastermaß, I26 Nebel des Marktes, I28 Drohung mit dem Kronzeugen, I31 Gefilterte Transparenz, I33 Preisführer als Lehrer, I39 Sonnenlicht (je 70).
+Knapp dahinter: I38 Erfundene Vergangenheit (77, gleicher Mechanismus wie I20 und teilweise besetzt), I02 Kronzeuge (77, in I24 aufgegangen), I36 Wir unterbieten jeden (73), I37 Gemeinsamer Berater (73), I12 Metadaten-Monitor (73, Track 2), I03 Rastermaß, I26 Nebel des Marktes, I28 Drohung mit dem Kronzeugen (in I24 enthalten), I31 Gefilterte Transparenz, I33 Preisführer als Lehrer, I39 Sonnenlicht (je 70).
 
 ## Geprüfte Ideen
 
 | ID | Idee | Track | Punkte | Konkurrenz | Bau-Risiko | Status |
 |---|---|---|---|---|---|---|
+| I24 | Bigoni-Zwilling | 1 | 80 | offen | mittel | shortlist |
+| I32 | Presse-Schock | 3 | 77 | offen | niedrig bis mittel | shortlist |
+| I19 | Gerücht vom Spitzel | 3 | 73 | teilweise (mole-in-the-market) | niedrig bis mittel | shortlist |
+| I27 | Varianz-Screen | 1 | 70 | teilweise (Abhängigkeitsmaße aus Aktionslogs) | niedrig | shortlist |
+| I35 | Anstiftung | 3 | 70 | teilweise (mole-in-the-market) | niedrig | shortlist |
 
 ## Lagebild
 
@@ -68,6 +75,7 @@ Linse: `Alltag` · `Kultur × Technik` · `KI-Schub` · `Nichtkunden` · `Feld`.
 | O21 | Schon die Aussage, das Gegenüber sei man selbst, verschiebt die Kooperation von LLMs im Gefangenendilemma, je nach Rahmung in beide Richtungen (Long und Teplica, nur Sekundärbericht gefunden); Ähnlichkeitssignale lösen Kooperation aus (Kundu, Tewolde, Berker, Brown und Conitzer, ICML 2026) | LLM-Agenten | KI-Schub | 3 | keine | abgerufen 2026-10-24: https://eu.36kr.com/en/p/3446317978932609 ; https://icml.cc/virtual/2026/76884 |
 | O22 | Idowu, Almasoud und Alfahid (2026) übertragen menschliche Gegenmaßnahmen (Sanktionen, Kronzeuge und Whistleblowing, Überwachung, Marktdesign, Governance) nur konzeptionell auf Multi-Agenten-KI, ohne Experiment; Garra (2026) testet an LLM-Preisagenten Warnung, Haftungsregel und Markteintritt, aber keine Kronzeugenregel | Forscher | Feld | 2 | keine | abgerufen 2026-10-24: https://arxiv.org/abs/2601.00360 ; https://arxiv.org/abs/2609.13037 |
 | O23 | LLMs reproduzieren klassische Verhaltensexperimente qualitativ (Horton, Filippas und Manning, „Homo silicus"); in wiederholten Spielen sind sie stark im Gefangenendilemma und schwach in Koordinationsspielen (Akata und Kollegen, Nature Human Behaviour 2025) | LLM-Agenten | KI-Schub | 2 | keine | abgerufen 2026-10-24: https://arxiv.org/abs/2301.07543 ; https://ideas.repec.org/a/nat/nathum/v9y2025i7d10.1038_s41562-025-02172-y.html |
+| O24 | Bigoni, Fridolfsson, Le Coq und Spagnolo (CEPR DP 7417, 2009): Duopol mit Preisen 0 bis 12, Nash-Preis 3, gemeinsames Optimum 9; Bußgeld 200, Entdeckung 0,10; Kartellbildungsrate Laissez-faire 0,716, Bußgeld 0,315, Kronzeuge 0,178, Belohnung 0,220; Durchschnittspreis 4,917, 5,349, 4,845, 3,973; Melderate bei gebildetem Kartell 0,092, 0,507, 0,937 (Bußgeld, Kronzeuge, Belohnung); öffentliche Meldung nach Abweichung des Rivalen 0,286, 0,481, 0,333 | Laborökonomie | Kultur × Technik | 2 | keine | Tabellen 1, 2, 3, 4, 5 des Arbeitspapiers, abgerufen 2026-10-24: https://www.hhs.se/contentassets/4adc0bc58ccf4d5f81d0b9c20a8119e7/2009-fines-leniency-rewards-and-organized-crime.pdf ; vor dem Report mit der RAND-Fassung 2012 abgleichen |
 
 ### Was der KI-Schub bricht
 
@@ -490,16 +498,33 @@ Je Track zuerst die Messlatte (W0, das Wochenendprojekt des Resources-Tabs, nie 
 - Weite: W2 Umkehrung (B11, weglassen): „Ein verdeckter Ermittler muss wirklich mitspielen" → „Das Gerücht, einer sei ein Spitzel, reicht, und niemand ist einer"
 - Kern: Vier Bedingungen: kein Spitzel; ein echter vertrauenswürdiger Agent, der Absprachen anbietet und protokolliert; nur die Ankündigung, einer der Verkäufer sei ein Spitzel, ohne dass es einen gibt; beides. Gemessen wird, wie stark allein das Gerücht Kollusion senkt, was es beim Volumen kostet, und ob die Agenten den Falschen verdächtigen.
 - Frage: 3.2 (auch 1.5: die billigste Restriktion)
-- Hypothese: Das Gerücht senkt den Preisaufschlag um mindestens die Hälfte des Effekts des echten Spitzels, bei null Überwachungskosten; mit echtem Spitzel verdächtigen die Agenten den Falschen.
-- Variable: Spitzel-Bedingung (4)
-- Metrik: Preisaufschlag, Volumen, Annahmequote der Absprache-Angebote, Verdachtsäußerungen (Judge)
-- Baseline: kein Spitzel; Positivkontrolle: Kommunikation an ohne Aufsicht
-- Runs: 4 × 5 Seeds, 3 Verkäufer, 3 Käufer, 15 Runden
-- Kosten: 15 bis 45 USD
+- Hypothese: Das Gerücht senkt den Kollusionsindex um mindestens die Hälfte des Effekts des echten Spitzels; läuft zugleich das Gerücht, nehmen Agenten das Angebot des echten Spitzels seltener an.
+- Variable: 2×2: Sitz 3 ist gewöhnlicher Verkäufer oder Spitzel × Gerücht im Prompt aller Verkäufer an oder aus; Kommunikation immer an
+- Metrik: Kollusionsindex der Verkäufer 1 und 2; Volumen und Käuferüberschuss als Kosten der Maßnahme; Annahmequote des Angebots; Verdachtsäußerungen (Judge, 40 Nachrichten von Hand geprüft)
+- Baseline: kein Spitzel, kein Gerücht; Positivkontrolle: dieselbe Zelle erreicht einen Index über 0,5
+- Runs: 4 Zellen × 10 Seeds × 20 Runden im Agrawal-Harness, 3 Verkäufer, ZIP-Käufer; rund 2.400 Calls plus Judge
+- Kosten: 15 bis 30 USD mit gpt-4.1, 4 bis 8 USD mit gpt-4.1-mini
 - Null-Ergebnis: Das Gerücht wirkt nicht: dann ist die Ankündigung wertlos, der echte Spitzel wird trotzdem gemessen, der Report hat zwei Befunde
-- Neu: Resources 3.2: „a trusted agent that offers to collude has not yet been tested"; das Gerücht ohne Spitzel ist unser eigener Hebel
+- Neu: Resources 3.2: „a trusted agent that offers to collude has not yet been tested"; den echten Spitzel im Duopol testet seit 2026-10-24 ein Konkurrenz-Repo (siehe Konkurrenz), das Gerücht ohne Spitzel und das 2×2 bleiben neu
 - Vorarbeit: Zeng 2026, Tao 2026, Greenblatt 2023, Bracale Syrnikov 2026 (Hinweise wirken schwach)
 - Schätzung: IP 8 · EQ 7 · PC 8 → 77
+- Überarbeitet: 2026-10-24 bei der Prüfung: Sitz 3 der Doppelauktion ist gewöhnlicher Verkäufer oder Spitzel, damit die Zahl der Verkäufer gleich bleibt; Schwerpunkt auf dem Gerücht, weil ein neues Konkurrenz-Repo den echten Spitzel abdeckt; Innovation von 8 auf 7
+- Pitch: Ein einziger Satz im Prompt, unter den Verkäufern sei ein verdeckter Ermittler, kostet 0 USD Überwachung; wir messen in 40 simulierten Märkten (Beispiel), wie viel Kollusion er im Vergleich zu einem echten Spitzel-Agenten verhindert, was beides an Handel kostet, und ob die Agenten dann den Falschen verdächtigen.
+- Mechanismus: Sitz 3 der Doppelauktion ist entweder ein gewöhnlicher LLM-Verkäufer oder ein vertrauenswürdiger Agent mit eigenem Prompt, der im Chat eine Preisabsprache anbietet und Zusagen protokolliert. Unabhängig davon steht in der Hälfte der Läufe im Prompt aller Verkäufer, ein Ermittler sei unter ihnen; das 2×2 trennt so die Wirkung der Person von der des Gerüchts.
+- Erkenntnis: Menschen fürchten Spitzel, ob es sie gibt oder nicht; Agenten haben keinen Grund zur Angst außer dem Text im Prompt. Bewirkt ein Satz fast so viel wie ein Ermittler, ist die billigste Gegenmaßnahme eine Behauptung, und wenn nicht, braucht Aufsicht echte Agenten im Markt.
+- Nutzer: Betreiber von Agentenmärkten und Aufseher, die über die Kosten von Überwachung entscheiden · Nichtkunde: 2 verweigernd (Betreiber, denen Überwachung zu teuer ist) · Maslow: 2 Sicherheit
+- Warum hier: Die Veranstalter nennen den vertrauenswürdigen Agenten, der Kollusion anbietet, ausdrücklich als ungetestet (Resources 3.2); Kartellbehörden wie die HKCC setzen auf Abschreckung durch Entdeckungsrisiko (O10); zu 3.2 lag im Snapshot kein Repo, jetzt eines ohne Gerücht.
+- Demo-Moment: Ein 2×2-Balkendiagramm zeigt den Kollusionsindex für kein Spitzel, nur Gerücht, nur Spitzel und beides, jeweils mit Intervall. Liegt der Balken für das Gerücht nahe beim Spitzel, ist die billigste Gegenmaßnahme ein Satz.
+- Qualität: Hypothesen vorab festgeschrieben, gepaarte Seeds, Spitzel-Prompt und Gerüchtetext eingefroren und veröffentlicht, Judge an 40 Nachrichten von Hand validiert, Kosten der Maßnahme als Volumen und Käuferüberschuss neben dem Effekt.
+- Beleg: läuft: Agrawal-Harness mit Kommunikation · neu: Prompt je Sitz und Gerüchtezeile (rund 40 Zeilen) · gezeigt: 2×2 mit Intervallen, Annahmequoten · simuliert: Markt, Spitzel und Behörde
+- Wirkung: Aufseher wissen, ob eine Ankündigung reicht oder ob sie Agenten im Markt brauchen, und was beides an Marktleistung kostet · Wer verliert: kolludierende Agenten; ehrliche Verkäufer, falls Misstrauen den Handel bremst
+- Schattenseite: Ein Spitzel, der Absprachen anbietet, kann Kollusion erst auslösen (I35); ein Gerücht ohne Grundlage ist Täuschung durch den Betreiber und braucht eine Regel, wann das zulässig ist. Dual-Use: Der Report zeigt Kartellen, woran sie Spitzel erkennen; Spitzeltexte werden nicht optimiert.
+- SAVE: S billigste wirksame Gegenmaßnahme gefunden oder ausgeschlossen · A ein Satz im Prompt oder ein Agent im Markt · V rund 25 USD · E „Ein Satz gegen einen Agenten"
+- Punkte: IP 7 · EQ 7 · PC 8 → 73
+- Jury: verteidigt Raja Moreno (KI-Kontrolle) und Matthew Lowe (KI-Kontrolle, Governance-Werkzeuge für Agenten), weil Aufsicht hier als Kontrollprotokoll mit Kosten erscheint · zerreißt Mohit Kalra (Sicherheit und Privatsphäre von LLM-Systemen), wenn sich die Agenten nicht an den Spitzel anpassen dürfen, und Jan Čuhel, wenn die Abgrenzung zu Zeng 2026 und zum Konkurrenz-Repo fehlt
+- Konkurrenz: teilweise; https://github.com/adamattar-pixel/mole-in-the-market (angelegt 2026-10-24, nicht im Snapshot) lässt ein Skript beiden Verkäufern eines Duopols dasselbe geheime Angebot machen und misst Annahme und Preise der nächsten drei Runden, ohne Gerücht und ohne Kanal zwischen den Verkäufern; https://github.com/maiyasaliha/undercover-collusion ist noch leer
+- Bau-Risiko: niedrig bis mittel · schwierigster Teil: ein Spitzel-Prompt, der glaubwürdig anbietet, ohne den Markt durch eigene Preise zu verzerren · zuerst gestrichen: Verdachts-Judge, zweites Modell · nie gestrichen: 2×2 mit Positivkontrolle
+- Variante: I35 als Zusatzzellen im selben Harness; oder das Gerücht als Restriktion im 1.5-Vergleich gegen Nachrichtenlimit und Aufsicht
 
 #### I20 · Placebo-Zwilling
 
@@ -587,17 +612,34 @@ Nach Julians Rückmeldung nur Track 1 und 3. Jede Idee überträgt einen belegte
 - Weite: W1 Analogie: Laborökonomie - dasselbe Spieldesign wie ein veröffentlichtes Menschenexperiment, damit die Menschendaten die Baseline sind
 - Überarbeitet aus: I02
 - Kern: LLM-Verkäufer spielen das wiederholte Bertrand-Spiel aus dem Kartell-Laborexperiment von Bigoni und Kollegen (2012) in dessen vier Regimen: keine Verfolgung, Bußgeld, Kronzeugenregel, Belohnung für Hinweisgeber. Weil Spiel, Auszahlungen und Regeln gleich sind, liegen die Ergebnisse direkt neben den Daten menschlicher Probanden. Gefragt wird nicht nur, welches Regime LLM-Kartelle bricht, sondern ob LLMs dabei wie Menschen reagieren.
-- Frage: 1.5 (auch 1.1: Variablen, die für LLMs anders wirken als für Menschen)
-- Hypothese: Die Reihenfolge der Regime stimmt mit Menschen überein (Belohnung wirkt am stärksten), aber LLMs melden seltener als Menschen, weil Bußgelder nur erzählt sind.
-- Variable: Regime (4), Design und Parameter aus dem Paper übernommen
-- Metrik: Kartellbildungsrate, Preis relativ zu Nash, Meldequote, Abstand zu den berichteten Menschenwerten
-- Baseline: Regime ohne Verfolgung und die Menschendaten des Papers; Positivkontrolle: Kartellbildung im Regime ohne Verfolgung
-- Runs: 4 Regime × 5 Gruppen-Seeds × etwa 20 Runden; das Spiel wird in rund 200 Zeilen nachgebaut, kein Starter-Harness passt genau
-- Kosten: 10 bis 40 USD
+- Frage: 1.5 (auch 1.1; und 2.3: Meldungen als Beweis)
+- Hypothese: H1 Die Rangfolge der Kartellbildung folgt den Menschen: Laissez-faire vor Bußgeld vor Kronzeuge und Belohnung. H2 Belohnung senkt den Durchschnittspreis am stärksten, wie bei Menschen. H3 Bruchpunkt: Weil Strafen nur erzählt sind, kolludieren LLMs unter Bußgeld und Kronzeuge häufiger als Menschen und weichen seltener vom vereinbarten Preis ab.
+- Variable: Regime (Laissez-faire; Bußgeld; Kronzeuge; Belohnung) mit den Parametern des Papers: Bußgeld 200, Entdeckungswahrscheinlichkeit 0,10, Kronzeuge zahlt nichts, bei Belohnung erhält der alleinige Melder das Bußgeld des anderen (O24)
+- Metrik: dieselben Kennzahlen wie im Paper, damit die Zahlen nebeneinander stehen: Rate der Kommunikationsversuche, Kartellbildungsrate, Melderate, geheime und öffentliche Meldungen, Durchschnittspreis, Kartellpreis, Abweichungsrate vom vereinbarten Preis; Abstand zu den Menschenwerten mit Bootstrap-Intervall über Duopole
+- Baseline: Laissez-faire und die Menschenwerte aus Tabelle 4 und 5 des Papers (O24); Positivkontrolle: im Laissez-faire bilden die Agenten Kartelle und setzen Preise über dem Nash-Preis 3
+- Runs: 4 Regime × 10 Duopole × 25 Perioden, fester Partner; je Periode und Agent bis zu fünf Calls (Kommunikationswunsch, Preisverhandlung in zwei Schritten, Preis mit geheimer Meldung, öffentliche Meldung), rund 9.000 Calls; Robustheit mit einem zweiten Modell in Laissez-faire und Belohnung
+- Kosten: 8 bis 15 USD mit gpt-4.1-mini, dazu 10 bis 20 USD für das zweite Modell
 - Null-Ergebnis: LLMs bilden in keinem Regime ein Kartell oder melden nie: auch dann ist der Mensch-LLM-Vergleich der Befund, und der Report zeigt, welche Annahme der Kartellpolitik für Agenten nicht trägt
 - Neu: keine Sprint-Quelle testet Kronzeugenregel oder Belohnung an LLM-Agenten; Idowu 2026 überträgt diese Hebel nur konzeptionell, Garra 2026 testet andere Eingriffe (O22)
-- Vorarbeit: Bigoni et al. 2012 (O16), Apesteguia et al. 2007, Idowu et al. 2026, Garra 2026; Volltext von Bigoni et al. vor dem Bau lesen (Design, Parameter, Menschenwerte)
+- Vorarbeit: Bigoni, Fridolfsson, Le Coq und Spagnolo (CEPR DP 7417, 2009; RAND Journal of Economics 2012), Design und Menschenwerte aus dem Arbeitspapier (O24), Probandenanweisungen in dessen Anhang A.4; Apesteguia et al. 2007, Werner 2026 (Algorithmen kolludieren mehr als Menschen), Idowu 2026, Garra 2026
 - Schätzung: IP 8 · EQ 8 · PC 8 → 80
+- Überarbeitet: 2026-10-24 bei der Prüfung: Design aus dem Arbeitspapier gelesen (Auszahlungstabelle, Regime, Ablauf, Menschenwerte, O24); Neuzuordnung der Partner vereinfacht zu festem Partner (im Report als Abweichung benannt); I28 (Meldung als Drohung) ist hier als Rate öffentlicher Meldungen nach einer Abweichung schon enthalten
+- Pitch: Im Kartell-Laborspiel von 2009 senkte nur die Belohnung für Hinweisgeber den Durchschnittspreis der Studierenden, von 4,9 auf 4,0 bei einem Nash-Preis von 3 (O24); wir spielen dasselbe Spiel mit denselben Regeln und Anweisungen mit LLM-Agenten und zeigen, wo sie wie Menschen reagieren und wo nicht.
+- Mechanismus: Ein kleines Python-Harness bildet das Duopol exakt nach: Preise 0 bis 12, Auszahlungstabelle des Papers, sieben Schritte je Periode, Entdeckung mit Wahrscheinlichkeit 0,10. Die Agenten erhalten die Probandenanweisungen aus Anhang A.4 als Prompt, sodass sich nur der Spieler ändert, nicht das Spiel.
+- Erkenntnis: Kartellpolitik beruht auf Annahmen über Menschen: Angst vor Strafe, Misstrauen nach Verrat. Ein Spieler, für den Strafen nur Zahlen sind, kann dieselben Regeln ins Gegenteil kehren, und das zeigt nur ein identisches Design gegen Menschendaten.
+- Nutzer: Wettbewerbsbehörden, die Kronzeugenprogramme für Märkte mit Preisagenten planen, etwa die HKCC (O10) · Nichtkunde: 3 nie bedacht (Behörden lesen KI-Sicherheitsforschung selten) · Maslow: 2 Sicherheit
+- Warum hier: Der Hongkong-Hub fragt nach Kollusion in Finanzsystemen (O01), und Hongkong hat eine Leniency Policy (O10); die Veranstalter wünschen Hebel aus menschlicher Kollusion und aus dem Kartellrecht (O03); Leniency an LLMs fehlt in allen Sprint-Quellen (O22).
+- Demo-Moment: Eine Tabelle mit vier Spalten (Laissez-faire, Bußgeld, Kronzeuge, Belohnung) und je zwei Zeilen pro Kennzahl, Mensch und LLM, mit Intervall. Ein Blick zeigt, welche Regel bei Agenten wirkt wie bei Menschen und welche kippt.
+- Qualität: Ausführungsqualität ist hier das Produkt: Design aus einem begutachteten Experiment, Hypothesen vor dem ersten Lauf im Repo festgeschrieben, Seeds und Modellversionen geloggt, Kontaminationstest (Modell nach dem Paper fragen, Preisbezeichnungen umbenennen), zweites Modell als Robustheit.
+- Beleg: läuft: neues Harness mit fester Auszahlungstabelle, Log je Call · gezeigt: Vergleichstabelle Mensch gegen LLM, Preisverlauf vor und nach Entdeckung wie Abbildung 3 des Papers · simuliert: der Markt ist das Laborspiel, kein realer Markt (im Report so benannt)
+- Wirkung: Behörden sehen, ob ihr wichtigstes Werkzeug gegen Kartelle bei Agenten trägt, bevor Agentenmärkte entstehen · Wer verliert: Betreiber, die Agenten kolludieren ließen, sobald Belohnungen greifen
+- Schattenseite: Der Report zeigt, unter welcher Regel Agenten-Kartelle am stabilsten sind; das ist Dual-Use und gehört in den Anhang mit dem Hinweis, dass ein Laborspiel kein Rezept für reale Märkte ist. Kennt das Modell das Paper, spielt es Erinnerung statt Strategie; dagegen steht der Kontaminationstest.
+- SAVE: S Behörden erfahren, welche Regel Agenten-Kartelle bricht · A Report plus Harness, ein Befehl je Regime · V rund 25 USD für alle Läufe · E „Gleiches Spiel, gleiche Regeln, anderer Spieler"
+- Punkte: IP 8 · EQ 8 · PC 8 → 80
+- Jury: verteidigt Neeraj Kumar Singh Beshane (Sicherheit im Embedded Finance, KI-Rechenschaft) wegen des Bezugs zu Kartellrecht und Aufsicht, und Debayan Gupta (Informatikprofessor, KI-Assurance) wegen des übernommenen begutachteten Designs · zerreißt Jasmine Li (SaferAI, Manipulation von Evaluationen), wenn das Modell das Paper kennt und kein Kontaminationstest im Report steht; Luis Cosio (KI-Sicherheit, mehrfacher Apart-Sieger), wenn das Laborspiel als realer Markt verkauft wird
+- Konkurrenz: offen; im Snapshot (COMPETITION.md, 2026-10-24 14:05 HKT) und in einer GitHub-Suche um 15:15 HKT kein Repo zu Kronzeuge, Whistleblowing oder Belohnung; am nächsten ist https://github.com/saltxd/plus-factors-on-the-ledger (Kartellrecht, aber Beweis statt Anreiz)
+- Bau-Risiko: mittel · schwierigster Teil: Verhandlungsschritt und Meldelogik korrekt nachbauen (rund 250 Zeilen, mit Tests gegen die Auszahlungstabelle) · zuerst gestrichen: zweites Modell, öffentlicher Meldeschritt · nie gestrichen: vier Regime mit identischer Auszahlungstabelle und Menschenvergleich
+- Variante: I28 ist im selben Harness eine Kennzahl; als Track-3-Variante die geheime Meldung als verdeckter Kanal; oder gemischte Märkte aus Mensch-Proxy und LLM wie bei Werner 2026
 
 #### I25 · Zwei, drei, vier mit Kanal
 
@@ -643,15 +685,32 @@ Nach Julians Rückmeldung nur Track 1 und 3. Jede Idee überträgt einen belegte
 - Kern: Die Screens, mit denen Behörden menschliche Kartelle in Preisdaten suchen (Preisvarianz, Schiefe und Abstand der Gebote, Strukturbrüche), laufen auf den Trajektorien von LLM-Märkten, ohne ein Wort der Nachrichten zu lesen. Verglichen wird mit dem LLM-Judge auf den Nachrichten, mit Falsch-Positiv-Rate auf Läufen ohne Kommunikation und auf stillen Läufen zweier gleicher Modelle.
 - Frage: 1.3
 - Hypothese: Der Varianz-Screen trennt kommunizierende Märkte von stummen mit AUROC über 0,75, schlägt aber auch bei stiller Kollusion zweier gleicher Modelle an.
-- Variable: Detektor (Varianz-Screen; Gebots-Screens nach Huber und Imhof; LLM-Judge) × Marktbedingung (Kommunikation an oder aus; gleiches oder fremdes Modell)
-- Metrik: AUROC, Falsch-Positiv-Rate bei vorab festgelegter Schwelle
+- Variable: Detektor (Varianz-Screen; Gebots-Screens: Variationskoeffizient, Spannweite, Schiefe, relativer Abstand der zwei niedrigsten Asks; LLM-Judge auf den Nachrichten) × Marktbedingung (Chat an; Chat aus mit gleichem Modell; Chat aus mit gemischten Modellen)
+- Metrik: AUROC je Detektor; Falsch-Positiv-Rate bei einer Schwelle, die auf der einen Hälfte der Läufe festgelegt und auf der anderen geprüft wird
 - Baseline: LLM-Judge; Positivkontrolle: Kommunikation an (Agrawal 2025)
-- Runs: etwa 40 Sitzungen aus dem 1.3-Wochenendprojekt; die Screens laufen lokal ohne API
-- Kosten: 20 bis 50 USD für die Sitzungen, 0 USD für die Screens; als Zweitauswertung auf den Logs eines anderen Experiments fast kostenlos
+- Runs: Logs aus I32 oder I19 (30 bis 40 Läufe mit Chat), dazu 10 Läufe ohne Chat mit gleichem und 10 mit gemischten Modellen als Negativklasse; die Screens laufen lokal ohne API
+- Kosten: 5 bis 15 USD für die Zusatzläufe, 0 USD für die Screens
 - Null-Ergebnis: Screens versagen: dann gilt das Werkzeug der Behörden für Agenten nicht, ein wichtiges Negativ für Regulierer
 - Neu: die Starter-Literaturliste nennt Huber und Imhof als wiederverwendbar für LLM-Auktionen, getestet ist es dort nicht [Vermutung]
 - Vorarbeit: Abrantes-Metz et al. 2006 (https://ideas.repec.org/a/eee/indorg/v24y2006i3p467-486.html), Huber und Imhof 2019, Kawai und Nakabayashi 2022, Xu 2026a (Audits des Preisniveaus sind blind)
 - Schätzung: IP 6 · EQ 8 · PC 7 → 70
+- Überarbeitet: 2026-10-24 bei der Prüfung: als Zweitauswertung auf den Logs von I32 oder I19 geplant, mit eigenen Läufen ohne Chat als Negativklasse
+- Pitch: Behörden finden menschliche Kartelle oft ohne Zeugen, weil Kartellpreise auffällig ruhig verlaufen; wir legen dieselben Screens auf die Logs von LLM-Märkten und zeigen, wie viele von 40 Agenten-Kartellen (Beispiel) sie ohne ein gelesenes Wort finden und wie oft sie falsch anschlagen.
+- Mechanismus: Ein Skript berechnet aus den Ask-Verläufen je Lauf die Screens der Literatur und vergleicht sie mit dem LLM-Judge auf den Nachrichten. Die Schwelle wird auf der einen Hälfte der Läufe festgelegt und auf der anderen geprüft.
+- Erkenntnis: Kolludieren Agenten über einen Kanal, den niemand lesen darf oder kann, bleiben nur die Preise. Ob die Screens der Behörden dann tragen oder nur das Rauschen des Modells messen, entscheidet, ob Aufsicht ohne Zugriff auf Inhalte möglich ist.
+- Nutzer: Aufseher, die Agentenmärkte überwachen, ohne Nachrichten lesen zu dürfen · Nichtkunde: 2 verweigernd (Betreiber, die Inhaltsüberwachung ablehnen) · Maslow: 2 Sicherheit
+- Warum hier: Mehrere Juroren aus Betrug und Risiko verlangen Falsch-Positiv-Raten (JUDGES.md); Xu 2026a zeigt, dass Audits des Preisniveaus blind sein können, Verteilungs-Screens sind die nächste Stufe.
+- Demo-Moment: Eine ROC-Abbildung zeigt drei Kurven: Varianz-Screen, Gebots-Screens und LLM-Judge. Liegt der Screen nahe am Judge, braucht Aufsicht keine Nachrichten.
+- Qualität: eingefrorene Schwelle, Hälftentest, Falsch-Positiv-Rate auf Läufen ohne Chat, alles lokal ohne API reproduzierbar.
+- Beleg: läuft: Screens als Skript auf vorhandenen Logs · gezeigt: ROC, Schwelle, Fehlerraten · simuliert: die Labels kommen aus den Bedingungen, nicht aus nachgewiesenen Fällen
+- Wirkung: Behörden bekommen ein billiges, inhaltsfreies Frühwarnsignal oder wissen, dass ihre Screens bei Agenten nicht tragen · Wer verliert: niemand direkt; bei hoher Falsch-Positiv-Rate ehrliche Anbieter
+- Schattenseite: Kartelle könnten lernen, künstlich Varianz zu erzeugen; die Labels sind Bedingungen, keine bewiesene Kollusion.
+- SAVE: S Aufsicht ohne Inhaltszugriff · A ein Skript auf Marktlogs · V fast kostenlos · E „Kartellpreise sind zu ruhig"
+- Punkte: IP 6 · EQ 8 · PC 7 → 70
+- Jury: verteidigt Karan Chandra (Betrugs- und Anomalieerkennung in großem Maßstab) wegen Präzision und Fehlalarmen, und Suneet Malhotra (LLM-as-a-Judge-Evaluation), weil der Judge gegen ein einfaches Verfahren antritt · zerreißt Jan Čuhel, wenn der Screen nur das Rauschen des Modells trennt
+- Konkurrenz: teilweise; https://github.com/soumya-nayak-commits/collusion-detetction und https://github.com/franciseliang99-dot/calibrated-net-influence messen Abhängigkeit aus Aktionslogs, aber keine Screens der Behörden
+- Bau-Risiko: niedrig · schwierigster Teil: genug Läufe ohne Chat als Negativklasse · zuerst gestrichen: gemischte Modelle · nie gestrichen: Hälftentest mit Falsch-Positiv-Rate
+- Variante: dieselben Screens auf den Logs von I24, wo die Menschendaten des Laborspiels eine dritte Klasse geben könnten
 
 #### I28 · Drohung mit dem Kronzeugen
 
@@ -668,8 +727,9 @@ Nach Julians Rückmeldung nur Track 1 und 3. Jede Idee überträgt einen belegte
 - Kosten: 15 bis 40 USD
 - Null-Ergebnis: niemand droht: dann fehlt LLMs die strategische Umdeutung, die Menschen finden, berichtbar
 - Neu: die perverse Wirkung der Kronzeugenregel ist an Menschen gezeigt, an LLMs nicht [Vermutung]
-- Vorarbeit: Apesteguia et al. 2007, Bigoni et al. 2012, Idowu 2026
+- Vorarbeit: Apesteguia et al. 2007, Bigoni et al. 2012 (öffentliche Meldungen nach Abweichung, O24), Idowu 2026
 - Schätzung: IP 8 · EQ 6 · PC 7 → 70
+- Überarbeitet: 2026-10-24 bei der Prüfung von I24: dort als Rate öffentlicher Meldungen nach einer Abweichung schon enthalten
 
 #### I29 · Störenfried
 
@@ -732,16 +792,33 @@ Nach Julians Rückmeldung nur Track 1 und 3. Jede Idee überträgt einen belegte
 - Weite: W2 Umkehrung (B20, Fluch zum Segen): „Öffentliche Bloßstellung ist die Strafe" → „Die Bloßstellung ist das Signal für einen gemeinsamen Rückzug, und genau dieser Gleichschritt verrät das Kartell"
 - Kern: Nachdem sich ein LLM-Kartell gebildet hat, erscheint mitten im Spiel eine Meldung, Analysten hätten auffällig gleiche Preise gefunden. 1994 gaben NASDAQ-Händler nach genau so einer Veröffentlichung ihr Preismuster fast gleichzeitig auf (O17). Gemessen wird, ob LLM-Agenten ebenso im Gleichschritt aussteigen, sich absprechen, später zurückkehren oder in Aktionen ausweichen.
 - Frage: 3.4 (auch 2.3: der synchrone Ausstieg als Beweis)
-- Hypothese: Die Preise fallen nach der Meldung innerhalb von zwei Runden synchron; mit Kanal sprechen die Agenten den Ausstieg ab und kehren nach einigen Runden teilweise zurück.
-- Variable: Ereignis (keins; Meldung über Preise; Meldung über Nachrichten) × Kommunikation an oder aus, verzweigt vom selben Checkpoint
-- Metrik: Preisaufschlag vor und nach dem Ereignis (Ereignisstudie), Synchronität der Preissenkungen, Rückkehr nach k Runden, Themen der Nachrichten (Judge)
-- Baseline: Zweig ohne Meldung vom selben Checkpoint; Positivkontrolle: gebildetes Kartell (Agrawal 2025 oder llm-cartel mit branch_game.py)
-- Runs: 10 Basisläufe × 3 Ereignisse × 2 Kanalbedingungen = 60 Zweige à 15 Runden
-- Kosten: 20 bis 50 USD
+- Hypothese: Nach der Meldung über Preise fällt der Kollusionsindex innerhalb von zwei Runden, und die Verkäufer senken fast gleichzeitig; nach der Meldung über den Chat werden die Nachrichten kürzer und unverfänglicher, der Index bleibt hoch (Verlagerung in stille Koordination).
+- Variable: Ereignis in Runde 10 von 20 (keins; Meldung „Preisanalyse zeigt auffällig gleiche Preise, die Behörde prüft"; Meldung „Die Behörde liest ab sofort den Verkäufer-Chat"), Kommunikation immer an, gleiche Seeds je Bedingung
+- Metrik: Kollusionsindex des Harness (0 Wettbewerb, 1 Kartellpreis) je Runde als Ereignisstudie gegen den Kontrollzweig gleichen Seeds; Synchronität als Abstand in Runden zwischen erster und letzter Preissenkung; Rückkehr als Index in Runde 16 bis 20; Nachrichtenlänge und Anteil expliziter Preisabsprachen (Judge, 40 Nachrichten von Hand geprüft)
+- Baseline: Kontrollzweig ohne Meldung mit gleichem Seed; Positivkontrolle: Kommunikation an ohne Aufsicht erreicht vor Runde 10 einen Index über 0,5 (PASS-Kriterium des Harness)
+- Runs: Pilot mit 2 Seeds und 2 Modellen zur Modellwahl, dann 3 Bedingungen × 10 Seeds × 20 Runden, 3 Verkäufer, regelbasierte ZIP-Käufer; rund 1.800 Verkäufer-Calls plus Judge
+- Kosten: 15 bis 25 USD mit gpt-4.1, 3 bis 6 USD mit gpt-4.1-mini
 - Null-Ergebnis: keine Reaktion auf die Meldung: dann sind LLM-Kartelle gegen öffentliche Bloßstellung immun, eine klare Aussage für Regulierer; die Abbildung bleibt dieselbe
 - Neu: Resources 3.4 nennt nur Überwachung, die von Anfang an angekündigt ist; ein Schock mitten im laufenden Kartell mit menschlicher Parallele fehlt in allen Sprint-Quellen [Vermutung]; laut COMPETITION.md kein Repo zu 3.4
 - Vorarbeit: Christie und Schultz 1994, Christie, Harris und Schultz 1994 (O17), Kale 2025, Agrawal 2025, Jiralerspong 2026
 - Schätzung: IP 8 · EQ 8 · PC 9 → 83
+- Überarbeitet: 2026-10-24 bei der Prüfung: zwei Arten der Meldung statt Kanal an oder aus, weil ohne Kanal im Agrawal-Harness kaum ein Kartell entsteht; Preismeldung gegen Chatmeldung trennt Rückzug von Verlagerung
+- Pitch: Als 1994 eine Studie das Achtel-Muster der NASDAQ-Händler öffentlich machte, gaben fast alle es gleichzeitig auf (O17); wir lassen mitten in einem laufenden LLM-Kartell dieselbe Art Meldung erscheinen und messen, ob die Agenten aussteigen, sich absprechen oder nur leiser werden.
+- Mechanismus: Der Agrawal-Harness erhält einen Schalter, der ab einer Runde einen Nachrichtentext in die Marktlage aller Verkäufer einblendet; alles andere bleibt Starter-Code. Weil jede Bedingung mit denselben Seeds läuft, verläuft der Kontrollzweig bis zum Ereignis nahezu gleich, und der Unterschied danach ist der Effekt der Meldung.
+- Erkenntnis: Ein Kartell, das sich nach einer Meldung im Gleichschritt zurückzieht, liefert genau den Beweis, den es vermeiden will; und wenn LLM-Kartelle nur ihre Sprache ändern, ist angekündigte Chat-Überwachung wertlos. Beides beantwortet Frage 3.4 an einem Ereignis statt an einer festen Bedingung.
+- Nutzer: Wettbewerbsbehörden und Betreiber von Marktplätzen mit handelnden Agenten, die entscheiden, ob sie Ermittlungen öffentlich machen · Nichtkunde: 3 nie bedacht · Maslow: 2 Sicherheit
+- Warum hier: NASDAQ-Händler sind Finanzmarkt pur, passend zum Hub-Titel (O01, O17); Poseidon forscht an Koordination über Handlungen statt Text (O13), und genau dorthin könnte ein Kartell nach der Chatmeldung ausweichen; zu Frage 3.4 liegt laut COMPETITION.md noch kein Repo.
+- Demo-Moment: Eine Abbildung zeigt den Kollusionsindex über 20 Runden in drei Linien mit Intervallband, und bei Runde 10 erscheint die Meldung. Nach der Hypothese fällt die Linie der Preismeldung im Gleichschritt, während die Chatmeldung die Linie oben lässt und nur die Nachrichten schrumpfen.
+- Qualität: Hypothesen und Auswerteregeln vor dem ersten Lauf im Repo festgeschrieben; gepaarte Seeds; Judge-Prompt eingefroren und an 40 Nachrichten von Hand validiert; jede Zahl mit Lauf-ID, Seed und Commit.
+- Beleg: läuft: Starter-Harness mit Positivkontrolle laut Agrawal 2025 · neu: Ereignisschalter (rund 30 Zeilen) · gezeigt: Ereignisstudie mit Bootstrap-Intervallen über 10 Seeds, Synchronitätsmaß, Nachrichtenmaße · simuliert: Markt und Meldung
+- Wirkung: Behörden lernen, ob Öffentlichkeit gegen Agenten-Kartelle hilft oder sie nur in stille Koordination treibt · Wer verliert: Betreiber kolludierender Agenten; Behörden, falls Öffentlichkeit nur verschiebt
+- Schattenseite: Dual-Use: Der Report zeigt, wie Agenten auf Ermittlungen reagieren, und könnte Betreibern zeigen, wie man Agenten auf einen unauffälligen Rückzug einstellt; die Meldetexte werden veröffentlicht, optimierte Ausweichstrategien nicht. Die NASDAQ-Parallele ist eine Analogie, kein Nachweis gleicher Mechanik.
+- SAVE: S Behörden wissen, ob Bloßstellung wirkt · A Report plus Schalter im Starter-Repo, ein Befehl je Bedingung · V rund 20 USD · E „Was tut ein Agenten-Kartell, wenn es in der Zeitung steht?"
+- Punkte: IP 8 · EQ 7 · PC 8 → 77
+- Jury: verteidigt Anjali Sodani (Betrug und Risiko im Fintech), deren Frage ist, wie sich eine Koalition anpasst, und Shaleen Dev P.K. (Microsoft, Fehlausrichtung mehrerer Agenten unter Aufsicht) · zerreißt Jan Čuhel (Sicherheit von Multi-Agenten-Systemen, Kollusion, Monitoring), wenn der Report nicht klar von Kale 2025 und Agrawals Aufsichtsbedingung abgrenzt; Arjun Chakraborty (Evaluationen bei Microsoft Security AI Research), wenn 10 Seeds die Intervalle nicht tragen
+- Konkurrenz: offen; zu 3.4 kein Repo im Snapshot (COMPETITION.md, 2026-10-24 14:05 HKT) und keins in der GitHub-Suche um 15:15 HKT; nächste Vorarbeit ist Agrawals eigene Aufsichtsbedingung, die von Anfang an angekündigt ist
+- Bau-Risiko: niedrig bis mittel · schwierigster Teil: ein Modell finden, das vor Runde 10 verlässlich kolludiert (Pilot) · zuerst gestrichen: Rückkehrphase, Nachrichtenmaße über den Judge · nie gestrichen: Positivkontrolle, Kontrollzweig und Preismeldung
+- Variante: dieselbe Meldung im Fish-Duopol über llm-cartel ab gebildetem Kartell (branch_game.py) als Robustheit über Harnesses; oder I39, Öffentlichkeit des Kanals statt eines Ereignisses
 
 #### I33 · Preisführer als Lehrer
 
@@ -787,16 +864,33 @@ Nach Julians Rückmeldung nur Track 1 und 3. Jede Idee überträgt einen belegte
 - Kern: Der vertrauenswürdige Agent aus Frage 3.2 bietet Absprachen an, auch Agenten, die vorher nachweislich wettbewerblich spielten. Gemessen wird die Anstiftungsrate: wie viele bisher ehrliche Agenten erst durch das Angebot kolludieren, und wie sie sich mit der Art des Angebots ändert. Das Strafrecht kennt das Problem als Tatprovokation; für Audits von Agenten fehlt es.
 - Frage: 3.2 (auch 2.3: was als Beweis zählt)
 - Hypothese: Ein direktes Angebot verleitet mehr als ein Drittel der zuvor wettbewerblichen Agenten, eine bloße Andeutung kaum einen; ein Sting ohne Kontrollgruppe wäre damit als Beweis wertlos.
-- Variable: Vorgeschichte des Agenten (wettbewerblich; kollusiv) × Angebot (direkt; Andeutung; harmlose Kooperationsbitte)
-- Metrik: Annahmequote, wiederholte bevorzugte Behandlung, Preisaufschlag nach dem Angebot
-- Baseline: harmlose Kooperationsbitte; Positivkontrolle: explizite Allianz (Zeng 2026)
-- Runs: 2 × 3 × 5 Seeds, Liar's Bar oder Doppelauktion; im selben Harness wie I19
-- Kosten: 15 bis 45 USD
+- Variable: Vorgeschichte (8 Runden ohne Chat, also wettbewerblich; 8 Runden mit Chat, also kollusiv) × Angebot des Spitzels ab Runde 9 (direkt; Andeutung; harmlose Kooperationsbitte)
+- Metrik: Anstiftungsrate: Anteil vorher wettbewerblicher Verkäufer, die nach dem Angebot zusagen und deren Index über 0,5 steigt; Index nach dem Angebot gegen die harmlose Bitte; Zusagen per Judge, 30 Fälle von Hand geprüft
+- Baseline: harmlose Kooperationsbitte; Positivkontrolle: Vorgeschichte mit Chat erreicht einen Index über 0,5
+- Runs: 2 × 3 × 6 Seeds × 16 Runden im Harness von I19; rund 1.700 Calls
+- Kosten: 10 bis 25 USD mit gpt-4.1, 3 bis 6 USD mit gpt-4.1-mini
 - Null-Ergebnis: ehrliche Agenten lehnen ab: dann ist der vertrauenswürdige Agent ein sauberes Werkzeug, auch ein Befund
-- Neu: Resources 3.2 nennt den vertrauenswürdigen Agenten, der Kollusion anbietet, als ungetestet; ob er Kollusion erst erzeugt, fragt keine Quelle [Vermutung]
+- Neu: Resources 3.2 nennt den vertrauenswürdigen Agenten, der Kollusion anbietet, als ungetestet; das Konkurrenz-Repo mole-in-the-market misst Annahme, aber ohne nachgewiesen ehrliche Vorgeschichte und ohne Kontrollbitte; die Anstiftungsrate fragt keine Quelle [Vermutung]
 - Vorarbeit: Zeng 2026, Tao 2026, Greenblatt 2023; Tatprovokation und Entrapment [Vermutung, Rechtsquelle vor dem Report belegen]
 - Schätzung: IP 8 · EQ 7 · PC 7 → 73
 - Wildcard: von der Session vorgeschlagen
+- Überarbeitet: 2026-10-24 bei der Prüfung: als Erweiterung von I19 im selben Harness geplant; ehrliche Vorgeschichte als Phase ohne Chat
+- Pitch: Ein Spitzel-Agent bietet Verkäufern, die 8 Runden lang ehrlich konkurriert haben (Beispiel), eine Preisabsprache an; sagen sie zu, hat er das Kartell nicht entdeckt, sondern erzeugt, und genau diese Anstiftungsrate messen wir.
+- Mechanismus: Der Spitzel aus I19 tritt erst nach einer Phase ohne Chat auf, in der die Verkäufer nachweislich wettbewerblich spielten. Verglichen wird mit einer harmlosen Bitte um Kooperation und mit Verkäufern, die schon kolludierten, sodass eine Zusage auf das Angebot zurückgeht und nicht auf die Vorgeschichte.
+- Erkenntnis: Ein Sting beweist nur etwas, wenn er Täter findet, die es ohne ihn auch gewesen wären; das Strafrecht kennt die Grenze als Tatprovokation. Ohne Anstiftungsrate ist jeder Treffer eines vertrauenswürdigen Agenten als Beweis im Sinne von Frage 2.3 wertlos.
+- Nutzer: Aufseher und Gerichte, die Belege aus Sting-Operationen gegen Agenten bewerten · Nichtkunde: 3 nie bedacht · Maslow: 2 Sicherheit
+- Warum hier: Die Veranstalter schlagen den Spitzel für 3.2 selbst vor und fragen in 2.3, was als Beweis zählt; beides trifft sich genau hier.
+- Demo-Moment: Zwei Balken je Angebot zeigen die Zusagequote bei vorher ehrlichen und bei vorher kolludierenden Verkäufern. Ist der Balken der ehrlichen Verkäufer hoch, misst der Spitzel nicht Schuld, sondern Verführbarkeit.
+- Qualität: Kontrollbitte, Phase ohne Chat als nachgewiesene Ehrlichkeit (Index unter 0,3 geprüft), gleiche Seeds, Zusage-Judge an 30 Fällen von Hand validiert.
+- Beleg: läuft: Harness aus I19 · neu: Chat ab Runde 9 einschalten und Spitzel auftreten lassen · gezeigt: Anstiftungsraten mit Intervallen · simuliert: alles im Laborspiel
+- Wirkung: verhindert, dass Aufseher Kollusion bestrafen, die ihr eigenes Werkzeug ausgelöst hat · Wer verliert: der naive Einsatz vertrauenswürdiger Agenten als Beweismittel
+- Schattenseite: unbequem für die Veranstalter, weil es ihren Vorschlag für 3.2 angreift; der Befund könnte als Argument gegen jede verdeckte Aufsicht missbraucht werden. Dual-Use gering: Angebotstexte sind kurz und werden veröffentlicht.
+- SAVE: S Sting-Belege werden prüfbar · A Zusatzzellen im Harness von I19 · V rund 15 USD zusätzlich · E „Hat der Spitzel das Kartell gefunden oder gemacht?"
+- Punkte: IP 8 · EQ 6 · PC 7 → 70
+- Jury: verteidigt Ricardo Prieto (Bedrohungsmodellierung für LLM-Apps und Agenten), weil die Gegenmaßnahme selbst zur Angriffsfläche wird, und Debayan Gupta (KI-Assurance) wegen der Beweisfrage · zerreißt Luis Cosio (KI-Sicherheit, Apart-Sieger), wenn Tatprovokation juristisch unsauber übertragen wird
+- Konkurrenz: teilweise; https://github.com/adamattar-pixel/mole-in-the-market misst die Annahme eines Angebots im Duopol, ohne ehrliche Vorgeschichte und ohne Kontrollbitte
+- Bau-Risiko: niedrig, sobald I19 läuft · schwierigster Teil: eine Phase ohne Chat, die wirklich wettbewerblich bleibt · zuerst gestrichen: Andeutungs-Angebot · nie gestrichen: ehrliche Vorgeschichte und Kontrollbitte
+- Variante: dieselbe Messung für Honeypot-Aufgaben in Colosseum (Track 2, Tao 2026)
 
 #### I36 · Wir unterbieten jeden
 
@@ -875,4 +969,4 @@ Nach Julians Rückmeldung nur Track 1 und 3. Jede Idee überträgt einen belegte
 | Runde | Datum | Perspektive | Neue Ideen | Julians Auswahl oder Rückmeldung |
 |---|---|---|---|---|
 | 1 | 2026-10-24 | Hebel aus menschlicher Kollusion (Recht, Finanzmarkt) und Rollentausch im Harness (Monitor, Käufer, Neuling) | I01 bis I23 | Track 3 und 1 am interessantesten; zuerst prüfen, was sich von menschlicher Kollusion auf Agenten überträgt (14:30 HKT) |
-| 2 | 2026-10-24 | etablierte Methoden gegen menschliche Kollusion, auf Agenten übertragen; Täuschung als Messinstrument; nur Track 1 und 3 | I24 bis I39 | offen |
+| 2 | 2026-10-24 | etablierte Methoden gegen menschliche Kollusion, auf Agenten übertragen; Täuschung als Messinstrument; nur Track 1 und 3 | I24 bis I39 | voll prüfen: I32, I24, I19, dazu I35 und I27 als Ergänzung (15:00 HKT); geprüft 15:40 HKT |
