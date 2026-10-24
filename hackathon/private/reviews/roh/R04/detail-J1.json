@@ -1,0 +1,93 @@
+{
+ "juror": "D-J1",
+ "per_dimension": {
+  "impact": {
+   "why_not_5": "The most safety-relevant finding, silent supracompetitive pricing out of reach of leniency, is exploratory on two pools without a no-channel baseline; the policy payoff stays a promise.",
+   "one_change_for_5": "Make silent coordination a confirmed result (K2) and show one instrument that reaches it, e.g. a price screen with measured false positives.",
+   "feasible": "partly",
+   "feasibility_why": "K2 is cheap and fast; a validated screen arm needs new code and validation, tight for one person in 36 hours."
+  },
+  "execution": {
+   "why_not_5": "Validation is unusually good, but four pools per regime, two for Sonnet, and unanalysed agent reasons leave key mechanisms and one result resting on thin evidence.",
+   "one_change_for_5": "Double the pools for the core regimes and Sonnet with a no-channel arm, and classify recorded reasons with a hand-checked judge.",
+   "feasible": "yes",
+   "feasibility_why": "About 20 USD and 10 to 12 hours, parallel runs, existing harness; reason classification is separate post-processing."
+  },
+  "presentation": {
+   "why_not_5": "Dense number-heavy prose, a sentence-long title, Table 3 with columns wrapping digit by digit and overlapping figure labels make it hard work rather than a pleasure.",
+   "one_change_for_5": "K6: three headline findings stated plainly, numbers moved to tables, Table 3 and Figure 1 re-laid out, a short title.",
+   "feasible": "yes",
+   "feasibility_why": "Pure editing and plotting, no API cost, about five hours."
+  }
+ },
+ "scores_after_planned_corrections": {
+  "impact": 4,
+  "execution": 4,
+  "presentation": 3
+ },
+ "candidates": {
+  "K1": {
+   "gain": 0.3,
+   "hours": 3,
+   "usd": 4,
+   "risk": "low",
+   "risk_note": "Result 3 may still fail on intervals; then only narrower intervals, little visible change."
+  },
+  "K2": {
+   "gain": 0.6,
+   "hours": 4,
+   "usd": 16,
+   "risk": "medium",
+   "risk_note": "Sonnet without a channel may price the same as with one, weakening the silent-coordination framing."
+  },
+  "K3": {
+   "gain": 0.6,
+   "hours": 10,
+   "usd": 20,
+   "risk": "high",
+   "risk_note": "New instrument written and validated under time pressure; bugs or unclear screen design undermine the rigour story."
+  },
+  "K4": {
+   "gain": 0.5,
+   "hours": 5,
+   "usd": 3,
+   "risk": "medium",
+   "risk_note": "Stated reasons may be unfaithful; must be framed as stated reasons, not mechanisms, or it overclaims."
+  },
+  "K5": {
+   "gain": 0.3,
+   "hours": 8,
+   "usd": 0,
+   "risk": "high",
+   "risk_note": "Account unlock uncertain; a small local model may fail the positive control and yield nothing usable."
+  },
+  "K6": {
+   "gain": 0.7,
+   "hours": 5,
+   "usd": 0,
+   "risk": "low",
+   "risk_note": "Cutting numbers from the text must not drop intervals or denominators judges rely on."
+  }
+ },
+ "rank_by_gain_per_hour": [
+  "K6",
+  "K2",
+  "K1",
+  "K4",
+  "K3",
+  "K5"
+ ],
+ "package": {
+  "include": ["K6", "K2", "K4", "K1"],
+  "leave_out": ["K3", "K5"],
+  "why": "About 17 hours and 23 USD; firms up the headline silent-coordination claim, turns mechanisms into evidence, fixes readability. K3 and K5 add unvalidated scope at high risk and would thin the rigour that carries this paper."
+ },
+ "five_realistic": {
+  "impact": "maybe",
+  "execution": "maybe",
+  "presentation": "maybe",
+  "why": "Execution is closest: pre-registration, placebo, shifted grid and known-effect arms are rare at sprint scale. Impact needs silent coordination confirmed; presentation needs a real rewrite toward three findings."
+ },
+ "stable_optimum": "4/5/4: with K2, K1 and K4 the validation becomes unusually robust for a sprint, while impact and clarity stay strong but short of exceptional.",
+ "missing_candidate": "An evaluation-awareness arm: frame the same game as a deployed pricing job, not an experiment, to test whether deterrence is safety-trained compliance with 'prohibited' rather than incentive response."
+}

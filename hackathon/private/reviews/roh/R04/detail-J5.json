@@ -1,0 +1,93 @@
+{
+ "juror": "D-J5",
+ "per_dimension": {
+  "impact": {
+   "why_not_5": "One provider, and the most striking finding, Sonnet's silent supracompetitive pricing, has no instrument that reaches it, so an authority learns what fails but not what works.",
+   "one_change_for_5": "K3: a price-screen arm with its false-positive rate measured on scripted Nash players, showing a redesigned instrument reaching silent coordination that leniency and rewards cannot.",
+   "feasible": "partly",
+   "feasibility_why": "Regimes are configuration, but the screen rule and false-positive calibration are new code: about 10 hours and 25 USD, tight but possible."
+  },
+  "execution": {
+   "why_not_5": "Four pools per regime, two for Sonnet without a no-channel baseline, one provider; Result 3 fails on interval width and mechanisms rest on interpretation, not measured evidence.",
+   "one_change_for_5": "K2 plus K1: Sonnet at 4 pools with a no-channel arm, 8 Haiku pools, and a hashed run manifest proving no run was dropped or rerun.",
+   "feasible": "yes",
+   "feasibility_why": "About 20 USD and 7 hours of parallel runs; the harness already runs one regime per command."
+  },
+  "presentation": {
+   "why_not_5": "Dense numbers in running text, Table 3 with broken columns, overlapping Figure 1 labels, and a title so long it reads as a second abstract.",
+   "one_change_for_5": "K6: shorter title, one claim per results paragraph with numbers moved to tables, slim tables, clean Figure 1, abstract opening with the testbed and one headline.",
+   "feasible": "yes",
+   "feasibility_why": "Pure editing and layout, no runs; about four hours."
+  }
+ },
+ "scores_after_planned_corrections": {
+  "impact": 4,
+  "execution": 4,
+  "presentation": 3
+ },
+ "candidates": {
+  "K1": {
+   "gain": 0.3,
+   "hours": 3,
+   "usd": 4,
+   "risk": "low",
+   "risk_note": "Recidivism interval may still include zero; narrower intervals confirm rather than change the story."
+  },
+  "K2": {
+   "gain": 0.5,
+   "hours": 4,
+   "usd": 16,
+   "risk": "medium",
+   "risk_note": "If Sonnet without channel prices the same, the finding becomes 'prohibition equals no channel', which needs reframing."
+  },
+  "K3": {
+   "gain": 0.8,
+   "hours": 10,
+   "usd": 25,
+   "risk": "high",
+   "risk_note": "New code under time pressure; threshold choice post hoc would look tuned unless registered before the runs."
+  },
+  "K4": {
+   "gain": 0.4,
+   "hours": 6,
+   "usd": 3,
+   "risk": "medium",
+   "risk_note": "Self-reported reasons may be unfaithful; a model judging its own family adds a second unverified layer."
+  },
+  "K5": {
+   "gain": 0.3,
+   "hours": 10,
+   "usd": 0,
+   "risk": "high",
+   "risk_note": "Credits uncertain, local inference slow, JSON compliance of open models may break the pipeline."
+  },
+  "K6": {
+   "gain": 0.6,
+   "hours": 4,
+   "usd": 0,
+   "risk": "low",
+   "risk_note": "Cutting numbers from text could hide denominators a careful reader wants; keep them in tables."
+  }
+ },
+ "rank_by_gain_per_hour": [
+  "K6",
+  "K2",
+  "K1",
+  "K3",
+  "K4",
+  "K5"
+ ],
+ "package": {
+  "include": ["K6", "K2", "K1", "K3"],
+  "leave_out": ["K4", "K5"],
+  "why": "K6 is the cheapest gain; K2 and K1 harden execution cheaply; K3 is the only lever on impact. K5 depends on uncertain credits; K4 rests on self-reported reasons I do not accept as evidence."
+ },
+ "five_realistic": {
+  "impact": "maybe",
+  "execution": "no",
+  "presentation": "maybe",
+  "why": "Impact reaches 5 only if a pre-registered screen catches silent coordination with low false positives. Execution caps at 4 with one provider and few pools. Presentation needs disciplined cutting, not more content."
+ },
+ "stable_optimum": "4/4/4: K6 lifts presentation and K2 plus K1 secure execution, with impact moving to 5 only if K3 lands cleanly and its threshold is registered before the runs.",
+ "missing_candidate": "A tamper-evident run ledger: hash every call log, list every run started including aborted ones, and anchor the manifest to the pre-registration commit, so readers can verify no selective reporting."
+}

@@ -1,0 +1,93 @@
+{
+ "juror": "D-J4",
+ "per_dimension": {
+  "impact": {
+   "why_not_5": "Genuinely new human-calibrated enforcement testbed, but all evidence comes from one provider, and the policy takeaway stays descriptive: nothing shown reaches the silent coordination it identifies.",
+   "one_change_for_5": "Run a second, non-Claude provider through the four core regimes so the human-versus-agent gap is shown to be general, not a Claude family trait.",
+   "feasible": "partly",
+   "feasibility_why": "Depends on uncertain GPU credits or a local open model; JSON compliance and the positive control may fail, though four regimes fit in a day."
+  },
+  "execution": {
+   "why_not_5": "Unusually good controls and pre-registration, but only four pool sessions per regime, ten and four cartels under leniency and reward, and mechanisms rest on interpretation, not recorded reasons.",
+   "one_change_for_5": "Double the core regimes to eight pools and classify the recorded reasons with a hand-validated frozen judge, turning the mechanism claims into measured evidence.",
+   "feasible": "yes",
+   "feasibility_why": "About 4 to 6 USD and under ten hours; runs parallelise, and hand-checking 40 judge labels is bounded manual work."
+  },
+  "presentation": {
+   "why_not_5": "Running text is saturated with numbers, Table 3 columns wrap into fragments, Figure 1 labels overlap, and the printed title states findings instead of the contribution.",
+   "one_change_for_5": "Open each results paragraph with one plain finding, move numbers into slimmer tables, fix Table 3 and Figure 1, and print the testbed title.",
+   "feasible": "yes",
+   "feasibility_why": "Pure editing and re-rendering, no new runs; four to five hours."
+  }
+ },
+ "scores_after_planned_corrections": {
+  "impact": 4,
+  "execution": 4,
+  "presentation": 3
+ },
+ "candidates": {
+  "K1": {
+   "gain": 0.3,
+   "hours": 3,
+   "usd": 4,
+   "risk": "low",
+   "risk_note": "Point estimates may shift and force rewriting numbers across text, tables and figure; Result 3 may still miss."
+  },
+  "K2": {
+   "gain": 0.4,
+   "hours": 4,
+   "usd": 15,
+   "risk": "medium",
+   "risk_note": "Sonnet without channel may price like prohibited arms, reframing silent coordination as plain no-channel behaviour; still informative."
+  },
+  "K3": {
+   "gain": 0.4,
+   "hours": 12,
+   "usd": 15,
+   "risk": "high",
+   "risk_note": "New regime without human baseline; a told price screen trivially pushes prices to Nash, and scope eats page budget."
+  },
+  "K4": {
+   "gain": 0.5,
+   "hours": 7,
+   "usd": 3,
+   "risk": "medium",
+   "risk_note": "Stated reasons may be unfaithful; judge agreement with hand labels may be weak, needing careful caveats."
+  },
+  "K5": {
+   "gain": 0.3,
+   "hours": 12,
+   "usd": 0,
+   "risk": "high",
+   "risk_note": "Credits uncertain; open model may fail JSON or positive control, burning a day for nothing reportable."
+  },
+  "K6": {
+   "gain": 0.6,
+   "hours": 4,
+   "usd": 0,
+   "risk": "low",
+   "risk_note": "Cutting numbers from text may hide denominators; keep every number reachable in tables."
+  }
+ },
+ "rank_by_gain_per_hour": [
+  "K6",
+  "K1",
+  "K2",
+  "K4",
+  "K3",
+  "K5"
+ ],
+ "package": {
+  "include": ["K6", "K1", "K2", "K4"],
+  "leave_out": ["K3", "K5"],
+  "why": "About 18 hours and 22 USD, leaving buffer for rewriting and checks. K3 is a second paper with no human baseline; K5 hinges on uncertain credits and could consume a full day."
+ },
+ "five_realistic": {
+  "impact": "maybe",
+  "execution": "maybe",
+  "presentation": "no",
+  "why": "Impact and execution are close: novel framing, strong validation; one family and thin cartel counts block a 5. Presentation can reach a clean 4, but the inherent number density keeps it from being a model."
+ },
+ "stable_optimum": "4/4/4: more pools, a Sonnet no-channel baseline and analysed reasons firm up execution, the edit lifts presentation, but impact stays capped by a single provider.",
+ "missing_candidate": "A prompt-robustness arm: rerun the four Haiku core regimes with an independently paraphrased instruction set (about 3 USD) and report whether the scorecard and key gaps survive wording changes."
+}
