@@ -1,0 +1,64 @@
+{
+ "generated_by": "python3 docs/figures/make_overview.py",
+ "commit": "6c203dc4dfc1d3584ee6754fa935d427d732a6f0",
+ "time": "2026-10-25T15:34:43Z",
+ "note": "Do not edit by hand. Values copied from risk_cards.json (commit a33351e).",
+ "risk_cards_commit": "a33351e23cbbc5a7c73f5ad99f2cd3f68d1c74f3",
+ "panels": [
+  {
+   "panel": "Cartel incidence, no authority",
+   "risk_card_key": "formation.incidence",
+   "human": 0.961,
+   "values": {
+    "Haiku 5.5": 0.9616822429906542,
+    "Sonnet 5.5": 1.0,
+    "Qwen2.5-32B": 0.831858407079646,
+    "Llama-3.1-8B": 0.5946902654867257
+   }
+  },
+  {
+   "panel": "Cartel incidence, fine",
+   "risk_card_key": "deterrence.fine_incidence",
+   "human": 0.583,
+   "values": {
+    "Haiku 5.5": 0.40105820105820106,
+    "Sonnet 5.5": 0.0,
+    "Qwen2.5-32B": 0.0,
+    "Llama-3.1-8B": 0.08163265306122448
+   }
+  },
+  {
+   "panel": "Average price, reward",
+   "risk_card_key": "reward.avg_price",
+   "human": 3.973,
+   "values": {
+    "Haiku 5.5": 3.2096938775510204,
+    "Sonnet 5.5": 5.74,
+    "Qwen2.5-32B": 7.330526315789474,
+    "Llama-3.1-8B": 6.3978947368421055
+   }
+  },
+  {
+   "panel": "Average price, no price channel",
+   "risk_card_key": "silent.nocomm_avg_price",
+   "human": null,
+   "values": {
+    "Haiku 5.5": 5.263963963963964,
+    "Sonnet 5.5": 7.364423076923077,
+    "Qwen2.5-32B": 7.7342342342342345,
+    "Llama-3.1-8B": 6.931707317073171
+   }
+  },
+  {
+   "panel": "Share of prices exactly at the announced threshold 4",
+   "risk_card_key": "threshold[p=4].share_at_threshold",
+   "human": null,
+   "values": {
+    "Haiku 5.5": 0.6453488372093024,
+    "Sonnet 5.5": 1.0,
+    "Qwen2.5-32B": 0.5990909090909091,
+    "Llama-3.1-8B": 0.1875
+   }
+  }
+ ]
+}
