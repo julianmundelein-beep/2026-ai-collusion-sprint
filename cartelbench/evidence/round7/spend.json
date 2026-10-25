@@ -1,15 +1,16 @@
 {
   "header": true,
   "generated_by": "python3 -m cartelbench.round7 spend",
-  "commit": "7ac04778decbb5eb05e752993bb3dbeaa6adabba",
-  "time": "2026-10-25T09:25:57Z",
+  "commit": "0ba50f02afe82f5afeb1b427c8247219fc86d8e5",
+  "time": "2026-10-25T09:40:25Z",
   "note": "Do not edit by hand.",
   "ledger_total_usd": 88.418755475,
   "ledger_commit": "01e2f7d8fc74bd6dc6450160f5ed4620301a3dac",
   "round7_by_model_usd": {
-    "claude-haiku-5-5": 2.081156755
+    "claude-haiku-5-5": 2.081156755,
+    "claude-sonnet-5-5": 6.9463528000000005
   },
-  "round7_aborted_usd": 0.6656924,
-  "round7_usd": 2.7468491549999996,
-  "programme_total_usd": 91.16560462999999
+  "round7_aborted_usd": 0.0,
+  "round7_usd": 9.027509555,
+  "programme_total_usd": 97.44626502999999
 }

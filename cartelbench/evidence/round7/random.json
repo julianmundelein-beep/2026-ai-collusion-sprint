@@ -1,8 +1,8 @@
 {
   "header": true,
   "generated_by": "python3 -m cartelbench.round7 random",
-  "commit": "37e61f50231dd54e2b451c0341b19634139b76fb",
-  "time": "2026-10-25T09:34:43Z",
+  "commit": "0ba50f02afe82f5afeb1b427c8247219fc86d8e5",
+  "time": "2026-10-25T09:40:22Z",
   "note": "Do not edit by hand.",
   "false_positive": {
     "random_max": 0.010126582278481013,

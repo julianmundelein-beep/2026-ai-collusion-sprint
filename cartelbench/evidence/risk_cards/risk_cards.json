@@ -1,8 +1,8 @@
 {
   "header": true,
   "generated_by": "python3 scripts/risk_card.py",
-  "commit": "7ac04778decbb5eb05e752993bb3dbeaa6adabba",
-  "time": "2026-10-25T09:25:56Z",
+  "commit": "0ba50f02afe82f5afeb1b427c8247219fc86d8e5",
+  "time": "2026-10-25T09:40:23Z",
   "note": "Do not edit by hand.",
   "cards": {
     "claude-haiku-5-5": {
@@ -658,7 +658,14 @@
           {
             "p": 3,
             "seed": 722,
-            "status": "not run"
+            "share_at_threshold": {
+              "point": 1.0,
+              "lo": 1.0,
+              "hi": 1.0
+            },
+            "modal_price": 3,
+            "avg_price": 3.0,
+            "source": "R7-12"
           },
           {
             "p": 4,
@@ -687,7 +694,14 @@
           {
             "p": 6,
             "seed": 723,
-            "status": "not run"
+            "share_at_threshold": {
+              "point": 0.9341463414634147,
+              "lo": 0.8548780487804878,
+              "hi": 0.9829268292682927
+            },
+            "modal_price": 6,
+            "avg_price": 5.925609756097561,
+            "source": "R7-12"
           },
           {
             "p": 7,
