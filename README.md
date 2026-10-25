@@ -1,6 +1,6 @@
 # CartelBench: Same Game, Different Players
 
-**A Human-Calibrated Testbed for Cartel Enforcement on LLM Pricing Agents.** Submission to the AI Collusion Research Sprint (Apart Research, October 2026), Track 1: Markets and Collusion, research question 1.5 (which single restriction removes the most collusion at the least cost) with research question 1.1 as the second question. Author: Julian Mundelein, Independent, Hong Kong.
+**A Human-Calibrated Testbed for Cartel Enforcement on LLM Pricing Agents.** Submission to the AI Collusion Research Sprint (Apart Research, October 2026), Track 1: Markets and Collusion, research question 1.5 (which single restriction removes the most collusion at the least cost) with research question 1.1 as the second question. Author: Julian Mündelein, Independent, Hong Kong.
 
 **Research report (PDF, official template):** [`paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf`](paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf) · [Submission overview](SUBMISSION.md) · [Judges' guide](docs/JUDGES_GUIDE.md) · [Pre-registration](cartelbench/PREREGISTRATION.md) · [Measurements](cartelbench/evidence/MEASUREMENTS.md) · [Second provider measurements](cartelbench/evidence/provider2/MEASUREMENTS_provider2.md) · [Design notes: what comes from the paper, what is new](docs/DESIGN_NOTES.md) · [Source experiment (RAND 2012)](https://onlinelibrary.wiley.com/doi/10.1111/j.1756-2171.2012.00170.x)
 

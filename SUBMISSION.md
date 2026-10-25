@@ -4,7 +4,7 @@ Apart Research, October 23 to 25, 2026. Track 1: Markets and Collusion. Research
 
 - Project: CartelBench
 - Report title: Same Game, Different Players: A Human-Calibrated Testbed for Cartel Enforcement on LLM Pricing Agents
-- Author: Julian Mundelein, Independent, Hong Kong (solo)
+- Author: Julian Mündelein, Independent, Hong Kong (solo)
 - Repository: https://github.com/julianmundelein-beep/2026-ai-collusion-sprint
 
 ## What I found
