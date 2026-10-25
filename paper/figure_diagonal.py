@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 
 COLORS = {"Sonnet 5.5": "#2a78d6", "Haiku 5.5": "#eb6834", "Qwen2.5-32B": "#1baf7a", "Llama-3.1-8B": "#6250d6"}
 MARKERS = {"Sonnet 5.5": "o", "Haiku 5.5": "s", "Qwen2.5-32B": "D", "Llama-3.1-8B": "^"}
-SLOPE = {"Sonnet 5.5": "+0.98", "Haiku 5.5": "+0.70", "Qwen2.5-32B": "+0.68", "Llama-3.1-8B": "+0.31"}
+SLOPE = {"Sonnet 5.5": "0.98", "Haiku 5.5": "0.70", "Qwen2.5-32B": "0.68", "Llama-3.1-8B": "0.31"}
 OFFSET = {"Sonnet 5.5": -0.15, "Haiku 5.5": -0.05, "Qwen2.5-32B": 0.05, "Llama-3.1-8B": 0.15}
 
 
@@ -29,11 +29,10 @@ def main() -> int:
     args = ap.parse_args()
     d = json.loads(args.data.read_text())
     plt.rcParams.update({"font.family": "sans-serif", "font.size": 8})
-    fig, ax = plt.subplots(figsize=(6.5, 2.45))
+    fig, ax = plt.subplots(figsize=(6.5, 1.95))
     ax.plot([2.6, 7.4], [2.6, 7.4], ls="--", color="#8a8984", lw=1, zorder=1)
     ax.axhline(3, ls=":", color="#b3b2ab", lw=1, zorder=1)
-    ax.text(7.45, 7.35, "price = threshold", fontsize=8, color="#6b6a66", va="center")
-    ax.text(7.45, 3.0, "Nash 3", fontsize=8, color="#6b6a66", va="center")
+    ax.text(7.35, 2.75, "Nash 3", fontsize=8, color="#6b6a66", va="center", ha="right")
     for model in COLORS:
         rows = sorted((r for r in d["rows"] if r["model"] == model), key=lambda r: r["threshold"])
         if not rows:
@@ -47,16 +46,19 @@ def main() -> int:
             filled = r.get("modal_price") == r["threshold"]
             ax.plot([x], [r["avg_price"]], marker=MARKERS[model], ms=5.5, color=COLORS[model],
                     mfc=COLORS[model] if filled else "white", mec=COLORS[model], ls="none", zorder=3)
-        ax.plot([], [], marker=MARKERS[model], color=COLORS[model], ms=5.5, lw=1.2, label=f"{model}, slope {SLOPE[model]}")
-    ax.set_xlabel("announced screen threshold (prices above it in two consecutive periods are fined)")
+        ax.plot([], [], marker=MARKERS[model], color=COLORS[model], ms=5.5, lw=1.2, label=f"{model} ({SLOPE[model]})")
+    ax.set_xlabel("announced screen threshold")
     ax.set_ylabel("average price")
     ax.set_xticks([3, 4, 5, 6, 7])
-    ax.set_xlim(2.6, 8.4)
-    ax.set_ylim(2.6, 7.6)
+    ax.set_xlim(2.6, 7.4)
+    ax.set_ylim(2.5, 9.6)
+    ax.set_yticks([3, 4, 5, 6, 7])
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
     ax.grid(axis="y", color="#e6e5df", lw=0.6)
-    ax.legend(loc="upper left", frameon=False, fontsize=8, handlelength=1.6)
+    ax.plot([], [], ls="--", color="#8a8984", lw=1, label="price = threshold")
+    ax.plot([], [], marker="o", ms=5.5, mfc="white", mec="#6b6a66", ls="none", label="hollow: mode off threshold")
+    ax.legend(loc="upper left", ncol=2, frameon=False, fontsize=8, handlelength=1.4, labelspacing=0.25, columnspacing=1.0, borderaxespad=0.1)
     fig.tight_layout()
     args.out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(args.out, dpi=300)
