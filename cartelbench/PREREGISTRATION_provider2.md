@@ -70,3 +70,20 @@ Reported against Haiku 5.5 (same seeds) and the humans: cartel_incidence, cartel
   5. contamination: the cloze probes run with the pilot; shifted grid on laissez-faire only (`--price-offset 5`, 10 duopoles in 2 pools, seed 14), equivalence margins ±0.15 cartel_incidence and ±1.0 avg_price against this model's unshifted laissez-faire run, reported either way;
   6. if more than 20 USD of credit remain after block 5: a second open model of another family. If the first selected model is a Qwen model, this is `llama-3.1-8b-instruct` (candidate 3 above); if it is Llama, `qwen2.5-32b-instruct`. It runs the same pilot (threshold and JSON rule as above, no time box beyond the Monday clock) and, if it passes, the four core regimes (seeds 1 to 4) with its own scorecard (`--out evidence/provider2/scorecard_<served name>`). If it fails, the failure is reported.
 - All run directories go to `evidence/provider2/runs`; the scorecard of the first model picks only the four core regimes by model id, so the validation arms and placebo do not enter it.
+
+## Amendment 2, 2026-10-25 11:23 HKT: round 5 cells on the open models (amendment 6 of `PREREGISTRATION.md`, Julian, DECISIONS 11:15), before the first call of round 5
+
+This arm runs the open-model cells of amendment 6 exactly as written there (sections N1 and K); measures, differences and readings are those of amendment 6 and amendment 5, not repeated here. Provider options, serving and sampling as above (vLLM 0.31.0, bf16, temperature 1.0, pinned revisions). Out directory `evidence/provider2/runs`.
+
+| Block | Model | Regime and option | Seed | Reference |
+|---|---|---|---|---|
+| N1 | qwen2.5-32b-instruct | nocomm_screen | 121 | Qwen nocomm seed 13 |
+| N1 | qwen2.5-32b-instruct | fine_screen | 122 | Qwen fine seed 2 |
+| N1 | llama-3.1-8b-instruct | nocomm | 123 | (reference for Llama) |
+| N1 | llama-3.1-8b-instruct | nocomm_screen | 124 | Llama nocomm seed 123 |
+| N1 | llama-3.1-8b-instruct | fine_screen | 125 | Llama fine seed 2 |
+| K1 | qwen2.5-32b-instruct / llama-3.1-8b-instruct | nocomm `--partner nash` | 131 / 134 | N0 = Qwen nocomm 13 / Llama nocomm 123 |
+| K2 | qwen2.5-32b-instruct / llama-3.1-8b-instruct | nocomm_screen `--partner nash` | 132 / 135 | K1 of the same model |
+| K3 | qwen2.5-32b-instruct / llama-3.1-8b-instruct | nocomm_screen `--partner scatter_emp` | 133 / 136 | false-positive threshold 0.05 |
+
+Every cell 20 duopoles in 4 pools. N1 runs first; K runs once the `--partner` option is on the merged harness, K3 last. Budget: at most 20 USD of Modal credit for this round (stop line 18 USD measured with `modal billing report`, then the running cell finishes, nothing new starts), endpoint stopped after each block; compute ends Monday 2026-10-26 12:00 HKT. Cells not run are reported as not run.
