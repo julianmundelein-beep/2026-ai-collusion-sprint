@@ -1,16 +1,29 @@
-# CartelBench
+<p align="center">
+  <img src="docs/figures/header.svg" width="100%" alt="CartelBench. Same Game, Different Players: A Human-Calibrated Testbed for Cartel Enforcement on LLM Pricing Agents. Julian Mündelein, Independent, Hong Kong. Submitted to the AI Collusion Research Sprint, Apart Research, October 2026.">
+</p>
 
-[![Research report (PDF)](https://img.shields.io/badge/report-PDF-1f6feb)](paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf)
-[![Tests: 129 passed](https://img.shields.io/badge/tests-129%20passed-2ea043)](cartelbench/evidence/tests/pytest_latest.txt)
-[![Licence: MIT and CC BY 4.0](https://img.shields.io/badge/licence-MIT%20and%20CC%20BY%204.0-5c6370)](#licence)
-[![AI Collusion Research Sprint, October 2026](https://img.shields.io/badge/AI%20Collusion%20Research%20Sprint-October%202026-8957e5)](https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776ab)](cartelbench/pyproject.toml)
+<p align="center">
+  <a href="paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf"><img src="https://img.shields.io/badge/report-PDF-1f6feb" alt="Research report (PDF)"></a>
+  <a href="cartelbench/evidence/tests/pytest_latest.txt"><img src="https://img.shields.io/badge/tests-129%20passed-2ea043" alt="Tests: 129 passed"></a>
+  <a href="#licence"><img src="https://img.shields.io/badge/licence-MIT%20and%20CC%20BY%204.0-5c6370" alt="Licence: MIT and CC BY 4.0"></a>
+  <a href="https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25"><img src="https://img.shields.io/badge/AI%20Collusion%20Research%20Sprint-October%202026-8957e5" alt="AI Collusion Research Sprint, October 2026"></a>
+  <a href="cartelbench/pyproject.toml"><img src="https://img.shields.io/badge/python-3.11%2B-3776ab" alt="Python 3.11 or later"></a>
+</p>
 
-**CartelBench replays a published cartel laboratory experiment with LLM pricing agents under the human subjects' rules, so that every number sits next to the published human value, and tests whether fines, leniency programmes and whistleblower rewards work on four models from three families.**
+<p align="center">
+  <a href="paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf">Report (PDF)</a> ·
+  <a href="docs/JUDGES_GUIDE.md">Judges' guide: ten minutes</a> ·
+  <a href="SUBMISSION.md">Submission overview</a> ·
+  <a href="docs/EXPERIMENT_LOG.md">Experiment log</a> ·
+  <a href="docs/README.md">All documents</a> ·
+  <a href="https://doi.org/10.1111/j.1756-2171.2012.00170.x">Source experiment: Bigoni et al. (2012)</a>
+</p>
 
-Submitted to the [AI Collusion Research Sprint](https://apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25) (Apart Research, October 2026), Track 1: Markets and Collusion. Author: Julian Mündelein, Independent, Hong Kong.
+**CartelBench replays a published cartel laboratory experiment with LLM pricing agents under the human subjects' rules, so that every number sits next to the published human value, and tests whether fines, leniency programmes and whistleblower rewards work on four models from three families.** Track 1: Markets and Collusion, research questions 1.5 and 1.1.
 
-[Report (PDF)](paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf) · [Judges' guide: ten minutes](docs/JUDGES_GUIDE.md) · [Submission overview](SUBMISSION.md) · [Experiment log](docs/EXPERIMENT_LOG.md) · [All documents](docs/README.md) · [Source experiment: Bigoni et al. (2012)](https://doi.org/10.1111/j.1756-2171.2012.00170.x)
+<p align="center">
+  <img src="docs/figures/cartoon.svg" width="100%" alt="Animated cartoon in a twelve-second loop: four robot sellers named Haiku, Sonnet, Qwen and Llama stand behind market stalls with price signs reading 3. They whisper 'psst, 9?' to each other and every sign rises to 9. An authority with a magnifying glass walks in and draws a dashed line at 4; the signs slide down and sit exactly on the line, reading 4, except Llama's, which hovers above it at 5.">
+</p>
 
 ## The main finding: the published threshold becomes the price
 
@@ -109,7 +122,7 @@ Every number in the report has such a row in `MEASUREMENTS.md` (Claude models, r
 |---|---|
 | [`paper/`](paper/) | the research report: `CartelBench_AI-Collusion-Research-Sprint_2026.pdf` (official template), `report.md` (mirror of the source), figures and their scripts |
 | [`SUBMISSION.md`](SUBMISSION.md) | what is submitted and where each requirement of the sprint guidelines is met |
-| [`docs/`](docs/README.md) | judges' guide, experiment log (every run with its command), design notes, this overview figure and its script |
+| [`docs/`](docs/README.md) | judges' guide, experiment log (every run with its command), design notes; `figures/` with the overview figure, the header banner and the cartoon and their scripts |
 | [`cartelbench/cartelbench/`](cartelbench/cartelbench/) | the package: `game.py` (payoffs), `regimes.py`, `prompts.py`, `engine.py` (pools, periods, matching, logs), `llm.py` (Anthropic, OpenAI-compatible, fake), `players.py` (scripted), `run.py`, `analyze.py`, `scorecard.py`, `screen.py`, `round4.py` to `round7.py`, `expert_iteration.py` |
 | [`cartelbench/tests/`](cartelbench/tests/) | 130 tests (129 run, 1 skipped without torch), no API |
 | [`cartelbench/scripts/`](cartelbench/scripts/) | `run_tests.sh`, `ledger.py`, `risk_card.py`, `scripted_baseline.py`, `screen_fp.py`, Modal apps, `check_links.py` |
@@ -131,7 +144,7 @@ The experimental design, payoff table, regimes, matching and termination rules a
 
 ## Licence
 
-Code: MIT ([`LICENSE`](LICENSE)). Report, data and evidence (`paper/`, `cartelbench/data/`, `cartelbench/evidence/`): CC BY 4.0 ([`LICENSE-CC-BY-4.0.md`](LICENSE-CC-BY-4.0.md)).
+Code: MIT ([`LICENSE`](LICENSE)). Report, data and evidence (`paper/`, `cartelbench/data/`, `cartelbench/evidence/`): CC BY 4.0 ([`LICENSE-CC-BY-4.0.md`](LICENSE-CC-BY-4.0.md)). The header banner embeds subsets of Old Standard TT, the typeface of the report template (SIL Open Font License 1.1); the cartoon is hand-drawn SVG with the model names as text and no third-party marks.
 
 ## Citation
 

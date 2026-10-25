@@ -39,7 +39,7 @@ Start with [`JUDGES_GUIDE.md`](JUDGES_GUIDE.md) (ten minutes through the evidenc
 | `../cartelbench/evidence/ledger/` | `python3 cartelbench/scripts/ledger.py` | run ledger: every run folder hashed and bound to its registration section; `launches.jsonl` |
 | `../cartelbench/evidence/scripted/` | `python3 cartelbench/scripts/scripted_baseline.py` | naive baseline with scripted players |
 | `../cartelbench/evidence/tests/` | `sh cartelbench/scripts/run_tests.sh` | test log |
-| [`figures/`](figures/) | `python3 docs/figures/make_overview.py` | overview of the four models from the risk cards (`model_overview.png`, values in `model_overview.json`) |
+| [`figures/`](figures/) | `python3 docs/figures/make_overview.py`, `python3 docs/figures/make_header.py` | overview of the four models from the risk cards (`model_overview.png`, values in `model_overview.json`); the README header banner (`header.svg`, typeface of the report template); the README cartoon (`cartoon.svg`, hand-drawn, animated) |
 
 ## Checks
 
