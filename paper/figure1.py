@@ -64,7 +64,7 @@ def main(argv=None) -> int:
     ci = read_bootstrap(args.bootstrap, sc.get("runs", {})) if args.bootstrap else {}
     perm = {(t["row"], t["test"]): t["permutation"]["p"] for t in sc.get("permutation_tests", []) if t.get("permutation")}
     plt.rcParams.update({"font.family": "sans-serif", "font.size": 8, "axes.titlesize": 8, "axes.labelsize": 8})
-    fig, axes = plt.subplots(2, 4, figsize=(6.5, 3.3))
+    fig, axes = plt.subplots(2, 4, figsize=(6.5, 2.7))
     for ax, row in zip(axes.flat, sc["rows"]):
         state = row.get("replicated")
         verdict, color = ("reproduced", GREEN) if state else (("not testable", GREY) if state is None else ("not reproduced", RED))

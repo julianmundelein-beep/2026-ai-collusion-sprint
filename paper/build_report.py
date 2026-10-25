@@ -445,6 +445,8 @@ def main(argv=None) -> int:
         elif kind == "table":
             b.table(blk[1], blk[2])
     add_page_numbers(d)
+    d.core_properties.title = clean(md["title"])  # PDF metadata title on export
+    d.core_properties.author = md["author"]
     d.save(str(args.out))
     words = sum(len(clean(x[1]).split()) for x in md["body"] if x[0] in ("p", "bullet", "num"))
     abstract_words = sum(len(clean(x[1]).split()) for x in md["abstract"] if x[0] == "p")

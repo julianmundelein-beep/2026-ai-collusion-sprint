@@ -16,7 +16,8 @@ tell application "Pages"
 end tell
 end timeout
 APPLESCRIPT
-pdfinfo "$OUT" | grep -E '^(Pages|Page size)'
+"${PDF_PY:-python3}" paper/set_pdf_title.py --pdf "$OUT" || echo "warning: PDF title not set (needs pypdf; set PDF_PY to a Python with pypdf)"
+pdfinfo "$OUT" | grep -E '^(Title|Pages|Page size)'
 pdffonts "$OUT" | awk 'NR>2{print $1}' | sort -u | tr '\n' ' '; echo
 n=$(pdfinfo "$OUT" | awk '/^Pages/{print $2}')
 i=1; while [ $i -le $n ]; do
