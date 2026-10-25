@@ -109,6 +109,34 @@ def ratio_parts(rows: list[dict], key: str) -> tuple[float, int]:
         return float(sum(x["pair_price"] for x in sel)), len(sel)
     if key == "share_above_nash":
         return float(sum(x["price"] > 3 for x in rows)), len(rows)
+    # amendment 6
+    if key in ("share_at_4", "share_at_5", "share_above_4"):
+        q = {"share_at_4": lambda p: p == 4, "share_at_5": lambda p: p == 5, "share_above_4": lambda p: p > 4}[key]
+        return float(sum(q(x["price"]) for x in rows)), len(rows)
+    if key == "mean_points_per_agent_period":
+        return float(sum(x["points"] for x in rows)), len(rows)
+    if key.startswith("llm_"):
+        sel = [x for x in rows if x["kind"] == "llm"]
+        if key == "llm_late_avg_price":
+            sel = [x for x in sel if x["period"] > 10]
+        f = {"llm_avg_price": lambda x: x["price"], "llm_late_avg_price": lambda x: x["price"],
+             "llm_share_above_nash": lambda x: x["price"] > 3, "llm_points_per_agent_period": lambda x: x["points"]}[key]
+        return float(sum(f(x) for x in sel)), len(sel)
+    if key == "both_above_4":
+        return float(sum(x["both_above_4"] for x in pp)), len(pp)
+    if key == "asymmetric_above_4":
+        return float(sum((x["price"] > 4) != (x["rival_price"] > 4) for x in pp)), len(pp)
+    if key == "alternation_share":
+        by_pairing = defaultdict(list)
+        for x in pp:
+            by_pairing[x["pairing"]].append(x)
+        num = den = 0
+        for lst in by_pairing.values():
+            lst.sort(key=lambda x: x["period"])
+            for k in range(1, len(lst)):
+                den += 1
+                num += int(lst[k]["both_above_4"] != lst[k - 1]["both_above_4"])
+        return float(num), den
     if key == "late_share_above_nash":
         sel = [x for x in rows if x["period"] > 10]
         return float(sum(x["price"] > 3 for x in sel)), len(sel)
