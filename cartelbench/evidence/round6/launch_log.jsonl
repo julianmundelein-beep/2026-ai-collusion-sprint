@@ -39,3 +39,5 @@
 {"event": "end", "cell": ["claude-sonnet-5-5", "s4_all", "fine"], "returncode": 0, "spent_usd": 15.958, "time": "2026-10-25T07:51:49Z"}
 {"event": "stop", "reason": "cap", "cell": ["claude-sonnet-5-5", "s4_all", "leniency"], "spent_usd": 15.958, "in_flight_expected_usd": 8.908, "upper_usd": 5.968, "cap_usd": 30.0, "not_run": [["claude-sonnet-5-5", "s4_all", "leniency"], ["claude-sonnet-5-5", "s2_loss", "leniency"], ["claude-sonnet-5-5", "s2_gain", "leniency"], ["claude-sonnet-5-5", "s1_money", "fine"], ["claude-sonnet-5-5", "s3_exit", "fine"]], "time": "2026-10-25T07:51:49Z"}
 {"event": "end", "cell": ["claude-sonnet-5-5", "s2_gain", "fine"], "returncode": 0, "spent_usd": 20.869, "time": "2026-10-25T07:52:49Z"}
+{"event": "end", "cell": ["claude-sonnet-5-5", "s2_loss", "fine"], "returncode": 0, "spent_usd": 25.268, "time": "2026-10-25T07:53:09Z"}
+{"event": "finished", "model": "claude-sonnet-5-5", "spent_usd": 25.268, "time": "2026-10-25T07:53:09Z"}
