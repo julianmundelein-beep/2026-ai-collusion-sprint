@@ -30,6 +30,7 @@ from docx.oxml.ns import qn
 from docx.shared import Inches, Pt
 
 FONT = "Old Standard TT"
+BODY_PT = 10.5
 FACTS_ID = re.compile(r"\s*\[F\d{2}(?:\s*,\s*F\d{2})*\]")
 FACTS_OPEN = re.compile(r"\[F\?\?[^\]]*\]")
 INLINE = re.compile(r"(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)")
@@ -188,6 +189,8 @@ class Builder:
         self.sect.addprevious(el)
 
     def paragraph(self, text, proto="normal", size=None, align=None, space_after=None, keep_next=False):
+        if size is None and proto in ("normal", "bullet", "num", "ref"):
+            size = BODY_PT  # body text size (organisers allow font and size changes, template structure kept)
         p = clone(self.protos[proto])
         if proto == "normal" and size:
             pass
@@ -373,7 +376,7 @@ def fill_abstract(document, blocks):
                 for u in rpr.findall(qn("w:u")):
                     rpr.remove(u)
             text = " ".join(b[1] for b in blocks if b[0] == "p")
-            add_inline_runs(p, clean(text))
+            add_inline_runs(p, clean(text), size=BODY_PT)
             return
     raise SystemExit("abstract box not found in the template")
 
