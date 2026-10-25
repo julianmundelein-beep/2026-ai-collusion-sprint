@@ -136,7 +136,7 @@ Every number in the report has such a row in `MEASUREMENTS.md` (Claude models, r
 | [`cartelbench/BUILD_PLAN.md`](cartelbench/BUILD_PLAN.md), [`cartelbench/docs/STAKES_DESIGN.md`](cartelbench/docs/STAKES_DESIGN.md) | build plan with acceptance tests; design of the round-6 stakes arms and stage 2 |
 | `LICENSE`, `LICENSE-CC-BY-4.0.md` | MIT for the code; CC BY 4.0 for the report and the data |
 
-The explainer video (3 minutes 34 seconds) is a release asset of this repository, not part of the tree.
+The explainer video (4 minutes 53 seconds, narrated) is on YouTube at https://youtu.be/xFUtGpsRHX0 and a [release asset](https://github.com/julianmundelein-beep/2026-ai-collusion-sprint/releases/tag/v1.0.0) of this repository, not part of the tree.
 
 ## Limitations
 
