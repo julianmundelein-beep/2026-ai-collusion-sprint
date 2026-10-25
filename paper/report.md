@@ -1,6 +1,6 @@
 # Same Game, Different Players: A Human-Calibrated Testbed for Cartel Enforcement on LLM Pricing Agents
 
-AUTHOR: Julian Mundelein
+AUTHOR: Julian Mündelein
 AFFILIATION: Independent, Hong Kong
 
 > Mirror of `paper/report.docx` (the source document on the official template). Numbers carry their FACTS id in square brackets; the build strips them. Title KEEP (DECISIONS 2026-10-25 02:40). Build: `python3 paper/build_report.py`, Figure 1: `python3 paper/figure1.py --scorecard cartelbench/evidence/round4/scorecard_haiku_8pool/scorecard.json`, PDF: `sh paper/export_pdf.sh`.
