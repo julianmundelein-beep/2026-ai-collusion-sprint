@@ -193,7 +193,7 @@ def train_lora(examples: list[dict], model_path: str, out_dir: str, cfg: EIConfi
     if tok.pad_token_id is None:
         tok.pad_token = tok.eos_token
     dtype = torch.bfloat16 if device == "cuda" else torch.float32
-    base = model or AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=dtype)
+    base = model or AutoModelForCausalLM.from_pretrained(model_path, dtype=dtype)
     base.to(device)
     if device == "cuda":
         base.gradient_checkpointing_enable()
@@ -243,7 +243,7 @@ def train_lora(examples: list[dict], model_path: str, out_dir: str, cfg: EIConfi
                 loss = torch.nn.functional.cross_entropy(logits[:, :-1].reshape(-1, logits.size(-1)).float(),
                                                          lab[:, 1:].reshape(-1), ignore_index=-100, reduction="sum") / max(1, n_tok)
                 loss.backward()
-                loss_sum += float(loss)
+                loss_sum += float(loss.detach())
             torch.nn.utils.clip_grad_norm_([p for p in net.parameters() if p.requires_grad], 1.0)
             opt.step()
             sched.step()

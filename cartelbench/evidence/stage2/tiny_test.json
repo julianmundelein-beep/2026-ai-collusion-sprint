@@ -1,0 +1,81 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.expert_iteration tiny-test",
+  "commit": "9f5557f68ebb86a0478652d8a0deef62ccd59b7e-dirty",
+  "time": "2026-10-25T06:13:07Z",
+  "note": "Do not edit by hand.",
+  "selection": [
+    {
+      "run_dir": "/tmp/claude-0/-home-user-2026-ai-collusion-sprint/c43280f8-86c0-5995-b763-fdeaef2c99f5/scratchpad/tiny/runs/fine_fake-ei_20261025T061306Z_s1",
+      "calls": 108,
+      "json_validity": 1.0,
+      "agents_selected": 2,
+      "examples": 26
+    },
+    {
+      "run_dir": "/tmp/claude-0/-home-user-2026-ai-collusion-sprint/c43280f8-86c0-5995-b763-fdeaef2c99f5/scratchpad/tiny/runs/leniency_fake-ei_20261025T061306Z_s2",
+      "calls": 126,
+      "json_validity": 1.0,
+      "agents_selected": 2,
+      "examples": 35
+    }
+  ],
+  "examples": 61,
+  "train": {
+    "examples": 61,
+    "used": 61,
+    "dropped_too_long": 0,
+    "steps": 6,
+    "first_loss": 6.402750015258789,
+    "last_loss": 6.2557148933410645,
+    "config": {
+      "base_repo": "unsloth/Meta-Llama-3.1-8B-Instruct",
+      "base_revision": "a2856192dd7c25b842431f39c179a6c2c2f627d1",
+      "served_base": "llama-3.1-8b-instruct",
+      "iterations": 3,
+      "selfplay_regimes": [
+        "fine",
+        "leniency"
+      ],
+      "selfplay_duopoles": 40,
+      "selfplay_pools": 8,
+      "eval_regimes": [
+        "laissez_faire",
+        "fine",
+        "leniency",
+        "reward"
+      ],
+      "eval_duopoles": 20,
+      "eval_pools": 4,
+      "top_share": 0.25,
+      "max_examples": 4000,
+      "min_examples": 500,
+      "min_json_validity": 0.9,
+      "lora_r": 16,
+      "lora_alpha": 32,
+      "lora_dropout": 0.05,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "lr": 0.005,
+      "warmup_share": 0.03,
+      "epochs": 1,
+      "micro_batch": 2,
+      "grad_accum": 2,
+      "max_len": 8192,
+      "modal_cap_usd": 60.0
+    },
+    "seed": 0,
+    "device": "cpu"
+  },
+  "first_example": {
+    "step": "propose1",
+    "target": "{\"proposal\": 9, \"reason\": \"x\"}"
+  }
+}

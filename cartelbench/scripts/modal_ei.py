@@ -43,7 +43,8 @@ serve_image = (
 )
 train_image = (
     modal.Image.debian_slim(python_version="3.12")
-    .uv_pip_install("torch==2.8.0", "transformers==4.56.2", "peft==0.17.1", "accelerate==1.10.1", "huggingface_hub")
+    # the versions the CPU test of tests/test_stage2.py ran with
+    .uv_pip_install("torch==2.14.1", "transformers==5.20.2", "peft==0.21.2", "accelerate==1.15.0", "huggingface_hub==2.3.0")
     .env({"HF_HOME": "/root/.cache/huggingface", "HF_HUB_OFFLINE": "1"})
     .add_local_python_source("cartelbench")
 )
