@@ -1,0 +1,17 @@
+{
+  "header": true,
+  "generated_by": "python3 scripts/provider2_round5.py k",
+  "commit": "c5cb0b13afbe9c0f81efe0c67936516aeae8aba4-dirty",
+  "time": "2026-10-25T04:25:38Z",
+  "note": "Do not edit by hand.",
+  "models": {
+    "qwen2.5-32b-instruct": {
+      "model": "qwen2.5-32b-instruct",
+      "skipped": "0 complete runs for qwen2.5-32b-instruct nocomm seed 131"
+    },
+    "llama-3.1-8b-instruct": {
+      "model": "llama-3.1-8b-instruct",
+      "skipped": "0 complete runs for llama-3.1-8b-instruct nocomm seed 134"
+    }
+  }
+}

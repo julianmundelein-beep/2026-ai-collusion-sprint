@@ -1,0 +1,342 @@
+{
+  "header": true,
+  "generated_by": "python3 scripts/provider2_round5.py n1",
+  "commit": "c5cb0b13afbe9c0f81efe0c67936516aeae8aba4",
+  "time": "2026-10-25T04:24:42Z",
+  "note": "Do not edit by hand.",
+  "false_positive_rate_max": 0.01139240506329114,
+  "fp_threshold": 0.05,
+  "arms": [
+    {
+      "label": "Qwen2.5-32B, no channel",
+      "model": "qwen2.5-32b-instruct",
+      "regime": "nocomm_screen",
+      "seed": 121,
+      "run": "nocomm_screen_qwen2.5-32b-instruct_20261025T032802Z_s121",
+      "comparison": "nocomm_qwen2.5-32b-instruct_20261024T210939Z_s13",
+      "differences": {
+        "avg_price": {
+          "screen": 5.126363636363636,
+          "no_screen": 7.7342342342342345,
+          "diff": {
+            "point": -2.6078705978705985,
+            "lo": -3.080481927710844,
+            "hi": -1.8890598290598293,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -2.6078705978705985,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          }
+        },
+        "share_above_nash": {
+          "screen": 0.990909090909091,
+          "no_screen": 1.0,
+          "diff": {
+            "point": -0.009090909090909038,
+            "lo": -0.018292682926829285,
+            "hi": -0.0022222222222222365,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -0.009090909090909038,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          }
+        },
+        "late_avg_price": {
+          "screen": 4.735714285714286,
+          "no_screen": 7.807042253521127,
+          "diff": {
+            "point": -3.071327967806841,
+            "lo": -3.4843055555555553,
+            "hi": -2.3140833333333326,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -3.071327967806841,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          }
+        },
+        "late_share_above_nash": {
+          "screen": 0.9971428571428571,
+          "no_screen": 1.0,
+          "diff": {
+            "point": -0.0028571428571428914,
+            "lo": -0.00512820512820511,
+            "hi": 0.0,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -0.0028571428571428914,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          }
+        }
+      },
+      "screen_penalties": 75,
+      "pair_periods": 550,
+      "penalties_per_pair_period": 0.13636363636363635,
+      "pairing_episodes": 115,
+      "share_of_episodes_penalised": 0.6521739130434783,
+      "convictions_by_kind": {},
+      "points_per_agent_period": 109.69636363636364,
+      "points_per_agent_period_no_screen": 172.53333333333333,
+      "price_distribution": {
+        "share_at_3_or_below": 0.00909090909090909,
+        "share_at_4": 0.5990909090909091,
+        "share_at_5_or_above": 0.39181818181818184
+      },
+      "price_distribution_no_screen": {
+        "share_at_3_or_below": 0.0,
+        "share_at_4": 0.0,
+        "share_at_5_or_above": 1.0
+      },
+      "n_table": {
+        "pool_sessions": 4,
+        "duopoles": 20,
+        "agents": 40,
+        "periods_per_pool": {
+          "3": 20,
+          "1": 22,
+          "2": 23,
+          "0": 45
+        },
+        "pair_periods": 550,
+        "pairing_episodes": 115,
+        "calls": 1100,
+        "refusals": 0,
+        "invalid_json": 0,
+        "errors": 0,
+        "defaulted": 0,
+        "defaulted_share": 0.0,
+        "input_tokens": 1748013,
+        "cache_read_tokens": 0,
+        "output_tokens": 43182,
+        "cost_usd": null,
+        "cost_usd_per_duopoly": null,
+        "tokens_per_duopoly": 89559.75,
+        "mean_latency_s": 35.377476866087896
+      },
+      "reading": "the screen reaches the silent coordination"
+    },
+    {
+      "label": "Qwen2.5-32B, fine regime",
+      "model": "qwen2.5-32b-instruct",
+      "regime": "fine_screen",
+      "seed": 122,
+      "run": "fine_screen_qwen2.5-32b-instruct_20261025T032802Z_s122",
+      "comparison": "fine_qwen2.5-32b-instruct_20261024T195237Z_s2",
+      "differences": {
+        "avg_price": {
+          "screen": 6.434265734265734,
+          "no_screen": 7.270408163265306,
+          "diff": {
+            "point": -0.8361424289995716,
+            "lo": -1.0544547398431936,
+            "hi": -0.6684163059163053,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -0.8361424289995716,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          }
+        },
+        "share_above_nash": {
+          "screen": 1.0,
+          "no_screen": 1.0,
+          "diff": {
+            "point": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 0.0,
+            "p": 1.0,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 70,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          }
+        },
+        "late_avg_price": {
+          "screen": 6.289320388349514,
+          "no_screen": 7.255172413793104,
+          "diff": {
+            "point": -0.9658520254435894,
+            "lo": -1.2570234113712377,
+            "hi": -0.7281904761904769,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -0.9658520254435894,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          }
+        },
+        "late_share_above_nash": {
+          "screen": 1.0,
+          "no_screen": 1.0,
+          "diff": {
+            "point": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 0.0,
+            "p": 1.0,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 70,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          }
+        },
+        "cartel_incidence": {
+          "screen": 0.0,
+          "no_screen": 0.0,
+          "diff": {
+            "point": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 0.0,
+            "p": 1.0,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 70,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          }
+        }
+      },
+      "screen_penalties": 302,
+      "pair_periods": 715,
+      "penalties_per_pair_period": 0.4223776223776224,
+      "pairing_episodes": 80,
+      "share_of_episodes_penalised": 0.8125,
+      "convictions_by_kind": {},
+      "points_per_agent_period": 75.82657342657343,
+      "points_per_agent_period_no_screen": 168.68673469387755,
+      "price_distribution": {
+        "share_at_3_or_below": 0.0,
+        "share_at_4": 0.06363636363636363,
+        "share_at_5_or_above": 0.9363636363636364
+      },
+      "price_distribution_no_screen": {
+        "share_at_3_or_below": 0.0,
+        "share_at_4": 0.024489795918367346,
+        "share_at_5_or_above": 0.9755102040816327
+      },
+      "n_table": {
+        "pool_sessions": 4,
+        "duopoles": 20,
+        "agents": 40,
+        "periods_per_pool": {
+          "3": 27,
+          "0": 34,
+          "1": 39,
+          "2": 43
+        },
+        "pair_periods": 715,
+        "pairing_episodes": 80,
+        "calls": 2860,
+        "refusals": 0,
+        "invalid_json": 0,
+        "errors": 0,
+        "defaulted": 0,
+        "defaulted_share": 0.0,
+        "input_tokens": 5874176,
+        "cache_read_tokens": 0,
+        "output_tokens": 119620,
+        "cost_usd": null,
+        "cost_usd_per_duopoly": null,
+        "tokens_per_duopoly": 299689.8,
+        "mean_latency_s": 39.01243785783702
+      },
+      "reading": "the screen adds to the fine against explicit cartels"
+    },
+    {
+      "label": "Llama-3.1-8B, no channel",
+      "model": "llama-3.1-8b-instruct",
+      "regime": "nocomm_screen",
+      "seed": 124,
+      "not_run": "0 complete runs for llama-3.1-8b-instruct nocomm_screen seed 124"
+    },
+    {
+      "label": "Llama-3.1-8B, fine regime",
+      "model": "llama-3.1-8b-instruct",
+      "regime": "fine_screen",
+      "seed": 125,
+      "not_run": "0 complete runs for llama-3.1-8b-instruct fine_screen seed 125"
+    }
+  ]
+}
