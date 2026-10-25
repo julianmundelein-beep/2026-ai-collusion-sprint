@@ -77,7 +77,7 @@ def main(argv=None) -> int:
             ax.set_xticks([]); ax.set_yticks([])
             for side in ax.spines.values():
                 side.set_color("#d9d8d2")
-            ax.text(0.5, 0.5, "no cartel formed\nin the ReMatch arm:\nno public report\ncan occur", ha="center", va="center",
+            ax.text(0.5, 0.5, "no cartel\nin ReMatch:\nno public\nreport occurs", ha="center", va="center",
                     fontsize=8, color=GREY, transform=ax.transAxes)
             continue
         xs = list(range(len(regimes)))
