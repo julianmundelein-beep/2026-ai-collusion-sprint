@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-25 07:15 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-25 09:35 HKT by the main session
 
 ## Clock
 
@@ -46,7 +46,7 @@ At most two long build sessions plus one short session at the same time. One ses
 | 2 | Ideas | hackathon-ideen | main folder | IDEAS.md | Claude | done (two rounds, 39 ideas, I24 chosen with build plan, commit d5e8cf9); archive on Julian's OK | local_4ab37d7f-a4ea-4382-9837-d275681d3cb0 |
 | 3 | Jury | jury-simulation | main folder | private/reviews/ | Claude | R04 done (f19ed6d): path to 5; package K6, K2, K1, then K3 or K4; 4/4/4 stable optimum, Impact 5 only via K3 | local_525668aa-4f92-4e55-8006-1293f749dce9 |
 | 4 | Website | design-taste-frontend | own worktree or cloud | web/ (branch) | | dropped (not a deliverable) | |
-| 5 | Backend | hackathon-backend | cloud (claude.ai/code), branch `backend` | `cartelbench/` on its branch, README, docs/ | Claude (cloud) | all arms done (F13 to F40): core, validation, placebo, shifted grid, Sonnet second model, dose, NoReport, ReMatch, clone; V6 cut; branch `origin/backend` at c14c944 (23:10 HKT), 51 tests green, 23.51 USD spent; ready to merge | cloud |
+| 5 | Backend | hackathon-backend | cloud (claude.ai/code), branch `backend` | `cartelbench/` on its branch, README, docs/ | Claude (cloud) | done: round 4 (K1, K2, prompt robustness, K3 price screen, ledger) merged 62fd43e; provider2 (Qwen2.5-32B, Llama-3.1-8B on Modal) merged d6075d5; 60 tests green; 47.18 USD Anthropic, 8.98 USD Modal | cloud |
 | 6 | Pitch deck | pitch-deck | main folder | private/deck/ | | dropped (not a deliverable) | |
 | 7 | Demo video | video-studio | main folder | private/video/ | | optional (3 to 5 min, decide after R02 and the clock) | |
 | 8 | Design | hackathon-design | main folder | DESIGN.md, private/design/ | | optional (only if figures or video need a look) | |
@@ -122,7 +122,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Next step
 
-Both backend strands are done (cloud round 4 on `origin/backend` 923fa17: K1, K2, prompt robustness, K3 price screen, ledger; provider2 on local branch `claude/inspiring-khorana-59467e` b8823c5: Qwen2.5-32B and Llama-3.1-8B). Facts F45 to F62 entered. On Julian's word: merge both into main, then the report session writes the final version in one pass (R03 levers, R04 K6, Julian's markings J1 to J8, F45 to F62, reframed results across four models and three families, the price screen as "what helps"), then R05 on the final PDF, close-out, submission by Monday 16:59 HKT.
+Report session writes the final version in one pass (sent 09:35 HKT; merges 62fd43e and d6075d5 on main). Then: close-out (SUBMISSION.md, licence, remove hackathon/, CLAUDE.md and .claude/settings.json from the tree, repo public), video as a cloud session from the final FACTS (slides and figures, Python plus imageio-ffmpeg, optional voice-over by Julian), optional R05; submission by Monday 16:59 HKT.
 
 ## Für die Skills
 
