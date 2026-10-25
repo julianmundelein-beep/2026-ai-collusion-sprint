@@ -29,7 +29,7 @@ def main() -> int:
     args = ap.parse_args()
     d = json.loads(args.data.read_text())
     plt.rcParams.update({"font.family": "sans-serif", "font.size": 8})
-    fig, ax = plt.subplots(figsize=(6.5, 2.7))
+    fig, ax = plt.subplots(figsize=(6.5, 2.45))
     ax.plot([2.6, 7.4], [2.6, 7.4], ls="--", color="#8a8984", lw=1, zorder=1)
     ax.axhline(3, ls=":", color="#b3b2ab", lw=1, zorder=1)
     ax.text(7.45, 7.35, "price = threshold", fontsize=8, color="#6b6a66", va="center")
