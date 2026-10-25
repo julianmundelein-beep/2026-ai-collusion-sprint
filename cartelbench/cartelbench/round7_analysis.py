@@ -35,6 +35,9 @@ def _pp(rows):
 
 
 def parts(rows: list[dict], key: str) -> tuple[float, int]:
+    if key == "share_at_or_below_drawn":
+        sel = [x for x in rows if x.get("drawn") is not None]
+        return float(sum(x["price"] <= x["drawn"] for x in sel)), len(sel)
     if key.startswith("share_at_"):
         q = int(key.rsplit("_", 1)[1])
         return float(sum(x["price"] == q for x in rows)), len(rows)
@@ -52,9 +55,6 @@ def parts(rows: list[dict], key: str) -> tuple[float, int]:
     if key == "screen_penalties_per_pair_period":
         pp = _pp(rows)
         return float(sum(bool(x["screen_hit"]) for x in pp)), len(pp)
-    if key == "share_at_or_below_drawn":
-        sel = [x for x in rows if x.get("drawn") is not None]
-        return float(sum(x["price"] <= x["drawn"] for x in sel)), len(sel)
     return ratio_parts(rows, key)
 
 

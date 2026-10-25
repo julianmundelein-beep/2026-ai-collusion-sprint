@@ -34,7 +34,7 @@ MODELS = [H, S, Q, L]
 CELLS = [
     (H, "nocomm_screen", 701, 3), (H, "nocomm_screen", 702, 6), (H, "nocomm_screen", 703, 7),
     (H, "nocomm_screen_random", 711, None), (H, "fine_screen_random", 712, None),
-    (S, "nocomm_screen_random", 721, None),
+    (S, "nocomm_screen_random", 721, None), (S, "nocomm_screen", 722, 3), (S, "nocomm_screen", 723, 6), (S, "nocomm_screen", 724, 7),
     (Q, "nocomm_screen", 731, 3), (Q, "nocomm_screen", 733, 6), (Q, "nocomm_screen", 734, 7),
     (Q, "nocomm_screen_random", 735, None), (Q, "fine_screen_random", 736, None), (Q, "nocomm_screen", 732, 5),
     (L, "nocomm_screen", 741, 3), (L, "nocomm_screen", 743, 6), (L, "nocomm_screen", 744, 7),
@@ -51,10 +51,9 @@ FINE = {H: (2, 42), Q: (2,), L: (2,)}
 RANDOM_NOCOMM = {m: s for m, r, s, p in CELLS if r == "nocomm_screen_random"}
 RANDOM_FINE = {m: s for m, r, s, p in CELLS if r == "fine_screen_random"}
 
-# budget (PREREGISTRATION_round7.md, budget): Haiku block cap; Sonnet only below the programme threshold
+# budget (PREREGISTRATION_round7.md, budget and addendum 1): Haiku block cap; Sonnet under the programme limit
 HAIKU_CAP_USD = 7.0
-SONNET_GATE_USD = 95.0
-PROGRAMME_LIMIT_USD = 98.0
+PROGRAMME_LIMIT_USD = 100.0     # addendum 1 (Julian): replaces the gate of 95 and the limit of 98 USD
 UPPER_FACTOR = 2.0
 LEDGER_TOTAL_BEFORE = 88.418755475     # evidence/ledger/ledger.json at commit 650a0c1 (M98)
 
@@ -108,13 +107,15 @@ def cost_plan() -> dict:
     return {"cells": cells, "haiku_expected_usd": round(sum(c["expected_usd"] for c in hk), 3),
             "haiku_upper_usd": round(sum(c["upper_usd"] for c in hk), 3), "haiku_cap_usd": HAIKU_CAP_USD,
             "sonnet_expected_usd": round(sum(c["expected_usd"] for c in sn), 3), "sonnet_upper_usd": round(sum(c["upper_usd"] for c in sn), 3),
-            "ledger_total_before_usd": LEDGER_TOTAL_BEFORE, "sonnet_gate_usd": SONNET_GATE_USD, "programme_limit_usd": PROGRAMME_LIMIT_USD,
+            "ledger_total_before_usd": LEDGER_TOTAL_BEFORE, "programme_limit_usd": PROGRAMME_LIMIT_USD,
             "upper_factor": UPPER_FACTOR,
             "stop_rule": ("Haiku: cells start in the registered order; a cell starts only if the round's measured Haiku spend plus "
                           "the expected cost of the cells in flight plus this cell's upper bound stays within 7 USD; the first "
-                          "cell that does not fit ends the block. Sonnet: only if the Anthropic programme total (ledger total "
-                          "before the round plus every round-7 run) is below 95 USD after the Haiku block, and only if that "
-                          "total plus the cell's upper bound stays within 98 USD.")}
+                          "cell that does not fit ends the block. Sonnet (addendum 1): cells in the order random, p 3, p 6, p 7; "
+                          "a cell starts only if the Anthropic programme total spent so far (ledger total before the round plus "
+                          "every round-7 run, partial runs included) plus the upper bounds of the cells in flight plus this "
+                          "cell's upper bound stays within 100 USD; while it does not fit and cells are in flight it waits for "
+                          "them; if it does not fit with no cell in flight, the block ends and later cells are not run.")}
 
 
 def run_command(model: str, regime: str, seed: int, p: int | None) -> str:
@@ -237,13 +238,17 @@ def cmd_launch(args) -> int:
                      "upper": c["upper_usd"], "cap": HAIKU_CAP_USD})
                 break
         else:
-            for x, proc in running:
-                proc.wait()
-            reap()
-            total = spend()["programme_total_usd"]
-            if total >= SONNET_GATE_USD or total + c["upper_usd"] > PROGRAMME_LIMIT_USD:
-                log({"event": "stop", "cell": f"{c['regime']} s{c['seed']}", "programme_total": total, "upper": c["upper_usd"],
-                     "gate": SONNET_GATE_USD, "limit": PROGRAMME_LIMIT_USD})
+            # addendum 1: spent so far plus the upper bounds of the cells in flight and of this cell within 100 USD
+            while True:
+                reap()
+                total = spend()["programme_total_usd"]
+                upper_in_flight = sum(x["upper_usd"] for x, _ in running)
+                if total + upper_in_flight + c["upper_usd"] <= PROGRAMME_LIMIT_USD or not running:
+                    break
+                time.sleep(15)
+            if total + upper_in_flight + c["upper_usd"] > PROGRAMME_LIMIT_USD:
+                log({"event": "stop", "cell": f"{c['regime']} s{c['seed']}", "programme_total": total, "upper_in_flight": upper_in_flight,
+                     "upper": c["upper_usd"], "limit": PROGRAMME_LIMIT_USD})
                 break
         cmd = [sys.executable, "-m", "cartelbench.round7", "run-cell", "--"] + c["command"].split(" -- ", 1)[1].split() + \
               ["--concurrency", str(args.concurrency)]

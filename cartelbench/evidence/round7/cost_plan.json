@@ -1,8 +1,8 @@
 {
   "header": true,
   "generated_by": "python3 -m cartelbench.round7 cost",
-  "commit": "9981806c1cfaa18e842d7441c65f9b46dfab5596",
-  "time": "2026-10-25T08:55:57Z",
+  "commit": "3fb3afded7a1655c9cfe55dd8fdd35ff60a0c34d-dirty",
+  "time": "2026-10-25T09:03:45Z",
   "note": "Do not edit by hand.",
   "cells": [
     {
@@ -81,6 +81,45 @@
       "expected_usd": 1.868,
       "upper_usd": 4.202,
       "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen_random --model claude-sonnet-5-5 --duopoles 20 --pools 4 --seed 721 --out-dir evidence/round7/runs"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "regime": "nocomm_screen",
+      "seed": 722,
+      "screen_p": 3,
+      "measured_usd_per_duopoly": [
+        0.08174365,
+        0.10504197500000001
+      ],
+      "expected_usd": 1.868,
+      "upper_usd": 4.202,
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model claude-sonnet-5-5 --duopoles 20 --pools 4 --seed 722 --screen-p 3 --out-dir evidence/round7/runs"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "regime": "nocomm_screen",
+      "seed": 723,
+      "screen_p": 6,
+      "measured_usd_per_duopoly": [
+        0.08174365,
+        0.10504197500000001
+      ],
+      "expected_usd": 1.868,
+      "upper_usd": 4.202,
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model claude-sonnet-5-5 --duopoles 20 --pools 4 --seed 723 --screen-p 6 --out-dir evidence/round7/runs"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "regime": "nocomm_screen",
+      "seed": 724,
+      "screen_p": 7,
+      "measured_usd_per_duopoly": [
+        0.08174365,
+        0.10504197500000001
+      ],
+      "expected_usd": 1.868,
+      "upper_usd": 4.202,
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model claude-sonnet-5-5 --duopoles 20 --pools 4 --seed 724 --screen-p 7 --out-dir evidence/round7/runs"
     },
     {
       "model": "qwen2.5-32b-instruct",
@@ -182,11 +221,10 @@
   "haiku_expected_usd": 2.063,
   "haiku_upper_usd": 4.149,
   "haiku_cap_usd": 7.0,
-  "sonnet_expected_usd": 1.868,
-  "sonnet_upper_usd": 4.202,
+  "sonnet_expected_usd": 7.472,
+  "sonnet_upper_usd": 16.808,
   "ledger_total_before_usd": 88.418755475,
-  "sonnet_gate_usd": 95.0,
-  "programme_limit_usd": 98.0,
+  "programme_limit_usd": 100.0,
   "upper_factor": 2.0,
-  "stop_rule": "Haiku: cells start in the registered order; a cell starts only if the round's measured Haiku spend plus the expected cost of the cells in flight plus this cell's upper bound stays within 7 USD; the first cell that does not fit ends the block. Sonnet: only if the Anthropic programme total (ledger total before the round plus every round-7 run) is below 95 USD after the Haiku block, and only if that total plus the cell's upper bound stays within 98 USD."
+  "stop_rule": "Haiku: cells start in the registered order; a cell starts only if the round's measured Haiku spend plus the expected cost of the cells in flight plus this cell's upper bound stays within 7 USD; the first cell that does not fit ends the block. Sonnet (addendum 1): cells in the order random, p 3, p 6, p 7; a cell starts only if the Anthropic programme total spent so far (ledger total before the round plus every round-7 run, partial runs included) plus the upper bounds of the cells in flight plus this cell's upper bound stays within 100 USD; while it does not fit and cells are in flight it waits for them; if it does not fit with no cell in flight, the block ends and later cells are not run."
 }

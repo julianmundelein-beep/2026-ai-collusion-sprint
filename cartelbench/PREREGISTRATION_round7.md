@@ -84,3 +84,12 @@ p 5 runs last and only if the cap allows: the open models have no p 5 cell yet, 
 ## Limits stated with every result
 
 The screens are announced rules: they measure deterrence by a told rule. Bigoni et al. had no screen, so there is no human baseline. The thresholds are set on this payoff table. p 3 is not an admissible screen (false-positive rate 0.0975). One draw per pool session and period makes the draws of the pairs of one session common; pool sessions stay the independent unit.
+
+## Addendum 1, 2026-10-25 (time of the commit that adds it), budget and Sonnet curve cells, before the first Sonnet call
+
+Julian raised the Anthropic programme limit from 98 to 100 USD and asked for Sonnet 5.5 on the random arm without a channel and, as far as the limit allows, on the curve cells p 3, 6 and 7. Registered before any Sonnet call of round 7; the Haiku cells and every reading above are unchanged.
+
+- New cells: Sonnet 5.5 `nocomm_screen --screen-p 3` seed 722, `--screen-p 6` seed 723, `--screen-p 7` seed 724; they join Sonnet's existing p 4 (seed 71) and p 5 (seed 91), and Sonnet's curve is read by the rule of (a) over the cells that run (five cells if all three run, else by the three-or-four-cell rule, else descriptively).
+- Order: Sonnet random without a channel (seed 721), then p 3, p 6, p 7. Cost per cell from `evidence/round7/cost_plan.json`: 1.87 USD expected, 4.20 upper bound each (Sonnet nocomm_screen seeds 71 and 91).
+- Stop rule (as in round 6, with the upper bounds of the running cells): a Sonnet cell starts only if the Anthropic programme total spent so far (ledger total before the round, 88.42 USD, plus every round-7 Anthropic run, partial runs included, plus any new Anthropic run on `origin/backend`) plus the upper bounds of the cells in flight plus this cell's upper bound stays within 100 USD. While a cell does not fit and others are in flight, it waits for them; if it does not fit with no cell in flight, the block ends and the remaining cells are reported as not run. The gate of 95 USD and the limit of 98 USD of the budget section are replaced by this rule.
+- Launcher: `python3 -m cartelbench.round7 launch --block sonnet`; the rule is in `cartelbench/round7.py` (`cmd_launch`).

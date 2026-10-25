@@ -1,0 +1,42 @@
+{
+  "run_id": "fine_screen_random_claude-haiku-5-5_20261025T085713Z_s712",
+  "periods_per_pool": {
+    "1": 20,
+    "2": 20,
+    "3": 26,
+    "0": 31
+  },
+  "n_table": {
+    "pool_sessions": 4,
+    "duopoles": 20,
+    "agents": 40,
+    "periods_per_pool": {
+      "1": 20,
+      "2": 20,
+      "3": 26,
+      "0": 31
+    },
+    "pair_periods": 485,
+    "pairing_episodes": 75,
+    "calls": 1980,
+    "refusals": 0,
+    "invalid_json": 1,
+    "errors": 0,
+    "defaulted": 1,
+    "defaulted_share": 0.000505050505050505,
+    "input_tokens": 534572,
+    "cache_read_tokens": 4214836,
+    "output_tokens": 918297,
+    "cost_usd": 0.583983185,
+    "cost_usd_per_duopoly": 0.029199159250000002,
+    "tokens_per_duopoly": 283385.25,
+    "mean_latency_s": 24.48651918068639
+  },
+  "cartel_incidence": 0.024742268041237112,
+  "cartel_formation_rate": 0.008385744234800839,
+  "avg_price": 3.1752577319587627,
+  "cartel_price": 4.0,
+  "deviation_rate": 0.25,
+  "report_rate_given_cartel": 0.0
+}
+evidence: evidence/round7/runs/fine_screen_random_claude-haiku-5-5_20261025T085713Z_s712
