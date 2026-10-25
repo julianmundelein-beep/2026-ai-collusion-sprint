@@ -1,0 +1,489 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.round6 deterrence",
+  "commit": "01e2f7d8fc74bd6dc6450160f5ed4620301a3dac",
+  "time": "2026-10-25T08:03:52Z",
+  "note": "Do not edit by hand.",
+  "cells": [
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "effect": "lf_minus_fine",
+      "measure": "cartel_formation_rate",
+      "arm_effect": {
+        "point": 0.8262130535660245,
+        "lo": 0.7754919499105546,
+        "hi": 0.868074126202205,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 0.6297101689850935,
+        "lo": 0.5299382790462184,
+        "hi": 0.7559995818586384,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": 0.19650288458093101,
+        "lo": 0.06512658085432832,
+        "hi": 0.3033223947754067,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "effect": "fine_minus_leniency",
+      "measure": "cartel_formation_rate",
+      "arm_effect": {
+        "point": 0.02106707349373338,
+        "lo": 0.0015964362190272266,
+        "hi": 0.03896247240618102,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 0.1283310598590551,
+        "lo": 0.10345158899371357,
+        "hi": 0.15449788980748108,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": -0.10726398636532172,
+        "lo": -0.13923168115746487,
+        "hi": -0.0758870465998523,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "effect": "lf_minus_fine",
+      "measure": "avg_price",
+      "arm_effect": {
+        "point": 5.161341677646025,
+        "lo": 4.902127659574468,
+        "hi": 5.425862385321101,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 3.3471567027641784,
+        "lo": 3.1387077294685986,
+        "hi": 3.569097744360903,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": 1.8141849748818464,
+        "lo": 1.4766909590951975,
+        "hi": 2.1582916674775987,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "effect": "lf_minus_leniency",
+      "measure": "avg_price",
+      "arm_effect": {
+        "point": 5.620580808080808,
+        "lo": 5.513812931254791,
+        "hi": 5.714087075450194,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 5.606728487724565,
+        "lo": 5.483612149532711,
+        "hi": 5.73125643918952,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": 0.013852320356242842,
+        "lo": -0.13087867970175715,
+        "hi": 0.17024243050486376,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "effect": "lf_minus_fine",
+      "measure": "cartel_formation_rate",
+      "arm_effect": {
+        "point": 0.4455736004408571,
+        "lo": 0.377551622418879,
+        "hi": 0.5137547955417371,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 0.6297101689850935,
+        "lo": 0.5299382790462184,
+        "hi": 0.7559995818586384,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": -0.18413656854423638,
+        "lo": -0.3256708388780303,
+        "hi": -0.060732143951563455,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "effect": "fine_minus_leniency",
+      "measure": "cartel_formation_rate",
+      "arm_effect": {
+        "point": 0.032448377581120944,
+        "lo": 0.0231023102310231,
+        "hi": 0.04,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 0.1283310598590551,
+        "lo": 0.10345158899371357,
+        "hi": 0.15449788980748108,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": -0.09588268227793416,
+        "lo": -0.12302955254939323,
+        "hi": -0.07045548420055037,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "effect": "lf_minus_fine",
+      "measure": "avg_price",
+      "arm_effect": {
+        "point": 4.674689258549256,
+        "lo": 4.323369963369963,
+        "hi": 5.104106343774678,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 3.3471567027641784,
+        "lo": 3.1387077294685986,
+        "hi": 3.569097744360903,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": 1.3275325557850772,
+        "lo": 0.8922573094242301,
+        "hi": 1.7870619015844866,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "effect": "lf_minus_leniency",
+      "measure": "avg_price",
+      "arm_effect": {
+        "point": 5.3673171200615215,
+        "lo": 5.108385254413291,
+        "hi": 5.6076121794871785,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 5.606728487724565,
+        "lo": 5.483612149532711,
+        "hi": 5.73125643918952,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": -0.2394113676630436,
+        "lo": -0.5230909197437628,
+        "hi": 0.04209060175644108,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "effect": "lf_minus_fine",
+      "measure": "cartel_formation_rate",
+      "arm_effect": {
+        "point": 0.3829057580142964,
+        "lo": 0.3081761006289308,
+        "hi": 0.49470858499819315,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 0.6297101689850935,
+        "lo": 0.5299382790462184,
+        "hi": 0.7559995818586384,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": -0.24680441097079708,
+        "lo": -0.3905629209061728,
+        "hi": -0.08412293572561025,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "effect": "fine_minus_leniency",
+      "measure": "cartel_formation_rate",
+      "arm_effect": {
+        "point": 0.023154848046309694,
+        "lo": 0.019801980198019802,
+        "hi": 0.02736318407960199,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 0.1283310598590551,
+        "lo": 0.10345158899371357,
+        "hi": 0.15449788980748108,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": -0.1051762118127454,
+        "lo": -0.13156709488331783,
+        "hi": -0.08089459006996524,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "effect": "lf_minus_fine",
+      "measure": "avg_price",
+      "arm_effect": {
+        "point": 4.788014330691565,
+        "lo": 4.431910743172519,
+        "hi": 5.215432432432433,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 3.3471567027641784,
+        "lo": 3.1387077294685986,
+        "hi": 3.569097744360903,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": 1.4408576279273868,
+        "lo": 1.0271036400125064,
+        "hi": 1.8895608422776924,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "effect": "lf_minus_leniency",
+      "measure": "avg_price",
+      "arm_effect": {
+        "point": 5.287668488160292,
+        "lo": 5.025781710914455,
+        "hi": 5.69636797454931,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 5.606728487724565,
+        "lo": 5.483612149532711,
+        "hi": 5.73125643918952,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": -0.31905999956427333,
+        "lo": -0.6375147235506144,
+        "hi": 0.10448072934937525,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "effect": "lf_minus_fine",
+      "measure": "cartel_formation_rate",
+      "arm_effect": {
+        "point": 0.7153704555913484,
+        "lo": 0.4931806513538249,
+        "hi": 0.9303377922438772,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 0.6297101689850935,
+        "lo": 0.5299382790462184,
+        "hi": 0.7559995818586384,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": 0.08566028660625491,
+        "lo": -0.15814759102069742,
+        "hi": 0.33914781297134244,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "effect": "fine_minus_leniency",
+      "measure": "cartel_formation_rate",
+      "arm_effect": {
+        "point": 0.04155157214222745,
+        "lo": 0.02226277372262774,
+        "hi": 0.06527108433734939,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 0.1283310598590551,
+        "lo": 0.10345158899371357,
+        "hi": 0.15449788980748108,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": -0.08677948771682766,
+        "lo": -0.12160771201280375,
+        "hi": -0.05230700177335691,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "effect": "lf_minus_fine",
+      "measure": "avg_price",
+      "arm_effect": {
+        "point": 4.970454545454545,
+        "lo": 4.553333333333335,
+        "hi": 5.385079365079364,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 3.3471567027641784,
+        "lo": 3.1387077294685986,
+        "hi": 3.569097744360903,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": 1.6232978426903664,
+        "lo": 1.1045166156628063,
+        "hi": 2.1185645805807116,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "effect": "lf_minus_leniency",
+      "measure": "avg_price",
+      "arm_effect": {
+        "point": 5.4279846659364726,
+        "lo": 5.128981937602626,
+        "hi": 5.684717607973422,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 5.606728487724565,
+        "lo": 5.483612149532711,
+        "hi": 5.73125643918952,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": -0.17874382178809256,
+        "lo": -0.5026788623562819,
+        "hi": 0.1089946967328066,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "effect": "lf_minus_fine",
+      "measure": "cartel_formation_rate",
+      "arm_effect": {
+        "point": 0.5849354972950478,
+        "lo": 0.45844118492953695,
+        "hi": 0.7597683094443354,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 0.6297101689850935,
+        "lo": 0.5299382790462184,
+        "hi": 0.7559995818586384,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": -0.044774671690045675,
+        "lo": -0.23417460946653024,
+        "hi": 0.14160117871238287,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "effect": "fine_minus_leniency",
+      "measure": "cartel_formation_rate",
+      "arm_effect": {
+        "point": 0.011235955056179775,
+        "lo": -0.01125703564727955,
+        "hi": 0.03680779244475322,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 0.1283310598590551,
+        "lo": 0.10345158899371357,
+        "hi": 0.15449788980748108,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": -0.11709510480287533,
+        "lo": -0.15309759573389034,
+        "hi": -0.08114214460336854,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "effect": "lf_minus_fine",
+      "measure": "avg_price",
+      "arm_effect": {
+        "point": 5.053813705234159,
+        "lo": 4.398900103519669,
+        "hi": 5.559383753501401,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 3.3471567027641784,
+        "lo": 3.1387077294685986,
+        "hi": 3.569097744360903,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": 1.7066570024699805,
+        "lo": 1.0299046180203524,
+        "hi": 2.257951558746858,
+        "n_boot": 1000
+      }
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "effect": "lf_minus_leniency",
+      "measure": "avg_price",
+      "arm_effect": {
+        "point": 5.457542287788677,
+        "lo": 5.266119491274771,
+        "hi": 5.628323063380281,
+        "n_boot": 1000
+      },
+      "original_effect": {
+        "point": 5.606728487724565,
+        "lo": 5.483612149532711,
+        "hi": 5.73125643918952,
+        "n_boot": 1000
+      },
+      "difference": {
+        "point": -0.14918619993588855,
+        "lo": -0.36730025001453637,
+        "hi": 0.0585267627335595,
+        "n_boot": 1000
+      }
+    }
+  ]
+}

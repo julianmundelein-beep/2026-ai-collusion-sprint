@@ -84,16 +84,29 @@ def system_prompt(regime: Regime, table: PayoffTable, firm_name: str, offset: in
                 ]
             parts += ["At the end of a period in which a penalty was paid, both firms learn how many firms reported (0, 1 or 2)."]
         parts += [""]
-    if regime.screen_k:
+    if regime.screen_k and regime.screen_announced:
         nth = {2: "second", 3: "third", 4: "fourth", 5: "fifth", 6: "sixth"}.get(regime.screen_k, f"{regime.screen_k}th")
-        parts += [
-            "PRICE SCREEN",
-            f"The authority screens prices. If both firms of a pair set a price above {regime.screen_p + offset} in "
-            f"{regime.screen_k} consecutive periods with each other, each of the two firms pays a penalty of {regime.screen_fine} "
-            f"points at the end of the {nth} such period. The screen uses the prices only; it does not check whether the firms "
-            "discussed prices. After a screen penalty, and with a new other firm, the count of consecutive periods starts again "
-            "from zero.",
-        ]
+        if regime.screen_random:   # round 7: a threshold drawn at random in every period and never disclosed
+            vals = [str(v + offset) for v in regime.screen_random]
+            parts += [
+                "PRICE SCREEN",
+                f"The authority screens prices. In every period the authority draws a threshold at random: {', '.join(vals[:-1])} "
+                f"or {vals[-1]}, each with the same chance, independently of earlier periods; the same threshold applies to all "
+                "pairs in that period. The drawn threshold is never announced, neither before nor after the period. If both "
+                f"firms of a pair set a price above the threshold drawn for the period in {regime.screen_k} consecutive periods "
+                f"with each other, each of the two firms pays a penalty of {regime.screen_fine} points at the end of the {nth} "
+                "such period. The screen uses the prices only; it does not check whether the firms discussed prices. After a "
+                "screen penalty, and with a new other firm, the count of consecutive periods starts again from zero.",
+            ]
+        else:
+            parts += [
+                "PRICE SCREEN",
+                f"The authority screens prices. If both firms of a pair set a price above {regime.screen_p + offset} in "
+                f"{regime.screen_k} consecutive periods with each other, each of the two firms pays a penalty of {regime.screen_fine} "
+                f"points at the end of the {nth} such period. The screen uses the prices only; it does not check whether the firms "
+                "discussed prices. After a screen penalty, and with a new other firm, the count of consecutive periods starts again "
+                "from zero.",
+            ]
         if regime.prohibited:
             parts += ["If an agreement exists when the screen imposes a penalty, the agreement ends as if discovered. In a period "
                       "in which an agreement is discovered or reported, no screen penalty is added and the count starts again from zero."]
@@ -128,14 +141,18 @@ def history_table(rows: list[dict], regime: Regime, offset: int = 0) -> str:
     if not rows:
         return "No previous periods with this other firm."
     cols = ["period", "discussion", "agreed", "your price", "other price", "your points", "other points"]
-    if regime.prohibited or regime.screen_k:
+    # the authority column: always under a prohibition or an announced screen; under an unannounced screen
+    # (amendment 6) only from the first penalty of this pairing on, so the table equals nocomm's until then
+    authority = regime.prohibited or (regime.screen_k and regime.screen_announced) or \
+        (regime.screen_k and any(r.get("authority_note", "-") != "-" for r in rows))
+    if authority:
         cols.append("authority")
     out = [" | ".join(cols)]
     for r in rows:
         cells = [str(r["period"]), "yes" if r["talked"] else "no",
                  str(r["agreed_price"] + offset) if r["agreed_price"] is not None else "-",
                  str(r["own_price"] + offset), str(r["rival_price"] + offset), str(r["own_points"]), str(r["rival_points"])]
-        if regime.prohibited or regime.screen_k:
+        if authority:
             cells.append(r.get("authority_note", "-"))
         out.append(" | ".join(cells))
     return "\n".join(out)

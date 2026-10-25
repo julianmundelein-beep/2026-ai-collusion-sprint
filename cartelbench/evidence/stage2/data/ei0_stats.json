@@ -1,0 +1,19 @@
+{
+  "header": true,
+  "generated_by": "probe selection (PREREGISTRATION_stage2.md, Probe): build_dataset([seed 401 run], top 0.25, seed 0)",
+  "commit": "1bbdbde0c2682a2239f95034af7e2177b845e794",
+  "time": "2026-10-25T09:06:37Z",
+  "note": "Do not edit by hand.",
+  "iteration": 0,
+  "runs": [
+    {
+      "run_dir": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint/.claude/worktrees/inspiring-khorana-59467e/cartelbench/evidence/stage2/runs/fine_llama-3.1-8b-instruct_20261025T085938Z_s401",
+      "calls": 988,
+      "json_validity": 0.9625506072874493,
+      "agents_selected": 6,
+      "examples": 299
+    }
+  ],
+  "examples": 299,
+  "sha256": "e2678e1fc4121d51714b3f51369256186794e1f56cc8c883df4ad5af3c4ea56c"
+}

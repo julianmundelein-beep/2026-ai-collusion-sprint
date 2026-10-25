@@ -18,3 +18,10 @@ Thumbs.db
 out/
 *.mp4
 *.mov
+
+# Working notes that are not part of the submission
+/hackathon/*
+!/hackathon/DESIGN.md
+/CLAUDE.md
+/.claude/
+/review/

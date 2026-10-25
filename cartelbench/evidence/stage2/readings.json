@@ -1,0 +1,571 @@
+{
+  "header": true,
+  "generated_by": "python3 scripts/stage2_readings.py ",
+  "commit": "f590463d20e77d9910db2c72d702e06be5c3e104",
+  "time": "2026-10-25T13:02:20Z",
+  "note": "Do not edit by hand.",
+  "trained_model": "llama-3.1-8b-instruct-ei3",
+  "iteration": 3,
+  "differences": {
+    "laissez_faire": {
+      "cartel_formation_rate": {
+        "trained": 0.13353115727002968,
+        "base": 0.11379310344827587,
+        "human": 0.716,
+        "diff": {
+          "point": 0.01973805382175381,
+          "lo": -0.028061045080526065,
+          "hi": 0.07692307692307691,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 0.01973805382175381,
+          "p": 0.6,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 42,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "cartel_incidence": {
+        "trained": 0.4831858407079646,
+        "base": 0.44731182795698926,
+        "human": 0.961,
+        "diff": {
+          "point": 0.03587401275097535,
+          "lo": -0.19681042228212037,
+          "hi": 0.33902696985721836,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 0.03587401275097535,
+          "p": 0.8,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 56,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "avg_price": {
+        "trained": 7.426548672566372,
+        "base": 7.139784946236559,
+        "human": 4.917,
+        "diff": {
+          "point": 0.28676372632981284,
+          "lo": -0.05666666666666664,
+          "hi": 0.6262527896124972,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 0.28676372632981284,
+          "p": 0.34285714285714286,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 24,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "deviation_rate": {
+        "trained": 0.09598214285714286,
+        "base": 0.11475409836065574,
+        "human": 0.564,
+        "diff": {
+          "point": -0.018771955503512877,
+          "lo": -0.07619155439827917,
+          "hi": 0.037621832358674466,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": -0.018771955503512877,
+          "p": 0.5142857142857142,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 36,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "report_rate_given_cartel": {
+        "trained": 0.0,
+        "base": 0.0,
+        "human": null,
+        "diff": {
+          "point": 0.0,
+          "lo": 0.0,
+          "hi": 0.0,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 0.0,
+          "p": 1.0,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 70,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      }
+    },
+    "fine": {
+      "cartel_formation_rate": {
+        "trained": 0.07581227436823104,
+        "base": 0.06343906510851419,
+        "human": 0.315,
+        "diff": {
+          "point": 0.012373209259716855,
+          "lo": -0.011049981078799523,
+          "hi": 0.04430948959250845,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 0.012373209259716855,
+          "p": 0.5714285714285714,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 40,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "cartel_incidence": {
+        "trained": 0.09380530973451327,
+        "base": 0.08780487804878048,
+        "human": 0.583,
+        "diff": {
+          "point": 0.0060004316857327905,
+          "lo": -0.01815114709851552,
+          "hi": 0.03956043956043956,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 0.0060004316857327905,
+          "p": 0.8571428571428571,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 60,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "avg_price": {
+        "trained": 6.551327433628319,
+        "base": 6.651219512195122,
+        "human": 5.349,
+        "diff": {
+          "point": -0.09989207856680338,
+          "lo": -0.4170126170126167,
+          "hi": 0.23444444444444468,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": -0.09989207856680338,
+          "p": 0.6285714285714286,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 44,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "deviation_rate": {
+        "trained": 0.15306122448979592,
+        "base": 0.16304347826086957,
+        "human": 0.424,
+        "diff": {
+          "point": -0.009982253771073646,
+          "lo": -0.07421150278293134,
+          "hi": 0.05599472990777338,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": -0.009982253771073646,
+          "p": 0.8,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 56,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "report_rate_given_cartel": {
+        "trained": 0.7924528301886793,
+        "base": 0.6296296296296297,
+        "human": 0.092,
+        "diff": {
+          "point": 0.16282320055904964,
+          "lo": -0.05494505494505497,
+          "hi": 0.3190243902439024,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 0.16282320055904964,
+          "p": 0.4,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 28,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      }
+    },
+    "leniency": {
+      "cartel_formation_rate": {
+        "trained": 0.07927927927927927,
+        "base": 0.08438818565400844,
+        "human": 0.178,
+        "diff": {
+          "point": -0.005108906374729161,
+          "lo": -0.029040622299049274,
+          "hi": 0.02464272243409748,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": -0.005108906374729161,
+          "p": 0.6857142857142857,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 48,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "cartel_incidence": {
+        "trained": 0.0875,
+        "base": 0.09583333333333334,
+        "human": 0.264,
+        "diff": {
+          "point": -0.008333333333333345,
+          "lo": -0.03768619662363455,
+          "hi": 0.028423772609819126,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": -0.008333333333333345,
+          "p": 0.7428571428571429,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 52,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "avg_price": {
+        "trained": 6.179464285714285,
+        "base": 6.675,
+        "human": 4.845,
+        "diff": {
+          "point": -0.4955357142857144,
+          "lo": -0.8317775571002981,
+          "hi": -0.1742434904996477,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": -0.4955357142857144,
+          "p": 0.11428571428571428,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 8,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "deviation_rate": {
+        "trained": 0.20212765957446807,
+        "base": 0.11956521739130435,
+        "human": 0.373,
+        "diff": {
+          "point": 0.08256244218316372,
+          "lo": -0.0418803418803419,
+          "hi": 0.13955342902711323,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 0.08256244218316372,
+          "p": 0.22857142857142856,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 16,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "report_rate_given_cartel": {
+        "trained": 0.8979591836734694,
+        "base": 0.8043478260869565,
+        "human": 0.507,
+        "diff": {
+          "point": 0.09361135758651284,
+          "lo": -0.07236842105263153,
+          "hi": 0.2142857142857143,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 0.09361135758651284,
+          "p": 0.42857142857142855,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 30,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      }
+    },
+    "reward": {
+      "cartel_formation_rate": {
+        "trained": 0.10453648915187377,
+        "base": 0.0794979079497908,
+        "human": 0.22,
+        "diff": {
+          "point": 0.02503858120208298,
+          "lo": -0.008249213068490177,
+          "hi": 0.05204678362573098,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 0.02503858120208298,
+          "p": 0.34285714285714286,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 24,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "cartel_incidence": {
+        "trained": 0.12692307692307692,
+        "base": 0.10204081632653061,
+        "human": 0.23,
+        "diff": {
+          "point": 0.0248822605965463,
+          "lo": -0.01950646298472386,
+          "hi": 0.06636428741943183,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 0.0248822605965463,
+          "p": 0.5714285714285714,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 40,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "avg_price": {
+        "trained": 6.275961538461538,
+        "base": 6.873469387755102,
+        "human": 3.973,
+        "diff": {
+          "point": -0.5975078492935637,
+          "lo": -0.8462500000000004,
+          "hi": -0.37921714818266583,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": -0.5975078492935637,
+          "p": 0.02857142857142857,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 2,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "deviation_rate": {
+        "trained": 0.14285714285714285,
+        "base": 0.07777777777777778,
+        "human": 0.782,
+        "diff": {
+          "point": 0.06507936507936507,
+          "lo": -0.008503401360544227,
+          "hi": 0.18888888888888888,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 0.06507936507936507,
+          "p": 0.2571428571428571,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 18,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "report_rate_given_cartel": {
+        "trained": 0.7575757575757576,
+        "base": 0.72,
+        "human": 0.937,
+        "diff": {
+          "point": 0.037575757575757596,
+          "lo": -0.1506635441061671,
+          "hi": 0.1986062717770034,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 0.037575757575757596,
+          "p": 0.8285714285714286,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 58,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      }
+    }
+  },
+  "criteria": {
+    "deviation_up_fine_or_leniency": false,
+    "report_up_fine_or_leniency": false,
+    "human_distance_base": 0.22197973646103866,
+    "human_distance_trained": 0.2060353284326828,
+    "regimes_price_toward_humans": 2,
+    "more_human": false,
+    "better_cartel": false,
+    "moved": [
+      "leniency:avg_price",
+      "reward:avg_price"
+    ]
+  },
+  "descriptive": {
+    "laissez_faire": {
+      "fines_per_pair_period": {
+        "trained": 0.0,
+        "base": 0.0
+      },
+      "convictions": {
+        "trained": 0,
+        "base": 0
+      }
+    },
+    "fine": {
+      "fines_per_pair_period": {
+        "trained": 26.902654867256636,
+        "base": 22.764227642276424
+      },
+      "convictions": {
+        "trained": 42,
+        "base": 37
+      }
+    },
+    "leniency": {
+      "fines_per_pair_period": {
+        "trained": 15.714285714285714,
+        "base": 15.416666666666666
+      },
+      "convictions": {
+        "trained": 44,
+        "base": 37
+      }
+    },
+    "reward": {
+      "fines_per_pair_period": {
+        "trained": 20.76923076923077,
+        "base": 14.693877551020408
+      },
+      "convictions": {
+        "trained": 52,
+        "base": 36
+      }
+    }
+  },
+  "readings": [
+    "mixed"
+  ],
+  "runs": {
+    "base": {
+      "laissez_faire": "laissez_faire_llama-3.1-8b-instruct_20261025T123443Z_s451",
+      "fine": "fine_llama-3.1-8b-instruct_20261025T123443Z_s452",
+      "leniency": "leniency_llama-3.1-8b-instruct_20261025T123443Z_s453",
+      "reward": "reward_llama-3.1-8b-instruct_20261025T123443Z_s454"
+    },
+    "trained": {
+      "laissez_faire": "laissez_faire_llama-3.1-8b-instruct-ei3_20261025T123443Z_s461",
+      "fine": "fine_llama-3.1-8b-instruct-ei3_20261025T123443Z_s462",
+      "leniency": "leniency_llama-3.1-8b-instruct-ei3_20261025T123443Z_s463",
+      "reward": "reward_llama-3.1-8b-instruct-ei3_20261025T123443Z_s464"
+    }
+  }
+}

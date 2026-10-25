@@ -67,7 +67,8 @@ image = (
           "VLLM_USE_FLASHINFER_SAMPLER": "0"})
 )
 
-app = modal.App("cartelbench-vllm", image=image)
+# P2_APP names a second endpoint (for example cartelbench-vllm-llama) so two models can be served at the same time
+app = modal.App(os.environ.get("P2_APP", "cartelbench-vllm"), image=image)
 VOLUMES = {"/root/.cache/huggingface": hf_cache, "/root/.cache/vllm": vllm_cache}
 
 

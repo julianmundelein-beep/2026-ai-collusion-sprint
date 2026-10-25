@@ -48,6 +48,10 @@ def is_core_run(d: pathlib.Path, s: dict) -> bool:
         return False
     if cfg.get("detection_prob") is not None or cfg.get("fine") is not None:
         return False
+    if cfg.get("screen_p") is not None or cfg.get("partner"):     # amendment 6: threshold override, scripted partner
+        return False
+    if cfg.get("stakes"):                                          # amendment 7: stakes arms never stand in for a core run
+        return False
     reg = c.get("regime") or {}
     base = REGIMES.get(s.get("regime") or reg.get("key", ""))
     if base is not None and reg:

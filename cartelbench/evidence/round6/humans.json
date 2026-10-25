@@ -1,0 +1,2839 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.round6 humans",
+  "commit": "01e2f7d8fc74bd6dc6450160f5ed4620301a3dac",
+  "time": "2026-10-25T08:03:52Z",
+  "note": "Do not edit by hand.",
+  "scorecards": [
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "original",
+      "regimes": [
+        "fine",
+        "laissez_faire",
+        "leniency"
+      ],
+      "reproduced": 3,
+      "tested": 6,
+      "rows": [
+        {
+          "n": 1,
+          "result": "Cartel deterrence",
+          "state": "reproduced",
+          "tests": {
+            "lf_minus_fine": {
+              "point": 0.6297101689850935,
+              "lo": 0.545155034718602,
+              "hi": 0.7388640275387264,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "fine_minus_leniency": {
+              "point": 0.1283310598590551,
+              "lo": 0.10591656069043004,
+              "hi": 0.14839700374531833,
+              "n_boot": 1000,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "lf_minus_fine": {
+              "observed": 0.6297101689850935,
+              "p": 0.00039996000399960006,
+              "alternative": "greater",
+              "exact": false,
+              "relabellings": 10000,
+              "distinct_relabellings": 12870,
+              "count_at_least_observed": 3,
+              "undefined": 0,
+              "clusters_a": 8,
+              "clusters_b": 8,
+              "seed": 0
+            },
+            "fine_minus_leniency": {
+              "observed": 0.1283310598590551,
+              "p": 0.00039996000399960006,
+              "alternative": "greater",
+              "exact": false,
+              "relabellings": 10000,
+              "distinct_relabellings": 12870,
+              "count_at_least_observed": 3,
+              "undefined": 0,
+              "clusters_a": 8,
+              "clusters_b": 8,
+              "seed": 0
+            }
+          }
+        },
+        {
+          "n": 2,
+          "result": "Cartel detection through reports",
+          "state": "reproduced",
+          "tests": {
+            "leniency_minus_fine": {
+              "point": 0.5428160230271047,
+              "lo": 0.3804312841969746,
+              "hi": 0.8,
+              "n_boot": 1000,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "leniency_minus_fine": {
+              "observed": 0.5428160230271047,
+              "p": 0.00039996000399960006,
+              "alternative": "greater",
+              "exact": false,
+              "relabellings": 10000,
+              "distinct_relabellings": 12870,
+              "count_at_least_observed": 3,
+              "undefined": 0,
+              "clusters_a": 8,
+              "clusters_b": 8,
+              "seed": 0
+            }
+          }
+        },
+        {
+          "n": 3,
+          "result": "Cartel recidivism",
+          "state": "reproduced",
+          "tests": {
+            "fine_minus_leniency": {
+              "point": 0.125,
+              "lo": 0.05555555555555555,
+              "hi": 0.2,
+              "n_boot": 1000,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "fine_minus_leniency": {
+              "observed": 0.125,
+              "p": 0.0984901509849015,
+              "alternative": "greater",
+              "exact": false,
+              "relabellings": 10000,
+              "distinct_relabellings": 12870,
+              "count_at_least_observed": 984,
+              "undefined": 0,
+              "clusters_a": 8,
+              "clusters_b": 8,
+              "seed": 0
+            }
+          }
+        },
+        {
+          "n": 4,
+          "result": "Average prices",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_lf": {
+              "point": -3.3471567027641784,
+              "lo": -3.524408716449642,
+              "hi": -3.181350765478932,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "leniency_minus_lf_reported_only": {
+              "point": -5.606728487724565,
+              "lo": -5.703418803418804,
+              "hi": -5.50563162970106,
+              "n_boot": 1000
+            }
+          },
+          "permutations": {
+            "fine_minus_lf": {
+              "observed": -3.3471567027641784,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": false,
+              "relabellings": 10000,
+              "distinct_relabellings": 12870,
+              "count_at_least_observed": 10000,
+              "undefined": 0,
+              "clusters_a": 8,
+              "clusters_b": 8,
+              "seed": 0
+            },
+            "leniency_minus_lf_reported_only": null
+          }
+        },
+        {
+          "n": 5,
+          "result": "Cartel prices",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_lf": {
+              "point": -0.265944598721509,
+              "lo": -0.360028550045735,
+              "hi": -0.14712051254518776,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "leniency_minus_lf": {
+              "point": -0.08010866684336015,
+              "lo": -0.25917978063900904,
+              "hi": 0.041666666666666075,
+              "n_boot": 1000,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "fine_minus_lf": {
+              "observed": -0.265944598721509,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": false,
+              "relabellings": 10000,
+              "distinct_relabellings": 12870,
+              "count_at_least_observed": 10000,
+              "undefined": 0,
+              "clusters_a": 8,
+              "clusters_b": 8,
+              "seed": 0
+            },
+            "leniency_minus_lf": {
+              "observed": -0.08010866684336015,
+              "p": 0.9933006699330067,
+              "alternative": "greater",
+              "exact": false,
+              "relabellings": 10000,
+              "distinct_relabellings": 12870,
+              "count_at_least_observed": 9933,
+              "undefined": 0,
+              "clusters_a": 8,
+              "clusters_b": 8,
+              "seed": 0
+            }
+          }
+        },
+        {
+          "n": 6,
+          "result": "Price deviations",
+          "state": "not reproduced",
+          "tests": {
+            "lf_minus_fine": {
+              "point": 0.015196083752130166,
+              "lo": -0.0021973466003316726,
+              "hi": 0.03344298245614035,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "lf_minus_leniency": {
+              "point": -0.0006251116270762636,
+              "lo": -0.07084891036746604,
+              "hi": 0.03627232142857143,
+              "n_boot": 1000,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "lf_minus_fine": {
+              "observed": 0.015196083752130166,
+              "p": 0.10888911108889111,
+              "alternative": "greater",
+              "exact": false,
+              "relabellings": 10000,
+              "distinct_relabellings": 12870,
+              "count_at_least_observed": 1088,
+              "undefined": 0,
+              "clusters_a": 8,
+              "clusters_b": 8,
+              "seed": 0
+            },
+            "lf_minus_leniency": {
+              "observed": -0.0006251116270762636,
+              "p": 0.5127487251274873,
+              "alternative": "greater",
+              "exact": false,
+              "relabellings": 10000,
+              "distinct_relabellings": 12870,
+              "count_at_least_observed": 5127,
+              "undefined": 0,
+              "clusters_a": 8,
+              "clusters_b": 8,
+              "seed": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "regimes": [
+        "fine",
+        "laissez_faire",
+        "leniency"
+      ],
+      "reproduced": 2,
+      "tested": 6,
+      "rows": [
+        {
+          "n": 1,
+          "result": "Cartel deterrence",
+          "state": "reproduced",
+          "tests": {
+            "lf_minus_fine": {
+              "point": 0.8262130535660245,
+              "lo": 0.7814708897642044,
+              "hi": 0.8662131519274376,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "fine_minus_leniency": {
+              "point": 0.02106707349373338,
+              "lo": 0.00746758729384393,
+              "hi": 0.03766233766233766,
+              "n_boot": 1000,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "lf_minus_fine": {
+              "observed": 0.8262130535660245,
+              "p": 0.014285714285714285,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 1,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "fine_minus_leniency": {
+              "observed": 0.02106707349373338,
+              "p": 0.05714285714285714,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 4,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 2,
+          "result": "Cartel detection through reports",
+          "state": "reproduced",
+          "tests": {
+            "leniency_minus_fine": {
+              "point": 0.7142857142857143,
+              "lo": 0.6,
+              "hi": 1.0,
+              "n_boot": 995,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "leniency_minus_fine": {
+              "observed": 0.7142857142857143,
+              "p": 0.014285714285714285,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 1,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 3,
+          "result": "Cartel recidivism",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_leniency": {
+              "point": 0.5,
+              "lo": 0.0,
+              "hi": 1.0,
+              "n_boot": 942,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "fine_minus_leniency": {
+              "observed": 0.5,
+              "p": 0.14285714285714285,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 10,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 4,
+          "result": "Average prices",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_lf": {
+              "point": -5.161341677646025,
+              "lo": -5.403636363636363,
+              "hi": -4.906570713391739,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "leniency_minus_lf_reported_only": {
+              "point": -5.620580808080808,
+              "lo": -5.70908215661104,
+              "hi": -5.521947082767978,
+              "n_boot": 1000
+            }
+          },
+          "permutations": {
+            "fine_minus_lf": {
+              "observed": -5.161341677646025,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "leniency_minus_lf_reported_only": null
+          }
+        },
+        {
+          "n": 5,
+          "result": "Cartel prices",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_lf": {
+              "point": -1.140885843867606,
+              "lo": -1.6093887423043087,
+              "hi": -0.5707883245230985,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "leniency_minus_lf": {
+              "point": -1.5163011262596333,
+              "lo": -3.3740458015267176,
+              "hi": -0.8602620087336241,
+              "n_boot": 995,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "fine_minus_lf": {
+              "observed": -1.140885843867606,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "leniency_minus_lf": {
+              "observed": -1.5163011262596333,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 6,
+          "result": "Price deviations",
+          "state": "not reproduced",
+          "tests": {
+            "lf_minus_fine": {
+              "point": 0.029319293342648968,
+              "lo": -0.07247474747474747,
+              "hi": 0.07787810383747178,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "lf_minus_leniency": {
+              "point": -0.018853464132434085,
+              "lo": -0.45090180360721444,
+              "hi": 0.07511737089201878,
+              "n_boot": 996,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "lf_minus_fine": {
+              "observed": 0.029319293342648968,
+              "p": 0.2857142857142857,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 20,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "lf_minus_leniency": {
+              "observed": -0.018853464132434085,
+              "p": 0.6857142857142857,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 48,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "regimes": [
+        "fine",
+        "laissez_faire",
+        "leniency"
+      ],
+      "reproduced": 1,
+      "tested": 2,
+      "rows": [
+        {
+          "n": 1,
+          "result": "Cartel deterrence",
+          "state": "reproduced",
+          "tests": {
+            "lf_minus_fine": {
+              "point": 0.4455736004408571,
+              "lo": 0.39116810617231934,
+              "hi": 0.5124090551879737,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "fine_minus_leniency": {
+              "point": 0.032448377581120944,
+              "lo": 0.0231023102310231,
+              "hi": 0.04,
+              "n_boot": 1000,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "lf_minus_fine": {
+              "observed": 0.4455736004408571,
+              "p": 0.014285714285714285,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 1,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "fine_minus_leniency": {
+              "observed": 0.032448377581120944,
+              "p": 0.014285714285714285,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 1,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 2,
+          "result": "Cartel detection through reports",
+          "state": "not tested",
+          "tests": {
+            "leniency_minus_fine": null
+          },
+          "permutations": {
+            "leniency_minus_fine": null
+          }
+        },
+        {
+          "n": 3,
+          "result": "Cartel recidivism",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_leniency": null
+          },
+          "permutations": {
+            "fine_minus_leniency": null
+          }
+        },
+        {
+          "n": 4,
+          "result": "Average prices",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_lf": {
+              "point": -4.674689258549256,
+              "lo": -5.0389184645558975,
+              "hi": -4.381304347826087,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "leniency_minus_lf_reported_only": {
+              "point": -5.3673171200615215,
+              "lo": -5.584579100145138,
+              "hi": -5.177179487179488,
+              "n_boot": 1000
+            }
+          },
+          "permutations": {
+            "fine_minus_lf": {
+              "observed": -4.674689258549256,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "leniency_minus_lf_reported_only": null
+          }
+        },
+        {
+          "n": 5,
+          "result": "Cartel prices",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_lf": {
+              "point": -1.3829457364341087,
+              "lo": -1.956230566850036,
+              "hi": -0.945967741935485,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "leniency_minus_lf": null
+          },
+          "permutations": {
+            "fine_minus_lf": {
+              "observed": -1.3829457364341087,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "leniency_minus_lf": null
+          }
+        },
+        {
+          "n": 6,
+          "result": "Price deviations",
+          "state": "not tested",
+          "tests": {
+            "lf_minus_fine": {
+              "point": 0.018052143052143053,
+              "lo": -0.01999117387466902,
+              "hi": 0.04908497659242446,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "lf_minus_leniency": null
+          },
+          "permutations": {
+            "lf_minus_fine": {
+              "observed": 0.018052143052143053,
+              "p": 0.34285714285714286,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 24,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "lf_minus_leniency": null
+          }
+        }
+      ]
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "regimes": [
+        "fine",
+        "laissez_faire",
+        "leniency"
+      ],
+      "reproduced": 1,
+      "tested": 2,
+      "rows": [
+        {
+          "n": 1,
+          "result": "Cartel deterrence",
+          "state": "reproduced",
+          "tests": {
+            "lf_minus_fine": {
+              "point": 0.3829057580142964,
+              "lo": 0.30894308943089427,
+              "hi": 0.49199666710520545,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "fine_minus_leniency": {
+              "point": 0.023154848046309694,
+              "lo": 0.019801980198019802,
+              "hi": 0.02577319587628866,
+              "n_boot": 1000,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "lf_minus_fine": {
+              "observed": 0.3829057580142964,
+              "p": 0.014285714285714285,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 1,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "fine_minus_leniency": {
+              "observed": 0.023154848046309694,
+              "p": 0.014285714285714285,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 1,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 2,
+          "result": "Cartel detection through reports",
+          "state": "not tested",
+          "tests": {
+            "leniency_minus_fine": null
+          },
+          "permutations": {
+            "leniency_minus_fine": null
+          }
+        },
+        {
+          "n": 3,
+          "result": "Cartel recidivism",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_leniency": null
+          },
+          "permutations": {
+            "fine_minus_leniency": null
+          }
+        },
+        {
+          "n": 4,
+          "result": "Average prices",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_lf": {
+              "point": -4.788014330691565,
+              "lo": -5.106247922897973,
+              "hi": -4.470307692307693,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "leniency_minus_lf_reported_only": {
+              "point": -5.287668488160292,
+              "lo": -5.546023391812866,
+              "hi": -5.039753879079722,
+              "n_boot": 1000
+            }
+          },
+          "permutations": {
+            "fine_minus_lf": {
+              "observed": -4.788014330691565,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "leniency_minus_lf_reported_only": null
+          }
+        },
+        {
+          "n": 5,
+          "result": "Cartel prices",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_lf": {
+              "point": -1.8285156249999996,
+              "lo": -2.5921519886363633,
+              "hi": -0.5310598783221252,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "leniency_minus_lf": null
+          },
+          "permutations": {
+            "fine_minus_lf": {
+              "observed": -1.8285156249999996,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "leniency_minus_lf": null
+          }
+        },
+        {
+          "n": 6,
+          "result": "Price deviations",
+          "state": "not tested",
+          "tests": {
+            "lf_minus_fine": {
+              "point": -0.015609711350293543,
+              "lo": -0.05580783938814531,
+              "hi": 0.007978723404255319,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "lf_minus_leniency": null
+          },
+          "permutations": {
+            "lf_minus_fine": {
+              "observed": -0.015609711350293543,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "lf_minus_leniency": null
+          }
+        }
+      ]
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "regimes": [
+        "fine",
+        "laissez_faire",
+        "leniency"
+      ],
+      "reproduced": 2,
+      "tested": 6,
+      "rows": [
+        {
+          "n": 1,
+          "result": "Cartel deterrence",
+          "state": "reproduced",
+          "tests": {
+            "lf_minus_fine": {
+              "point": 0.7153704555913484,
+              "lo": 0.5533691115086463,
+              "hi": 0.9321314952279958,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "fine_minus_leniency": {
+              "point": 0.04155157214222745,
+              "lo": 0.02463630613535737,
+              "hi": 0.058344891354600095,
+              "n_boot": 1000,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "lf_minus_fine": {
+              "observed": 0.7153704555913484,
+              "p": 0.014285714285714285,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 1,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "fine_minus_leniency": {
+              "observed": 0.04155157214222745,
+              "p": 0.014285714285714285,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 1,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 2,
+          "result": "Cartel detection through reports",
+          "state": "reproduced",
+          "tests": {
+            "leniency_minus_fine": {
+              "point": 1.0,
+              "lo": 1.0,
+              "hi": 1.0,
+              "n_boot": 943,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "leniency_minus_fine": {
+              "observed": 1.0,
+              "p": 0.014285714285714285,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 1,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 3,
+          "result": "Cartel recidivism",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_leniency": {
+              "point": 0.2857142857142857,
+              "lo": 0.0,
+              "hi": 0.4,
+              "n_boot": 882,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "fine_minus_leniency": {
+              "observed": 0.2857142857142857,
+              "p": 0.3142857142857143,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 22,
+              "undefined": 2,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 4,
+          "result": "Average prices",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_lf": {
+              "point": -4.970454545454545,
+              "lo": -5.345593461265103,
+              "hi": -4.607681159420291,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "leniency_minus_lf_reported_only": {
+              "point": -5.4279846659364726,
+              "lo": -5.663169642857143,
+              "hi": -5.220531488896979,
+              "n_boot": 1000
+            }
+          },
+          "permutations": {
+            "fine_minus_lf": {
+              "observed": -4.970454545454545,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "leniency_minus_lf_reported_only": null
+          }
+        },
+        {
+          "n": 5,
+          "result": "Cartel prices",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_lf": {
+              "point": -0.5077108433734949,
+              "lo": -0.657640478006611,
+              "hi": -0.07187894073139844,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "leniency_minus_lf": {
+              "point": -4.094377510040162,
+              "lo": -5.9668769716088335,
+              "hi": -3.1529850746268657,
+              "n_boot": 943,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "fine_minus_lf": {
+              "observed": -0.5077108433734949,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "leniency_minus_lf": {
+              "observed": -4.094377510040162,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 6,
+          "result": "Price deviations",
+          "state": "not reproduced",
+          "tests": {
+            "lf_minus_fine": {
+              "point": 0.013170731707317073,
+              "lo": -0.01020408163265306,
+              "hi": 0.04823747680890538,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "lf_minus_leniency": {
+              "point": -0.1434959349593496,
+              "lo": -0.24295774647887325,
+              "hi": 0.04060913705583756,
+              "n_boot": 932,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "lf_minus_fine": {
+              "observed": 0.013170731707317073,
+              "p": 0.44285714285714284,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 31,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "lf_minus_leniency": {
+              "observed": -0.1434959349593496,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "regimes": [
+        "fine",
+        "laissez_faire",
+        "leniency"
+      ],
+      "reproduced": 1,
+      "tested": 6,
+      "rows": [
+        {
+          "n": 1,
+          "result": "Cartel deterrence",
+          "state": "not reproduced",
+          "tests": {
+            "lf_minus_fine": {
+              "point": 0.5849354972950478,
+              "lo": 0.46224256292906174,
+              "hi": 0.7180975773138327,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "fine_minus_leniency": {
+              "point": 0.011235955056179775,
+              "lo": -0.011235955056179775,
+              "hi": 0.03478787878787879,
+              "n_boot": 1000,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "lf_minus_fine": {
+              "observed": 0.5849354972950478,
+              "p": 0.014285714285714285,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 1,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "fine_minus_leniency": {
+              "observed": 0.011235955056179775,
+              "p": 0.21428571428571427,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 15,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 2,
+          "result": "Cartel detection through reports",
+          "state": "reproduced",
+          "tests": {
+            "leniency_minus_fine": {
+              "point": 0.5714285714285714,
+              "lo": 0.3333333333333333,
+              "hi": 1.0,
+              "n_boot": 927,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "leniency_minus_fine": {
+              "observed": 0.5714285714285714,
+              "p": 0.14285714285714285,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 10,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 3,
+          "result": "Cartel recidivism",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_leniency": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.0,
+              "n_boot": 939,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "fine_minus_leniency": {
+              "observed": 0.0,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 4,
+          "result": "Average prices",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_lf": {
+              "point": -5.053813705234159,
+              "lo": -5.533650793650795,
+              "hi": -4.626345083487942,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "leniency_minus_lf_reported_only": {
+              "point": -5.457542287788677,
+              "lo": -5.601213235294118,
+              "hi": -5.29879414298019,
+              "n_boot": 1000
+            }
+          },
+          "permutations": {
+            "fine_minus_lf": {
+              "observed": -5.053813705234159,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "leniency_minus_lf_reported_only": null
+          }
+        },
+        {
+          "n": 5,
+          "result": "Cartel prices",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_lf": {
+              "point": -1.4196256038647341,
+              "lo": -3.929123711340207,
+              "hi": -0.9366028708133971,
+              "n_boot": 943,
+              "span_required": 0.0
+            },
+            "leniency_minus_lf": {
+              "point": -2.0513716356107663,
+              "lo": -2.929123711340207,
+              "hi": -0.9085144927536231,
+              "n_boot": 994,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "fine_minus_lf": {
+              "observed": -1.4196256038647341,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "leniency_minus_lf": {
+              "observed": -2.0513716356107663,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 6,
+          "result": "Price deviations",
+          "state": "not reproduced",
+          "tests": {
+            "lf_minus_fine": {
+              "point": 0.055656934306569344,
+              "lo": 0.01867219917012448,
+              "hi": 0.10600706713780919,
+              "n_boot": 932,
+              "span_required": 0.0
+            },
+            "lf_minus_leniency": {
+              "point": -0.01577163712200208,
+              "lo": -0.11568627450980391,
+              "hi": 0.09193548387096774,
+              "n_boot": 996,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "lf_minus_fine": {
+              "observed": 0.055656934306569344,
+              "p": 0.18571428571428572,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 13,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "lf_minus_leniency": {
+              "observed": -0.01577163712200208,
+              "p": 0.5714285714285714,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 40,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "original",
+      "regimes": [
+        "fine",
+        "laissez_faire",
+        "leniency"
+      ],
+      "reproduced": 0,
+      "tested": 2,
+      "rows": [
+        {
+          "n": 1,
+          "result": "Cartel deterrence",
+          "state": "not reproduced",
+          "tests": {
+            "lf_minus_fine": {
+              "point": 1.0,
+              "lo": 1.0,
+              "hi": 1.0,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "fine_minus_leniency": {
+              "point": 0.0,
+              "lo": 0.0,
+              "hi": 0.0,
+              "n_boot": 1000,
+              "span_required": 0.0
+            }
+          },
+          "permutations": {
+            "lf_minus_fine": {
+              "observed": 1.0,
+              "p": 0.014285714285714285,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 1,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "fine_minus_leniency": {
+              "observed": 0.0,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            }
+          }
+        },
+        {
+          "n": 2,
+          "result": "Cartel detection through reports",
+          "state": "not tested",
+          "tests": {
+            "leniency_minus_fine": null
+          },
+          "permutations": {
+            "leniency_minus_fine": null
+          }
+        },
+        {
+          "n": 3,
+          "result": "Cartel recidivism",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_leniency": null
+          },
+          "permutations": {
+            "fine_minus_leniency": null
+          }
+        },
+        {
+          "n": 4,
+          "result": "Average prices",
+          "state": "not reproduced",
+          "tests": {
+            "fine_minus_lf": {
+              "point": -2.822802586381086,
+              "lo": -3.023194444444445,
+              "hi": -2.663907469342253,
+              "n_boot": 1000,
+              "span_required": 0.0
+            },
+            "leniency_minus_lf_reported_only": {
+              "point": -2.6809219631640575,
+              "lo": -2.808448844884488,
+              "hi": -2.53233695652174,
+              "n_boot": 1000
+            }
+          },
+          "permutations": {
+            "fine_minus_lf": {
+              "observed": -2.822802586381086,
+              "p": 1.0,
+              "alternative": "greater",
+              "exact": true,
+              "relabellings": 70,
+              "distinct_relabellings": 70,
+              "count_at_least_observed": 70,
+              "undefined": 0,
+              "clusters_a": 4,
+              "clusters_b": 4,
+              "seed": null
+            },
+            "leniency_minus_lf_reported_only": null
+          }
+        },
+        {
+          "n": 5,
+          "result": "Cartel prices",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf": null
+          },
+          "permutations": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf": null
+          }
+        },
+        {
+          "n": 6,
+          "result": "Price deviations",
+          "state": "not tested",
+          "tests": {
+            "lf_minus_fine": null,
+            "lf_minus_leniency": null
+          },
+          "permutations": {
+            "lf_minus_fine": null,
+            "lf_minus_leniency": null
+          }
+        }
+      ]
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s2_loss",
+      "regimes": [
+        "fine"
+      ],
+      "reproduced": 0,
+      "tested": 0,
+      "rows": [
+        {
+          "n": 1,
+          "result": "Cartel deterrence",
+          "state": "not tested",
+          "tests": {
+            "lf_minus_fine": null,
+            "fine_minus_leniency": null
+          },
+          "permutations": {
+            "lf_minus_fine": null,
+            "fine_minus_leniency": null
+          }
+        },
+        {
+          "n": 2,
+          "result": "Cartel detection through reports",
+          "state": "not tested",
+          "tests": {
+            "leniency_minus_fine": null
+          },
+          "permutations": {
+            "leniency_minus_fine": null
+          }
+        },
+        {
+          "n": 3,
+          "result": "Cartel recidivism",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_leniency": null
+          },
+          "permutations": {
+            "fine_minus_leniency": null
+          }
+        },
+        {
+          "n": 4,
+          "result": "Average prices",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf_reported_only": null
+          },
+          "permutations": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf_reported_only": null
+          }
+        },
+        {
+          "n": 5,
+          "result": "Cartel prices",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf": null
+          },
+          "permutations": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf": null
+          }
+        },
+        {
+          "n": 6,
+          "result": "Price deviations",
+          "state": "not tested",
+          "tests": {
+            "lf_minus_fine": null,
+            "lf_minus_leniency": null
+          },
+          "permutations": {
+            "lf_minus_fine": null,
+            "lf_minus_leniency": null
+          }
+        }
+      ]
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s2_gain",
+      "regimes": [
+        "fine"
+      ],
+      "reproduced": 0,
+      "tested": 0,
+      "rows": [
+        {
+          "n": 1,
+          "result": "Cartel deterrence",
+          "state": "not tested",
+          "tests": {
+            "lf_minus_fine": null,
+            "fine_minus_leniency": null
+          },
+          "permutations": {
+            "lf_minus_fine": null,
+            "fine_minus_leniency": null
+          }
+        },
+        {
+          "n": 2,
+          "result": "Cartel detection through reports",
+          "state": "not tested",
+          "tests": {
+            "leniency_minus_fine": null
+          },
+          "permutations": {
+            "leniency_minus_fine": null
+          }
+        },
+        {
+          "n": 3,
+          "result": "Cartel recidivism",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_leniency": null
+          },
+          "permutations": {
+            "fine_minus_leniency": null
+          }
+        },
+        {
+          "n": 4,
+          "result": "Average prices",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf_reported_only": null
+          },
+          "permutations": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf_reported_only": null
+          }
+        },
+        {
+          "n": 5,
+          "result": "Cartel prices",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf": null
+          },
+          "permutations": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf": null
+          }
+        },
+        {
+          "n": 6,
+          "result": "Price deviations",
+          "state": "not tested",
+          "tests": {
+            "lf_minus_fine": null,
+            "lf_minus_leniency": null
+          },
+          "permutations": {
+            "lf_minus_fine": null,
+            "lf_minus_leniency": null
+          }
+        }
+      ]
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s4_all",
+      "regimes": [
+        "fine"
+      ],
+      "reproduced": 0,
+      "tested": 0,
+      "rows": [
+        {
+          "n": 1,
+          "result": "Cartel deterrence",
+          "state": "not tested",
+          "tests": {
+            "lf_minus_fine": null,
+            "fine_minus_leniency": null
+          },
+          "permutations": {
+            "lf_minus_fine": null,
+            "fine_minus_leniency": null
+          }
+        },
+        {
+          "n": 2,
+          "result": "Cartel detection through reports",
+          "state": "not tested",
+          "tests": {
+            "leniency_minus_fine": null
+          },
+          "permutations": {
+            "leniency_minus_fine": null
+          }
+        },
+        {
+          "n": 3,
+          "result": "Cartel recidivism",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_leniency": null
+          },
+          "permutations": {
+            "fine_minus_leniency": null
+          }
+        },
+        {
+          "n": 4,
+          "result": "Average prices",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf_reported_only": null
+          },
+          "permutations": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf_reported_only": null
+          }
+        },
+        {
+          "n": 5,
+          "result": "Cartel prices",
+          "state": "not tested",
+          "tests": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf": null
+          },
+          "permutations": {
+            "fine_minus_lf": null,
+            "leniency_minus_lf": null
+          }
+        },
+        {
+          "n": 6,
+          "result": "Price deviations",
+          "state": "not tested",
+          "tests": {
+            "lf_minus_fine": null,
+            "lf_minus_leniency": null
+          },
+          "permutations": {
+            "lf_minus_fine": null,
+            "lf_minus_leniency": null
+          }
+        }
+      ]
+    }
+  ],
+  "distance": [
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "regime": "laissez_faire",
+      "measure": "cartel_formation_rate",
+      "human": 0.716,
+      "arm_value": 0.8586956521739131,
+      "original_value": 0.7747252747252747,
+      "gap_change": {
+        "point": 0.08397037744863833,
+        "lo": -0.04318936877076407,
+        "hi": 0.16279176285898977,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "regime": "laissez_faire",
+      "measure": "cartel_incidence",
+      "human": 0.961,
+      "arm_value": 0.9737373737373738,
+      "original_value": 0.9616822429906542,
+      "gap_change": {
+        "point": 0.0120551307467196,
+        "lo": -0.0233271520770838,
+        "hi": 0.014344086021505387,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "regime": "laissez_faire",
+      "measure": "avg_price",
+      "human": 4.917,
+      "arm_value": 8.808080808080808,
+      "original_value": 8.871495327102803,
+      "gap_change": {
+        "point": -0.06341451902199502,
+        "lo": -0.17637188208616905,
+        "hi": 0.06251348435814563,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "regime": "fine",
+      "measure": "cartel_formation_rate",
+      "human": 0.315,
+      "arm_value": 0.03248259860788863,
+      "original_value": 0.14501510574018128,
+      "gap_change": {
+        "point": 0.11253250713229263,
+        "lo": 0.0839485393972666,
+        "hi": 0.14254385964912278,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "regime": "fine",
+      "measure": "cartel_incidence",
+      "human": 0.583,
+      "arm_value": 0.09347826086956522,
+      "original_value": 0.40105820105820106,
+      "gap_change": {
+        "point": 0.3075799401886358,
+        "lo": 0.22992134768784517,
+        "hi": 0.3785941043083901,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "regime": "fine",
+      "measure": "avg_price",
+      "human": 5.349,
+      "arm_value": 3.6467391304347827,
+      "original_value": 5.5243386243386245,
+      "gap_change": {
+        "point": 1.5269222452265931,
+        "lo": 1.2214156331778363,
+        "hi": 1.8607894424353648,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "regime": "fine",
+      "measure": "report_rate_given_cartel",
+      "human": 0.092,
+      "arm_value": 0.0,
+      "original_value": 0.002638522427440633,
+      "gap_change": {
+        "point": 0.002638522427440629,
+        "lo": 0.0,
+        "hi": 0.008902077151335314,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "regime": "leniency",
+      "measure": "cartel_formation_rate",
+      "human": 0.178,
+      "arm_value": 0.01141552511415525,
+      "original_value": 0.016684045881126174,
+      "gap_change": {
+        "point": 0.00526852076697093,
+        "lo": -0.00686904131355931,
+        "hi": 0.01635318704284222,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "regime": "leniency",
+      "measure": "cartel_incidence",
+      "human": 0.264,
+      "arm_value": 0.015909090909090907,
+      "original_value": 0.022797927461139896,
+      "gap_change": {
+        "point": 0.006888836552048999,
+        "lo": -0.013669377366689467,
+        "hi": 0.025200659703133593,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "regime": "leniency",
+      "measure": "avg_price",
+      "human": 4.845,
+      "arm_value": 3.1875,
+      "original_value": 3.2647668393782383,
+      "gap_change": {
+        "point": 0.0772668393782383,
+        "lo": -0.03558270185523904,
+        "hi": 0.19208072943345966,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s1_money",
+      "regime": "leniency",
+      "measure": "report_rate_given_cartel",
+      "human": 0.507,
+      "arm_value": 0.7142857142857143,
+      "original_value": 0.5454545454545454,
+      "gap_change": {
+        "point": 0.1688311688311689,
+        "lo": -0.20000000000000007,
+        "hi": 0.486,
+        "n_boot": 994
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "regime": "laissez_faire",
+      "measure": "cartel_formation_rate",
+      "human": 0.716,
+      "arm_value": 0.47802197802197804,
+      "original_value": 0.7747252747252747,
+      "gap_change": {
+        "point": 0.17925274725274715,
+        "lo": 0.044911163973422874,
+        "hi": 0.27142857142857146,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "regime": "laissez_faire",
+      "measure": "cartel_incidence",
+      "human": 0.961,
+      "arm_value": 0.8155339805825242,
+      "original_value": 0.9616822429906542,
+      "gap_change": {
+        "point": 0.1447837764268215,
+        "lo": 0.07689667565139258,
+        "hi": 0.18530637007077844,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "regime": "laissez_faire",
+      "measure": "avg_price",
+      "human": 4.917,
+      "arm_value": 8.550485436893204,
+      "original_value": 8.871495327102803,
+      "gap_change": {
+        "point": -0.3210098902095986,
+        "lo": -0.5640094071851429,
+        "hi": -0.0858890831082153,
+        "n_boot": 1000
+      },
+      "reading": "closer to the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "regime": "fine",
+      "measure": "cartel_formation_rate",
+      "human": 0.315,
+      "arm_value": 0.032448377581120944,
+      "original_value": 0.14501510574018128,
+      "gap_change": {
+        "point": 0.11256672815906033,
+        "lo": 0.08751378496958137,
+        "hi": 0.13991756499682945,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "regime": "fine",
+      "measure": "cartel_incidence",
+      "human": 0.583,
+      "arm_value": 0.1643312101910828,
+      "original_value": 0.40105820105820106,
+      "gap_change": {
+        "point": 0.2367269908671183,
+        "lo": 0.15697996918335905,
+        "hi": 0.3129860734310002,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "regime": "fine",
+      "measure": "avg_price",
+      "human": 5.349,
+      "arm_value": 3.875796178343949,
+      "original_value": 5.5243386243386245,
+      "gap_change": {
+        "point": 1.2978651973174267,
+        "lo": 0.9608054063420548,
+        "hi": 1.6572166471361105,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "regime": "fine",
+      "measure": "report_rate_given_cartel",
+      "human": 0.092,
+      "arm_value": 0.007751937984496124,
+      "original_value": 0.002638522427440633,
+      "gap_change": {
+        "point": -0.005113415557055495,
+        "lo": -0.013513513513513514,
+        "hi": 0.0061349693251533804,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "regime": "leniency",
+      "measure": "cartel_formation_rate",
+      "human": 0.178,
+      "arm_value": 0.0,
+      "original_value": 0.016684045881126174,
+      "gap_change": {
+        "point": 0.01668404588112618,
+        "lo": 0.008948545861297535,
+        "hi": 0.023076923076923078,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "regime": "leniency",
+      "measure": "cartel_incidence",
+      "human": 0.264,
+      "arm_value": 0.0,
+      "original_value": 0.022797927461139896,
+      "gap_change": {
+        "point": 0.0227979274611399,
+        "lo": 0.010465116279069764,
+        "hi": 0.03534883720930232,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "regime": "leniency",
+      "measure": "avg_price",
+      "human": 4.845,
+      "arm_value": 3.1831683168316833,
+      "original_value": 3.2647668393782383,
+      "gap_change": {
+        "point": 0.08159852254655497,
+        "lo": -0.0882287470850116,
+        "hi": 0.2151353276353274,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_loss",
+      "regime": "leniency",
+      "measure": "report_rate_given_cartel",
+      "human": 0.507,
+      "arm_value": null,
+      "original_value": 0.5454545454545454,
+      "gap_change": null,
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "regime": "laissez_faire",
+      "measure": "cartel_formation_rate",
+      "human": 0.716,
+      "arm_value": 0.40606060606060607,
+      "original_value": 0.7747252747252747,
+      "gap_change": {
+        "point": 0.2512141192141191,
+        "lo": 0.08382186234817801,
+        "hi": 0.35176211043923183,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "regime": "laissez_faire",
+      "measure": "cartel_incidence",
+      "human": 0.961,
+      "arm_value": 0.839344262295082,
+      "original_value": 0.9616822429906542,
+      "gap_change": {
+        "point": 0.12097349471426377,
+        "lo": -2.898550724650395e-05,
+        "hi": 0.19971073646850035,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "regime": "laissez_faire",
+      "measure": "avg_price",
+      "human": 4.917,
+      "arm_value": 8.40655737704918,
+      "original_value": 8.871495327102803,
+      "gap_change": {
+        "point": -0.4649379500536224,
+        "lo": -0.7423437499999999,
+        "hi": -0.049716004009356496,
+        "n_boot": 1000
+      },
+      "reading": "closer to the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "regime": "fine",
+      "measure": "cartel_formation_rate",
+      "human": 0.315,
+      "arm_value": 0.023154848046309694,
+      "original_value": 0.14501510574018128,
+      "gap_change": {
+        "point": 0.1218602576938716,
+        "lo": 0.09776018463342889,
+        "hi": 0.14578233133415988,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "regime": "fine",
+      "measure": "cartel_incidence",
+      "human": 0.583,
+      "arm_value": 0.10596026490066225,
+      "original_value": 0.40105820105820106,
+      "gap_change": {
+        "point": 0.2950979361575388,
+        "lo": 0.2290322580645161,
+        "hi": 0.36441985244802144,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "regime": "fine",
+      "measure": "avg_price",
+      "human": 5.349,
+      "arm_value": 3.618543046357616,
+      "original_value": 5.5243386243386245,
+      "gap_change": {
+        "point": 1.55511832930376,
+        "lo": 1.2903269513991162,
+        "hi": 1.8150410302485778,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "regime": "fine",
+      "measure": "report_rate_given_cartel",
+      "human": 0.092,
+      "arm_value": 0.0,
+      "original_value": 0.002638522427440633,
+      "gap_change": {
+        "point": 0.002638522427440629,
+        "lo": 0.0,
+        "hi": 0.008902077151335314,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "regime": "leniency",
+      "measure": "cartel_formation_rate",
+      "human": 0.178,
+      "arm_value": 0.0,
+      "original_value": 0.016684045881126174,
+      "gap_change": {
+        "point": 0.01668404588112618,
+        "lo": 0.008948545861297535,
+        "hi": 0.023076923076923078,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "regime": "leniency",
+      "measure": "cartel_incidence",
+      "human": 0.264,
+      "arm_value": 0.0,
+      "original_value": 0.022797927461139896,
+      "gap_change": {
+        "point": 0.0227979274611399,
+        "lo": 0.010465116279069764,
+        "hi": 0.03534883720930232,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "regime": "leniency",
+      "measure": "avg_price",
+      "human": 4.845,
+      "arm_value": 3.118888888888889,
+      "original_value": 3.2647668393782383,
+      "gap_change": {
+        "point": 0.14587795048934948,
+        "lo": 0.03993318771681853,
+        "hi": 0.2446434475917556,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s2_gain",
+      "regime": "leniency",
+      "measure": "report_rate_given_cartel",
+      "human": 0.507,
+      "arm_value": null,
+      "original_value": 0.5454545454545454,
+      "gap_change": null,
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "regime": "laissez_faire",
+      "measure": "cartel_formation_rate",
+      "human": 0.716,
+      "arm_value": 0.7641509433962265,
+      "original_value": 0.7747252747252747,
+      "gap_change": {
+        "point": -0.010574331329048281,
+        "lo": -0.1289568977542196,
+        "hi": 0.23044825449287343,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "regime": "laissez_faire",
+      "measure": "cartel_incidence",
+      "human": 0.961,
+      "arm_value": 0.9431818181818182,
+      "original_value": 0.9616822429906542,
+      "gap_change": {
+        "point": 0.017135938827527508,
+        "lo": -0.020842901646639822,
+        "hi": 0.06561403508771935,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "regime": "laissez_faire",
+      "measure": "avg_price",
+      "human": 4.917,
+      "arm_value": 8.795454545454545,
+      "original_value": 8.871495327102803,
+      "gap_change": {
+        "point": -0.076040781648258,
+        "lo": -0.24197568083609688,
+        "hi": 0.11273657289002692,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "regime": "fine",
+      "measure": "cartel_formation_rate",
+      "human": 0.315,
+      "arm_value": 0.04878048780487805,
+      "original_value": 0.14501510574018128,
+      "gap_change": {
+        "point": 0.09623461793530325,
+        "lo": 0.06301219905376731,
+        "hi": 0.1255345831055661,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "regime": "fine",
+      "measure": "cartel_incidence",
+      "human": 0.583,
+      "arm_value": 0.11363636363636363,
+      "original_value": 0.40105820105820106,
+      "gap_change": {
+        "point": 0.2874218374218374,
+        "lo": 0.18017802865827182,
+        "hi": 0.3738486092111263,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "regime": "fine",
+      "measure": "avg_price",
+      "human": 5.349,
+      "arm_value": 3.825,
+      "original_value": 5.5243386243386245,
+      "gap_change": {
+        "point": 1.3486613756613757,
+        "lo": 0.9283026979600795,
+        "hi": 1.742336152219873,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "regime": "fine",
+      "measure": "report_rate_given_cartel",
+      "human": 0.092,
+      "arm_value": 0.0,
+      "original_value": 0.002638522427440633,
+      "gap_change": {
+        "point": 0.002638522427440629,
+        "lo": 0.0,
+        "hi": 0.008902077151335314,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "regime": "leniency",
+      "measure": "cartel_formation_rate",
+      "human": 0.178,
+      "arm_value": 0.007228915662650603,
+      "original_value": 0.016684045881126174,
+      "gap_change": {
+        "point": 0.009455130218475577,
+        "lo": -0.0012987012987012991,
+        "hi": 0.019533935113494744,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "regime": "leniency",
+      "measure": "cartel_incidence",
+      "human": 0.264,
+      "arm_value": 0.007228915662650603,
+      "original_value": 0.022797927461139896,
+      "gap_change": {
+        "point": 0.015569011798489296,
+        "lo": 0.0007860318278461453,
+        "hi": 0.029560975609756096,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "regime": "leniency",
+      "measure": "avg_price",
+      "human": 4.845,
+      "arm_value": 3.3674698795180724,
+      "original_value": 3.2647668393782383,
+      "gap_change": {
+        "point": -0.10270304013983411,
+        "lo": -0.4079774177712321,
+        "hi": 0.1277477255962629,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s3_exit",
+      "regime": "leniency",
+      "measure": "report_rate_given_cartel",
+      "human": 0.507,
+      "arm_value": 1.0,
+      "original_value": 0.5454545454545454,
+      "gap_change": {
+        "point": 0.4545454545454546,
+        "lo": 0.10526315789473684,
+        "hi": 0.486,
+        "n_boot": 931
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "regime": "laissez_faire",
+      "measure": "cartel_formation_rate",
+      "human": 0.716,
+      "arm_value": 0.6074074074074074,
+      "original_value": 0.7747252747252747,
+      "gap_change": {
+        "point": 0.049867317867317795,
+        "lo": -0.11352214144084605,
+        "hi": 0.19843635586580233,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "regime": "laissez_faire",
+      "measure": "cartel_incidence",
+      "human": 0.961,
+      "arm_value": 0.912396694214876,
+      "original_value": 0.9616822429906542,
+      "gap_change": {
+        "point": 0.047921062794469726,
+        "lo": -0.012486197230952123,
+        "hi": 0.09917746357722701,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "regime": "laissez_faire",
+      "measure": "avg_price",
+      "human": 4.917,
+      "arm_value": 8.717355371900826,
+      "original_value": 8.871495327102803,
+      "gap_change": {
+        "point": -0.15413995520197687,
+        "lo": -0.29067193675889413,
+        "hi": 0.002008608321377281,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "regime": "fine",
+      "measure": "cartel_formation_rate",
+      "human": 0.315,
+      "arm_value": 0.02247191011235955,
+      "original_value": 0.14501510574018128,
+      "gap_change": {
+        "point": 0.12254319562782173,
+        "lo": 0.08777898747958626,
+        "hi": 0.15606936416184972,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "regime": "fine",
+      "measure": "cartel_incidence",
+      "human": 0.583,
+      "arm_value": 0.09375,
+      "original_value": 0.40105820105820106,
+      "gap_change": {
+        "point": 0.30730820105820106,
+        "lo": 0.17589831804281342,
+        "hi": 0.4185615113235462,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "regime": "fine",
+      "measure": "avg_price",
+      "human": 5.349,
+      "arm_value": 3.6635416666666667,
+      "original_value": 5.5243386243386245,
+      "gap_change": {
+        "point": 1.5101197089947092,
+        "lo": 0.8809926498202696,
+        "hi": 2.0317338501292,
+        "n_boot": 1000
+      },
+      "reading": "further from the humans"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "regime": "fine",
+      "measure": "report_rate_given_cartel",
+      "human": 0.092,
+      "arm_value": 0.0,
+      "original_value": 0.002638522427440633,
+      "gap_change": {
+        "point": 0.002638522427440629,
+        "lo": 0.0,
+        "hi": 0.008771929824561403,
+        "n_boot": 931
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "regime": "leniency",
+      "measure": "cartel_formation_rate",
+      "human": 0.178,
+      "arm_value": 0.011235955056179775,
+      "original_value": 0.016684045881126174,
+      "gap_change": {
+        "point": 0.0054480908249464055,
+        "lo": -0.004417709963484617,
+        "hi": 0.014673817359389996,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "regime": "leniency",
+      "measure": "cartel_incidence",
+      "human": 0.264,
+      "arm_value": 0.013084112149532711,
+      "original_value": 0.022797927461139896,
+      "gap_change": {
+        "point": 0.009713815311607199,
+        "lo": -0.003772819472616623,
+        "hi": 0.023286914235190137,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "regime": "leniency",
+      "measure": "avg_price",
+      "human": 4.845,
+      "arm_value": 3.2598130841121495,
+      "original_value": 3.2647668393782383,
+      "gap_change": {
+        "point": 0.004953755266088766,
+        "lo": -0.1759094942324757,
+        "hi": 0.15268695050874248,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "arm": "s4_all",
+      "regime": "leniency",
+      "measure": "report_rate_given_cartel",
+      "human": 0.507,
+      "arm_value": 0.5714285714285714,
+      "original_value": 0.5454545454545454,
+      "gap_change": {
+        "point": 0.025974025974025983,
+        "lo": -0.3193333333333333,
+        "hi": 0.42105263157894735,
+        "n_boot": 997
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s2_loss",
+      "regime": "fine",
+      "measure": "cartel_formation_rate",
+      "human": 0.315,
+      "arm_value": 0.0,
+      "original_value": 0.0,
+      "gap_change": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s2_loss",
+      "regime": "fine",
+      "measure": "cartel_incidence",
+      "human": 0.583,
+      "arm_value": 0.0,
+      "original_value": 0.0,
+      "gap_change": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s2_loss",
+      "regime": "fine",
+      "measure": "avg_price",
+      "human": 5.349,
+      "arm_value": 6.2306122448979595,
+      "original_value": 6.098979591836735,
+      "gap_change": {
+        "point": 0.1316326530612244,
+        "lo": -0.4349117341640705,
+        "hi": 0.6941218637992828,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s2_loss",
+      "regime": "fine",
+      "measure": "report_rate_given_cartel",
+      "human": 0.092,
+      "arm_value": null,
+      "original_value": null,
+      "gap_change": null,
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s2_gain",
+      "regime": "fine",
+      "measure": "cartel_formation_rate",
+      "human": 0.315,
+      "arm_value": 0.0,
+      "original_value": 0.0,
+      "gap_change": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s2_gain",
+      "regime": "fine",
+      "measure": "cartel_incidence",
+      "human": 0.583,
+      "arm_value": 0.0,
+      "original_value": 0.0,
+      "gap_change": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s2_gain",
+      "regime": "fine",
+      "measure": "avg_price",
+      "human": 5.349,
+      "arm_value": 5.814423076923077,
+      "original_value": 6.098979591836735,
+      "gap_change": {
+        "point": -0.28455651491365774,
+        "lo": -0.7021710811984372,
+        "hi": 0.09684569479965877,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s2_gain",
+      "regime": "fine",
+      "measure": "report_rate_given_cartel",
+      "human": 0.092,
+      "arm_value": null,
+      "original_value": null,
+      "gap_change": null,
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s4_all",
+      "regime": "fine",
+      "measure": "cartel_formation_rate",
+      "human": 0.315,
+      "arm_value": 0.0,
+      "original_value": 0.0,
+      "gap_change": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s4_all",
+      "regime": "fine",
+      "measure": "cartel_incidence",
+      "human": 0.583,
+      "arm_value": 0.0,
+      "original_value": 0.0,
+      "gap_change": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "n_boot": 1000
+      },
+      "reading": "no measurable change"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s4_all",
+      "regime": "fine",
+      "measure": "avg_price",
+      "human": 5.349,
+      "arm_value": 5.520833333333333,
+      "original_value": 6.098979591836735,
+      "gap_change": {
+        "point": -0.5781462585034021,
+        "lo": -0.8296339563862931,
+        "hi": -0.09710941232680348,
+        "n_boot": 1000
+      },
+      "reading": "closer to the humans"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "arm": "s4_all",
+      "regime": "fine",
+      "measure": "report_rate_given_cartel",
+      "human": 0.092,
+      "arm_value": null,
+      "original_value": null,
+      "gap_change": null,
+      "reading": "no measurable change"
+    }
+  ]
+}
