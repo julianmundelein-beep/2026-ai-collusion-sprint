@@ -1,7 +1,7 @@
 # STATUS · AI Collusion Research Sprint
 
 > Control file of the main session. Every session reads it first. Only the main session edits it, except the section "Für die Skills" at the end, where every session may append one line.
-> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-25 10:00 HKT by the main session
+> Main folder: `/Users/julianmundelein/Projects/2026-ai-collusion-sprint` · Set up: 2026-10-24 · Updated: 2026-10-25 11:15 HKT by the main session
 
 ## Clock
 
@@ -122,7 +122,7 @@ Everything the rules, the organizers or the jury simulation expect to see, and w
 
 ## Next step
 
-Report session writes the final version in one pass (sent 09:35 HKT; merges 62fd43e and d6075d5 on main). Then: close-out (SUBMISSION.md, licence, remove hackathon/, CLAUDE.md and .claude/settings.json from the tree, repo public), video as a cloud session from the final FACTS (slides and figures, Python plus imageio-ffmpeg, optional voice-over by Julian), optional R05; submission by Monday 16:59 HKT.
+Round 5 runs (DECISIONS 11:15): cloud backend registers amendment 6 and runs N2, N5 and the Claude cells of the scripted-partner control on branch `backend`; local session provider2 runs N1 and the Qwen and Llama control cells on Modal after amendment 6 is on origin/backend. Then the report session applies the ten R05 to-dos and the new numbers in one pass; then the close-out resumes (SUBMISSION.md, removal of internal files, repo public). Licence done (405ee0f). Video in the cloud on branch `video`.
 
 ## Für die Skills
 
