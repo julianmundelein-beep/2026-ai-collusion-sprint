@@ -1,0 +1,230 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.round7 cost",
+  "commit": "3fb3afded7a1655c9cfe55dd8fdd35ff60a0c34d-dirty",
+  "time": "2026-10-25T09:03:45Z",
+  "note": "Do not edit by hand.",
+  "cells": [
+    {
+      "model": "claude-haiku-5-5",
+      "regime": "nocomm_screen",
+      "seed": 701,
+      "screen_p": 3,
+      "measured_usd_per_duopoly": [
+        0.017026165,
+        0.017304260999999998
+      ],
+      "expected_usd": 0.343,
+      "upper_usd": 0.692,
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 701 --screen-p 3 --out-dir evidence/round7/runs"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "regime": "nocomm_screen",
+      "seed": 702,
+      "screen_p": 6,
+      "measured_usd_per_duopoly": [
+        0.017026165,
+        0.017304260999999998
+      ],
+      "expected_usd": 0.343,
+      "upper_usd": 0.692,
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 702 --screen-p 6 --out-dir evidence/round7/runs"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "regime": "nocomm_screen",
+      "seed": 703,
+      "screen_p": 7,
+      "measured_usd_per_duopoly": [
+        0.017026165,
+        0.017304260999999998
+      ],
+      "expected_usd": 0.343,
+      "upper_usd": 0.692,
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 703 --screen-p 7 --out-dir evidence/round7/runs"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "regime": "nocomm_screen_random",
+      "seed": 711,
+      "screen_p": null,
+      "measured_usd_per_duopoly": [
+        0.017026165,
+        0.017304260999999998
+      ],
+      "expected_usd": 0.343,
+      "upper_usd": 0.692,
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen_random --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 711 --out-dir evidence/round7/runs"
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "regime": "fine_screen_random",
+      "seed": 712,
+      "screen_p": null,
+      "measured_usd_per_duopoly": [
+        0.03453472125
+      ],
+      "expected_usd": 0.691,
+      "upper_usd": 1.381,
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime fine_screen_random --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 712 --out-dir evidence/round7/runs"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "regime": "nocomm_screen_random",
+      "seed": 721,
+      "screen_p": null,
+      "measured_usd_per_duopoly": [
+        0.08174365,
+        0.10504197500000001
+      ],
+      "expected_usd": 1.868,
+      "upper_usd": 4.202,
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen_random --model claude-sonnet-5-5 --duopoles 20 --pools 4 --seed 721 --out-dir evidence/round7/runs"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "regime": "nocomm_screen",
+      "seed": 722,
+      "screen_p": 3,
+      "measured_usd_per_duopoly": [
+        0.08174365,
+        0.10504197500000001
+      ],
+      "expected_usd": 1.868,
+      "upper_usd": 4.202,
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model claude-sonnet-5-5 --duopoles 20 --pools 4 --seed 722 --screen-p 3 --out-dir evidence/round7/runs"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "regime": "nocomm_screen",
+      "seed": 723,
+      "screen_p": 6,
+      "measured_usd_per_duopoly": [
+        0.08174365,
+        0.10504197500000001
+      ],
+      "expected_usd": 1.868,
+      "upper_usd": 4.202,
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model claude-sonnet-5-5 --duopoles 20 --pools 4 --seed 723 --screen-p 6 --out-dir evidence/round7/runs"
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "regime": "nocomm_screen",
+      "seed": 724,
+      "screen_p": 7,
+      "measured_usd_per_duopoly": [
+        0.08174365,
+        0.10504197500000001
+      ],
+      "expected_usd": 1.868,
+      "upper_usd": 4.202,
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model claude-sonnet-5-5 --duopoles 20 --pools 4 --seed 724 --screen-p 7 --out-dir evidence/round7/runs"
+    },
+    {
+      "model": "qwen2.5-32b-instruct",
+      "regime": "nocomm_screen",
+      "seed": 731,
+      "screen_p": 3,
+      "provider": "modal (local session)",
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model qwen2.5-32b-instruct --duopoles 20 --pools 4 --seed 731 --screen-p 3 --out-dir evidence/round7/runs --provider openai --base-url $OPENAI_BASE_URL --api-key-env <as in PREREGISTRATION_provider2.md>"
+    },
+    {
+      "model": "qwen2.5-32b-instruct",
+      "regime": "nocomm_screen",
+      "seed": 733,
+      "screen_p": 6,
+      "provider": "modal (local session)",
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model qwen2.5-32b-instruct --duopoles 20 --pools 4 --seed 733 --screen-p 6 --out-dir evidence/round7/runs --provider openai --base-url $OPENAI_BASE_URL --api-key-env <as in PREREGISTRATION_provider2.md>"
+    },
+    {
+      "model": "qwen2.5-32b-instruct",
+      "regime": "nocomm_screen",
+      "seed": 734,
+      "screen_p": 7,
+      "provider": "modal (local session)",
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model qwen2.5-32b-instruct --duopoles 20 --pools 4 --seed 734 --screen-p 7 --out-dir evidence/round7/runs --provider openai --base-url $OPENAI_BASE_URL --api-key-env <as in PREREGISTRATION_provider2.md>"
+    },
+    {
+      "model": "qwen2.5-32b-instruct",
+      "regime": "nocomm_screen_random",
+      "seed": 735,
+      "screen_p": null,
+      "provider": "modal (local session)",
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen_random --model qwen2.5-32b-instruct --duopoles 20 --pools 4 --seed 735 --out-dir evidence/round7/runs --provider openai --base-url $OPENAI_BASE_URL --api-key-env <as in PREREGISTRATION_provider2.md>"
+    },
+    {
+      "model": "qwen2.5-32b-instruct",
+      "regime": "fine_screen_random",
+      "seed": 736,
+      "screen_p": null,
+      "provider": "modal (local session)",
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime fine_screen_random --model qwen2.5-32b-instruct --duopoles 20 --pools 4 --seed 736 --out-dir evidence/round7/runs --provider openai --base-url $OPENAI_BASE_URL --api-key-env <as in PREREGISTRATION_provider2.md>"
+    },
+    {
+      "model": "qwen2.5-32b-instruct",
+      "regime": "nocomm_screen",
+      "seed": 732,
+      "screen_p": 5,
+      "provider": "modal (local session)",
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model qwen2.5-32b-instruct --duopoles 20 --pools 4 --seed 732 --screen-p 5 --out-dir evidence/round7/runs --provider openai --base-url $OPENAI_BASE_URL --api-key-env <as in PREREGISTRATION_provider2.md>"
+    },
+    {
+      "model": "llama-3.1-8b-instruct",
+      "regime": "nocomm_screen",
+      "seed": 741,
+      "screen_p": 3,
+      "provider": "modal (local session)",
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model llama-3.1-8b-instruct --duopoles 20 --pools 4 --seed 741 --screen-p 3 --out-dir evidence/round7/runs --provider openai --base-url $OPENAI_BASE_URL --api-key-env <as in PREREGISTRATION_provider2.md>"
+    },
+    {
+      "model": "llama-3.1-8b-instruct",
+      "regime": "nocomm_screen",
+      "seed": 743,
+      "screen_p": 6,
+      "provider": "modal (local session)",
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model llama-3.1-8b-instruct --duopoles 20 --pools 4 --seed 743 --screen-p 6 --out-dir evidence/round7/runs --provider openai --base-url $OPENAI_BASE_URL --api-key-env <as in PREREGISTRATION_provider2.md>"
+    },
+    {
+      "model": "llama-3.1-8b-instruct",
+      "regime": "nocomm_screen",
+      "seed": 744,
+      "screen_p": 7,
+      "provider": "modal (local session)",
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model llama-3.1-8b-instruct --duopoles 20 --pools 4 --seed 744 --screen-p 7 --out-dir evidence/round7/runs --provider openai --base-url $OPENAI_BASE_URL --api-key-env <as in PREREGISTRATION_provider2.md>"
+    },
+    {
+      "model": "llama-3.1-8b-instruct",
+      "regime": "nocomm_screen_random",
+      "seed": 745,
+      "screen_p": null,
+      "provider": "modal (local session)",
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen_random --model llama-3.1-8b-instruct --duopoles 20 --pools 4 --seed 745 --out-dir evidence/round7/runs --provider openai --base-url $OPENAI_BASE_URL --api-key-env <as in PREREGISTRATION_provider2.md>"
+    },
+    {
+      "model": "llama-3.1-8b-instruct",
+      "regime": "fine_screen_random",
+      "seed": 746,
+      "screen_p": null,
+      "provider": "modal (local session)",
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime fine_screen_random --model llama-3.1-8b-instruct --duopoles 20 --pools 4 --seed 746 --out-dir evidence/round7/runs --provider openai --base-url $OPENAI_BASE_URL --api-key-env <as in PREREGISTRATION_provider2.md>"
+    },
+    {
+      "model": "llama-3.1-8b-instruct",
+      "regime": "nocomm_screen",
+      "seed": 742,
+      "screen_p": 5,
+      "provider": "modal (local session)",
+      "command": "python3 -m cartelbench.round7 run-cell -- --regime nocomm_screen --model llama-3.1-8b-instruct --duopoles 20 --pools 4 --seed 742 --screen-p 5 --out-dir evidence/round7/runs --provider openai --base-url $OPENAI_BASE_URL --api-key-env <as in PREREGISTRATION_provider2.md>"
+    }
+  ],
+  "haiku_expected_usd": 2.063,
+  "haiku_upper_usd": 4.149,
+  "haiku_cap_usd": 7.0,
+  "sonnet_expected_usd": 7.472,
+  "sonnet_upper_usd": 16.808,
+  "ledger_total_before_usd": 88.418755475,
+  "programme_limit_usd": 100.0,
+  "upper_factor": 2.0,
+  "stop_rule": "Haiku: cells start in the registered order; a cell starts only if the round's measured Haiku spend plus the expected cost of the cells in flight plus this cell's upper bound stays within 7 USD; the first cell that does not fit ends the block. Sonnet (addendum 1): cells in the order random, p 3, p 6, p 7; a cell starts only if the Anthropic programme total spent so far (ledger total before the round plus every round-7 run, partial runs included) plus the upper bounds of the cells in flight plus this cell's upper bound stays within 100 USD; while it does not fit and cells are in flight it waits for them; if it does not fit with no cell in flight, the block ends and later cells are not run."
+}
