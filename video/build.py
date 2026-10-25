@@ -1024,7 +1024,7 @@ def mix_voice(video: Path, voices: list[Path | None], tl: list[tuple[float, floa
         tempo = f"atempo={VOICE_TEMPO}," if VOICE_TEMPO != 1.0 else ""
         parts.append(f"[{n}:a]aresample=48000,{tempo}adelay={int(s0 * 1000)}|{int(s0 * 1000)}[a{n}]")
     filt = ";".join(parts) + ";" + "".join(f"[a{k}]" for k in range(1, n + 1)) + f"amix=inputs={n}:normalize=0:dropout_transition=0[mix]"
-    cmd += ["-filter_complex", filt, "-map", "0:v:0", "-map", "[mix]", "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-shortest", str(out)]
+    cmd += ["-filter_complex", filt, "-map", "0:v:0", "-map", "[mix]", "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", str(out)]
     if subprocess.run(cmd).returncode != 0:
         raise SystemExit("ffmpeg failed while mixing the voice")
 
