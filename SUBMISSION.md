@@ -7,6 +7,10 @@ Apart Research, October 23 to 25, 2026. Track 1: Markets and Collusion. Research
 - Author: Julian Mundelein, Independent, Hong Kong (solo)
 - Repository: https://github.com/julianmundelein-beep/2026-ai-collusion-sprint
 
+## What we found, in three sentences
+
+CartelBench replays a published cartel laboratory experiment with LLM sellers under the human subjects' rules, so that every measure sits next to the published human value, and tests the authority's instruments on four models from three families. Fines, leniency and rewards that are told rather than paid remove explicit cartels from the agents more than they did from people, yet three of the four models then keep prices well above the competitive level without a word of price discussion. A pre-registered price screen lowers those silent prices at a measured false-positive rate, and its announced threshold becomes the price the agents set.
+
 ## What is submitted
 
 | Item | Required | File or link | Format and checks |
