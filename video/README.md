@@ -1,6 +1,6 @@
 # CartelBench video
 
-Explainer video for the AI Collusion Research Sprint submission: 1920x1080, 30 fps, H.264, English, with a narration (4:54; about 4:50 without voice), text cards readable without sound. Output: `video/out/CartelBench_AI-Collusion-Research-Sprint_2026.mp4`.
+Explainer video for the AI Collusion Research Sprint submission: 1920x1080, 30 fps, H.264, English, with a narration (4:52; about 4:50 without voice), text cards readable without sound. Output: `video/out/CartelBench_AI-Collusion-Research-Sprint_2026.mp4`.
 
 Everything on screen is generated from the repository: `build.py` draws every frame with Pillow, reads the numbers from `cartelbench/evidence/` (round4 and provider2 scorecards, `round7/diagonal.json`, `round4/screen.json`, `round4/scorecards.json`, `risk_cards/risk_cards.json`) and `cartelbench/data/human_baseline.json`, and encodes with the ffmpeg binary of the PyPI package `imageio-ffmpeg`. `facts_used.md` lists every number with its place in `paper/report.md` and its measurement key.
 
@@ -8,7 +8,7 @@ Everything on screen is generated from the repository: `build.py` draws every fr
 
 ```sh
 pip install pillow imageio-ffmpeg
-python3 video/build.py --tempo 1.08   # full render with the voice files, about 10 minutes
+python3 video/build.py                # full render with the voice files, about 10 minutes
 python3 video/build.py --no-voice     # silent version
 python3 video/build.py --timeline     # scene start and end times only
 python3 video/build.py --stills-only  # the three PNGs in video/stills/
@@ -27,10 +27,10 @@ ffprobe -v error -show_entries format=duration,size -of default=nw=1 video/out/C
 `narration.md` holds the spoken text per scene with the moments at which the elements appear. Generate or record one file per scene and save them as `video/voice/01.mp3` to `video/voice/13.mp3` (MP3, M4A or WAV all work; the extension in the file name must be `.mp3`, or rename after export). Then rebuild:
 
 ```sh
-python3 video/build.py --tempo 1.08
+python3 video/build.py
 ```
 
-With the files present the voice sets the pace: every scene lasts its voice file plus 0.8 s (never less than 3 s after its last element), the files start at the scene starts, and the audio track is mixed into the MP4 (AAC 160 kbit/s). `--tempo` plays the files slightly faster with the pitch unchanged (ffmpeg atempo); the committed files were generated at ElevenLabs speed 1.0 and need 1.08 to keep the video under the five-minute limit (5:27 at 1.0). Missing files fall back to the silent timing; `--no-voice` ignores the folder. To replace one scene, overwrite its file and rebuild.
+With the files present the voice sets the pace: every scene lasts its voice file plus 0.8 s (never less than 3 s after its last element), the files start at the scene starts, and the audio track is mixed into the MP4 (AAC 160 kbit/s). `--tempo` plays the files slightly faster with the pitch unchanged (ffmpeg atempo), for a narration that would push the video over the five-minute limit; the committed files were generated at ElevenLabs speed 1.1 and need no tempo change (4:52). Missing files fall back to the silent timing; `--no-voice` ignores the folder. To replace one scene, overwrite its file and rebuild.
 
 Suggested ElevenLabs settings: model Eleven Multilingual v2 (or v3), a calm neutral English narrator, stability 0.55 to 0.65, similarity 0.75, style 0, speed 0.95 to 1.0, MP3 44.1 kHz 128 kbps; paste one scene block at a time; pronunciation hints are at the top of `narration.md`.
 
