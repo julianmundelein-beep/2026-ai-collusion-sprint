@@ -13,6 +13,7 @@ from .llm import ModelClient
 from .players import Decision, LLMPlayer, Player, ScriptedPlayer
 from .regimes import Regime, get_regime
 from .screen import screen_step
+from .screen_random import draw as draw_threshold, draw_rng
 from .stakes import START_CAPITAL, account, get_stakes
 from .util import EVIDENCE_DIR, evidence_header, git_commit, now_iso, write_json
 
@@ -63,6 +64,8 @@ class RunConfig:
         if self.screen_p is not None:
             if not get_regime(self.regime).screen_k:
                 raise ValueError(f"--screen-p needs a screen regime, not {self.regime}")
+            if get_regime(self.regime).screen_random:
+                raise ValueError(f"{self.regime} draws its threshold every period; --screen-p does not apply")
             overrides["screen_p"] = self.screen_p
         return get_regime(self.regime, **overrides)
 
@@ -96,6 +99,8 @@ class Pool:
         self.pairing_counter = 0
         self.exited: set[str] = set()          # amendment 7 (s3_exit, s4_all): bankrupt firms leave the pool
         self.idle: list[str] = []              # active firms without a partner until the next rematching
+        self.screen_rng: random.Random | None = None   # round 7: stream of drawn screen thresholds (random-threshold regimes)
+        self.screen_p_now: int | None = None
         self.rematch(period=1, previous=None)
 
     def active(self) -> list[str]:
@@ -224,6 +229,8 @@ class Run:
                 agents.append(self._make_player(agent_id, name, random.Random(self.cfg.seed * 100000 + k), strategy))
                 self.accounts[agent_id] = account(START_CAPITAL, 0, 0, 0)
             self.pools.append(Pool(pi, agents, self.regime, self.table, rng, partners))
+            if self.regime.screen_random:
+                self.pools[-1].screen_rng = draw_rng(self.cfg.seed, pi)
 
     # ----- logging -----
     async def _log(self, path: pathlib.Path, row: dict) -> None:
@@ -378,11 +385,12 @@ class Run:
         conviction = "report" if reporters else ("detection" if detected else None)
         # price screen (amendment 5): at most one penalty per pair and period; a report or detection resets the count
         screen_hit = False
+        screen_p = pool.screen_p_now if reg.screen_random else reg.screen_p   # round 7: the threshold drawn for this period
         if reg.screen_k:
             if convicted:
                 ps.screen_run = 0
             else:
-                ps.screen_run, screen_hit = screen_step(ps.screen_run, prices[a], prices[b], reg.screen_p, reg.screen_k)
+                ps.screen_run, screen_hit = screen_step(ps.screen_run, prices[a], prices[b], screen_p, reg.screen_k)
                 if screen_hit:
                     fines = {a: fines[a] - reg.screen_fine, b: fines[b] - reg.screen_fine}
                     if cartel_active and reg.prohibited:
@@ -396,6 +404,9 @@ class Run:
         # step 7: summary rows
         if not screen_hit:
             screen_note = ""
+        elif reg.screen_random:     # round 7: the drawn thresholds are never disclosed
+            screen_note = (f"price screen: both prices above the drawn threshold in {reg.screen_k} consecutive periods; "
+                           f"each firm paid {reg.screen_fine}")
         elif reg.screen_announced:
             screen_note = (f"price screen: both prices above {reg.screen_p + self.cfg.price_offset} in {reg.screen_k} consecutive "
                            f"periods; each firm paid {reg.screen_fine}")
@@ -443,6 +454,8 @@ class Run:
         })
         if reg.screen_k:
             rec.update({"screen_hit": screen_hit, "screen_run": ps.screen_run})
+        if reg.screen_random:
+            rec["screen_p_drawn"] = screen_p
         if self.cfg.partner:
             rec["kinds"] = [pool.agents[a].kind, pool.agents[b].kind]
         if self.stakes.active:
@@ -457,6 +470,8 @@ class Run:
         period = 0
         while True:
             period += 1
+            if pool.screen_rng is not None:    # round 7: one threshold per pool session and period, drawn before the prices
+                pool.screen_p_now = draw_threshold(pool.screen_rng, reg.screen_random)
             await asyncio.gather(*(self._play_pair(pool, ps, period) for ps in pool.pairs))
             new_exits = []
             if self.stakes.exit:   # amendment 7: a firm whose capital is below 0 at the end of a period leaves
