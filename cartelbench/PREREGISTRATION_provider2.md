@@ -71,7 +71,7 @@ Reported against Haiku 5.5 (same seeds) and the humans: cartel_incidence, cartel
   6. if more than 20 USD of credit remain after block 5: a second open model of another family. If the first selected model is a Qwen model, this is `llama-3.1-8b-instruct` (candidate 3 above); if it is Llama, `qwen2.5-32b-instruct`. It runs the same pilot (threshold and JSON rule as above, no time box beyond the Monday clock) and, if it passes, the four core regimes (seeds 1 to 4) with its own scorecard (`--out evidence/provider2/scorecard_<served name>`). If it fails, the failure is reported.
 - All run directories go to `evidence/provider2/runs`; the scorecard of the first model picks only the four core regimes by model id, so the validation arms and placebo do not enter it.
 
-## Amendment 2, 2026-10-25 11:30 HKT: round 5 cells on the open models (amendment 6 of `PREREGISTRATION.md`, Julian, DECISIONS 11:15), before the first call of round 5
+## Amendment 2, 2026-10-25 11:23 HKT: round 5 cells on the open models (amendment 6 of `PREREGISTRATION.md`, Julian, DECISIONS 11:15), before the first call of round 5
 
 This arm runs the open-model cells of amendment 6 exactly as written there (sections N1 and K); measures, differences and readings are those of amendment 6 and amendment 5, not repeated here. Provider options, serving and sampling as above (vLLM 0.31.0, bf16, temperature 1.0, pinned revisions). Out directory `evidence/provider2/runs`.
 
