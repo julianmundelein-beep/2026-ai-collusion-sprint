@@ -1,0 +1,51 @@
+{
+ "juroren": [
+  {
+   "id": "J1",
+   "name": "Jasmine Li"
+  },
+  {
+   "id": "J2",
+   "name": "Debayan Gupta"
+  },
+  {
+   "id": "J3",
+   "name": "Luis Cosio"
+  },
+  {
+   "id": "J4",
+   "name": "Kaushik Prabhakar"
+  },
+  {
+   "id": "J5",
+   "name": "Neeraj Kumar Singh Beshane"
+  }
+ ],
+ "detail": [
+  {
+   "id": "D-J1",
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-r5/detail-J1.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-r5/detail-J1.json"
+  },
+  {
+   "id": "D-J2",
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-r5/detail-J2.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-r5/detail-J2.json"
+  },
+  {
+   "id": "D-J3",
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-r5/detail-J3.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-r5/detail-J3.json"
+  },
+  {
+   "id": "D-J4",
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-r5/detail-J4.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-r5/detail-J4.json"
+  },
+  {
+   "id": "D-J5",
+   "paket": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-r5/detail-J5.md",
+   "ergebnis": "/private/tmp/claude-501/-Users-julianmundelein-Projects-2026-ai-collusion-sprint/8ee620a2-dc7b-4300-9a74-97ae7f95b614/scratchpad/lauf-r5/detail-J5.json"
+  }
+ ]
+}

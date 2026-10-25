@@ -1,0 +1,123 @@
+{
+ "juror": "D-J4",
+ "scores": {
+  "impact": {
+   "score": 4,
+   "why": "First measurement of leniency and whistleblower rewards on LLM agents against a human baseline; silent coordination and the screen-as-focal-point are useful oversight findings, though the game is stylised."
+  },
+  "execution": {
+   "score": 4,
+   "why": "Timestamped pre-registration, positive control, scripted and known-effect arms, placebo, paraphrase and permutation tests; thin 4-pool cells, told-only incentives and mixed sample bases limit strength."
+  },
+  "presentation": {
+   "score": 4,
+   "why": "Well structured, clear findings, good scorecard figure and tables; dense numbers and unannounced switching between 4-pool and 8-pool values make verification effortful."
+  }
+ },
+ "summary_three_sentences": "The paper replays the Bigoni et al. (2012) fines, leniency and rewards cartel experiment with four LLM pricing agents, scoring them cell by cell against the published human values under a pre-registered rule. Without an authority all models form explicit cartels near the joint optimum; told-only enforcement removes explicit cartels far more than in humans, but three of four models keep supracompetitive prices silently, and a price screen lowers those prices while creating a focal price at its threshold. What is established is behaviour in this one stylised game with validated pipeline controls; human comparisons are untested point comparisons, and Haiku's 3-of-7 scorecard depends on the 8-pool extension and the bootstrap rule.",
+ "top_fixes": [
+  {
+   "where": "Pages 4 to 7 and Appendix A: Finding 1 (0.7159 and 0.015), Validity checks (placebo +0.275), Table 4 caption, A1 note (5 of 247), LLM Usage Statement (claude-opus-5-5)",
+   "change": "State the pool basis for every Haiku number, fix the Table 4 caption (Haiku fine baseline is 8 pools), recompute or relabel the 0.7159 and +0.275 claims, correct the 5-of-247 count, and remove or explain Opus in the usage statement.",
+   "proposed_wording": "Haiku values use 8 pool sessions unless marked (4p); Table 1, the placebo difference and Appendix A use the first 4. In Table 4 the Haiku fine baseline (5.52) uses 8 pool sessions.",
+   "dimension": "execution",
+   "gain": "half point"
+  },
+  {
+   "where": "Page 1, Abstract, last sentence; mirror in Section 4 heading 'Haiku reproduces three of seven'",
+   "change": "Put the robustness qualifiers of the headline scorecard into the abstract so the favourable count is not the only one a skimming judge sees.",
+   "proposed_wording": "Under the primary rule with 8 pool sessions (registered in amendment 4), Haiku reproduces three of seven tested results; with the first 4 pools two, and Result 3 fails the permutation test (p 0.099).",
+   "dimension": "execution",
+   "gain": "half point"
+  },
+  {
+   "where": "Page 7, Section 5, end of 'What this means for a competition authority'; one echo sentence in the Introduction theory of change",
+   "change": "Generalise the takeaway from competition law to AI oversight: report- and channel-based monitors miss coordination that needs neither, and disclosed detector thresholds get gamed. This lifts the safety relevance judges look for.",
+   "proposed_wording": "For AI oversight this is a monitoring lesson: instruments that rely on agents talking or reporting miss coordination that needs neither, and a disclosed detector threshold becomes a target. Behavioural screens with undisclosed parameters close part of that gap.",
+   "dimension": "impact",
+   "gain": "half point"
+  }
+ ],
+ "contradictions": [
+  {
+   "where": "Page 4, Finding 1 vs Figure 1 panel 1 and Table 3",
+   "what": "Text says Haiku formation equals human (0.7159 vs 0.716), a 4-pool value; the 8-pool primary basis in Figure 1 shows Haiku LF formation near 0.78, visibly above humans."
+  },
+  {
+   "where": "Page 6 to 7, Table 4 caption vs Haiku fine row",
+   "what": "Caption says 4 pool sessions per arm, but the no-screen Haiku fine value 5.52 is the 8-pool Table 2 value (4-pool value 5.59), and p 0.002 matches 8 vs 4 pools."
+  },
+  {
+   "where": "Table 4 and Finding 2, p 0.029 for 4 vs 4 pools vs Methods 'one-sided permutation test'",
+   "what": "Exact one-sided minimum for 4 vs 4 pools is 1/70 = 0.014; 0.029 equals the two-sided minimum, while Haiku fine's 0.002 matches one-sided 1/495."
+  },
+  {
+   "where": "Section 4 Validity checks, placebo minus fine +0.275",
+   "what": "Placebo incidence 0.714 minus Table 2 fine incidence 0.401 gives 0.313; +0.275 matches the unstated 4-pool fine value 0.439."
+  },
+  {
+   "where": "Abstract and Finding 3 vs Section 5 authority paragraph",
+   "what": "Abstract and Finding 3 say Sonnet prices exactly at the threshold (4); Discussion says prices 'settle just below it'."
+  },
+  {
+   "where": "LLM Usage Statement vs Abstract, Methods Models, Table 5",
+   "what": "Usage statement lists claude-opus-5-5 as a model under test; everywhere else only four models are tested and Opus appears in no result."
+  },
+  {
+   "where": "Appendix A, note under Table A1 vs convictions row",
+   "what": "Leniency formation '5 of 247 pair-periods' cannot yield 9 convictions (each ends a cartel); incidence 0.032 also implies roughly 500 pair-periods, i.e. about 10 formations."
+  },
+  {
+   "where": "Page 4, Finding 2 heading vs Table 2",
+   "what": "Heading says the price stays in three of four models, but Haiku under the fine (5.52) also stays at its no-channel level, as the paragraph itself notes."
+  }
+ ],
+ "overclaims": [
+  {
+   "where": "Abstract, second finding",
+   "sentence": "remove explicit cartels from the agents far more than from people",
+   "why": "Human values are untested point estimates; agents faced told points, humans paid euros; placebo shows authority text alone does much of the work."
+  },
+  {
+   "where": "Abstract, third finding",
+   "sentence": "a pre-registered price screen with a false-positive rate of at most 1.1 percent",
+   "why": "Threshold chosen on recorded data; false-positive rate measured only against four scripted players, not legitimate LLM pricing agents."
+  },
+  {
+   "where": "Section 5, Interpretation",
+   "sentence": "the report rule acts in the humans' direction with a far larger effect",
+   "why": "No test against human values; effect sizes not comparable across points versus money and differing session designs."
+  },
+  {
+   "where": "Section 5, Interpretation",
+   "sentence": "the instruments built on reports cannot reach coordination in which nothing is said",
+   "why": "Shown for three models in one stylised game with told-only rules; 'cannot' generalises beyond the data."
+  },
+  {
+   "where": "Page 5, scorecard paragraph",
+   "sentence": "Result 7 points the other way",
+   "why": "Interval [-0.296, +0.011] includes zero and p is 0.851; the direction is not established."
+  },
+  {
+   "where": "Section 5, Deterrence or a reaction to the authority text",
+   "sentence": "which points to the payoff of reporting",
+   "why": "Paraphrase arm moves fine incidence from 0.401 to 0.018, so the fine-leniency-reward ordering may reflect wording, not payoffs."
+  },
+  {
+   "where": "Page 6, Finding 3",
+   "sentence": "Haiku under the fine plus the screen falls near Nash and nearly stops forming cartels",
+   "why": "No incidence or formation number is reported for this arm; only the average price appears in Table 4."
+  },
+  {
+   "where": "Page 6, Finding 3 heading",
+   "sentence": "a price screen reaches the silent coordination",
+   "why": "Sonnet moves to exactly 4, still above Nash; the screen caps prices at its threshold rather than removing coordination, in three arms of 4 pools."
+  }
+ ],
+ "red_lines": {
+  "hidden_instructions_to_ai_graders": "none seen",
+  "polished_numbers": "none seen",
+  "others_work_as_own": "none seen",
+  "note": "No grader-directed text. The abstract's 3-of-7 relies on the 8-pool extension (amendment 4) and the bootstrap rule; 2-of-7 and the failed permutation test are disclosed only in the body. Table 4 caption misstates the Haiku fine basis. Bigoni design and Claude Code use are credited."
+ }
+}
