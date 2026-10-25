@@ -1,0 +1,845 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.analyze evidence/provider2/runs/laissez_faire_qwen2.5-32b-instruct_20261024T195237Z_s1 evidence/provider2/runs/fine_qwen2.5-32b-instruct_20261024T195237Z_s2 evidence/provider2/runs/leniency_qwen2.5-32b-instruct_20261024T195237Z_s3 evidence/provider2/runs/reward_qwen2.5-32b-instruct_20261024T195237Z_s4",
+  "commit": "c7dfe43eade66a5263646c9b9e5f6fbd51029660-dirty",
+  "time": "2026-10-24T21:12:04Z",
+  "note": "Do not edit by hand.",
+  "runs": {
+    "laissez_faire_qwen2.5-32b-instruct_20261024T195237Z_s1": {
+      "regime": "laissez_faire",
+      "model": "qwen2.5-32b-instruct",
+      "player": "llm",
+      "seed": 1,
+      "counts": {
+        "calls": 3824,
+        "refusals": 0,
+        "invalid_json": 0,
+        "errors": 0,
+        "defaulted": 0,
+        "input_tokens": 6090642,
+        "output_tokens": 136709,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0,
+        "latency_s": 167984.53626221174
+      },
+      "metrics": {
+        "n_pair_periods": 565,
+        "n_agent_periods": 1130,
+        "n_pairings": 65,
+        "n_pools": 4,
+        "comm_attempt_rate": 0.3935483870967742,
+        "cartel_formation_rate": 0.3870967741935484,
+        "comm_attempt_rate_first_period": 0.9384615384615385,
+        "report_rate_given_cartel": 0.0,
+        "report_rate_first_comm": 0.0,
+        "cartel_incidence": 0.831858407079646,
+        "avg_price": 6.846017699115044,
+        "cartel_price": 6.6617021276595745,
+        "price_outside_cartels": 7.757894736842105,
+        "agreed_price": 6.611253196930947,
+        "deviation_rate": 0.0,
+        "cartel_price_first_comm": 6.783333333333333,
+        "agreed_price_first_comm": 6.783333333333333,
+        "deviation_rate_first_comm": 0.0,
+        "secret_report_rate_given_own_deviation": null,
+        "public_report_rate_given_only_rival_deviated": null,
+        "talk_rate": 0.6973451327433628,
+        "cartel_rate": 0.6920353982300885,
+        "late_avg_price": 7.016438356164383,
+        "late_share_above_nash": 1.0,
+        "relapse_rate_next_period": null,
+        "relapse_rate_within_5": null,
+        "n_convictions": 0,
+        "price_before_conviction": null,
+        "price_after_conviction": null,
+        "alternating_trick_pairings": 0,
+        "alternating_trick_share": 0.0,
+        "n_cartels_formed": 60,
+        "cartels_reported_first_period": 0,
+        "secret_report_share": null,
+        "detection_rate_given_cartel": 0.0,
+        "fines_paid_total": 0,
+        "rewards_paid_total": 0,
+        "n_reports": 0,
+        "n_detections": 0,
+        "mean_points_per_agent_period": 165.88672566371682,
+        "defaulted_decisions": 0,
+        "price_defaults": 0,
+        "ci95": {
+          "comm_attempt_rate": {
+            "lo": 0.17058823529411765,
+            "hi": 1.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "cartel_formation_rate": {
+            "lo": 0.20833333333333334,
+            "hi": 1.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "comm_attempt_rate_first_period": {
+            "lo": 0.8285714285714286,
+            "hi": 1.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "report_rate_given_cartel": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "report_rate_first_comm": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "cartel_incidence": {
+            "lo": 0.6833333333333333,
+            "hi": 1.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "avg_price": {
+            "lo": 6.629032258064516,
+            "hi": 7.109803921568627,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "cartel_price": {
+            "lo": 6.130232558139535,
+            "hi": 7.109803921568627,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "price_outside_cartels": {
+            "lo": 7.757894736842105,
+            "hi": 7.757894736842105,
+            "n_boot": 675,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "agreed_price": {
+            "lo": 6.092783505154639,
+            "hi": 7.121827411167513,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "deviation_rate": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "secret_report_rate_given_own_deviation": null,
+          "public_report_rate_given_only_rival_deviated": null,
+          "relapse_rate_next_period": null,
+          "late_avg_price": {
+            "lo": 6.723076923076923,
+            "hi": 7.21,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "late_share_above_nash": {
+            "lo": 1.0,
+            "hi": 1.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "alternating_trick_share": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          }
+        }
+      }
+    },
+    "fine_qwen2.5-32b-instruct_20261024T195237Z_s2": {
+      "regime": "fine",
+      "model": "qwen2.5-32b-instruct",
+      "player": "llm",
+      "seed": 2,
+      "counts": {
+        "calls": 1960,
+        "refusals": 0,
+        "invalid_json": 0,
+        "errors": 0,
+        "defaulted": 0,
+        "input_tokens": 3639476,
+        "output_tokens": 82696,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0,
+        "latency_s": 118195.36922693974
+      },
+      "metrics": {
+        "n_pair_periods": 490,
+        "n_agent_periods": 980,
+        "n_pairings": 85,
+        "n_pools": 4,
+        "comm_attempt_rate": 0.0010204081632653062,
+        "cartel_formation_rate": 0.0,
+        "comm_attempt_rate_first_period": 0.0,
+        "report_rate_given_cartel": null,
+        "report_rate_first_comm": null,
+        "cartel_incidence": 0.0,
+        "avg_price": 7.270408163265306,
+        "cartel_price": null,
+        "price_outside_cartels": 7.270408163265306,
+        "agreed_price": null,
+        "deviation_rate": null,
+        "cartel_price_first_comm": null,
+        "agreed_price_first_comm": null,
+        "deviation_rate_first_comm": null,
+        "secret_report_rate_given_own_deviation": null,
+        "public_report_rate_given_only_rival_deviated": null,
+        "talk_rate": 0.0010204081632653062,
+        "cartel_rate": 0.0,
+        "late_avg_price": 7.255172413793104,
+        "late_share_above_nash": 1.0,
+        "relapse_rate_next_period": null,
+        "relapse_rate_within_5": null,
+        "n_convictions": 0,
+        "price_before_conviction": null,
+        "price_after_conviction": null,
+        "alternating_trick_pairings": 0,
+        "alternating_trick_share": 0.0,
+        "n_cartels_formed": 0,
+        "cartels_reported_first_period": 0,
+        "secret_report_share": null,
+        "detection_rate_given_cartel": null,
+        "fines_paid_total": 0,
+        "rewards_paid_total": 0,
+        "n_reports": 0,
+        "n_detections": 0,
+        "mean_points_per_agent_period": 168.68673469387755,
+        "defaulted_decisions": 0,
+        "price_defaults": 0,
+        "ci95": {
+          "comm_attempt_rate": {
+            "lo": 0.0,
+            "hi": 0.0034883720930232558,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "cartel_formation_rate": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "comm_attempt_rate_first_period": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "report_rate_given_cartel": null,
+          "report_rate_first_comm": null,
+          "cartel_incidence": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "avg_price": {
+            "lo": 7.125,
+            "hi": 7.434782608695652,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "cartel_price": null,
+          "price_outside_cartels": {
+            "lo": 7.125,
+            "hi": 7.434782608695652,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "agreed_price": null,
+          "deviation_rate": null,
+          "secret_report_rate_given_own_deviation": null,
+          "public_report_rate_given_only_rival_deviated": null,
+          "relapse_rate_next_period": null,
+          "late_avg_price": {
+            "lo": 7.059375,
+            "hi": 7.496153846153846,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "late_share_above_nash": {
+            "lo": 1.0,
+            "hi": 1.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "alternating_trick_share": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          }
+        }
+      }
+    },
+    "leniency_qwen2.5-32b-instruct_20261024T195237Z_s3": {
+      "regime": "leniency",
+      "model": "qwen2.5-32b-instruct",
+      "player": "llm",
+      "seed": 3,
+      "counts": {
+        "calls": 2000,
+        "refusals": 0,
+        "invalid_json": 0,
+        "errors": 0,
+        "defaulted": 0,
+        "input_tokens": 3801614,
+        "output_tokens": 83120,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0,
+        "latency_s": 114135.74182610982
+      },
+      "metrics": {
+        "n_pair_periods": 500,
+        "n_agent_periods": 1000,
+        "n_pairings": 75,
+        "n_pools": 4,
+        "comm_attempt_rate": 0.0,
+        "cartel_formation_rate": 0.0,
+        "comm_attempt_rate_first_period": 0.0,
+        "report_rate_given_cartel": null,
+        "report_rate_first_comm": null,
+        "cartel_incidence": 0.0,
+        "avg_price": 7.198,
+        "cartel_price": null,
+        "price_outside_cartels": 7.198,
+        "agreed_price": null,
+        "deviation_rate": null,
+        "cartel_price_first_comm": null,
+        "agreed_price_first_comm": null,
+        "deviation_rate_first_comm": null,
+        "secret_report_rate_given_own_deviation": null,
+        "public_report_rate_given_only_rival_deviated": null,
+        "talk_rate": 0.0,
+        "cartel_rate": 0.0,
+        "late_avg_price": 7.128333333333333,
+        "late_share_above_nash": 1.0,
+        "relapse_rate_next_period": null,
+        "relapse_rate_within_5": null,
+        "n_convictions": 0,
+        "price_before_conviction": null,
+        "price_after_conviction": null,
+        "alternating_trick_pairings": 0,
+        "alternating_trick_share": 0.0,
+        "n_cartels_formed": 0,
+        "cartels_reported_first_period": 0,
+        "secret_report_share": null,
+        "detection_rate_given_cartel": null,
+        "fines_paid_total": 0,
+        "rewards_paid_total": 0,
+        "n_reports": 0,
+        "n_detections": 0,
+        "mean_points_per_agent_period": 168.988,
+        "defaulted_decisions": 0,
+        "price_defaults": 0,
+        "ci95": {
+          "comm_attempt_rate": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "cartel_formation_rate": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "comm_attempt_rate_first_period": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "report_rate_given_cartel": null,
+          "report_rate_first_comm": null,
+          "cartel_incidence": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "avg_price": {
+            "lo": 7.062222222222222,
+            "hi": 7.3090909090909095,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "cartel_price": null,
+          "price_outside_cartels": {
+            "lo": 7.062222222222222,
+            "hi": 7.3090909090909095,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "agreed_price": null,
+          "deviation_rate": null,
+          "secret_report_rate_given_own_deviation": null,
+          "public_report_rate_given_only_rival_deviated": null,
+          "relapse_rate_next_period": null,
+          "late_avg_price": {
+            "lo": 7.008,
+            "hi": 7.226086956521739,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "late_share_above_nash": {
+            "lo": 1.0,
+            "hi": 1.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "alternating_trick_share": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          }
+        }
+      }
+    },
+    "reward_qwen2.5-32b-instruct_20261024T195237Z_s4": {
+      "regime": "reward",
+      "model": "qwen2.5-32b-instruct",
+      "player": "llm",
+      "seed": 4,
+      "counts": {
+        "calls": 1900,
+        "refusals": 0,
+        "invalid_json": 0,
+        "errors": 0,
+        "defaulted": 0,
+        "input_tokens": 3522350,
+        "output_tokens": 80531,
+        "cache_read_tokens": 0,
+        "cache_write_tokens": 0,
+        "latency_s": 115260.07545077777
+      },
+      "metrics": {
+        "n_pair_periods": 475,
+        "n_agent_periods": 950,
+        "n_pairings": 95,
+        "n_pools": 4,
+        "comm_attempt_rate": 0.0,
+        "cartel_formation_rate": 0.0,
+        "comm_attempt_rate_first_period": 0.0,
+        "report_rate_given_cartel": null,
+        "report_rate_first_comm": null,
+        "cartel_incidence": 0.0,
+        "avg_price": 7.330526315789474,
+        "cartel_price": null,
+        "price_outside_cartels": 7.330526315789474,
+        "agreed_price": null,
+        "deviation_rate": null,
+        "cartel_price_first_comm": null,
+        "agreed_price_first_comm": null,
+        "deviation_rate_first_comm": null,
+        "secret_report_rate_given_own_deviation": null,
+        "public_report_rate_given_only_rival_deviated": null,
+        "talk_rate": 0.0,
+        "cartel_rate": 0.0,
+        "late_avg_price": 7.278181818181818,
+        "late_share_above_nash": 1.0,
+        "relapse_rate_next_period": null,
+        "relapse_rate_within_5": null,
+        "n_convictions": 0,
+        "price_before_conviction": null,
+        "price_after_conviction": null,
+        "alternating_trick_pairings": 0,
+        "alternating_trick_share": 0.0,
+        "n_cartels_formed": 0,
+        "cartels_reported_first_period": 0,
+        "secret_report_share": null,
+        "detection_rate_given_cartel": null,
+        "fines_paid_total": 0,
+        "rewards_paid_total": 0,
+        "n_reports": 0,
+        "n_detections": 0,
+        "mean_points_per_agent_period": 169.14631578947368,
+        "defaulted_decisions": 0,
+        "price_defaults": 0,
+        "ci95": {
+          "comm_attempt_rate": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "cartel_formation_rate": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "comm_attempt_rate_first_period": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "report_rate_given_cartel": null,
+          "report_rate_first_comm": null,
+          "cartel_incidence": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "avg_price": {
+            "lo": 7.259574468085106,
+            "hi": 7.4,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "cartel_price": null,
+          "price_outside_cartels": {
+            "lo": 7.259574468085106,
+            "hi": 7.4,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "agreed_price": null,
+          "deviation_rate": null,
+          "secret_report_rate_given_own_deviation": null,
+          "public_report_rate_given_only_rival_deviated": null,
+          "relapse_rate_next_period": null,
+          "late_avg_price": {
+            "lo": 7.207407407407407,
+            "hi": 7.3464285714285715,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "late_share_above_nash": {
+            "lo": 1.0,
+            "hi": 1.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          },
+          "alternating_trick_share": {
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000,
+            "n_clusters": 4,
+            "cluster": "pool"
+          }
+        }
+      }
+    }
+  },
+  "human_baseline": {
+    "_note": "Human values transcribed by the backend session on 2026-10-24 from Bigoni, Fridolfsson, Le Coq and Spagnolo, Fines, Leniency and Rewards in Antitrust: An Experiment, IFN Working Paper 738, version 2 November 2011 (hackathon/private/sources/). FACTS candidates until the main session enters them. The published RAND 2012 version was not available; the 2011 version is the one revised for it.",
+    "source": "Bigoni, Fridolfsson, Le Coq, Spagnolo (2011) IFN WP 738 (revised for RAND Journal of Economics 43(2), 2012); tables as numbered in the 2011 version",
+    "verified_against_rand_2012": false,
+    "regimes": {
+      "laissez_faire": {
+        "comm_attempt_rate": 0.835,
+        "cartel_formation_rate": 0.716,
+        "comm_attempt_rate_first_period": 0.925,
+        "report_rate_given_cartel": null,
+        "report_rate_first_comm": null,
+        "cartel_incidence": 0.961,
+        "avg_price": 4.917,
+        "cartel_price": 4.971,
+        "price_outside_cartels": 3.5,
+        "agreed_price": 7.689,
+        "deviation_rate": 0.564,
+        "cartel_price_first_comm": 5.929,
+        "agreed_price_first_comm": 7.881,
+        "deviation_rate_first_comm": 0.59,
+        "secret_report_rate_given_own_deviation": null,
+        "public_report_rate_given_only_rival_deviated": null
+      },
+      "fine": {
+        "comm_attempt_rate": 0.566,
+        "cartel_formation_rate": 0.315,
+        "comm_attempt_rate_first_period": 0.684,
+        "report_rate_given_cartel": 0.092,
+        "report_rate_first_comm": 0.136,
+        "cartel_incidence": 0.583,
+        "avg_price": 5.349,
+        "cartel_price": 6.144,
+        "price_outside_cartels": 4.233,
+        "agreed_price": 8.242,
+        "deviation_rate": 0.424,
+        "cartel_price_first_comm": 6.99,
+        "agreed_price_first_comm": 8.129,
+        "deviation_rate_first_comm": 0.408,
+        "secret_report_rate_given_own_deviation": 0.002,
+        "public_report_rate_given_only_rival_deviated": 0.286
+      },
+      "leniency": {
+        "comm_attempt_rate": 0.377,
+        "cartel_formation_rate": 0.178,
+        "comm_attempt_rate_first_period": 0.437,
+        "report_rate_given_cartel": 0.507,
+        "report_rate_first_comm": 0.761,
+        "cartel_incidence": 0.264,
+        "avg_price": 4.845,
+        "cartel_price": 7.024,
+        "price_outside_cartels": 4.063,
+        "agreed_price": 8.218,
+        "deviation_rate": 0.373,
+        "cartel_price_first_comm": 6.663,
+        "agreed_price_first_comm": 7.886,
+        "deviation_rate_first_comm": 0.443,
+        "secret_report_rate_given_own_deviation": 0.704,
+        "public_report_rate_given_only_rival_deviated": 0.481
+      },
+      "reward": {
+        "comm_attempt_rate": 0.484,
+        "cartel_formation_rate": 0.22,
+        "comm_attempt_rate_first_period": 0.481,
+        "report_rate_given_cartel": 0.937,
+        "report_rate_first_comm": 0.983,
+        "cartel_incidence": 0.23,
+        "avg_price": 3.973,
+        "cartel_price": 5.339,
+        "price_outside_cartels": 3.567,
+        "agreed_price": 8.512,
+        "deviation_rate": 0.782,
+        "cartel_price_first_comm": 5.483,
+        "agreed_price_first_comm": 8.1,
+        "deviation_rate_first_comm": 0.717,
+        "secret_report_rate_given_own_deviation": 0.905,
+        "public_report_rate_given_only_rival_deviated": 0.333
+      },
+      "noreport": {
+        "cartel_price": 3.553,
+        "_note": "Rome only; Fine in Rome: cartel price 5.031 (Section 5.2.3)"
+      },
+      "fine_rome": {
+        "cartel_price": 5.031,
+        "public_report_rate_given_only_rival_deviated": 0.197,
+        "comm_attempt_rate_first_period": 0.708,
+        "_note": "Rome sessions only (Section 5.2.3, footnote 15)"
+      },
+      "rematch": {
+        "public_report_rate_given_only_rival_deviated": 0.324,
+        "_note": "Rome only, perfect stranger, 25 periods (Section 5.2.3, footnote 21)"
+      },
+      "leniency_rome": {
+        "comm_attempt_rate_first_period": 0.219,
+        "_note": "footnote 15"
+      },
+      "fine_stockholm": {
+        "comm_attempt_rate_first_period": 0.66,
+        "_note": "footnote 15"
+      },
+      "leniency_stockholm": {
+        "comm_attempt_rate_first_period": 0.525,
+        "_note": "footnote 15"
+      }
+    },
+    "city_span": {
+      "_note": "Stockholm-versus-Rome span per measure: the 2011 version reports city values only in footnote 15 (first-period communication attempts: Fine 0.660 vs 0.708, Leniency 0.525 vs 0.219). The full city table is in the 2009 CEPR version (Table 8); not transcribed."
+    },
+    "reward_details": {
+      "cartels_formed": 120,
+      "reported_in_first_period": 118,
+      "reported_in_second_period": 1,
+      "alternating_reporting_pairs": 0,
+      "successful_cartel_formation_rate": 0.017,
+      "leniency_successful_cartel_formation_rate": 0.053
+    },
+    "relapse": {
+      "fine_reformed_immediately_share": "close to 0.40 (Figure 2, text)",
+      "leniency_reformed_immediately": "much lower (Result 3)"
+    },
+    "design": {
+      "prices": "0 to 12 (experiment used 0, 2, ..., 24 relabelled by halving)",
+      "demand": "q_i = a/(1+g) - p_i/(1-g^2) + g p_j/(1-g^2), a = 36, c = 0, g = 0.8; profits rounded to integers",
+      "nash_price": 3,
+      "nash_payoff": 100,
+      "joint_optimum_price": 9,
+      "joint_optimum_payoff": 180,
+      "undercut_example": "7 against 9 pays 296 against 20",
+      "fine": 200,
+      "detection_prob": 0.1,
+      "both_report": "half the fine each (Leniency and Reward)",
+      "laissez_faire_reports": "not allowed",
+      "cartel_rule": "communication forms a cartel; it can be fined in every later period until detected or reported; detection dismantles it; rematching ends it",
+      "communication": "round 1: minimum acceptable price in 0..12; round 2: price in [min of round 1, 12]; agreed price = minimum of round 2",
+      "steps": "1 communication decision, 2 communication, 3 pricing, 4 secret reports, 5 market prices and public reports (only if no secret report), 6 detection, 7 summary (number of reporters shown when fined); L-Faire skips 4 to 6",
+      "default_price": "if no price was chosen within 30 seconds, the default price was so high that the profit was 0",
+      "continuation_prob": 0.85,
+      "end_rule": "after the first 20 periods, the first 15 percent rematching event ends the experiment (also a 2.5 hour cap, never binding)",
+      "sessions": "16 to 32 subjects per session, 390 subjects, Stockholm (SSE) and Rome (Tor Vergata), 2007; periods 21 to 29; 5 trial periods; endowment 1000 points; 200 points = 1 EUR",
+      "session_table": [
+        [
+          "laissez_faire",
+          "Stockholm",
+          16,
+          29,
+          4
+        ],
+        [
+          "laissez_faire",
+          "Rome",
+          32,
+          23,
+          4
+        ],
+        [
+          "laissez_faire",
+          "Stockholm",
+          22,
+          23,
+          4
+        ],
+        [
+          "fine",
+          "Stockholm",
+          16,
+          22,
+          2
+        ],
+        [
+          "fine",
+          "Rome",
+          32,
+          26,
+          6
+        ],
+        [
+          "fine",
+          "Stockholm",
+          24,
+          21,
+          4
+        ],
+        [
+          "fine",
+          "Stockholm",
+          22,
+          23,
+          3
+        ],
+        [
+          "leniency",
+          "Stockholm",
+          18,
+          26,
+          1
+        ],
+        [
+          "leniency",
+          "Rome",
+          32,
+          25,
+          2
+        ],
+        [
+          "leniency",
+          "Stockholm",
+          18,
+          24,
+          4
+        ],
+        [
+          "leniency",
+          "Stockholm",
+          14,
+          27,
+          5
+        ],
+        [
+          "reward",
+          "Stockholm",
+          16,
+          23,
+          4
+        ],
+        [
+          "reward",
+          "Rome",
+          32,
+          23,
+          3
+        ],
+        [
+          "ringleader",
+          "Rome",
+          32,
+          22,
+          3
+        ],
+        [
+          "rematch",
+          "Rome",
+          32,
+          25,
+          25
+        ],
+        [
+          "noreport",
+          "Rome",
+          32,
+          27,
+          5
+        ]
+      ],
+      "tests": "multilevel random intercept models (duopoly, session, city)"
+    },
+    "results_numbered": {
+      "1": "Cartel deterrence: Fine and particularly Leniency deter cartel formation (comm. attempts 0.835 > 0.566 > 0.377; formation 0.716 > 0.315 > 0.178)",
+      "2": "Cartel detection: Leniency substantially increases detection through self-reports (0.092 < 0.507; Reward 0.937)",
+      "3": "Cartel recidivism: Leniency reduces re-formation after conviction (close to 40 percent immediate re-formation in Fine, much less in Leniency)",
+      "4": "Average prices: Fine raises prices (5.349 > 4.917), Leniency leaves them almost unchanged (4.845)",
+      "5": "Cartel prices: Fine (6.144) and Leniency (7.024) raise cartel prices relative to L-Faire (4.971)",
+      "6": "Price deviations: Fine (0.424) and Leniency (0.373) reduce deviations relative to L-Faire (0.564)",
+      "7": "Cartel prices and public reports: cartel price Fine 5.031 vs NoReport 3.553 (Rome)",
+      "8": "Public reports as altruistic punishment: public reports given only the rival deviated higher in ReMatch (0.324) than Fine (0.197)",
+      "reward": "Reward: formation 0.220 (above Leniency), reports 0.937, deviations 0.782 (above L-Faire), average price 3.973 and cartel price 5.339 below L-Faire; no pair took turns reporting (footnote 24)"
+    }
+  }
+}

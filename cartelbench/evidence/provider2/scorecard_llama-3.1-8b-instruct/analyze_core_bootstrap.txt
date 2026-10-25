@@ -1,0 +1,110 @@
+
+== fine_llama-3.1-8b-instruct_20261024T224158Z_s2 (fine, llama-3.1-8b-instruct, player=llm)
+  comm_attempt_rate                        0.248  [0.227, 0.267]
+  cartel_formation_rate                    0.066  [0.052, 0.079]
+  comm_attempt_rate_first_period           0.212  [0.145, 0.340]
+  report_rate_given_cartel                 0.650  [0.609, 0.706]
+  report_rate_first_comm                   0.426  [0.312, 0.591]
+  cartel_incidence                         0.082  [0.057, 0.104]
+  avg_price                                6.638  [6.072, 7.138]
+  cartel_price                             6.213  [5.636, 6.917]
+  price_outside_cartels                    6.676  [6.053, 7.255]
+  agreed_price                             3.688  [2.857, 4.417]
+  deviation_rate                           0.100  [0.055, 0.154]
+  secret_report_rate_given_own_deviation   0.625  [0.333, 0.833]
+  public_report_rate_given_only_rival_deviated 0.500  [0.000, 1.000]
+  relapse_rate_next_period                 0.043  [0.000, 0.091]
+  late_avg_price                           6.910  [6.081, 7.584]
+  late_share_above_nash                    0.779  [0.712, 0.847]
+  alternating_trick_share                  0.000  [0.000, 0.000]
+  n_pair_periods                           490
+  n_pairings                               85
+  n_pools                                  4
+  n_convictions                            29
+  fines_paid_total                         11000
+  rewards_paid_total                       0
+  n_reports                                29
+  defaulted_decisions                      81
+
+== laissez_faire_llama-3.1-8b-instruct_20261024T224158Z_s1 (laissez_faire, llama-3.1-8b-instruct, player=llm)
+  comm_attempt_rate                        0.358  [0.329, 0.397]
+  cartel_formation_rate                    0.142  [0.120, 0.185]
+  comm_attempt_rate_first_period           0.438  [0.389, 0.530]
+  report_rate_given_cartel                 0.000  [0.000, 0.000]
+  report_rate_first_comm                   0.000  [0.000, 0.000]
+  cartel_incidence                         0.595  [0.487, 0.717]
+  avg_price                                7.314  [7.130, 7.477]
+  cartel_price                             7.326  [6.880, 7.592]
+  price_outside_cartels                    7.297  [7.023, 7.541]
+  agreed_price                             6.180  [5.756, 6.463]
+  deviation_rate                           0.100  [0.061, 0.126]
+  secret_report_rate_given_own_deviation   0.000  [0.000, 0.000]
+  public_report_rate_given_only_rival_deviated 0.000  [0.000, 0.000]
+  relapse_rate_next_period                 n/a
+  late_avg_price                           7.396  [6.923, 7.710]
+  late_share_above_nash                    0.874  [0.831, 0.898]
+  alternating_trick_share                  0.000  [0.000, 0.000]
+  n_pair_periods                           565
+  n_pairings                               65
+  n_pools                                  4
+  n_convictions                            0
+  fines_paid_total                         0
+  rewards_paid_total                       0
+  n_reports                                0
+  defaulted_decisions                      40
+
+== leniency_llama-3.1-8b-instruct_20261024T224158Z_s3 (leniency, llama-3.1-8b-instruct, player=llm)
+  comm_attempt_rate                        0.269  [0.241, 0.314]
+  cartel_formation_rate                    0.067  [0.051, 0.088]
+  comm_attempt_rate_first_period           0.240  [0.163, 0.357]
+  report_rate_given_cartel                 0.721  [0.600, 0.889]
+  report_rate_first_comm                   0.519  [0.500, 0.556]
+  cartel_incidence                         0.086  [0.055, 0.124]
+  avg_price                                6.779  [6.571, 6.949]
+  cartel_price                             6.919  [6.385, 7.800]
+  price_outside_cartels                    6.766  [6.562, 6.904]
+  agreed_price                             4.778  [4.100, 5.625]
+  deviation_rate                           0.107  [0.043, 0.184]
+  secret_report_rate_given_own_deviation   0.111  [0.000, 0.214]
+  public_report_rate_given_only_rival_deviated 0.429  [0.000, 0.857]
+  relapse_rate_next_period                 0.000  [0.000, 0.000]
+  late_avg_price                           6.977  [6.600, 7.195]
+  late_share_above_nash                    0.830  [0.800, 0.861]
+  alternating_trick_share                  0.000  [0.000, 0.000]
+  n_pair_periods                           500
+  n_pairings                               75
+  n_pools                                  4
+  n_convictions                            32
+  fines_paid_total                         6600
+  rewards_paid_total                       0
+  n_reports                                39
+  defaulted_decisions                      65
+
+== reward_llama-3.1-8b-instruct_20261024T224158Z_s4 (reward, llama-3.1-8b-instruct, player=llm)
+  comm_attempt_rate                        0.257  [0.220, 0.285]
+  cartel_formation_rate                    0.060  [0.047, 0.074]
+  comm_attempt_rate_first_period           0.168  [0.136, 0.213]
+  report_rate_given_cartel                 0.737  [0.630, 1.000]
+  report_rate_first_comm                   0.478  [0.362, 0.591]
+  cartel_incidence                         0.080  [0.047, 0.113]
+  avg_price                                6.398  [6.010, 6.794]
+  cartel_price                             6.421  [5.500, 8.192]
+  price_outside_cartels                    6.396  [6.002, 6.774]
+  agreed_price                             5.310  [4.545, 6.333]
+  deviation_rate                           0.214  [0.158, 0.341]
+  secret_report_rate_given_own_deviation   0.067  [0.000, 0.231]
+  public_report_rate_given_only_rival_deviated 0.300  [0.200, 0.500]
+  relapse_rate_next_period                 0.111  [0.000, 0.167]
+  late_avg_price                           6.578  [5.846, 7.337]
+  late_share_above_nash                    0.765  [0.732, 0.815]
+  alternating_trick_share                  0.000  [0.000, 0.000]
+  n_pair_periods                           475
+  n_pairings                               95
+  n_pools                                  4
+  n_convictions                            28
+  fines_paid_total                         5600
+  rewards_paid_total                       5000
+  n_reports                                31
+  defaulted_decisions                      68
+
+wrote evidence/provider2/scorecard_llama-3.1-8b-instruct/analyze_core.json

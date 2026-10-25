@@ -1,0 +1,35 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.compare evidence/provider2/runs/placebo_qwen2.5-32b-instruct_20261024T210939Z_s15 evidence/provider2/runs/laissez_faire_qwen2.5-32b-instruct_20261024T195237Z_s1 --keys cartel_incidence,avg_price",
+  "commit": "071d8b2396a34705885dffb22ed80b3ae234f354-dirty",
+  "time": "2026-10-24T22:36:07Z",
+  "note": "Do not edit by hand.",
+  "run_a": "placebo_qwen2.5-32b-instruct_20261024T210939Z_s15",
+  "run_b": "laissez_faire_qwen2.5-32b-instruct_20261024T195237Z_s1",
+  "model_a": "qwen2.5-32b-instruct",
+  "model_b": "qwen2.5-32b-instruct",
+  "clusters_a": 4,
+  "clusters_b": 4,
+  "differences": {
+    "cartel_incidence": {
+      "a": 0.0,
+      "b": 0.831858407079646,
+      "diff": {
+        "point": -0.831858407079646,
+        "lo": -1.0,
+        "hi": -0.6833333333333333,
+        "n_boot": 1000
+      }
+    },
+    "avg_price": {
+      "a": 7.379,
+      "b": 6.846017699115044,
+      "diff": {
+        "point": 0.5329823008849557,
+        "lo": 0.1556777432464731,
+        "hi": 0.8338802296964722,
+        "n_boot": 1000
+      }
+    }
+  }
+}
