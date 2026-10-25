@@ -1,0 +1,337 @@
+{
+  "header": true,
+  "generated_by": "python3 cartelbench/scripts/jury_answers.py",
+  "commit": "8615a0ae4166d0eb85805ad10d5d81fdf381bca8-dirty",
+  "time": "2026-10-25T03:17:10Z",
+  "note": "Do not edit by hand.",
+  "answers": {
+    "a": "The screen comparisons (M72) and the prohibition-against-no-channel comparisons (M67, M68) use the two-sided permutation test registered in amendments 5 and 4 (b): p is the share of relabellings of the pool sessions with |statistic| at least the observed one. With 4 against 4 pool sessions and complete separation, the observed relabelling and its mirror image both reach it: p = 2/70 = 0.029. With 8 against 4 pool sessions (fine_screen against the 8-pool fine sample) the groups differ in size, so no mirror relabelling exists and only the observed one reaches it: p = 1/495 = 0.002, the same as the one-sided minimum. The scorecard rows (M64) are one-sided in the humans' direction (amendment 4 (a)): minimum 1/70 = 0.014 for 4 against 4. No add-one correction is applied to exact tests.",
+    "a_methods_sentence": "Permutation p-values relabel pool sessions between the two arms (exact enumeration up to 10,000 relabellings); they are one-sided in the humans' direction for the scorecard rows and two-sided for the comparisons without a human direction (prohibition against no channel, screen against no screen). Under complete separation the smallest attainable p is 1/70 = 0.014 (one-sided) or 2/70 = 0.029 (two-sided) for 4 against 4 pool sessions and 1/495 = 0.002 for 8 against 4, where unequal group sizes leave no mirror relabelling.",
+    "b": "The leniency run formed 10 cartels in 494 pair-periods without a running cartel at the start of the period (formation rate 0.0202); F66's \"5 of 247\" is this ratio reduced to lowest terms, not a count. 9 of the 10 cartels were convicted (3 by detection, 6 by report events with 7 reporters, one event with two); the tenth formed in the last period of its pairing episode and ended with the rematch, unconvicted.",
+    "b_note_clause": "10 formations in 494 pair-periods without a running cartel, 0.020; 9 of the 10 cartels were convicted and one ended with a rematch in its first period"
+  },
+  "permutation_records": [
+    {
+      "source": "M72 screen arms (amendment 5)",
+      "comparison": "Sonnet 5.5, no channel, avg_price screen minus no screen",
+      "alternative": "two-sided",
+      "p": 0.02857142857142857,
+      "count": 2,
+      "relabellings": 70,
+      "exact": true,
+      "clusters": [
+        4,
+        4
+      ],
+      "as_fraction": "2/70",
+      "minimum_two_sided": 0.02857142857142857,
+      "minimum_one_sided": 0.014285714285714285
+    },
+    {
+      "source": "M72 screen arms (amendment 5)",
+      "comparison": "Haiku 5.5, no channel, avg_price screen minus no screen",
+      "alternative": "two-sided",
+      "p": 0.02857142857142857,
+      "count": 2,
+      "relabellings": 70,
+      "exact": true,
+      "clusters": [
+        4,
+        4
+      ],
+      "as_fraction": "2/70",
+      "minimum_two_sided": 0.02857142857142857,
+      "minimum_one_sided": 0.014285714285714285
+    },
+    {
+      "source": "M72 screen arms (amendment 5)",
+      "comparison": "Haiku 5.5, fine regime, avg_price screen minus no screen",
+      "alternative": "two-sided",
+      "p": 0.00202020202020202,
+      "count": 1,
+      "relabellings": 495,
+      "exact": true,
+      "clusters": [
+        4,
+        8
+      ],
+      "as_fraction": "1/495",
+      "minimum_two_sided": 0.00202020202020202,
+      "minimum_one_sided": 0.00202020202020202
+    },
+    {
+      "source": "M67/M68 prohibition against no channel (amendment 4 (b))",
+      "comparison": "claude-sonnet-5-5 laissez_faire minus nocomm, avg_price",
+      "alternative": "two-sided",
+      "p": 0.02857142857142857,
+      "count": 2,
+      "relabellings": 70,
+      "exact": true,
+      "clusters": [
+        4,
+        4
+      ],
+      "as_fraction": "2/70",
+      "minimum_two_sided": 0.02857142857142857,
+      "minimum_one_sided": 0.014285714285714285
+    },
+    {
+      "source": "M67/M68 prohibition against no channel (amendment 4 (b))",
+      "comparison": "claude-sonnet-5-5 fine minus nocomm, avg_price",
+      "alternative": "two-sided",
+      "p": 0.02857142857142857,
+      "count": 2,
+      "relabellings": 70,
+      "exact": true,
+      "clusters": [
+        4,
+        4
+      ],
+      "as_fraction": "2/70",
+      "minimum_two_sided": 0.02857142857142857,
+      "minimum_one_sided": 0.014285714285714285
+    },
+    {
+      "source": "M67/M68 prohibition against no channel (amendment 4 (b))",
+      "comparison": "claude-sonnet-5-5 leniency minus nocomm, avg_price",
+      "alternative": "two-sided",
+      "p": 0.02857142857142857,
+      "count": 2,
+      "relabellings": 70,
+      "exact": true,
+      "clusters": [
+        4,
+        4
+      ],
+      "as_fraction": "2/70",
+      "minimum_two_sided": 0.02857142857142857,
+      "minimum_one_sided": 0.014285714285714285
+    },
+    {
+      "source": "M67/M68 prohibition against no channel (amendment 4 (b))",
+      "comparison": "claude-sonnet-5-5 reward minus nocomm, avg_price",
+      "alternative": "two-sided",
+      "p": 0.02857142857142857,
+      "count": 2,
+      "relabellings": 70,
+      "exact": true,
+      "clusters": [
+        4,
+        4
+      ],
+      "as_fraction": "2/70",
+      "minimum_two_sided": 0.02857142857142857,
+      "minimum_one_sided": 0.014285714285714285
+    },
+    {
+      "source": "M67/M68 prohibition against no channel (amendment 4 (b))",
+      "comparison": "claude-haiku-5-5 laissez_faire minus nocomm, avg_price",
+      "alternative": "two-sided",
+      "p": 0.00202020202020202,
+      "count": 1,
+      "relabellings": 495,
+      "exact": true,
+      "clusters": [
+        8,
+        4
+      ],
+      "as_fraction": "1/495",
+      "minimum_two_sided": 0.00202020202020202,
+      "minimum_one_sided": 0.00202020202020202
+    },
+    {
+      "source": "M67/M68 prohibition against no channel (amendment 4 (b))",
+      "comparison": "claude-haiku-5-5 fine minus nocomm, avg_price",
+      "alternative": "two-sided",
+      "p": 0.22626262626262628,
+      "count": 112,
+      "relabellings": 495,
+      "exact": true,
+      "clusters": [
+        8,
+        4
+      ],
+      "as_fraction": "112/495",
+      "minimum_two_sided": 0.00202020202020202,
+      "minimum_one_sided": 0.00202020202020202
+    },
+    {
+      "source": "M67/M68 prohibition against no channel (amendment 4 (b))",
+      "comparison": "claude-haiku-5-5 leniency minus nocomm, avg_price",
+      "alternative": "two-sided",
+      "p": 0.00202020202020202,
+      "count": 1,
+      "relabellings": 495,
+      "exact": true,
+      "clusters": [
+        8,
+        4
+      ],
+      "as_fraction": "1/495",
+      "minimum_two_sided": 0.00202020202020202,
+      "minimum_one_sided": 0.00202020202020202
+    },
+    {
+      "source": "M67/M68 prohibition against no channel (amendment 4 (b))",
+      "comparison": "claude-haiku-5-5 reward minus nocomm, avg_price",
+      "alternative": "two-sided",
+      "p": 0.00202020202020202,
+      "count": 1,
+      "relabellings": 495,
+      "exact": true,
+      "clusters": [
+        8,
+        4
+      ],
+      "as_fraction": "1/495",
+      "minimum_two_sided": 0.00202020202020202,
+      "minimum_one_sided": 0.00202020202020202
+    },
+    {
+      "source": "M64 scorecard rows (amendment 4 (a))",
+      "comparison": "row 1 lf_minus_fine cartel_formation_rate",
+      "alternative": "greater",
+      "p": 0.00039996000399960006,
+      "count": 3,
+      "relabellings": 10000,
+      "exact": false,
+      "clusters": [
+        8,
+        8
+      ],
+      "as_fraction": "3/10000",
+      "minimum_two_sided": null,
+      "minimum_one_sided": null
+    },
+    {
+      "source": "M64 scorecard rows (amendment 4 (a))",
+      "comparison": "row 1 fine_minus_leniency cartel_formation_rate",
+      "alternative": "greater",
+      "p": 0.00039996000399960006,
+      "count": 3,
+      "relabellings": 10000,
+      "exact": false,
+      "clusters": [
+        8,
+        8
+      ],
+      "as_fraction": "3/10000",
+      "minimum_two_sided": null,
+      "minimum_one_sided": null
+    }
+  ],
+  "leniency_counts": {
+    "run": "leniency_claude-haiku-5-5_20261024T104849Z_s3",
+    "pair_periods": 500,
+    "cartel_pair_periods": 16,
+    "pair_periods_without_running_cartel": 494,
+    "cartels_formed": 10,
+    "formation_rate": 0.020242914979757085,
+    "formation_rate_reduced_fraction": "5/247",
+    "convictions": 9,
+    "by_detection": 3,
+    "report_events": 6,
+    "reporters": 7,
+    "cartels_not_convicted": [
+      {
+        "pairing": "p1-m9",
+        "formed": 3,
+        "end": [
+          "episode ended",
+          3
+        ]
+      }
+    ],
+    "cartel_ends": [
+      {
+        "pairing": "p0-m3",
+        "formed": 2,
+        "end": [
+          2,
+          "report",
+          1
+        ]
+      },
+      {
+        "pairing": "p1-m9",
+        "formed": 3,
+        "end": [
+          "episode ended",
+          3
+        ]
+      },
+      {
+        "pairing": "p3-m9",
+        "formed": 4,
+        "end": [
+          4,
+          "report",
+          1
+        ]
+      },
+      {
+        "pairing": "p1-m15",
+        "formed": 5,
+        "end": [
+          6,
+          "detection",
+          0
+        ]
+      },
+      {
+        "pairing": "p0-m13",
+        "formed": 7,
+        "end": [
+          7,
+          "detection",
+          0
+        ]
+      },
+      {
+        "pairing": "p1-m13",
+        "formed": 8,
+        "end": [
+          8,
+          "report",
+          1
+        ]
+      },
+      {
+        "pairing": "p3-m11",
+        "formed": 13,
+        "end": [
+          16,
+          "report",
+          1
+        ]
+      },
+      {
+        "pairing": "p0-m30",
+        "formed": 18,
+        "end": [
+          19,
+          "report",
+          1
+        ]
+      },
+      {
+        "pairing": "p3-m17",
+        "formed": 18,
+        "end": [
+          19,
+          "report",
+          2
+        ]
+      },
+      {
+        "pairing": "p3-m16",
+        "formed": 33,
+        "end": [
+          33,
+          "detection",
+          0
+        ]
+      }
+    ]
+  }
+}
