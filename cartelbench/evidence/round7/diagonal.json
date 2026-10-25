@@ -1,8 +1,8 @@
 {
   "header": true,
   "generated_by": "python3 -m cartelbench.round7 figure",
-  "commit": "0ba50f02afe82f5afeb1b427c8247219fc86d8e5",
-  "time": "2026-10-25T09:40:22Z",
+  "commit": "a33351e23cbbc5a7c73f5ad99f2cd3f68d1c74f3",
+  "time": "2026-10-25T13:07:38Z",
   "note": "Do not edit by hand.",
   "rows": [
     {
@@ -106,6 +106,17 @@
     },
     {
       "model": "Qwen2.5-32B",
+      "threshold": 3,
+      "seed": 731,
+      "avg_price": 4.2913,
+      "avg_price_lo": 4.1624,
+      "avg_price_hi": 4.3778,
+      "modal_price": 3,
+      "share_at_threshold": 0.5922,
+      "agent_periods": 1030
+    },
+    {
+      "model": "Qwen2.5-32B",
       "threshold": 4,
       "seed": 121,
       "avg_price": 5.1264,
@@ -114,6 +125,50 @@
       "modal_price": 4,
       "share_at_threshold": 0.5991,
       "agent_periods": 1100
+    },
+    {
+      "model": "Qwen2.5-32B",
+      "threshold": 5,
+      "seed": 732,
+      "avg_price": 5.3434,
+      "avg_price_lo": 4.6951,
+      "avg_price_hi": 5.9762,
+      "modal_price": 5,
+      "share_at_threshold": 0.3783,
+      "agent_periods": 830
+    },
+    {
+      "model": "Qwen2.5-32B",
+      "threshold": 6,
+      "seed": 733,
+      "avg_price": 6.2436,
+      "avg_price_lo": 6.1811,
+      "avg_price_hi": 6.346,
+      "modal_price": 6,
+      "share_at_threshold": 0.7436,
+      "agent_periods": 1170
+    },
+    {
+      "model": "Qwen2.5-32B",
+      "threshold": 7,
+      "seed": 734,
+      "avg_price": 7.1535,
+      "avg_price_lo": 7.0876,
+      "avg_price_hi": 7.2405,
+      "modal_price": 7,
+      "share_at_threshold": 0.7871,
+      "agent_periods": 1010
+    },
+    {
+      "model": "Llama-3.1-8B",
+      "threshold": 3,
+      "seed": 741,
+      "avg_price": 4.5337,
+      "avg_price_lo": 4.0687,
+      "avg_price_hi": 4.8976,
+      "modal_price": 0,
+      "share_at_threshold": 0.1065,
+      "agent_periods": 920
     },
     {
       "model": "Llama-3.1-8B",
@@ -125,6 +180,39 @@
       "modal_price": 4,
       "share_at_threshold": 0.1875,
       "agent_periods": 960
+    },
+    {
+      "model": "Llama-3.1-8B",
+      "threshold": 5,
+      "seed": 742,
+      "avg_price": 5.0633,
+      "avg_price_lo": 4.4787,
+      "avg_price_hi": 5.5215,
+      "modal_price": 5,
+      "share_at_threshold": 0.1827,
+      "agent_periods": 980
+    },
+    {
+      "model": "Llama-3.1-8B",
+      "threshold": 6,
+      "seed": 743,
+      "avg_price": 5.4207,
+      "avg_price_lo": 5.116,
+      "avg_price_hi": 5.7224,
+      "modal_price": 5,
+      "share_at_threshold": 0.1422,
+      "agent_periods": 1160
+    },
+    {
+      "model": "Llama-3.1-8B",
+      "threshold": 7,
+      "seed": 744,
+      "avg_price": 5.6667,
+      "avg_price_lo": 5.4769,
+      "avg_price_hi": 5.7906,
+      "modal_price": 5,
+      "share_at_threshold": 0.0696,
+      "agent_periods": 1380
     }
   ],
   "nash_price": 3,
