@@ -9,7 +9,7 @@ Apart Research, October 23 to 25, 2026. Track 1: Markets and Collusion. Research
 
 ## What we found
 
-CartelBench replays a published cartel laboratory experiment with LLM sellers under the human subjects' rules, so that every measure sits next to the published human value, and tests the authority's instruments on four models from three families. Fines, leniency and rewards that are told rather than paid remove explicit cartels from the agents more than they did from people, yet three of the four models then keep prices well above the competitive level without a word of price discussion. A pre-registered price screen lowers those silent prices at a measured false-positive rate, but its published threshold becomes the price the agents set (Claude Sonnet 5.5 prices on the threshold at every level from 3 to 6), and keeping the threshold secret and random does not lower prices.
+CartelBench replays a published cartel laboratory experiment with LLM sellers under the human subjects' rules, so that every measure sits next to the published human value, and tests the authority's instruments on four models from three families. Fines, leniency and rewards that are told rather than paid remove explicit cartels from the agents more than they did from people, yet three of the four models then keep prices well above the competitive level without a word of price discussion. A pre-registered price screen lowers those silent prices at a measured false-positive rate, but its published threshold becomes the price the agents set (Claude Sonnet 5.5 prices on the threshold at every level from 3 to 6), and keeping the threshold secret and random does not detectably lower prices.
 
 ## What is submitted
 
@@ -34,7 +34,7 @@ CartelBench replays a published cartel laboratory experiment with LLM sellers un
 
 ## Verifying a number
 
-Every number in the report has a row in `cartelbench/evidence/MEASUREMENTS.md` (Claude models) or `cartelbench/evidence/provider2/MEASUREMENTS_provider2.md` (Qwen and Llama) with the command that produced it, the result file and the commit. `docs/JUDGES_GUIDE.md` lists what to open in ten minutes.
+Every number in the report has a row in `cartelbench/evidence/MEASUREMENTS.md` (Claude models, rounds 1 to 6), `cartelbench/evidence/MEASUREMENTS_round7.md` (round 7, Claude models) or `cartelbench/evidence/provider2/MEASUREMENTS_provider2.md` (Qwen and Llama, including round 7 and the stage 2 training) with the command that produced it, the result file and the commit. `docs/JUDGES_GUIDE.md` lists what to open in ten minutes.
 
 ## Licence
 
