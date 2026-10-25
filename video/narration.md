@@ -4,8 +4,8 @@ Thirteen scenes, one voice file each. Record or generate each block as `video/vo
 
 | Scene | Start (silent build) | Length | Words |
 |---|---|---|---|
-| 01 Intro | 0:00 | 11.0 s | 22 |
-| 02 Title | 0:10 | 21.0 s | 44 |
+| 01 Intro | 0:00 | 12.5 s | 24 |
+| 02 Title | 0:12 | 21.5 s | 49 |
 | 03 The game | 0:30 | 18.0 s | 45 |
 | 04 The human experiment | 0:48 | 22.5 s | 52 |
 | 05 The testbed | 1:09 | 23.5 s | 49 |
@@ -20,17 +20,17 @@ Thirteen scenes, one voice file each. Record or generate each block as `video/vo
 
 Pronunciation for a voice tool: "Bigoni" as bee-GO-nee, "Qwen" as kwen, "Llama" as lah-ma, "Haiku" as HY-koo, "Nash" as in cash.
 
-## 01 Intro (0:00, 11.0 s)
+## 01 Intro (0:00, 12.5 s)
 
 | Voice | On screen |
 |---|---|
-| When competitors quietly agree on a price instead of competing, their customers pay more. That is a cartel, and it is illegal almost everywhere. | Two firm boxes slide together and a line "one price" joins them (0.6 s to 2.4 s); the first sentence (0.4 s), the second (4.2 s). |
+| When two companies quietly agree on a price instead of competing, customers pay more. That is a cartel, and it is illegal almost everywhere. | Two firm boxes slide together and a line "one price" joins them (0.6 s to 2.4 s); the first sentence (0.4 s), the second (4.2 s). |
 
-## 02 Title (0:10, 21.0 s)
+## 02 Title (0:12, 21.5 s)
 
 | Voice | On screen |
 |---|---|
-| Competition authorities fight cartels with three tools: fines, leniency for the member who confesses, and rewards for whistleblowers. All three were designed for people. But more and more prices are set by software, and language-model agents are starting to set them too. Do the three tools work on them? | Title card. The three words appear one by one (3.0 s, 3.7 s, 4.4 s), then "designed for people" (5.6 s), the sentence on software (8.4 s), then the question (11.5 s). |
+| Competition authorities fight cartels with three tools: fines, leniency for the member who confesses, and rewards for whistleblowers. All three were designed for people. Today, more and more prices are set by software, and language-model agents are starting to set them too. Do the three tools work on them? | Title card. The three words appear one by one (3.0 s, 3.7 s, 4.4 s), then "designed for people" (5.6 s), the sentence on software (8.4 s), then the question (11.5 s). |
 
 ## 03 The game (0:30, 18.0 s)
 

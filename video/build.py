@@ -340,10 +340,10 @@ def scene_00_intro(E: dict) -> Scene:
         ag = fade(t, 2.4)
         line(c, (W // 2 - 100, 360), (W // 2 + 100, 360), ACCENT, 5, ag)
         paste(c, text_block("one price", 36, ACCENT, "semibold"), (W // 2, 330), ag, rise=0, anchor="mb")
-        paste(c, text_block("When competitors quietly agree on a price, customers pay more.", 56, INK, "semibold",
+        paste(c, text_block("When two companies quietly agree on a price instead of competing, customers pay more.", 54, INK, "semibold",
                             max_width=W - 300, align="center", spacing=1.25), (W // 2, 520), fade(t, 0.4), anchor="mt")
         paste(c, text_block("That is a cartel, and it is illegal almost everywhere.", 48, INK,
-                            max_width=W - 300, align="center"), (W // 2, 700), fade(t, 4.2), anchor="mt")
+                            max_width=W - 300, align="center"), (W // 2, 710), fade(t, 4.6), anchor="mt")
         return c
 
     return Scene("01 Intro", draw, min_duration=6.0)
@@ -365,7 +365,7 @@ def scene_01_title(E: dict) -> Scene:
             paste(c, text_block(w, 48, ACCENT, "bold"), (x, 525), a, rise=0, anchor="mm")
         paste(c, text_block("Three tools against cartels. All three were designed for people.", 44, INK, align="center",
                             max_width=W - 300), (W // 2, 610), fade(t, 5.6), anchor="mt")
-        paste(c, text_block("More and more prices are set by software, and language-model agents are starting to set them too.",
+        paste(c, text_block("Today, more and more prices are set by software, and language-model agents are starting to set them too.",
                             44, MUTED, align="center", max_width=W - 300), (W // 2, 690), fade(t, 8.4), anchor="mt")
         paste(c, text_block("Do the three tools work on them?", 60, INK, "semibold", align="center"),
               (W // 2, 820), fade(t, 11.5), anchor="mt")
