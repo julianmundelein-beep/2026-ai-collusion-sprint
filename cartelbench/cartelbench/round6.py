@@ -151,6 +151,14 @@ def cmd_plan(args) -> int:
 
 # ----- readings -----
 
+def _perm(a: dict, b: dict, key: str) -> dict | None:
+    """Two-sided permutation test over pool sessions; None for a measure without ratio parts (pools.ratio_parts)."""
+    try:
+        return permutation_test(cluster_parts(a["rows"], key), cluster_parts(b["rows"], key), "two-sided")
+    except KeyError:
+        return None
+
+
 def paraphrase_shift(regime: str, key: str, n_boot: int) -> dict | None:
     """Haiku 5.5, paraphrase minus original 8 pools: the measured effect of rewording alone (F50)."""
     try:
@@ -189,7 +197,7 @@ def cmd_arms(args) -> int:
                         "n_table": run["summary"]["n_table"], "stakes": run["summary"].get("stakes"), "measures": {}}
                 for key in KEYS + SECONDARY:
                     ci = diff_ci(run, base, key, args.n_boot)
-                    perm = permutation_test(cluster_parts(run["rows"], key), cluster_parts(base["rows"], key), "two-sided")
+                    perm = _perm(run, base, key)
                     band = bands.get((reg, key))
                     rec = {"arm": run["metrics"].get(key), "original": base["metrics"].get(key), "arm_ci": own_ci(run, key, args.n_boot),
                            "diff": ci, "permutation": perm, "margin": MARGIN[key],
