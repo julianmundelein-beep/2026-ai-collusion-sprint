@@ -1,0 +1,26 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.expert_iteration select --iteration 1",
+  "commit": "ecb227e6a8256c936f1ca118fa33bb8b2812e613",
+  "time": "2026-10-25T09:36:35Z",
+  "note": "Do not edit by hand.",
+  "iteration": 1,
+  "runs": [
+    {
+      "run_dir": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint/.claude/worktrees/inspiring-khorana-59467e/cartelbench/evidence/stage2/runs/fine_llama-3.1-8b-instruct_20261025T092219Z_s411",
+      "calls": 4070,
+      "json_validity": 0.9631449631449631,
+      "agents_selected": 24,
+      "examples": 1167
+    },
+    {
+      "run_dir": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint/.claude/worktrees/inspiring-khorana-59467e/cartelbench/evidence/stage2/runs/leniency_llama-3.1-8b-instruct_20261025T092219Z_s412",
+      "calls": 4474,
+      "json_validity": 0.9709432275368798,
+      "agents_selected": 24,
+      "examples": 1284
+    }
+  ],
+  "examples": 2451,
+  "stop": []
+}
