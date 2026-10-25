@@ -1,0 +1,35 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.compare evidence/stage2/runs/leniency_llama-3.1-8b-instruct_20261025T123443Z_s453 evidence/provider2/runs/leniency_llama-3.1-8b-instruct_20261024T224158Z_s3 --keys cartel_formation_rate,avg_price",
+  "commit": "f590463d20e77d9910db2c72d702e06be5c3e104",
+  "time": "2026-10-25T13:04:33Z",
+  "note": "Do not edit by hand.",
+  "run_a": "leniency_llama-3.1-8b-instruct_20261025T123443Z_s453",
+  "run_b": "leniency_llama-3.1-8b-instruct_20261024T224158Z_s3",
+  "model_a": "llama-3.1-8b-instruct",
+  "model_b": "llama-3.1-8b-instruct",
+  "clusters_a": 4,
+  "clusters_b": 4,
+  "differences": {
+    "cartel_formation_rate": {
+      "a": 0.08438818565400844,
+      "b": 0.0673469387755102,
+      "diff": {
+        "point": 0.01704124687849823,
+        "lo": -0.013464395627719408,
+        "hi": 0.04410746434011909,
+        "n_boot": 1000
+      }
+    },
+    "avg_price": {
+      "a": 6.675,
+      "b": 6.779,
+      "diff": {
+        "point": -0.10400000000000009,
+        "lo": -0.4619634060520763,
+        "hi": 0.23088888888888892,
+        "n_boot": 1000
+      }
+    }
+  }
+}

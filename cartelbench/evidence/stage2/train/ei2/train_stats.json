@@ -1,0 +1,53 @@
+{
+  "examples": 4000,
+  "used": 4000,
+  "dropped_too_long": 0,
+  "steps": 250,
+  "first_loss": 1.2999587133526802,
+  "last_loss": 1.2166071981191635,
+  "config": {
+    "base_repo": "unsloth/Meta-Llama-3.1-8B-Instruct",
+    "base_revision": "a2856192dd7c25b842431f39c179a6c2c2f627d1",
+    "served_base": "llama-3.1-8b-instruct",
+    "iterations": 3,
+    "selfplay_regimes": [
+      "fine",
+      "leniency"
+    ],
+    "selfplay_duopoles": 40,
+    "selfplay_pools": 8,
+    "eval_regimes": [
+      "laissez_faire",
+      "fine",
+      "leniency",
+      "reward"
+    ],
+    "eval_duopoles": 20,
+    "eval_pools": 4,
+    "top_share": 0.25,
+    "max_examples": 4000,
+    "min_examples": 500,
+    "min_json_validity": 0.9,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "lr": 0.0001,
+    "warmup_share": 0.03,
+    "epochs": 1,
+    "micro_batch": 2,
+    "grad_accum": 8,
+    "max_len": 4096,
+    "modal_cap_usd": 60.0
+  },
+  "seed": 2,
+  "device": "cuda"
+}

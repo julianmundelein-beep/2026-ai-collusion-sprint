@@ -53,8 +53,9 @@ app = modal.App("cartelbench-ei")
 
 
 @app.function(image=train_image, gpu=TRAIN_GPU, volumes=VOLUMES, timeout=6 * 60 * 60, max_containers=1)
-def train(iteration: int) -> dict:
-    """LoRA on the base weights from /ei/data/ei<k>.jsonl; adapter and logs to /ei/adapters/ei<k>."""
+def train(iteration: int, max_steps: int = 0) -> dict:
+    """LoRA on the base weights from /ei/data/ei<k>.jsonl; adapter and logs to /ei/adapters/ei<k>.
+    max_steps > 0 caps the steps (the probe of amendment 8, iteration 0); 0 = the registered one epoch."""
     import json
 
     from huggingface_hub import snapshot_download
@@ -64,7 +65,8 @@ def train(iteration: int) -> dict:
     path = snapshot_download(BASE_REPO, revision=BASE_REVISION, local_files_only=True)
     data = pathlib.Path(f"/ei/data/ei{iteration}.jsonl")
     examples = [json.loads(x) for x in data.read_text().splitlines() if x.strip()]
-    stats = train_lora(examples, path, f"/ei/adapters/ei{iteration}", cfg=CFG, seed=iteration, device="cuda")
+    stats = train_lora(examples, path, f"/ei/adapters/ei{iteration}", cfg=CFG, seed=iteration, device="cuda",
+                       max_steps=max_steps or None)
     ei_vol.commit()
     return stats
 

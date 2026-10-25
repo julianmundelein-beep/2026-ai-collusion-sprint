@@ -87,3 +87,14 @@ This arm runs the open-model cells of amendment 6 exactly as written there (sect
 | K3 | qwen2.5-32b-instruct / llama-3.1-8b-instruct | nocomm_screen `--partner scatter_emp` | 133 / 136 | false-positive threshold 0.05 |
 
 Every cell 20 duopoles in 4 pools. N1 runs first; K runs once the `--partner` option is on the merged harness, K3 last. Budget: at most 20 USD of Modal credit for this round (stop line 18 USD measured with `modal billing report`, then the running cell finishes, nothing new starts), endpoint stopped after each block; compute ends Monday 2026-10-26 12:00 HKT. Cells not run are reported as not run.
+
+## Amendment 3, 2026-10-25 17:02 HKT: round 7 cells on the open models (`PREREGISTRATION_round7.md` section (c), Julian, DECISIONS 15:30), before the first round-7 call
+
+The open-model cells of `PREREGISTRATION_round7.md` run exactly as registered there (measures, comparisons, readings of its sections (a) and (b)); provider options, serving and sampling as above. Cells, 20 duopoles in 4 pools each, in this order per model:
+
+| Model | nocomm_screen p 3 | p 6 | p 7 | nocomm_screen_random | fine_screen_random | p 5 (last, only within the cap) |
+|---|---|---|---|---|---|---|
+| qwen2.5-32b-instruct | 731 | 733 | 734 | 735 | 736 | 732 |
+| llama-3.1-8b-instruct | 741 | 743 | 744 | 745 | 746 | 742 |
+
+Existing cells used by the round-7 analysis: p 4 (Qwen 121, Llama 124), fine_screen (Qwen 122, Llama 125), nocomm (Qwen 13, Llama 123), fine (Qwen 2, Llama 2). Runs go to `evidence/provider2/runs` (the round-7 analysis reads that folder); results, the diagonal-figure data per model (avg_price with interval and modal price per threshold) and the analysis outputs go to `evidence/provider2/round7/`. Qwen and Llama run at the same time on two endpoints (`cartelbench-vllm` and `cartelbench-vllm-llama`, `P2_APP` in `scripts/modal_vllm.py`); the five cells of a model run in parallel, request concurrency per run 8 (Qwen, bound by the A100's KV cache) and 16 (Llama). The p 5 cells start once the five cells of their model have finished, if the cap allows. Budget: at most 20 USD of Modal credit for round 7 (stop line 18 USD, measured with `modal billing report` against the cumulative credit at the start of the round; the running cells finish, nothing new starts); round 7 has priority over stage 2 for GPUs; combined Modal credit for round 7 and stage 2 at most 65 USD. Endpoints stopped after each block. Compute ends Monday 2026-10-26 12:00 HKT.
