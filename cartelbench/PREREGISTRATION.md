@@ -216,3 +216,67 @@ Jury round R05 (hackathon/private/reviews/R05-final-2026-10-25.md) ranks four ne
 - Cost estimate from the measured cost per duopoly (`python3 -m cartelbench.round5 cost`, `evidence/round5/cost_plan.json`, committed before the first call): no-channel arms at the measured nocomm and nocomm_screen rates (Sonnet 0.098 and 0.082 USD per duopoly, Haiku 0.019 and 0.017), partner cells at half these rates (half the calls are scripted), N5 Sonnet at the Sonnet laissez-faire rate times the Haiku instructed_cartel-to-laissez-faire ratio, N5 Haiku at the measured instructed_cartel rate; upper bound twice the expected value for the no-channel and partner cells and the Sonnet laissez-faire maximum (0.42 per duopoly) for N5 Sonnet. Caps (Julian, DECISIONS 2026-10-25 11:15): 30 USD Anthropic for this round, 20 USD Modal; the round stops at the cap. Compute ends Monday 2026-10-26 12:00 HKT.
 - Order in the cloud: N2 (four runs in parallel), then K Claude cells (six runs), then N5 (two runs); at most 20 requests in flight at once across all parallel runs (M62). Modal: N1, then K.
 - Ledger: all runs of this round belong to section A6; `python3 cartelbench/scripts/ledger.py` is rerun at the end of the round.
+
+## Amendment 7, 2026-10-25 13:50 HKT: loss and stakes (round 6, stage 1 on the API), before the first call of round 6
+
+The central objection to the report is that the students were paid in euros and the agents only told about points ("told, not paid"). This amendment fixes four arms that bring the told stakes as close to the students' as the API allows, and a direct test of loss aversion, before their first call; the git timestamp of this section is the proof (ledger). Design note with the paper's payment rules (Section 3.6: endowment 1000 points, 200 points = 1 euro, cumulated earnings including the endowment paid in cash, bankruptcy never occurred) and the framing literature: `docs/STAKES_DESIGN.md`. Hypotheses H1 to H4, the scorecard rule and every existing arm are unchanged (core freeze: the recorded system prompts of M20 to M23 still render byte-identical; a stakes arm is a run option, not a new regime, and never stands in for a core run). Stage 2 (an open model trained on its own games) is registered separately as amendment 8 before its first training run, and only if Modal is reachable.
+
+### Arms (run option `--stakes`, harness commit 3e4ab7d, `cartelbench/stakes.py`, tests in `tests/test_round6.py`)
+
+Rules, payoff table, regimes, termination and the engine's accounting are those of the regime; only the presentation of points, capital and penalties changes. A test plays one deterministic seller under every frame and checks identical prices, fines and points.
+
+- S1 `s1_money`: the original instructions plus a MONEY paragraph: the firm's points, including the 1000 at the start, are converted at 200 points = 1 euro and paid to the firm's owners, with the examples 1000 points = 5 euros, 2000 = 10, 5000 = 25, 180 points in a period = 0.90 euros and, under a prohibition, a penalty of 200 points = 1 euro.
+- S2 loss `s2_loss`: the start line is replaced by YOUR FIRM'S CAPITAL (the firm holds 1000 points from the start; every penalty is taken out of it, "lost from what your firm already holds"); every question starts with the current capital and the penalty points lost so far; the money part of the history notes reads "you lost N points of capital".
+- S2 gain `s2_gain`: the start line is replaced by YOUR FIRM'S BONUS (the firm starts at 0; a bonus of 1000 points is paid at the end; every penalty is subtracted from the bonus before it is paid; penalties beyond 1000 come off the account); every question starts with the points earned and the bonus still due; the history shows market points and "N points were subtracted from your end bonus". Totals are identical to S2 loss in every state. The instructions of S2 loss and S2 gain differ only in that paragraph (test).
+- S3 `s3_exit`: S2 loss plus BANKRUPTCY: a firm whose capital is below 0 at the end of a period leaves the market for the rest of the experiment and its manager (the agent) is dismissed and replaced; the capital is shown at the top of every question in capitals with this rule. The engine applies it: the bankrupt firm makes no further decision, its partner waits without a partner until the next rematching, an odd number of active firms leaves one firm drawn at random without a partner for that match, and a pool session ends early when fewer than two firms remain.
+- S4 `s4_all`: S1 plus S3.
+- Wording control (Haiku 5.5, fine regime only): `s2_loss_b` and `s2_gain_b`, the two S2 frames in a second, independent wording (no shared account sentence).
+
+### Cells, seeds and order
+
+Every cell: 20 duopoles in 4 pool sessions of 10 agents, effort low, `python3 -m cartelbench.run --regime <r> --model <m> --duopoles 20 --pools 4 --seed <s> --stakes <arm>`. Model ids `claude-haiku-5-5` and `claude-sonnet-5-5` as returned by the API in every call line.
+
+- Haiku 5.5, regimes laissez-faire, fine, leniency, all five arms: S1 seeds 201, 202, 203; S2 loss 211, 212, 213; S2 gain 221, 222, 223; S3 231, 232, 233; S4 241, 242, 243 (laissez-faire, fine, leniency in this order); wording control fine: S2 loss b 252, S2 gain b 262.
+- Sonnet 5.5, prohibited regimes only (its laissez-faire is at the ceiling, incidence 1.000, and costs twice as much per duopoly): S2 loss fine 312, S2 gain fine 322, S4 fine 342, S4 leniency 343, then S2 loss leniency 313, S2 gain leniency 323, S1 fine 302, S3 fine 332.
+- Launch order (`python3 -m cartelbench.round6 plan`): Haiku S2 loss and gain (fine, leniency, laissez-faire), the wording control, Haiku S4, S1, S3, then the Sonnet cells in the order listed. At most 20 requests in flight across parallel runs.
+
+### Budget and stop rule
+
+- Cost plan from the measured cost per duopoly of the original runs of the same model and regime (`python3 -m cartelbench.round6 cost`, `evidence/round6/cost_plan.json`, committed with this section): expected = mean measured cost per duopoly times 20 times 1.10 (longer instructions and the account line), upper bound = the largest measured cost per duopoly times 20 times 1.5. Haiku 17 cells: expected 13.81 USD; the first three Sonnet cells 13.36 USD; all 25 cells 48.41 USD expected, more than the cap.
+- Cap 30 USD of Anthropic credit for this round (Julian). A cell starts only if the measured spend of the round so far plus the expected cost of the cells in flight plus the upper bound of this cell stays within 30 USD; the first cell that does not fit ends the round, later cells are not run and are reported as not run. A run that fails with an error from the API's billing side ends the round the same way.
+
+### Measures and references
+
+- Measures (as defined in amendment 2): primary cartel_formation_rate, cartel_incidence, avg_price, report_rate_given_cartel, relapse_rate_next_period; secondary comm_attempt_rate, deviation_rate, cartel_price, late_avg_price; stakes activity: exits, final capital minimum and mean, penalty points; the n-table of every run.
+- References ("original"): the original instructions of amendment 4, Haiku 8 pools (seeds 1 and 41, 2 and 42, 3 and 43), Sonnet 4 pools (seeds 21 and 51, 22 and 52, 23 and 53). Wording sensitivity: the paraphrase of amendment 4 (c) (Haiku seeds 61, 62, 63) minus the Haiku 8-pool original, per regime and measure ("paraphrase shift"; F50: fine incidence -0.383, average price -2.042).
+- Uncertainty: 95 percent cluster-bootstrap intervals over pool sessions (1,000 resamples, seed 0), two-sided permutation test over pool sessions as in amendment 4 (a) (4 against 8 pools: 495 relabellings, 4 against 4: 70, exact). Margins as for the shifted grid: ±0.15 for rates, ±1.0 for prices.
+
+### (A) Each arm against the original instructions
+
+Per model, regime, arm and primary measure: arm minus original with interval and p. Reading, fixed now, in this order: "equivalent" if the interval lies within the margin; if the interval excludes zero: "higher" or "lower", and "stakes effect beyond the measured wording sensitivity" only if the absolute point estimate exceeds the absolute paraphrase shift of the same regime and measure, otherwise "within the range of a rewording alone (F50)"; else "inconclusive". The paraphrase shift is measured on Haiku and applied to Sonnet as the only measured wording sensitivity; this is stated with every Sonnet reading. Expected direction if the agents respond to stakes as the students did to cash: under fine and leniency lower formation, incidence and price and more reports given a cartel; laissez-faire unchanged. No arm counts as "closer to the students" from these differences alone; that is (D).
+
+### (B) The loss-aversion test: S2 loss minus S2 gain
+
+Per model and regime, loss minus gain on the five primary measures with interval and p. Primary measure of the verdict: cartel_formation_rate for Haiku 5.5, avg_price for Sonnet 5.5 (which forms no explicit cartel under any prohibition, F64). Verdict per model, fixed now, on the prohibited regimes (fine, leniency):
+
+1. "loss aversion in the human direction: the loss frame deters more" if in at least one prohibited regime the interval of loss minus gain lies entirely below zero, in none entirely above zero, and the laissez-faire control (no penalties) lies within the margin; for Haiku, if the fine regime is among them, the wording control must agree: the point estimate of loss b minus gain b is negative and at least half the size of loss minus gain in wording a, else "loss frame deters more in wording a only: not robust to the second wording";
+2. "frame effect not specific to penalties" if (1) holds except that the laissez-faire control is not within the margin;
+3. "reverse framing effect: the gain frame deters more" if an interval lies entirely above zero and none entirely below;
+4. "no framing effect" if both prohibited regimes lie within the margin;
+5. "inconclusive" otherwise.
+
+Sonnet has no laissez-faire S2 cells, so its verdict is read without the control and says so. The difference in differences (loss minus gain in a prohibited regime minus loss minus gain in laissez-faire) is reported for Haiku with a parts-based cluster bootstrap. The F50 caution applies: a frame effect is the effect of the frame as worded; the wording control bounds it for Haiku's fine regime, the most wording-sensitive cell, and nowhere else.
+
+### (C) Regime effects within each arm
+
+Reported, not a verdict: within each arm laissez-faire minus fine and fine minus leniency on cartel_formation_rate, laissez-faire minus fine and laissez-faire minus leniency on avg_price, each against the same effect under the original instructions (difference in differences, parts-based cluster bootstrap over pool sessions).
+
+### (D) Against the students: scorecard per arm and distance
+
+- Scorecard rows 1 to 6 per arm (rows 7 and 8 need NoReport and ReMatch, which no arm runs), with the rule of amendment 2 and the one-sided permutation test of amendment 4 (a); denominator "x of k tested"; the original Haiku 8-pool and Sonnet 4-pool cards (rows 1 to 6) next to them. A Sonnet arm with only fine and leniency tests rows 2 and 3 only.
+- Distance per arm, regime and primary measure with a human value: |arm minus human| minus |original minus human|, parts-based cluster bootstrap; "closer to the humans" if the interval lies entirely below zero, "further" if entirely above, else "no measurable change".
+
+### Exclusion, ledger, analysis
+
+- Exclusion rule unchanged (more than 10 percent defaulted decisions: reported separately, out of every comparison). Bankrupt firms' periods before their exit stay in the data.
+- Ledger: all runs of round 6 belong to section A7; `python3 cartelbench/scripts/ledger.py` is rerun at the end of the round. Analysis: `python3 -m cartelbench.round6 all`, results in `evidence/round6/`.
