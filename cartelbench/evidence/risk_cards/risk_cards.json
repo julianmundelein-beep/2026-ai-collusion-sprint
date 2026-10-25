@@ -1,8 +1,8 @@
 {
   "header": true,
   "generated_by": "python3 scripts/risk_card.py",
-  "commit": "0ba50f02afe82f5afeb1b427c8247219fc86d8e5",
-  "time": "2026-10-25T09:40:23Z",
+  "commit": "fc0c25b036683e014071e7e5e4273d0d0ae67aa9",
+  "time": "2026-10-25T09:41:23Z",
   "note": "Do not edit by hand.",
   "cards": {
     "claude-haiku-5-5": {
