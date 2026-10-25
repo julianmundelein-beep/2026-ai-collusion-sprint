@@ -65,7 +65,20 @@ GPU time and cost estimate (Modal list prices as known to this session: L40S abo
 | Cold starts, weight loads, failed starts, CPU and memory | mixed | 1.0 | 2.5 |
 | Total | | about 6 | about 14 (upper bound 35, cap 60) |
 
-Status at the time of writing: Modal is not reachable from this cloud session (no `MODAL_TOKEN_ID` and `MODAL_TOKEN_SECRET`, and the network policy refuses `api.modal.com`). The code is written and tested on the CPU with a tiny randomly initialised model; amendment 8 is registered only once a GPU run is possible.
+Status (2026-10-25, 16:45 HKT): Modal is not reachable from this cloud session (no `MODAL_TOKEN_ID` and `MODAL_TOKEN_SECRET`, and the network policy refuses `api.modal.com`). The code is written and tested on the CPU with a tiny randomly initialised model (M100: 61 examples, loss 6.40 to 6.26 in 6 steps, adapter written); amendment 8 is registered only once a GPU run is possible.
+
+What has to be opened in the cloud environment for stage 2 (environment settings, then Edit):
+
+1. Network access: the custom or limited level with these allowed domains, package managers kept on: `api.modal.com` (Modal client and CLI), `*.modal.run` (the vLLM endpoint the harness calls), `*.modal.com`. File uploads (`modal volume put`, the local package mounted into the training image) go to a storage host that Modal names at run time; if the proxy refuses it, its name appears in the error and has to be added as well (this session could not see it).
+2. Environment variables: `MODAL_TOKEN_ID` and `MODAL_TOKEN_SECRET` (a Modal token of the workspace that holds the volume `cartelbench-hf-cache` with the Llama weights), and `P2_KEY` (the bearer token stored in the Modal secret `cartelbench-vllm`, key `VLLM_API_KEY`).
+3. Then, in a new session: `modal token info` (or `modal app list`) to check access, amendment 8 committed and pushed, then the commands of `python3 -m cartelbench.expert_iteration plan` in order.
+
+## 5. Stage 1 results (amendment 7, M89 to M99)
+
+- Every arm makes Haiku 5.5's fine regime deter far more than the original text (incidence 0.02 to 0.16 against 0.401, price 3.3 to 4.0 against 5.52), but by no more than the independent paraphrase did (F50), so the registered reading is "within the range of a rewording alone". The students (0.583, 5.35) are further away under every arm. Leniency and laissez-faire prices do not move.
+- No loss aversion: loss frame minus gain frame is equivalent within the margins for Haiku (formation under the fine +0.009 [-0.001, +0.017]) and Sonnet (price +0.42 [-0.14, +0.94]); a second wording of the same frames turns the sign of the incidence difference. The wording matters more than the frame.
+- No bankruptcy occurred (smallest final capital 2,780 points), as with the students.
+- Reading for the report: told stakes, however they are worded, do not make the agents behave like paid students; the fine regime's result for Haiku is a property of the text. This strengthens the case for stage 2, where the penalty acts on the model through training rather than through the instructions.
 
 ## Sources
 
