@@ -181,6 +181,38 @@ python3 scripts/jury_answers.py                                                 
 python3 scripts/ledger.py
 ```
 
+## Round 6: loss and stakes (told money, loss and gain frames, bankruptcy)
+
+Registered in `cartelbench/PREREGISTRATION.md` amendment 7 (f01a277, 2026-10-25 13:43 HKT), committed and pushed before the first call of the round; design note with the paper's payment rules (200 points = 1 euro, endowment 1000 points, cumulated earnings paid in cash) in `cartelbench/docs/STAKES_DESIGN.md`. The run option `--stakes` changes only how points, capital and penalties are presented; rules and points are unchanged (tested). Numbers from `cartelbench/evidence/round6/` and `cartelbench/evidence/MEASUREMENTS.md` (M89 to M100); intervals are 95 percent cluster bootstraps over pool sessions, p the two-sided permutation test over pool sessions; references are the original instructions (Haiku 8 pools, Sonnet 4 pools).
+
+| Arm | What the seller is told | Haiku 5.5, fine: incidence, price (original 0.401, 5.52; students 0.583, 5.35) | Sonnet 5.5, fine: price (original 6.10) | USD |
+|---|---|---|---|---|
+| S1 money | points converted at 200 points = 1 euro and paid to the owners | 0.093, 3.65 | not run (cap) | 2.00 |
+| S2 loss | capital of 1000 held from the start, penalties taken out of it, capital shown every period | 0.164, 3.88 | 6.23 | 2.18 + 4.40 |
+| S2 gain | 0 at the start, bonus of 1000 at the end, penalties subtracted from the bonus; same totals | 0.106, 3.62 | 5.81 | 2.47 + 4.91 |
+| S3 bankruptcy | S2 loss plus: capital below 0 ends the firm and replaces the manager | 0.114, 3.83 | not run (cap) | 1.51 |
+| S4 all | S1 plus S3 | 0.094, 3.66 | 5.52 | 2.09 + 4.55 |
+| S2, second wording | both frames reworded (fine only) | loss 0.024, 3.26; gain 0.160, 3.97 | | 1.16 |
+
+What it shows:
+
+1. **Any of the new texts makes Haiku's fine regime deter far more, and further from the students.** Every arm lowers fine incidence from 0.401 to 0.02 to 0.16 and the price from 5.52 to 3.3 to 4.0 (permutation p 0.002 to 0.004), but by no more than the independent paraphrase did (F50: incidence -0.383, price -2.04), so the registered reading is "within the range of a rewording alone" (M91). The students sat at 0.583 and 5.35: on every fine-regime measure every arm moves Haiku away from them (M95). Leniency is unchanged (already near zero), and laissez-faire prices stay at 8.4 to 8.8 (M92).
+2. **No loss aversion.** Identical payoffs framed as a loss of capital or as a forgone bonus give the same behaviour: Haiku cartel formation under the fine, loss minus gain +0.009 [-0.001, +0.017]; Sonnet price +0.42 [-0.14, +0.94]; registered verdict "no framing effect" for both models (M93, M94). A second wording of the same two frames reverses the sign of the incidence difference (-0.136 [-0.214, -0.070]): the wording moves the agents more than the frame does.
+3. **Told stakes are not paid stakes.** Money, bankruptcy and a visible capital do not reproduce the students' fine regime; no firm ever went bankrupt (smallest final capital 2,780 points, M97), as with the students. Stage 2 of the round (an open model trained on its own most profitable decisions, so that the fines it paid shape it) is written and tested on the CPU (`cartelbench/cartelbench/expert_iteration.py`, `cartelbench/scripts/modal_ei.py`, M100) and waits for Modal access from the cloud environment; it is registered as amendment 8 only before its first training run.
+
+Round 6 stage 1 cost 25.27 USD against a 30 USD cap (Haiku 17 cells 11.41, Sonnet 3 cells 13.86); the registered stop rule ended the round before the fourth Sonnet cell; 52,122 calls, 0 refusals, 7 invalid answers, 5 transport errors (M90).
+
+Commands (inside `cartelbench/`):
+
+```bash
+python3 -m cartelbench.stakes --stakes s2_gain --regime fine                        # print the instructions of an arm
+python3 -m cartelbench.round6 cost && python3 -m cartelbench.round6 plan            # cost plan and the registered launch order
+python3 -m cartelbench.run --regime fine --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 212 --stakes s2_loss
+python3 scripts/round6_launch.py --model claude-haiku-5-5 --parallel 4 --concurrency 5   # all cells with the stop rule
+python3 -m cartelbench.round6 all                                                   # arms, frame, deterrence, humans
+python3 -m cartelbench.expert_iteration tiny-test                                   # stage 2 pipeline on the CPU
+```
+
 ## Example: one period of one pair (scripted players, no API)
 
 Input: regime `leniency`, agents Firm Alder and Firm Birch, period 4, both agreed on price 9 in the discussion. Alder plays "collude" (price 9, no report), Birch plays "deviate" (best reply to 9, secret report). Output line in `periods.jsonl` (abridged): `talked: true, agreed_price: 9, prices: [9, 7], secret_report: [false, true], reporters: ["birch"], detected: false, convicted: true, fines: [-200, 0], market_points: [20, 296], points: [-180, 296]`. Alder's feedback row for period 4 reads "agreement reported (1 firm reported); you paid 200; agreement ended". The measures in `summary.json` then show deviation rate 0.5 and report rate 1.0 for this pair.

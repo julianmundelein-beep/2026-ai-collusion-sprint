@@ -13,6 +13,7 @@ from .llm import ModelClient
 from .players import Decision, LLMPlayer, Player, ScriptedPlayer
 from .regimes import Regime, get_regime
 from .screen import screen_step
+from .stakes import START_CAPITAL, account, get_stakes
 from .util import EVIDENCE_DIR, evidence_header, git_commit, now_iso, write_json
 
 FIRM_NAMES = [
@@ -51,6 +52,7 @@ class RunConfig:
     prompt_variant: str = "original"    # "paraphrase": prompt-robustness arm (amendment 4 (c)); instructions only
     screen_p: int | None = None         # amendment 6 (N2): threshold of a screen regime (default: the regime's own)
     partner: str = ""                   # amendment 6 (K): scripted partner strategy; every duopole = one LLM agent + one partner
+    stakes: str = ""                    # amendment 7: stakes arm (presentation of points, capital and penalties; cartelbench.stakes)
 
     def regime_obj(self) -> Regime:
         overrides = {}
@@ -92,10 +94,29 @@ class Pool:
         self.partners = list(partners or [])   # scripted partners (amendment 6, K): matched with LLM agents only
         self.pairs: list[PairState] = []
         self.pairing_counter = 0
+        self.exited: set[str] = set()          # amendment 7 (s3_exit, s4_all): bankrupt firms leave the pool
+        self.idle: list[str] = []              # active firms without a partner until the next rematching
         self.rematch(period=1, previous=None)
 
+    def active(self) -> list[str]:
+        return [a for a in self.order if a not in self.exited]
+
+    def drop_exited(self) -> None:
+        """A bankrupt firm leaves at once; its partner waits without a partner until the next rematching."""
+        keep = []
+        for ps in self.pairs:
+            if ps.a in self.exited or ps.b in self.exited:
+                self.idle += [x for x in (ps.a, ps.b) if x not in self.exited]
+            else:
+                keep.append(ps)
+        self.pairs = keep
+
     def rematch(self, period: int, previous: list[PairState] | None) -> None:
-        ids = self.order[:]
+        ids = self.active() if self.exited else self.order[:]
+        self.idle = []
+        if self.exited and len(ids) % 2:
+            # odd number of active firms after a bankruptcy: one firm, drawn at random, sits out this match
+            self.idle = [ids.pop(self.rng.randrange(len(ids)))]
         if self.partners:
             # one LLM agent with one scripted partner, never two of a kind; a new partner where possible
             llm_ids = [a for a in ids if a not in self.partners]
@@ -142,7 +163,7 @@ class Run:
             self.table = self.table.scaled(cfg.payoff_scale)
         self.client = client
         self.commit = git_commit()
-        tag = f"_vs-{cfg.partner}" if cfg.partner else ""
+        tag = (f"_vs-{cfg.partner}" if cfg.partner else "") + (f"_stakes-{cfg.stakes}" if cfg.stakes else "")
         self.run_id = cfg.run_id or f"{cfg.regime}_{cfg.model.replace('/', '-')}{tag}_{now_iso().replace(':', '').replace('-', '')}_s{cfg.seed}"
         self.out = pathlib.Path(cfg.out_dir) / self.run_id
         self.calls_path = self.out / "calls.jsonl"
@@ -155,6 +176,15 @@ class Run:
         self._lock = asyncio.Lock()
         self.pools: list[Pool] = []
         self.systems: dict[str, str] = {}
+        self.stakes = get_stakes(cfg.stakes)
+        if self.stakes.active:
+            if cfg.partner or cfg.prompt_variant != "original" or cfg.price_offset or self.regime.screen_k:
+                raise ValueError("a stakes arm runs with the original instructions, no partner, no offset, no screen")
+            if cfg.regime not in ("laissez_faire", "fine", "leniency", "reward"):
+                raise ValueError(f"no stakes arm is registered for {cfg.regime}")
+        # every firm's account across pairings (the engine's points, unchanged by the stakes arm; shown only in its frames)
+        self.accounts: dict[str, dict] = {}
+        self.exits: list[dict] = []
 
     # ----- setup -----
     def _make_player(self, agent_id: str, name: str, rng: random.Random, strategy: str | None = None) -> Player:
@@ -163,7 +193,7 @@ class Run:
             if self.client is None:
                 raise RuntimeError("player=llm needs a model client")
             p = LLMPlayer(self.client, agent_id, name, self.regime, self.table, rng, offset=self.cfg.price_offset,
-                          prompt_variant=self.cfg.prompt_variant)
+                          prompt_variant=self.cfg.prompt_variant, stakes=self.cfg.stakes)
             self.systems[agent_id] = p.system
             return p
         return ScriptedPlayer(strategy, agent_id, name, self.regime, self.table, rng)
@@ -192,6 +222,7 @@ class Run:
                 if strategy:
                     partners.append(agent_id)
                 agents.append(self._make_player(agent_id, name, random.Random(self.cfg.seed * 100000 + k), strategy))
+                self.accounts[agent_id] = account(START_CAPITAL, 0, 0, 0)
             self.pools.append(Pool(pi, agents, self.regime, self.table, rng, partners))
 
     # ----- logging -----
@@ -241,7 +272,8 @@ class Run:
             status = (f" An agreement with this firm exists since period {ps.cartel_since} (not discovered, not reported)."
                       if ps.cartel_active else " No agreement with this firm exists at the moment.")
         return {"period": period, "rival_name": pool.agents[rival].firm_name, "partner_note": note, "status_note": status,
-                "history_rows": ps.rows[agent_id], "agreed_price": ps.last_agreed, "cartel_active": ps.cartel_active, **extra}
+                "history_rows": ps.rows[agent_id], "agreed_price": ps.last_agreed, "cartel_active": ps.cartel_active,
+                "account": dict(self.accounts.get(agent_id) or {}), **extra}
 
     async def _play_pair(self, pool: Pool, ps: PairState, period: int) -> dict:
         """One stage game for one pair, steps 1 to 7 of Section 3.5."""
@@ -386,7 +418,14 @@ class Run:
                 auth = "no agreement"
             ps.rows[me].append({"period": period, "talked": talked, "agreed_price": agreed, "own_price": prices[me],
                                 "rival_price": prices[other], "own_points": total[me], "rival_points": total[other],
-                                "authority_note": auth})
+                                "authority_note": auth, "own_market": market[me], "rival_market": market[other],
+                                "own_fine": fines[me]})
+        for x in (a, b):   # accounts across pairings (amendment 7)
+            acc = self.accounts.setdefault(x, account(START_CAPITAL, 0, 0, 0))
+            acc["earned"] += market[x]
+            acc["penalties"] += max(0, -fines[x])
+            acc["rewards"] += max(0, fines[x])
+            acc["capital"] += total[x]
         if convicted:
             ps.cartel_active = False
             ps.cartel_since = None
@@ -406,6 +445,9 @@ class Run:
             rec.update({"screen_hit": screen_hit, "screen_run": ps.screen_run})
         if self.cfg.partner:
             rec["kinds"] = [pool.agents[a].kind, pool.agents[b].kind]
+        if self.stakes.active:
+            rec["stakes"] = self.stakes.key
+            rec["capital_end"] = [self.accounts[a]["capital"], self.accounts[b]["capital"]]
         await self._log(self.periods_path, rec)
         return rec
 
@@ -416,6 +458,14 @@ class Run:
         while True:
             period += 1
             await asyncio.gather(*(self._play_pair(pool, ps, period) for ps in pool.pairs))
+            new_exits = []
+            if self.stakes.exit:   # amendment 7: a firm whose capital is below 0 at the end of a period leaves
+                for x in pool.active():
+                    if self.accounts[x]["capital"] < 0:
+                        pool.exited.add(x)
+                        new_exits.append(x)
+                        self.exits.append({"pool": pool.index, "agent": x, "firm": pool.agents[x].firm_name,
+                                           "period": period, "capital": self.accounts[x]["capital"]})
             draw = pool.rng.random()
             rematch_event = draw >= reg.continuation_prob
             if period >= reg.end_after_period and rematch_event:
@@ -423,8 +473,12 @@ class Run:
             if period >= self.cfg.max_periods:
                 self.truncated.append(pool.index)
                 break
+            if len(pool.active()) < 2:
+                break
             if rematch_event:
                 pool.rematch(period + 1, pool.pairs)
+            elif new_exits:
+                pool.drop_exited()
         self.periods_played[pool.index] = period
 
     # ----- entry point -----
@@ -466,6 +520,13 @@ class Run:
                    "player": self.cfg.player, "seed": self.cfg.seed, "duopoles": self.cfg.duopoles, "price_offset": self.cfg.price_offset,
                    "pools": len(self.pools), "periods_per_pool": self.periods_played, "truncated_pools": self.truncated,
                    "started": t0, "finished": now_iso(), "counts": self.counts, "n_table": n_table, "metrics": metrics}
+        if self.stakes.active:
+            caps = [acc["capital"] for acc in self.accounts.values()]
+            summary["stakes"] = {"arm": self.stakes.key, "exits": self.exits, "n_exits": len(self.exits),
+                                 "final_capital_min": min(caps), "final_capital_mean": sum(caps) / len(caps),
+                                 "final_capital_max": max(caps),
+                                 "penalty_points_total": sum(acc["penalties"] for acc in self.accounts.values()),
+                                 "reward_points_total": sum(acc["rewards"] for acc in self.accounts.values())}
         write_json(self.out / "summary.json", summary)
         return summary
 
