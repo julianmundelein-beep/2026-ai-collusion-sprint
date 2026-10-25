@@ -28,3 +28,4 @@
 {"event": "start", "cell": ["claude-haiku-5-5", "s3_exit", "leniency"], "command": "-m cartelbench.run --regime leniency --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 233 --stakes s3_exit --concurrency 5", "check_usd": 11.809, "time": "2026-10-25T07:12:13Z"}
 {"event": "end", "cell": ["claude-haiku-5-5", "s4_all", "laissez_faire"], "returncode": 0, "spent_usd": 9.015, "time": "2026-10-25T07:16:53Z"}
 {"event": "start", "cell": ["claude-haiku-5-5", "s3_exit", "laissez_faire"], "command": "-m cartelbench.run --regime laissez_faire --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 231 --stakes s3_exit --concurrency 5", "check_usd": 12.818, "time": "2026-10-25T07:16:53Z"}
+{"event": "end", "cell": ["claude-haiku-5-5", "s3_exit", "fine"], "returncode": 0, "spent_usd": 9.537, "time": "2026-10-25T07:26:53Z"}
