@@ -26,7 +26,7 @@ Source of every number: `paper/report.md` (final version; the FACTS id in square
 | 07 Line | Haiku and Qwen slopes; most frequent price equals the threshold in every cell | 0.70; 0.68; modal price | Finding 4 [F85] | R7-11, P2 | slopes typed; modal prices in `diagonal.json` |
 | 07 Line | Llama slope; most frequent price off the threshold | 0.31; hollow points | Finding 4 [F85] | | slope typed; modal prices in `diagonal.json` |
 | 07 Line | at threshold 3 every Sonnet price is exactly 3 | share 1.000 | Finding 4 [F86] | R7-12, R7-13 | `diagonal.json` |
-| 07 Line | "we read this as optimisation against the rule" | wording | Abstract, Discussion | | wording only |
+| 07 Line | "I read this as optimisation against the rule" | wording | Abstract, Discussion ("we read this") | | wording only |
 | 08 Random | threshold drawn at random from 3 to 6, never disclosed | design | "Hiding the threshold" [F87] | R7-20, R7-21 | typed |
 | 08 Random | share of prices exactly at 4, announced against random: Haiku, Sonnet | 0.645 to 0.105; 1.000 to 0.465 | "Hiding the threshold" (fell by 0.54 for each) [F87] | R7-20, R7-21 | typed from `round7/random.md` |
 | 08 Random | average price announced at 4 against random: Haiku, Sonnet, Qwen, Llama | 4.16 to 3.80; 4.00 to 3.87; 5.13 to 5.55; 4.55 to 6.53 | "Hiding the threshold" [F87] | R7-20, R7-21 (Claude); report for the open models | typed |

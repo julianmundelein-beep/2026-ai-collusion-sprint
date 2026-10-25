@@ -612,7 +612,7 @@ def scene_06_line(E: dict) -> Scene:
         pb = text_block("At threshold 3, the competitive price, every Sonnet price is exactly 3.", 44, ACCENT, "semibold", max_width=W - rx - 120)
         rounded(c, (rx - 24, y - 4, rx - 10, y + pb.height - 18), ACCENT, 4, alpha=ap)
         paste(c, pb, (rx, y), ap)
-        rb = text_block("We read this as optimisation against the rule: the threshold is the most profitable price the rule allows.", 40, INK, max_width=W - rx - 120)
+        rb = text_block("I read this as optimisation against the rule: the threshold is the most profitable price the rule allows.", 40, INK, max_width=W - rx - 120)
         paste(c, rb, (rx, y + pb.height + 30), fade(t, T_READ))
         return c
 

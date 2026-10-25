@@ -60,19 +60,19 @@ Pronunciation for a voice tool: "Bigoni" as bee-GO-nee, "Qwen" as kwen, "Llama" 
 
 | Voice | On screen |
 |---|---|
-| So we tested an announced price screen: a fine whenever both prices exceed a threshold in two consecutive periods. Our central finding: Sonnet's average price follows the threshold almost one to one, slope zero point nine eight, with at least ninety-three percent of prices exactly on the line. Haiku and Qwen follow more loosely, their most frequent price always the threshold. Llama does not. And at a threshold of three, the competitive price, every single Sonnet price is three. We read this as optimisation against the rule. | Rule sentence (1.0 s), axes and the dashed line price = threshold (3.0 s). Sonnet points appear one by one with a pulse: 3.00 (4.5 s), 4.00 (5.7 s), 4.99 (6.9 s), 5.93 (8.1 s); the Sonnet note (9.5 s). Haiku line (13.0 s), Qwen line (15.0 s), the note on both (14.0 s). Llama line with hollow points (18.0 s), its note (19.0 s). The three notes fade, the point at 3 pulses and the pointe appears (22.5 s); the reading sentence (26.5 s). |
+| So I tested an announced price screen: a fine whenever both prices exceed a threshold in two consecutive periods. My central finding: Sonnet's average price follows the threshold almost one to one, slope zero point nine eight, with at least ninety-three percent of prices exactly on the line. Haiku and Qwen follow more loosely, their most frequent price always the threshold. Llama does not. And at a threshold of three, the competitive price, every single Sonnet price is three. I read this as optimisation against the rule. | Rule sentence (1.0 s), axes and the dashed line price = threshold (3.0 s). Sonnet points appear one by one with a pulse: 3.00 (4.5 s), 4.00 (5.7 s), 4.99 (6.9 s), 5.93 (8.1 s); the Sonnet note (9.5 s). Haiku line (13.0 s), Qwen line (15.0 s), the note on both (14.0 s). Llama line with hollow points (18.0 s), its note (19.0 s). The three notes fade, the point at 3 pulses and the pointe appears (22.5 s); the reading sentence (26.5 s). |
 
 ## 08 An honest negative (2:36, 21.0 s)
 
 | Voice | On screen |
 |---|---|
-| Does hiding the threshold help? We drew it at random from three to six each period and never disclosed it. The bunching on four dissolves. But the prices do not fall by a detectable amount: Haiku, Sonnet and Qwen stay within noise, and Llama's price even rose. | Intro line (0.8 s). Left: bars of the share of prices at 4, announced then random, Haiku (2.0 s and 3.5 s) and Sonnet (2.6 s and 4.1 s). Right: price table, four rows (8.6 s to 10.7 s); the conclusion line (12.0 s). |
+| Does hiding the threshold help? I drew it at random from three to six each period and never disclosed it. The bunching on four dissolves. But the prices do not fall by a detectable amount: Haiku, Sonnet and Qwen stay within noise, and Llama's price even rose. | Intro line (0.8 s). Left: bars of the share of prices at 4, announced then random, Haiku (2.0 s and 3.5 s) and Sonnet (2.6 s and 4.1 s). Right: price table, four rows (8.6 s to 10.7 s); the conclusion line (12.0 s). |
 
 ## 09 Told or paid (2:57, 24.5 s)
 
 | Voice | On screen |
 |---|---|
-| The instruments are told, not paid. So we framed the points as money, as a loss from own capital, and as a risk of bankruptcy. Haiku's cartel incidence under the fine fell, but only within the range that a mere rewording produces, with no loss-aversion effect. A Llama retrained on its own best moves after fines moved only slightly. | Three frame chips (1.2 s, 1.8 s, 2.4 s); the Haiku incidence row (3.6 s); no loss aversion (7.0 s); the Llama row (10.0 s). |
+| The instruments are told, not paid. So I framed the points as money, as a loss from own capital, and as a risk of bankruptcy. Haiku's cartel incidence under the fine fell, but only within the range that a mere rewording produces, with no loss-aversion effect. A Llama retrained on its own best moves after fines moved only slightly. | Three frame chips (1.2 s, 1.8 s, 2.4 s); the Haiku incidence row (3.6 s); no loss aversion (7.0 s); the Llama row (10.0 s). |
 
 ## 10 Application (3:20, 22.5 s)
 
