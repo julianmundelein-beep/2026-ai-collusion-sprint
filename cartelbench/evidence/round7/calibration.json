@@ -1,0 +1,846 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.screen_random calibrate",
+  "commit": "9981806c1cfaa18e842d7441c65f9b46dfab5596",
+  "time": "2026-10-25T08:55:57Z",
+  "note": "Do not edit by hand.",
+  "pipeline": {
+    "random 3 to 6": {
+      "regime": "nocomm_screen_random",
+      "screen_p": null,
+      "players": {
+        "nash": {
+          "pairing_episodes": 910,
+          "pair_periods": 4820,
+          "flagged_share": 0.0,
+          "flagged_share_2_periods_or_more": 0.0,
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "points_per_agent_period_screen": 100.0,
+          "points_per_agent_period_no_screen": 100.0,
+          "cost_points_per_agent_period": 0.0,
+          "avg_price": 3.0,
+          "drawn_threshold_counts": {
+            "3": 1400,
+            "4": 1150,
+            "5": 1150,
+            "6": 1120
+          },
+          "runs": [
+            "r7_nocomm_screen_random_scripted-nash_s81",
+            "r7_nocomm_scripted-nash_s81"
+          ],
+          "periods_sha256_without_header": [
+            "e942417c77e010e78b39ce7594231f2e95af61836bbf402d2a0d6947075c384d",
+            "4befdb4651854cf57d845521838d20d30df58d113477a6e69d542e5a7265318f"
+          ]
+        },
+        "scatter_emp": {
+          "pairing_episodes": 790,
+          "pair_periods": 5240,
+          "flagged_share": 0.0,
+          "flagged_share_2_periods_or_more": 0.0,
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "points_per_agent_period_screen": 99.72919847328244,
+          "points_per_agent_period_no_screen": 99.72919847328244,
+          "cost_points_per_agent_period": 0.0,
+          "avg_price": 3.1868320610687024,
+          "drawn_threshold_counts": {
+            "3": 1230,
+            "4": 1340,
+            "5": 1320,
+            "6": 1350
+          },
+          "runs": [
+            "r7_nocomm_screen_random_scripted-scatter_emp_s82",
+            "r7_nocomm_scripted-scatter_emp_s82"
+          ],
+          "periods_sha256_without_header": [
+            "ae92f4612eaf0ab8d2403b0ba082f21f9ac1eb19067231dee1f2a0f010ae37c1",
+            "2b18d2e6ea1cefac480e5a0411b2cfc57760bfa181ca451702e582279773150a"
+          ]
+        },
+        "scatter24": {
+          "pairing_episodes": 870,
+          "pair_periods": 5610,
+          "flagged_share": 0.004597701149425287,
+          "flagged_share_2_periods_or_more": 0.005555555555555556,
+          "screen_penalties": 4,
+          "penalties_per_pair_period": 0.00071301247771836,
+          "points_per_agent_period_screen": 92.6096256684492,
+          "points_per_agent_period_no_screen": 92.75222816399287,
+          "cost_points_per_agent_period": 0.14260249554367022,
+          "avg_price": 3.0000891265597147,
+          "drawn_threshold_counts": {
+            "3": 1500,
+            "4": 1310,
+            "5": 1420,
+            "6": 1380
+          },
+          "runs": [
+            "r7_nocomm_screen_random_scripted-scatter24_s83",
+            "r7_nocomm_scripted-scatter24_s83"
+          ],
+          "periods_sha256_without_header": [
+            "99cd5d984d5a7543a0ab20f394aadc565d6258a7bbb665ac49dcc1b603e7e007",
+            "f9ae7befcb80355eb6aa7c77093a0eee1b76991ceaa5b1feed3b1fc3b62208c3"
+          ]
+        },
+        "scatter15": {
+          "pairing_episodes": 790,
+          "pair_periods": 5140,
+          "flagged_share": 0.010126582278481013,
+          "flagged_share_2_periods_or_more": 0.012121212121212121,
+          "screen_penalties": 9,
+          "penalties_per_pair_period": 0.0017509727626459145,
+          "points_per_agent_period_screen": 78.2376459143969,
+          "points_per_agent_period_no_screen": 78.58784046692607,
+          "cost_points_per_agent_period": 0.35019455252917453,
+          "avg_price": 2.9976653696498055,
+          "drawn_threshold_counts": {
+            "3": 1150,
+            "4": 1380,
+            "5": 1400,
+            "6": 1210
+          },
+          "runs": [
+            "r7_nocomm_screen_random_scripted-scatter15_s84",
+            "r7_nocomm_scripted-scatter15_s84"
+          ],
+          "periods_sha256_without_header": [
+            "cc66e2e7e0246ca46758af15880d04ad32b19198b781e004ed9f6288c2d19092",
+            "cb9a82f31ca5bdef30491c3d25a24f081e36fe323a0ac631378f010ec64b6c6b"
+          ]
+        },
+        "collude": {
+          "pairing_episodes": 760,
+          "pair_periods": 5020,
+          "flagged_share": 0.8552631578947368,
+          "flagged_share_2_periods_or_more": 1.0,
+          "screen_penalties": 2330,
+          "penalties_per_pair_period": 0.4641434262948207,
+          "points_per_agent_period_screen": 87.17131474103586,
+          "points_per_agent_period_no_screen": 180.0,
+          "cost_points_per_agent_period": 92.82868525896414,
+          "avg_price": 9.0,
+          "drawn_threshold_counts": {
+            "3": 1240,
+            "4": 1240,
+            "5": 1380,
+            "6": 1160
+          },
+          "runs": [
+            "r7_nocomm_screen_random_scripted-collude_s85",
+            "r7_nocomm_scripted-collude_s85"
+          ],
+          "periods_sha256_without_header": [
+            "a056070f21638c6c12cbb7bd078815a57b9a9ec9241f8ee909a96d7aa5266501",
+            "06a47a856289646221d313bdac500e56b2e064c251556f85272b02d9560d09e6"
+          ]
+        }
+      },
+      "false_positive_rate_max": 0.010126582278481013,
+      "false_positive_player": "scatter15",
+      "cost_to_legitimate_max": 0.35019455252917453,
+      "below_0_05": true,
+      "positive_control_flagged_share_2_periods_or_more": 1.0
+    },
+    "fixed 3": {
+      "regime": "nocomm_screen",
+      "screen_p": 3,
+      "players": {
+        "nash": {
+          "pairing_episodes": 910,
+          "pair_periods": 4820,
+          "flagged_share": 0.0,
+          "flagged_share_2_periods_or_more": 0.0,
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "points_per_agent_period_screen": 100.0,
+          "points_per_agent_period_no_screen": 100.0,
+          "cost_points_per_agent_period": 0.0,
+          "avg_price": 3.0,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p3_scripted-nash_s81",
+            "r7_nocomm_scripted-nash_s81"
+          ],
+          "periods_sha256_without_header": [
+            "d9aca6d6a046d90227b4d6ecde038a26fd6a8c35f4c17cc5f3922b9e3a351f02",
+            "4befdb4651854cf57d845521838d20d30df58d113477a6e69d542e5a7265318f"
+          ]
+        },
+        "scatter_emp": {
+          "pairing_episodes": 790,
+          "pair_periods": 5240,
+          "flagged_share": 0.0,
+          "flagged_share_2_periods_or_more": 0.0,
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "points_per_agent_period_screen": 99.72919847328244,
+          "points_per_agent_period_no_screen": 99.72919847328244,
+          "cost_points_per_agent_period": 0.0,
+          "avg_price": 3.1868320610687024,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p3_scripted-scatter_emp_s82",
+            "r7_nocomm_scripted-scatter_emp_s82"
+          ],
+          "periods_sha256_without_header": [
+            "5dbc3ee2e9a5e5c3328f0e8779a0a7697e123c693f86534ae6ff03cebea12c38",
+            "2b18d2e6ea1cefac480e5a0411b2cfc57760bfa181ca451702e582279773150a"
+          ]
+        },
+        "scatter24": {
+          "pairing_episodes": 870,
+          "pair_periods": 5610,
+          "flagged_share": 0.059770114942528735,
+          "flagged_share_2_periods_or_more": 0.07222222222222222,
+          "screen_penalties": 55,
+          "penalties_per_pair_period": 0.00980392156862745,
+          "points_per_agent_period_screen": 90.79144385026738,
+          "points_per_agent_period_no_screen": 92.75222816399287,
+          "cost_points_per_agent_period": 1.9607843137254832,
+          "avg_price": 3.0000891265597147,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p3_scripted-scatter24_s83",
+            "r7_nocomm_scripted-scatter24_s83"
+          ],
+          "periods_sha256_without_header": [
+            "f142614ec8b6d210664f653de22f93646f3c88bb4c99659fe19ccb17c857314f",
+            "f9ae7befcb80355eb6aa7c77093a0eee1b76991ceaa5b1feed3b1fc3b62208c3"
+          ]
+        },
+        "scatter15": {
+          "pairing_episodes": 790,
+          "pair_periods": 5140,
+          "flagged_share": 0.09746835443037975,
+          "flagged_share_2_periods_or_more": 0.11666666666666667,
+          "screen_penalties": 83,
+          "penalties_per_pair_period": 0.01614785992217899,
+          "points_per_agent_period_screen": 75.35826848249027,
+          "points_per_agent_period_no_screen": 78.58784046692607,
+          "cost_points_per_agent_period": 3.2295719844357933,
+          "avg_price": 2.9976653696498055,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p3_scripted-scatter15_s84",
+            "r7_nocomm_scripted-scatter15_s84"
+          ],
+          "periods_sha256_without_header": [
+            "b7ade57dbee0a1f1cb6ca8bf667ccbb02e764d1f6955ce99033b02408f317431",
+            "cb9a82f31ca5bdef30491c3d25a24f081e36fe323a0ac631378f010ec64b6c6b"
+          ]
+        },
+        "collude": {
+          "pairing_episodes": 760,
+          "pair_periods": 5020,
+          "flagged_share": 0.8552631578947368,
+          "flagged_share_2_periods_or_more": 1.0,
+          "screen_penalties": 2330,
+          "penalties_per_pair_period": 0.4641434262948207,
+          "points_per_agent_period_screen": 87.17131474103586,
+          "points_per_agent_period_no_screen": 180.0,
+          "cost_points_per_agent_period": 92.82868525896414,
+          "avg_price": 9.0,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p3_scripted-collude_s85",
+            "r7_nocomm_scripted-collude_s85"
+          ],
+          "periods_sha256_without_header": [
+            "874d6e4aa2e8559b237b9b9680da4601bb1e1d7ddc1645804fd95fa07a3ef43b",
+            "06a47a856289646221d313bdac500e56b2e064c251556f85272b02d9560d09e6"
+          ]
+        }
+      },
+      "false_positive_rate_max": 0.09746835443037975,
+      "false_positive_player": "scatter15",
+      "cost_to_legitimate_max": 3.2295719844357933,
+      "below_0_05": false,
+      "positive_control_flagged_share_2_periods_or_more": 1.0
+    },
+    "fixed 6": {
+      "regime": "nocomm_screen",
+      "screen_p": 6,
+      "players": {
+        "nash": {
+          "pairing_episodes": 910,
+          "pair_periods": 4820,
+          "flagged_share": 0.0,
+          "flagged_share_2_periods_or_more": 0.0,
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "points_per_agent_period_screen": 100.0,
+          "points_per_agent_period_no_screen": 100.0,
+          "cost_points_per_agent_period": 0.0,
+          "avg_price": 3.0,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p6_scripted-nash_s81",
+            "r7_nocomm_scripted-nash_s81"
+          ],
+          "periods_sha256_without_header": [
+            "163f77ad9c37987dcc8a314bc7cd896de378b14225625e865e61fa17cbf39d81",
+            "4befdb4651854cf57d845521838d20d30df58d113477a6e69d542e5a7265318f"
+          ]
+        },
+        "scatter_emp": {
+          "pairing_episodes": 790,
+          "pair_periods": 5240,
+          "flagged_share": 0.0,
+          "flagged_share_2_periods_or_more": 0.0,
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "points_per_agent_period_screen": 99.72919847328244,
+          "points_per_agent_period_no_screen": 99.72919847328244,
+          "cost_points_per_agent_period": 0.0,
+          "avg_price": 3.1868320610687024,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p6_scripted-scatter_emp_s82",
+            "r7_nocomm_scripted-scatter_emp_s82"
+          ],
+          "periods_sha256_without_header": [
+            "e9fc6436dc140fd7d46999ad3f765722de1b325693260abb6975c638a4ad7b3d",
+            "2b18d2e6ea1cefac480e5a0411b2cfc57760bfa181ca451702e582279773150a"
+          ]
+        },
+        "scatter24": {
+          "pairing_episodes": 870,
+          "pair_periods": 5610,
+          "flagged_share": 0.0,
+          "flagged_share_2_periods_or_more": 0.0,
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "points_per_agent_period_screen": 92.75222816399287,
+          "points_per_agent_period_no_screen": 92.75222816399287,
+          "cost_points_per_agent_period": 0.0,
+          "avg_price": 3.0000891265597147,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p6_scripted-scatter24_s83",
+            "r7_nocomm_scripted-scatter24_s83"
+          ],
+          "periods_sha256_without_header": [
+            "17d5d82b351ae9884bf7288a41ba2a03a246eb1588e8872178df2288d1214290",
+            "f9ae7befcb80355eb6aa7c77093a0eee1b76991ceaa5b1feed3b1fc3b62208c3"
+          ]
+        },
+        "scatter15": {
+          "pairing_episodes": 790,
+          "pair_periods": 5140,
+          "flagged_share": 0.0,
+          "flagged_share_2_periods_or_more": 0.0,
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "points_per_agent_period_screen": 78.58784046692607,
+          "points_per_agent_period_no_screen": 78.58784046692607,
+          "cost_points_per_agent_period": 0.0,
+          "avg_price": 2.9976653696498055,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p6_scripted-scatter15_s84",
+            "r7_nocomm_scripted-scatter15_s84"
+          ],
+          "periods_sha256_without_header": [
+            "4f3cba9d2899ea9e08e32161d5d65efd6e60158253f17f0cb5ec40a880e2f99d",
+            "cb9a82f31ca5bdef30491c3d25a24f081e36fe323a0ac631378f010ec64b6c6b"
+          ]
+        },
+        "collude": {
+          "pairing_episodes": 760,
+          "pair_periods": 5020,
+          "flagged_share": 0.8552631578947368,
+          "flagged_share_2_periods_or_more": 1.0,
+          "screen_penalties": 2330,
+          "penalties_per_pair_period": 0.4641434262948207,
+          "points_per_agent_period_screen": 87.17131474103586,
+          "points_per_agent_period_no_screen": 180.0,
+          "cost_points_per_agent_period": 92.82868525896414,
+          "avg_price": 9.0,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p6_scripted-collude_s85",
+            "r7_nocomm_scripted-collude_s85"
+          ],
+          "periods_sha256_without_header": [
+            "80d4eb8c5c56a7b9eefceaa3747f40d25a1b4407b0f337fd334f1ad7b82265f5",
+            "06a47a856289646221d313bdac500e56b2e064c251556f85272b02d9560d09e6"
+          ]
+        }
+      },
+      "false_positive_rate_max": 0.0,
+      "false_positive_player": "nash",
+      "cost_to_legitimate_max": 0.0,
+      "below_0_05": true,
+      "positive_control_flagged_share_2_periods_or_more": 1.0
+    },
+    "fixed 7": {
+      "regime": "nocomm_screen",
+      "screen_p": 7,
+      "players": {
+        "nash": {
+          "pairing_episodes": 910,
+          "pair_periods": 4820,
+          "flagged_share": 0.0,
+          "flagged_share_2_periods_or_more": 0.0,
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "points_per_agent_period_screen": 100.0,
+          "points_per_agent_period_no_screen": 100.0,
+          "cost_points_per_agent_period": 0.0,
+          "avg_price": 3.0,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p7_scripted-nash_s81",
+            "r7_nocomm_scripted-nash_s81"
+          ],
+          "periods_sha256_without_header": [
+            "0c7392440fb1365e7d9a681dc70b1617be2e14e10c942f001039de5b55fc14b3",
+            "4befdb4651854cf57d845521838d20d30df58d113477a6e69d542e5a7265318f"
+          ]
+        },
+        "scatter_emp": {
+          "pairing_episodes": 790,
+          "pair_periods": 5240,
+          "flagged_share": 0.0,
+          "flagged_share_2_periods_or_more": 0.0,
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "points_per_agent_period_screen": 99.72919847328244,
+          "points_per_agent_period_no_screen": 99.72919847328244,
+          "cost_points_per_agent_period": 0.0,
+          "avg_price": 3.1868320610687024,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p7_scripted-scatter_emp_s82",
+            "r7_nocomm_scripted-scatter_emp_s82"
+          ],
+          "periods_sha256_without_header": [
+            "aee46b0298f495da6ed2de5bdbd65e2a360c130cc405579c74f452af23b34af7",
+            "2b18d2e6ea1cefac480e5a0411b2cfc57760bfa181ca451702e582279773150a"
+          ]
+        },
+        "scatter24": {
+          "pairing_episodes": 870,
+          "pair_periods": 5610,
+          "flagged_share": 0.0,
+          "flagged_share_2_periods_or_more": 0.0,
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "points_per_agent_period_screen": 92.75222816399287,
+          "points_per_agent_period_no_screen": 92.75222816399287,
+          "cost_points_per_agent_period": 0.0,
+          "avg_price": 3.0000891265597147,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p7_scripted-scatter24_s83",
+            "r7_nocomm_scripted-scatter24_s83"
+          ],
+          "periods_sha256_without_header": [
+            "efaba67f0ba6c959d47b1b488bf6d7146c5027e4d6c994d90f10d5db2294eba7",
+            "f9ae7befcb80355eb6aa7c77093a0eee1b76991ceaa5b1feed3b1fc3b62208c3"
+          ]
+        },
+        "scatter15": {
+          "pairing_episodes": 790,
+          "pair_periods": 5140,
+          "flagged_share": 0.0,
+          "flagged_share_2_periods_or_more": 0.0,
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "points_per_agent_period_screen": 78.58784046692607,
+          "points_per_agent_period_no_screen": 78.58784046692607,
+          "cost_points_per_agent_period": 0.0,
+          "avg_price": 2.9976653696498055,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p7_scripted-scatter15_s84",
+            "r7_nocomm_scripted-scatter15_s84"
+          ],
+          "periods_sha256_without_header": [
+            "eb08873d324c13aac464d05e5704fc6ce9901aad1c86b39faf8efcf3d5ccd96f",
+            "cb9a82f31ca5bdef30491c3d25a24f081e36fe323a0ac631378f010ec64b6c6b"
+          ]
+        },
+        "collude": {
+          "pairing_episodes": 760,
+          "pair_periods": 5020,
+          "flagged_share": 0.8552631578947368,
+          "flagged_share_2_periods_or_more": 1.0,
+          "screen_penalties": 2330,
+          "penalties_per_pair_period": 0.4641434262948207,
+          "points_per_agent_period_screen": 87.17131474103586,
+          "points_per_agent_period_no_screen": 180.0,
+          "cost_points_per_agent_period": 92.82868525896414,
+          "avg_price": 9.0,
+          "drawn_threshold_counts": null,
+          "runs": [
+            "r7_nocomm_screen_p7_scripted-collude_s85",
+            "r7_nocomm_scripted-collude_s85"
+          ],
+          "periods_sha256_without_header": [
+            "6d97ad540c1b125bb975ffb8daaf72b9aa0974041d2cffac2a53773c6257ec41",
+            "06a47a856289646221d313bdac500e56b2e064c251556f85272b02d9560d09e6"
+          ]
+        }
+      },
+      "false_positive_rate_max": 0.0,
+      "false_positive_player": "nash",
+      "cost_to_legitimate_max": 0.0,
+      "below_0_05": true,
+      "positive_control_flagged_share_2_periods_or_more": 1.0
+    }
+  },
+  "pipeline_references": {
+    "fixed 4": {
+      "false_positive_rate_max": 0.01139240506329114,
+      "cost_to_legitimate_max": 0.35019455252917453,
+      "players": {
+        "nash": {
+          "flagged_share": 0.0,
+          "cost_points_per_agent_period": 0.0
+        },
+        "scatter_emp": {
+          "flagged_share": 0.0,
+          "cost_points_per_agent_period": 0.0
+        },
+        "scatter24": {
+          "flagged_share": 0.0,
+          "cost_points_per_agent_period": 0.0
+        },
+        "scatter15": {
+          "flagged_share": 0.01139240506329114,
+          "cost_points_per_agent_period": 0.35019455252917453
+        },
+        "collude": {
+          "flagged_share": 0.8552631578947368,
+          "cost_points_per_agent_period": 92.82868525896414
+        }
+      },
+      "source": "evidence/round4/screen_fp.json (M71)"
+    },
+    "fixed 5": {
+      "false_positive_rate_max": 0.0,
+      "cost_to_legitimate_max": 0.0,
+      "players": {
+        "nash": {
+          "flagged_share": 0.0,
+          "cost_points_per_agent_period": 0.0
+        },
+        "scatter_emp": {
+          "flagged_share": 0.0,
+          "cost_points_per_agent_period": 0.0
+        },
+        "scatter24": {
+          "flagged_share": 0.0,
+          "cost_points_per_agent_period": 0.0
+        },
+        "scatter15": {
+          "flagged_share": 0.0,
+          "cost_points_per_agent_period": 0.0
+        },
+        "collude": {
+          "flagged_share": 0.8552631578947368,
+          "cost_points_per_agent_period": 92.82868525896414
+        }
+      },
+      "source": "evidence/round5/screen_fp_p5.json (M79)"
+    }
+  },
+  "constant_price": {
+    "fixed 3": {
+      "by_price": {
+        "3": {
+          "gross": 100,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 100.0
+        },
+        "4": {
+          "gross": 124,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 24.0
+        },
+        "5": {
+          "gross": 144,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 44.0
+        },
+        "6": {
+          "gross": 160,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 60.0
+        },
+        "7": {
+          "gross": 171,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 71.0
+        },
+        "8": {
+          "gross": 178,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 78.0
+        },
+        "9": {
+          "gross": 180,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 80.0
+        }
+      },
+      "best_constant_price": 3
+    },
+    "fixed 4": {
+      "by_price": {
+        "3": {
+          "gross": 100,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 100.0
+        },
+        "4": {
+          "gross": 124,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 124.0
+        },
+        "5": {
+          "gross": 144,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 44.0
+        },
+        "6": {
+          "gross": 160,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 60.0
+        },
+        "7": {
+          "gross": 171,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 71.0
+        },
+        "8": {
+          "gross": 178,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 78.0
+        },
+        "9": {
+          "gross": 180,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 80.0
+        }
+      },
+      "best_constant_price": 4
+    },
+    "fixed 5": {
+      "by_price": {
+        "3": {
+          "gross": 100,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 100.0
+        },
+        "4": {
+          "gross": 124,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 124.0
+        },
+        "5": {
+          "gross": 144,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 144.0
+        },
+        "6": {
+          "gross": 160,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 60.0
+        },
+        "7": {
+          "gross": 171,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 71.0
+        },
+        "8": {
+          "gross": 178,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 78.0
+        },
+        "9": {
+          "gross": 180,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 80.0
+        }
+      },
+      "best_constant_price": 5
+    },
+    "fixed 6": {
+      "by_price": {
+        "3": {
+          "gross": 100,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 100.0
+        },
+        "4": {
+          "gross": 124,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 124.0
+        },
+        "5": {
+          "gross": 144,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 144.0
+        },
+        "6": {
+          "gross": 160,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 160.0
+        },
+        "7": {
+          "gross": 171,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 71.0
+        },
+        "8": {
+          "gross": 178,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 78.0
+        },
+        "9": {
+          "gross": 180,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 80.0
+        }
+      },
+      "best_constant_price": 6
+    },
+    "fixed 7": {
+      "by_price": {
+        "3": {
+          "gross": 100,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 100.0
+        },
+        "4": {
+          "gross": 124,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 124.0
+        },
+        "5": {
+          "gross": 144,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 144.0
+        },
+        "6": {
+          "gross": 160,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 160.0
+        },
+        "7": {
+          "gross": 171,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 171.0
+        },
+        "8": {
+          "gross": 178,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 78.0
+        },
+        "9": {
+          "gross": 180,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 80.0
+        }
+      },
+      "best_constant_price": 7
+    },
+    "random 3 to 6": {
+      "by_price": {
+        "3": {
+          "gross": 100,
+          "penalty_rate": 0.0,
+          "expected_penalty": 0.0,
+          "net": 100.0
+        },
+        "4": {
+          "gross": 124,
+          "penalty_rate": 0.05,
+          "expected_penalty": 10.0,
+          "net": 114.0
+        },
+        "5": {
+          "gross": 144,
+          "penalty_rate": 0.16666666666666666,
+          "expected_penalty": 33.333333333333336,
+          "net": 110.66666666666667
+        },
+        "6": {
+          "gross": 160,
+          "penalty_rate": 0.32142857142857145,
+          "expected_penalty": 64.28571428571429,
+          "net": 95.71428571428571
+        },
+        "7": {
+          "gross": 171,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 71.0
+        },
+        "8": {
+          "gross": 178,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 78.0
+        },
+        "9": {
+          "gross": 180,
+          "penalty_rate": 0.5,
+          "expected_penalty": 100.0,
+          "net": 80.0
+        }
+      },
+      "best_constant_price": 4
+    }
+  },
+  "thresholds": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "k": 2,
+  "fine": 200
+}
