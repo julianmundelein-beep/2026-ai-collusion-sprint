@@ -48,7 +48,8 @@ EVIDENCE = ROOT / "cartelbench" / "evidence"
 W, H = 1920, 1080
 FPS = 30
 XFADE = 0.8        # seconds of cross-fade between scenes
-VOICE_TAIL = 1.2   # seconds of silence after a voice file before the next scene
+VOICE_TAIL = 0.8   # seconds of silence after a voice file before the next scene
+VOICE_TEMPO = 1.0  # playback speed of the voice files (set with --tempo; 1.08 keeps speech natural)
 WPM = 150          # narration pace assumed without voice files
 
 # Palette: one accent colour, warm paper background, near-black text.
@@ -837,12 +838,13 @@ def voice_files(scenes: list[Scene]) -> list[Path | None]:
 
 
 def plan_durations(scenes: list[Scene], voices: list[Path | None]) -> None:
-    """Scene length: the longest of the reading rule, the last element plus 3 s, and the voice file plus its tail."""
+    """Scene length without voice: the reading rule or the last element plus 3 s, whichever is longer.
+    With a voice file the voice sets the pace: the file (at VOICE_TEMPO) plus its tail, never shorter than the last element plus 3 s."""
     for s, v in zip(scenes, voices):
-        reading = 3.0 + 0.35 * s.words
-        s.duration = max(reading, s.min_duration + 3.0)
-        if v is not None:
-            s.duration = max(s.duration, media_duration(v) + VOICE_TAIL)
+        if v is None:
+            s.duration = max(3.0 + 0.35 * s.words, s.min_duration + 3.0)
+        else:
+            s.duration = max(s.min_duration + 3.0, media_duration(v) / VOICE_TEMPO + VOICE_TAIL)
         s.duration = math.ceil(s.duration * 2) / 2
 
 
@@ -879,7 +881,8 @@ def mix_voice(video: Path, voices: list[Path | None], tl: list[tuple[float, floa
             continue
         cmd += ["-i", str(v)]
         n += 1
-        parts.append(f"[{n}:a]aresample=48000,adelay={int(s0 * 1000)}|{int(s0 * 1000)}[a{n}]")
+        tempo = f"atempo={VOICE_TEMPO}," if VOICE_TEMPO != 1.0 else ""
+        parts.append(f"[{n}:a]aresample=48000,{tempo}adelay={int(s0 * 1000)}|{int(s0 * 1000)}[a{n}]")
     filt = ";".join(parts) + ";" + "".join(f"[a{k}]" for k in range(1, n + 1)) + f"amix=inputs={n}:normalize=0:dropout_transition=0[mix]"
     cmd += ["-filter_complex", filt, "-map", "0:v:0", "-map", "[mix]", "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-shortest", str(out)]
     if subprocess.run(cmd).returncode != 0:
@@ -928,9 +931,12 @@ def main() -> None:
     ap.add_argument("--stills-only", action="store_true")
     ap.add_argument("--timeline", action="store_true", help="print the scene times and exit")
     ap.add_argument("--no-voice", action="store_true", help="ignore video/voice/ even if files exist")
+    ap.add_argument("--tempo", type=float, default=1.0, help="playback speed of the voice files, e.g. 1.08 (pitch unchanged)")
     ap.add_argument("--out", type=Path, default=OUT_DIR / OUT_NAME)
     args = ap.parse_args()
 
+    global VOICE_TEMPO
+    VOICE_TEMPO = args.tempo
     scenes = build_scenes()
     count_words(scenes)
     voices = [None] * len(scenes) if args.no_voice else voice_files(scenes)
