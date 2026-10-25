@@ -70,3 +70,4 @@
 {"event": "end", "run_id": "nocomm_claude-haiku-5-5_20261025T034023Z_s101", "status": "complete", "cost_usd": 0.134031895, "calls": 505, "time": "2026-10-25T03:49:37Z"}
 {"event": "end", "run_id": "nocomm_screen_claude-haiku-5-5_20261025T034023Z_s102", "status": "complete", "cost_usd": 0.16021111, "calls": 535, "time": "2026-10-25T03:50:41Z"}
 {"event": "end", "run_id": "nocomm_screen_claude-haiku-5-5_20261025T034023Z_s103", "status": "complete", "cost_usd": 0.157983915, "calls": 470, "time": "2026-10-25T03:50:42Z"}
+{"event": "end", "run_id": "instructed_cartel_screen_claude-sonnet-5-5_20261025T034157Z_s112", "status": "complete", "cost_usd": 6.6487828, "calls": 3500, "time": "2026-10-25T03:57:28Z"}
