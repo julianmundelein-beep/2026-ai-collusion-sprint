@@ -10,7 +10,7 @@ Source of every number: `paper/report.md` (final version; the FACTS id in square
 | 04 Humans, 06 Table | students' average prices: no authority, fine, leniency, reward | 4.92, 5.35, 4.85, 3.97 | Table 2 [F15] (leniency printed as 4.85, as in the report; the data file holds 4.845) | | typed from Table 2 |
 | 04 Humans | only the reward pushed the students' prices toward the competitive level | wording | Related Work, "The source experiment" | | wording only |
 | 05 Testbed | payoff cells match | 169 of 169 | contribution 1 [F08] | M07 | typed |
-| 05 Testbed | model calls, refusals | 45,286; 0 | Table A2 [F40] | M56 | typed |
+| 05 Testbed | refusals (on screen); the voice file of scene 05 still says "forty-five thousand calls", the count of the pilot and the first four Claude rounds, not of all four models | 0; 45,286 | Table A2 [F40] | M56 | typed |
 | 05 Testbed | pre-registered before the first model call | commit times | Methods, "Pre-registration" [F20] | M08 | wording only |
 | 05 Testbed | four models, three families | names | Methods, "Models" | | wording only |
 | 06 Table | cartel incidence without authority, students and Haiku | 0.961; 0.962 | Table 2 [F15, F63] | M63 | `data/human_baseline.json`; `round4/scorecard_haiku_8pool/scorecard.json` (`metrics`) |

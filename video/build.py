@@ -79,7 +79,6 @@ R = {
     "deviation_haiku_lf": 0.015,   # Finding 1 [F13]
     "deviation_human_lf": 0.564,   # Finding 1 [F15]
     "payoff_cells": "169 of 169",  # contribution 1 [F08]
-    "calls_total": 45286,          # Table A2 [F40]
     "sonnet_slope": "0.98",        # abstract [F85]
     "haiku_slope": "0.70",
     "qwen_slope": "0.68",
@@ -588,8 +587,7 @@ def scene_05_testbed(E: dict) -> Scene:
         times = [cu[f"b{i}"] for i in range(5)]
         y = bullet_list(c, items, y0 + 10, t, times)
         a = fade(t, cu["b4"])
-        n = int(count_up(t, cu["b4"], R["calls_total"], 1.5))
-        paste(c, text_block(f"{n:,} model calls, 0 refusals, every run hashed", 40, MUTED), (180, y - 140 + 62), a, rise=0)
+        paste(c, text_block("every model call recorded, 0 refusals, every run hashed", 40, MUTED), (180, y - 140 + 62), a, rise=0)
         return c
 
     return Scene("05 Testbed", draw, cu)
@@ -920,7 +918,7 @@ def scene_13_close(E: dict) -> Scene:
         paste(c, text_block("CartelBench", 40, ACCENT, "semibold"), (W // 2, 510), fade(t, tc), anchor="mt")
         paste(c, text_block("Same Game, Different Players: A Human-Calibrated Testbed for Cartel Enforcement on LLM Pricing Agents",
                             48, INK, "bold", max_width=W - 300, align="center", spacing=1.15), (W // 2, 570), fade(t, tc + 0.2), anchor="mt")
-        paste(c, text_block("Julian Mundelein, Independent, Hong Kong", 42, INK, align="center"), (W // 2, 740), fade(t, tc + 0.6), anchor="mt")
+        paste(c, text_block("Julian Mündelein, Independent, Hong Kong", 42, INK, align="center"), (W // 2, 740), fade(t, tc + 0.6), anchor="mt")
         paste(c, text_block("AI Collusion Research Sprint, Apart Research, October 2026", 38, MUTED, align="center"), (W // 2, 805), fade(t, tc + 0.8), anchor="mt")
         paste(c, text_block("github.com/julianmundelein-beep/2026-ai-collusion-sprint", 44, ACCENT, "semibold", align="center"), (W // 2, 880), fade(t, tc + 1.2), anchor="mt")
         paste(c, text_block("Thank you for watching.", 44, INK, align="center"), (W // 2, 970), fade(t, cu["thanks"]), anchor="mt")
