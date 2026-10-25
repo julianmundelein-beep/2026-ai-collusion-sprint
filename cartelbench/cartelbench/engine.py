@@ -12,6 +12,7 @@ from .game import PayoffTable, load_payoff_table
 from .llm import ModelClient
 from .players import Decision, LLMPlayer, Player, ScriptedPlayer
 from .regimes import Regime, get_regime
+from .screen import screen_step
 from .util import EVIDENCE_DIR, evidence_header, git_commit, now_iso, write_json
 
 FIRM_NAMES = [
@@ -47,6 +48,7 @@ class RunConfig:
     label: str = ""
     base_url: str = ""
     api_key_env: str = "OPENAI_API_KEY"
+    prompt_variant: str = "original"    # "paraphrase": prompt-robustness arm (amendment 4 (c)); instructions only
 
     def regime_obj(self) -> Regime:
         overrides = {}
@@ -69,6 +71,7 @@ class PairState:
     last_agreed: int | None = None     # agreed price of the last discussion in this match
     agreement_intact: bool = True      # nobody has undercut last_agreed yet (Table 5 note on deviation rates)
     first_comm_period: int | None = None
+    screen_run: int = 0                # consecutive periods with both prices above the screen threshold (amendment 5)
 
 
 class Pool:
@@ -136,7 +139,8 @@ class Run:
         if self.cfg.player == "llm":
             if self.client is None:
                 raise RuntimeError("player=llm needs a model client")
-            p = LLMPlayer(self.client, agent_id, name, self.regime, self.table, rng, offset=self.cfg.price_offset)
+            p = LLMPlayer(self.client, agent_id, name, self.regime, self.table, rng, offset=self.cfg.price_offset,
+                          prompt_variant=self.cfg.prompt_variant)
             self.systems[agent_id] = p.system
             return p
         return ScriptedPlayer(self.cfg.player, agent_id, name, self.regime, self.table, rng)
@@ -313,6 +317,17 @@ class Run:
         fines = reg.enforce(cartel_active, reporters, detected, (a, b))
         convicted = bool(reporters) or detected
         conviction = "report" if reporters else ("detection" if detected else None)
+        # price screen (amendment 5): at most one penalty per pair and period; a report or detection resets the count
+        screen_hit = False
+        if reg.screen_k:
+            if convicted:
+                ps.screen_run = 0
+            else:
+                ps.screen_run, screen_hit = screen_step(ps.screen_run, prices[a], prices[b], reg.screen_p, reg.screen_k)
+                if screen_hit:
+                    fines = {a: fines[a] - reg.screen_fine, b: fines[b] - reg.screen_fine}
+                    if cartel_active and reg.prohibited:
+                        convicted, conviction = True, "screen"
         total = {x: market[x] + fines[x] for x in (a, b)}
         # deviation bookkeeping (Table 5 note): undercutting the last agreed price while it was intact
         deviation_obs = {x: (ps.last_agreed is not None and cartel_active and ps.agreement_intact) for x in (a, b)}
@@ -320,9 +335,13 @@ class Run:
         if any(deviated.values()):
             ps.agreement_intact = False
         # step 7: summary rows
+        screen_note = (f"price screen: both prices above {reg.screen_p + self.cfg.price_offset} in {reg.screen_k} consecutive "
+                       f"periods; each firm paid {reg.screen_fine}") if screen_hit else ""
         for me, other in ((a, b), (b, a)):
             if not reg.prohibited:
-                auth = "-"
+                auth = screen_note or "-"
+            elif conviction == "screen":
+                auth = f"{screen_note}; agreement ended"
             elif convicted:
                 n_rep = len(reporters)
                 mine = "you reported; " if me in reporters else ""
@@ -351,6 +370,8 @@ class Run:
             "deviation_obs": [deviation_obs[a], deviation_obs[b]], "deviated": [deviated[a], deviated[b]],
             "defaulted": [defaulted[a], defaulted[b]], "reasons": [reasons[a], reasons[b]],
         })
+        if reg.screen_k:
+            rec.update({"screen_hit": screen_hit, "screen_run": ps.screen_run})
         await self._log(self.periods_path, rec)
         return rec
 

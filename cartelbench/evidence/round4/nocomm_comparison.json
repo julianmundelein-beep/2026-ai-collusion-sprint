@@ -1,0 +1,725 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.round4 nocomm",
+  "commit": "dd0c35071113cd23e45102be35313ec27a86cef5",
+  "time": "2026-10-24T21:23:11Z",
+  "note": "Do not edit by hand.",
+  "sonnet": {
+    "model": "claude-sonnet-5-5",
+    "nocomm_run": "nocomm_claude-sonnet-5-5_20261024T192927Z_s55",
+    "comparisons": {
+      "laissez_faire": {
+        "avg_price": {
+          "regime": 8.921782178217821,
+          "nocomm": 7.364423076923077,
+          "diff": {
+            "point": 1.557359101294744,
+            "lo": 1.332246376811594,
+            "hi": 1.7284482758620694,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 1.557359101294744,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            4,
+            4
+          ]
+        },
+        "late_avg_price": {
+          "regime": 8.90327868852459,
+          "nocomm": 7.35625,
+          "diff": {
+            "point": 1.5470286885245903,
+            "lo": 1.2883720930232556,
+            "hi": 1.7237472766884538,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 1.5470286885245903,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            4,
+            4
+          ]
+        },
+        "late_share_above_nash": {
+          "regime": 1.0,
+          "nocomm": 1.0,
+          "diff": {
+            "point": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 0.0,
+            "p": 1.0,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 70,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 0.15,
+          "pool_sessions": [
+            4,
+            4
+          ]
+        }
+      },
+      "fine": {
+        "avg_price": {
+          "regime": 6.098979591836735,
+          "nocomm": 7.364423076923077,
+          "diff": {
+            "point": -1.265443485086342,
+            "lo": -1.532205638474295,
+            "hi": -1.0532051282051285,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -1.265443485086342,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            4,
+            4
+          ],
+          "reading": "(iii) prohibition lowers prices below the no-channel level"
+        },
+        "late_avg_price": {
+          "regime": 6.077586206896552,
+          "nocomm": 7.35625,
+          "diff": {
+            "point": -1.2786637931034486,
+            "lo": -1.5625,
+            "hi": -1.0222222222222221,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -1.2786637931034486,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            4,
+            4
+          ],
+          "reading": "(iii) prohibition lowers prices below the no-channel level"
+        },
+        "late_share_above_nash": {
+          "regime": 0.9879310344827587,
+          "nocomm": 1.0,
+          "diff": {
+            "point": -0.012068965517241348,
+            "lo": -0.03442622950819674,
+            "hi": 0.0,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -0.012068965517241348,
+            "p": 0.4857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 34,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 0.15,
+          "pool_sessions": [
+            4,
+            4
+          ],
+          "reading": "(i) under prohibition prices as without a channel"
+        }
+      },
+      "leniency": {
+        "avg_price": {
+          "regime": 6.240860215053764,
+          "nocomm": 7.364423076923077,
+          "diff": {
+            "point": -1.1235628618693134,
+            "lo": -1.3833333333333337,
+            "hi": -0.9216346153846153,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -1.1235628618693134,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            4,
+            4
+          ],
+          "reading": "(iii) prohibition lowers prices below the no-channel level"
+        },
+        "late_avg_price": {
+          "regime": 6.203773584905661,
+          "nocomm": 7.35625,
+          "diff": {
+            "point": -1.1524764150943394,
+            "lo": -1.3962264150943389,
+            "hi": -0.9458839406207824,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -1.1524764150943394,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            4,
+            4
+          ],
+          "reading": "(iii) prohibition lowers prices below the no-channel level"
+        },
+        "late_share_above_nash": {
+          "regime": 1.0,
+          "nocomm": 1.0,
+          "diff": {
+            "point": 0.0,
+            "lo": 0.0,
+            "hi": 0.0,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 0.0,
+            "p": 1.0,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 70,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 0.15,
+          "pool_sessions": [
+            4,
+            4
+          ],
+          "reading": "(i) under prohibition prices as without a channel"
+        }
+      },
+      "reward": {
+        "avg_price": {
+          "regime": 5.74,
+          "nocomm": 7.364423076923077,
+          "diff": {
+            "point": -1.624423076923077,
+            "lo": -2.084023048716606,
+            "hi": -1.200071607590405,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -1.624423076923077,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            4,
+            4
+          ],
+          "reading": "(iii) prohibition lowers prices below the no-channel level"
+        },
+        "late_avg_price": {
+          "regime": 5.3090909090909095,
+          "nocomm": 7.35625,
+          "diff": {
+            "point": -2.0471590909090907,
+            "lo": -2.6827285921625545,
+            "hi": -1.469731800766283,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -2.0471590909090907,
+            "p": 0.02857142857142857,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 2,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            4,
+            4
+          ],
+          "reading": "(iii) prohibition lowers prices below the no-channel level"
+        },
+        "late_share_above_nash": {
+          "regime": 0.9327272727272727,
+          "nocomm": 1.0,
+          "diff": {
+            "point": -0.06727272727272726,
+            "lo": -0.1630434782608695,
+            "hi": 0.0,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -0.06727272727272726,
+            "p": 0.22857142857142856,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 16,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 0.15,
+          "pool_sessions": [
+            4,
+            4
+          ],
+          "reading": "(iv) inconclusive, neither shown"
+        }
+      }
+    }
+  },
+  "haiku": {
+    "model": "claude-haiku-5-5",
+    "nocomm_run": "nocomm_claude-haiku-5-5_20261024T133410Z_s13",
+    "comparisons": {
+      "laissez_faire": {
+        "avg_price": {
+          "regime": 8.871495327102803,
+          "nocomm": 5.263963963963964,
+          "diff": {
+            "point": 3.607531363138839,
+            "lo": 3.3432973805855157,
+            "hi": 3.896266142616507,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 3.607531363138839,
+            "p": 0.00202020202020202,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 495,
+            "distinct_relabellings": 495,
+            "count_at_least_observed": 1,
+            "undefined": 0,
+            "clusters_a": 8,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            8,
+            4
+          ]
+        },
+        "late_avg_price": {
+          "regime": 8.85820895522388,
+          "nocomm": 4.790140845070423,
+          "diff": {
+            "point": 4.068068110153457,
+            "lo": 3.716666666666666,
+            "hi": 4.48633395522388,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 4.068068110153457,
+            "p": 0.00202020202020202,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 495,
+            "distinct_relabellings": 495,
+            "count_at_least_observed": 1,
+            "undefined": 0,
+            "clusters_a": 8,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            8,
+            4
+          ]
+        },
+        "late_share_above_nash": {
+          "regime": 0.9873134328358208,
+          "nocomm": 0.6676056338028169,
+          "diff": {
+            "point": 0.31970779903300395,
+            "lo": 0.19672215108834834,
+            "hi": 0.46781716417910446,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 0.31970779903300395,
+            "p": 0.00202020202020202,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 495,
+            "distinct_relabellings": 495,
+            "count_at_least_observed": 1,
+            "undefined": 0,
+            "clusters_a": 8,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 0.15,
+          "pool_sessions": [
+            8,
+            4
+          ]
+        }
+      },
+      "fine": {
+        "avg_price": {
+          "regime": 5.5243386243386245,
+          "nocomm": 5.263963963963964,
+          "diff": {
+            "point": 0.2603746603746604,
+            "lo": -0.06684127815610275,
+            "hi": 0.5843143812709028,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 0.2603746603746604,
+            "p": 0.22626262626262628,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 495,
+            "distinct_relabellings": 495,
+            "count_at_least_observed": 112,
+            "undefined": 0,
+            "clusters_a": 8,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            8,
+            4
+          ],
+          "reading": "(i) under prohibition prices as without a channel"
+        },
+        "late_avg_price": {
+          "regime": 6.035779816513761,
+          "nocomm": 4.790140845070423,
+          "diff": {
+            "point": 1.2456389714433387,
+            "lo": 0.7224043715846991,
+            "hi": 1.7750946969696964,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 1.2456389714433387,
+            "p": 0.01818181818181818,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 495,
+            "distinct_relabellings": 495,
+            "count_at_least_observed": 9,
+            "undefined": 0,
+            "clusters_a": 8,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            8,
+            4
+          ],
+          "reading": "(ii) prohibition produces a silent coordination of its own, above the no-channel level"
+        },
+        "late_share_above_nash": {
+          "regime": 0.5394495412844037,
+          "nocomm": 0.6676056338028169,
+          "diff": {
+            "point": -0.1281560925184132,
+            "lo": -0.28413046123889496,
+            "hi": 0.038772123893805244,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -0.1281560925184132,
+            "p": 0.20606060606060606,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 495,
+            "distinct_relabellings": 495,
+            "count_at_least_observed": 102,
+            "undefined": 0,
+            "clusters_a": 8,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 0.15,
+          "pool_sessions": [
+            8,
+            4
+          ],
+          "reading": "(iv) inconclusive, neither shown"
+        }
+      },
+      "leniency": {
+        "avg_price": {
+          "regime": 3.2647668393782383,
+          "nocomm": 5.263963963963964,
+          "diff": {
+            "point": -1.9991971245857258,
+            "lo": -2.2634159061277708,
+            "hi": -1.700229240957718,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -1.9991971245857258,
+            "p": 0.00202020202020202,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 495,
+            "distinct_relabellings": 495,
+            "count_at_least_observed": 1,
+            "undefined": 0,
+            "clusters_a": 8,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            8,
+            4
+          ],
+          "reading": "(iii) prohibition lowers prices below the no-channel level"
+        },
+        "late_avg_price": {
+          "regime": 3.1761061946902656,
+          "nocomm": 4.790140845070423,
+          "diff": {
+            "point": -1.614034650380157,
+            "lo": -1.9671683389074697,
+            "hi": -1.1796672077922081,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -1.614034650380157,
+            "p": 0.00202020202020202,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 495,
+            "distinct_relabellings": 495,
+            "count_at_least_observed": 1,
+            "undefined": 0,
+            "clusters_a": 8,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            8,
+            4
+          ],
+          "reading": "(iii) prohibition lowers prices below the no-channel level"
+        },
+        "late_share_above_nash": {
+          "regime": 0.046902654867256637,
+          "nocomm": 0.6676056338028169,
+          "diff": {
+            "point": -0.6207029789355603,
+            "lo": -0.7491097528567632,
+            "hi": -0.46739864864864866,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -0.6207029789355603,
+            "p": 0.00202020202020202,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 495,
+            "distinct_relabellings": 495,
+            "count_at_least_observed": 1,
+            "undefined": 0,
+            "clusters_a": 8,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 0.15,
+          "pool_sessions": [
+            8,
+            4
+          ],
+          "reading": "(iii) prohibition lowers prices below the no-channel level"
+        }
+      },
+      "reward": {
+        "avg_price": {
+          "regime": 3.2096938775510204,
+          "nocomm": 5.263963963963964,
+          "diff": {
+            "point": -2.0542700864129437,
+            "lo": -2.3155389830508475,
+            "hi": -1.7554769230769232,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -2.0542700864129437,
+            "p": 0.00202020202020202,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 495,
+            "distinct_relabellings": 495,
+            "count_at_least_observed": 1,
+            "undefined": 0,
+            "clusters_a": 8,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            8,
+            4
+          ],
+          "reading": "(iii) prohibition lowers prices below the no-channel level"
+        },
+        "late_avg_price": {
+          "regime": 3.095689655172414,
+          "nocomm": 4.790140845070423,
+          "diff": {
+            "point": -1.6944511898980088,
+            "lo": -2.0446236559139788,
+            "hi": -1.2736293859649126,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -1.6944511898980088,
+            "p": 0.00202020202020202,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 495,
+            "distinct_relabellings": 495,
+            "count_at_least_observed": 1,
+            "undefined": 0,
+            "clusters_a": 8,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 1.0,
+          "pool_sessions": [
+            8,
+            4
+          ],
+          "reading": "(iii) prohibition lowers prices below the no-channel level"
+        },
+        "late_share_above_nash": {
+          "regime": 0.032758620689655175,
+          "nocomm": 0.6676056338028169,
+          "diff": {
+            "point": -0.6348470131131617,
+            "lo": -0.7597435897435897,
+            "hi": -0.4802178899082569,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -0.6348470131131617,
+            "p": 0.00202020202020202,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 495,
+            "distinct_relabellings": 495,
+            "count_at_least_observed": 1,
+            "undefined": 0,
+            "clusters_a": 8,
+            "clusters_b": 4,
+            "seed": null
+          },
+          "span": 0.15,
+          "pool_sessions": [
+            8,
+            4
+          ],
+          "reading": "(iii) prohibition lowers prices below the no-channel level"
+        }
+      }
+    }
+  }
+}

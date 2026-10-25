@@ -12,6 +12,14 @@ from .regimes import Regime
 
 DEFAULT_ACTION = {"talk": False, "proposal": JOINT_OPTIMUM_PRICE, "price": NASH_PRICE, "report": False}
 
+# price distributions of the scatter players (weights). scatter_emp: counts of the prices of Haiku 5.5 agents in
+# pair-periods without an agreement under leniency and reward (core runs M22 and M23, 1,906 agent-periods)
+SCATTER = {
+    "scatter_emp": {0: 1, 3: 1780, 4: 47, 5: 12, 6: 7, 7: 24, 8: 20, 9: 13, 12: 2},
+    "scatter24": {2: 1, 3: 1, 4: 1},
+    "scatter15": {1: 1, 2: 1, 3: 1, 4: 1, 5: 1},
+}
+
 
 @dataclass
 class Decision:
@@ -43,6 +51,9 @@ class ScriptedPlayer(Player):
     nash:    never talk, price 3, never report.
     random:  uniform choices everywhere.
     tit:     talk, propose 9; set agreed price unless the rival undercut last period, then price 3; never report.
+    scatter_emp, scatter24, scatter15: never talk, never report, price drawn independently each period around the
+             Nash price (legitimate pricing for the price screen's false-positive rate, amendment 5): the empirical
+             competitive distribution, uniform on 2 to 4, uniform on 1 to 5.
     """
 
     kind = "scripted"
@@ -53,6 +64,13 @@ class ScriptedPlayer(Player):
 
     async def decide(self, step: str, ctx: dict) -> Decision:
         s = self.strategy
+        if s in SCATTER:
+            if step == "price":
+                prices, weights = zip(*SCATTER[s].items())
+                return Decision({"price": self.rng.choices(prices, weights)[0], "report": False})
+            if step in ("propose1", "propose2"):
+                return Decision(JOINT_OPTIMUM_PRICE)
+            return Decision(False)
         if s == "random":
             if step == "talk":
                 return Decision(self.rng.random() < 0.5)
@@ -87,18 +105,25 @@ class ScriptedPlayer(Player):
 class LLMPlayer(Player):
     kind = "llm"
 
-    def __init__(self, client: ModelClient, *args, offset: int = 0):
+    def __init__(self, client: ModelClient, *args, offset: int = 0, prompt_variant: str = "original"):
         super().__init__(*args)
         self.client = client
         self.offset = offset
-        self.system = system_prompt(self.regime, self.table, self.firm_name, offset)
+        if prompt_variant == "original":
+            self._system_prompt, self._history_table, self._question = system_prompt, history_table, question
+        elif prompt_variant == "paraphrase":   # amendment 4 (c): same rules and numbers, new wording
+            from . import prompts_paraphrase as pp
+            self._system_prompt, self._history_table, self._question = pp.system_prompt, pp.history_table, pp.question
+        else:
+            raise ValueError(f"unknown prompt variant {prompt_variant!r}")
+        self.system = self._system_prompt(self.regime, self.table, self.firm_name, offset)
 
     async def decide(self, step: str, ctx: dict) -> Decision:
         ctx = dict(ctx)
         ctx["firm_name"] = self.firm_name
         ctx["offset"] = self.offset
-        ctx["history"] = history_table(ctx.get("history_rows") or [], self.regime, self.offset)
-        user, schema = question(step, ctx)
+        ctx["history"] = self._history_table(ctx.get("history_rows") or [], self.regime, self.offset)
+        user, schema = self._question(step, ctx)
         resp = await self.client.complete(self.system, user, schema)
         resp.prompt_user = user
         if not resp.ok:

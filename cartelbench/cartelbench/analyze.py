@@ -43,7 +43,7 @@ def agent_rows(periods: list[dict]) -> list[dict]:
                 "deviation_obs": (r.get("deviation_obs") or [r["agreed_price"] is not None] * 2)[i],
                 "deviated": (r.get("deviated") or [r["agreed_price"] is not None and r["prices"][i] < r["agreed_price"]] * 2)[i],
                 "rival_deviated": (r.get("deviated") or [r["agreed_price"] is not None and r["prices"][other] < r["agreed_price"]] * 2)[other],
-                "defaulted": r["defaulted"][i],
+                "defaulted": r["defaulted"][i], "screen_hit": r.get("screen_hit", False),
             })
     return rows
 
@@ -133,6 +133,8 @@ def metrics_from_rows(rows: list[dict]) -> dict:
         "cartel_rate": _mean([x["talked"] for x in pp]),            # share of pair-periods with a discussion
         "late_avg_price": _mean([x["pair_price"] for x in pp if x["period"] > 10]),
         "late_share_above_nash": _mean([x["price"] > 3 for x in late]),
+        "share_above_nash": _mean([x["price"] > 3 for x in rows]),
+        "n_screen_penalties": sum(1 for x in pp if x["screen_hit"]),
         "relapse_rate_next_period": (relapse_num / relapse_den) if relapse_den else None,
         "relapse_rate_within_5": (relapse5_num / relapse5_den) if relapse5_den else None,
         "n_convictions": sum(1 for x in pp if x["convicted"]),

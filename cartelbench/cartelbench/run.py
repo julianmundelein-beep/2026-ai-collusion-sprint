@@ -8,11 +8,23 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import pathlib
 import sys
 
 from .engine import RunConfig, run_sync
 from .llm import anthropic_api_key, make_client
 from .regimes import REGIMES
+from .util import EVIDENCE_DIR, git_commit, now_iso
+
+LAUNCH_LOG = EVIDENCE_DIR / "ledger" / "launches.jsonl"
+
+
+def log_launch(row: dict, path=None) -> None:
+    """Run ledger (amendment 4 (d)): one line when a run starts and one when it ends, so aborted runs stay listed."""
+    path = pathlib.Path(path or LAUNCH_LOG)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a") as fh:
+        fh.write(json.dumps(row, default=str) + "\n")
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -22,7 +34,8 @@ def build_parser() -> argparse.ArgumentParser:
     ap.add_argument("--provider", choices=["anthropic", "openai"], default="anthropic")
     ap.add_argument("--base-url", default=os.environ.get("OPENAI_BASE_URL", ""), help="OpenAI-compatible endpoint (provider openai)")
     ap.add_argument("--api-key-env", default="OPENAI_API_KEY", help="env var holding the key for provider openai")
-    ap.add_argument("--player", choices=["llm", "collude", "deviate", "nash", "random", "tit"], default="llm")
+    ap.add_argument("--player", choices=["llm", "collude", "deviate", "nash", "random", "tit", "scatter_emp", "scatter24", "scatter15"],
+                    default="llm")
     ap.add_argument("--duopoles", type=int, default=20)
     ap.add_argument("--pools", type=int, default=4, help="independent pool sessions, the bootstrap unit (default 4 pools of 10 agents)")
     ap.add_argument("--pool-size", type=int, default=0, help="agents per pool; 0 = 2 * duopoles / pools (paper: 20)")
@@ -37,6 +50,8 @@ def build_parser() -> argparse.ArgumentParser:
     ap.add_argument("--out-dir", default=None)
     ap.add_argument("--run-id", default="")
     ap.add_argument("--label", default="")
+    ap.add_argument("--prompt-variant", choices=["original", "paraphrase"], default="original",
+                    help="instruction wording (paraphrase: prompt-robustness arm, amendment 4 (c))")
     return ap
 
 
@@ -48,7 +63,7 @@ def main(argv=None) -> int:
                     payoff_scale=args.payoff_scale,
                     detection_prob=args.detection, fine=args.fine, effort=args.effort, concurrency=args.concurrency,
                     max_periods=args.max_periods, run_id=args.run_id, label=args.label, base_url=args.base_url,
-                    api_key_env=args.api_key_env)
+                    api_key_env=args.api_key_env, prompt_variant=args.prompt_variant)
     if args.out_dir:
         cfg.out_dir = args.out_dir
     client = None
@@ -59,7 +74,17 @@ def main(argv=None) -> int:
             return 2
         client = make_client(args.provider, args.model, effort=args.effort, concurrency=args.concurrency,
                              base_url=args.base_url, api_key_env=args.api_key_env)
-    summary = run_sync(cfg, client, generated_by="python3 -m cartelbench.run " + " ".join(argv or sys.argv[1:]))
+    if not cfg.run_id:
+        cfg.run_id = f"{cfg.regime}_{cfg.model.replace('/', '-')}_{now_iso().replace(':', '').replace('-', '')}_s{cfg.seed}"
+    argline = " ".join(argv or sys.argv[1:])
+    log_launch({"event": "start", "run_id": cfg.run_id, "args": argline, "out_dir": cfg.out_dir, "commit": git_commit(), "time": now_iso()})
+    try:
+        summary = run_sync(cfg, client, generated_by="python3 -m cartelbench.run " + argline)
+    except BaseException as exc:  # noqa: BLE001 (also KeyboardInterrupt: the run is listed as aborted)
+        log_launch({"event": "end", "run_id": cfg.run_id, "status": "aborted", "error": f"{type(exc).__name__}: {str(exc)[:300]}", "time": now_iso()})
+        raise
+    log_launch({"event": "end", "run_id": cfg.run_id, "status": "complete", "cost_usd": summary["n_table"].get("cost_usd"),
+                "calls": summary["n_table"].get("calls"), "time": now_iso()})
     m = summary["metrics"]
     print(json.dumps({"run_id": summary["run_id"], "periods_per_pool": summary["periods_per_pool"],
                       "n_table": summary["n_table"],

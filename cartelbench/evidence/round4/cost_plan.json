@@ -1,0 +1,194 @@
+{
+  "header": true,
+  "generated_by": "python3 cartelbench/scripts/cost_plan.py",
+  "commit": "49c818e6d222b2ec33011f09ab558cd3dbff62e4-dirty",
+  "time": "2026-10-24T19:01:59Z",
+  "note": "Do not edit by hand.",
+  "items": [
+    {
+      "block": "K1",
+      "arm": "Haiku laissez_faire",
+      "duopoles": 20,
+      "per_duopoly": 0.04582231975,
+      "upper_per_duopoly": 0.0485689135,
+      "expected_usd": 0.916,
+      "upper_usd": 0.971
+    },
+    {
+      "block": "K1",
+      "arm": "Haiku fine",
+      "duopoles": 20,
+      "per_duopoly": 0.03995883775,
+      "upper_per_duopoly": 0.0485689135,
+      "expected_usd": 0.799,
+      "upper_usd": 0.971
+    },
+    {
+      "block": "K1",
+      "arm": "Haiku leniency",
+      "duopoles": 20,
+      "per_duopoly": 0.03210911425,
+      "upper_per_duopoly": 0.0485689135,
+      "expected_usd": 0.642,
+      "upper_usd": 0.971
+    },
+    {
+      "block": "K1",
+      "arm": "Haiku reward",
+      "duopoles": 20,
+      "per_duopoly": 0.028637302000000003,
+      "upper_per_duopoly": 0.0485689135,
+      "expected_usd": 0.573,
+      "upper_usd": 0.971
+    },
+    {
+      "block": "K2",
+      "arm": "Sonnet laissez_faire",
+      "duopoles": 10,
+      "per_duopoly": 0.34551961000000003,
+      "upper_per_duopoly": 0.34551961000000003,
+      "expected_usd": 3.455,
+      "upper_usd": 3.455
+    },
+    {
+      "block": "K2",
+      "arm": "Sonnet fine",
+      "duopoles": 10,
+      "per_duopoly": 0.20297488000000002,
+      "upper_per_duopoly": 0.34551961000000003,
+      "expected_usd": 2.03,
+      "upper_usd": 3.455
+    },
+    {
+      "block": "K2",
+      "arm": "Sonnet leniency",
+      "duopoles": 10,
+      "per_duopoly": 0.1989494,
+      "upper_per_duopoly": 0.34551961000000003,
+      "expected_usd": 1.989,
+      "upper_usd": 3.455
+    },
+    {
+      "block": "K2",
+      "arm": "Sonnet reward",
+      "duopoles": 10,
+      "per_duopoly": 0.23485526,
+      "upper_per_duopoly": 0.34551961000000003,
+      "expected_usd": 2.349,
+      "upper_usd": 3.455
+    },
+    {
+      "block": "K2",
+      "arm": "Sonnet nocomm",
+      "duopoles": 20,
+      "per_duopoly": 0.09407978239757689,
+      "upper_per_duopoly": 0.34551961000000003,
+      "note": "Sonnet fine cost times the Haiku nocomm/fine ratio",
+      "expected_usd": 1.882,
+      "upper_usd": 6.91
+    },
+    {
+      "block": "C",
+      "arm": "Haiku laissez_faire paraphrase",
+      "duopoles": 20,
+      "per_duopoly": 0.04582231975,
+      "upper_per_duopoly": 0.0485689135,
+      "expected_usd": 0.916,
+      "upper_usd": 0.971
+    },
+    {
+      "block": "C",
+      "arm": "Haiku fine paraphrase",
+      "duopoles": 20,
+      "per_duopoly": 0.03995883775,
+      "upper_per_duopoly": 0.0485689135,
+      "expected_usd": 0.799,
+      "upper_usd": 0.971
+    },
+    {
+      "block": "C",
+      "arm": "Haiku leniency paraphrase",
+      "duopoles": 20,
+      "per_duopoly": 0.03210911425,
+      "upper_per_duopoly": 0.0485689135,
+      "expected_usd": 0.642,
+      "upper_usd": 0.971
+    },
+    {
+      "block": "C",
+      "arm": "Haiku reward paraphrase",
+      "duopoles": 20,
+      "per_duopoly": 0.028637302000000003,
+      "upper_per_duopoly": 0.0485689135,
+      "expected_usd": 0.573,
+      "upper_usd": 0.971
+    },
+    {
+      "block": "K3",
+      "arm": "Sonnet nocomm + screen",
+      "duopoles": 20,
+      "per_duopoly": 0.09407978239757689,
+      "upper_per_duopoly": 0.34551961000000003,
+      "expected_usd": 1.882,
+      "upper_usd": 6.91
+    },
+    {
+      "block": "K3",
+      "arm": "Haiku nocomm + screen",
+      "duopoles": 20,
+      "per_duopoly": 0.0185211035,
+      "upper_per_duopoly": 0.0485689135,
+      "expected_usd": 0.37,
+      "upper_usd": 0.971
+    },
+    {
+      "block": "K3",
+      "arm": "Haiku fine + screen",
+      "duopoles": 20,
+      "per_duopoly": 0.03995883775,
+      "upper_per_duopoly": 0.0485689135,
+      "expected_usd": 0.799,
+      "upper_usd": 0.971
+    }
+  ],
+  "blocks": {
+    "K1": {
+      "expected_usd": 2.93,
+      "upper_usd": 3.884
+    },
+    "K2": {
+      "expected_usd": 11.705,
+      "upper_usd": 20.73
+    },
+    "C": {
+      "expected_usd": 2.93,
+      "upper_usd": 3.884
+    },
+    "K3": {
+      "expected_usd": 3.051,
+      "upper_usd": 8.852
+    }
+  },
+  "total": {
+    "expected_usd": 20.62,
+    "upper_usd": 37.35,
+    "cap_usd": 50.0
+  },
+  "measured_per_duopoly": {
+    "claude-haiku-5-5 clone": 0.0485689135,
+    "claude-haiku-5-5 fine_certain": 0.026045032000000003,
+    "claude-haiku-5-5 fine": 0.03995883775,
+    "claude-sonnet-5-5 fine": 0.20297488000000002,
+    "claude-haiku-5-5 instructed_cartel": 0.025456412,
+    "claude-haiku-5-5 laissez_faire": 0.04582231975,
+    "claude-sonnet-5-5 laissez_faire": 0.34551961000000003,
+    "claude-haiku-5-5 leniency": 0.03210911425,
+    "claude-sonnet-5-5 leniency": 0.1989494,
+    "claude-haiku-5-5 nocomm": 0.0185211035,
+    "claude-haiku-5-5 noreport": 0.029829648999999996,
+    "claude-haiku-5-5 placebo": 0.046897997999999996,
+    "claude-haiku-5-5 rematch": 0.026983818,
+    "claude-haiku-5-5 reward": 0.028637302000000003,
+    "claude-sonnet-5-5 reward": 0.23485526
+  }
+}

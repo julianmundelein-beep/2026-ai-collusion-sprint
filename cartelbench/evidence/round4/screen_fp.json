@@ -1,0 +1,135 @@
+{
+  "header": true,
+  "generated_by": "python3 cartelbench/scripts/screen_fp.py",
+  "commit": "dd0c35071113cd23e45102be35313ec27a86cef5",
+  "time": "2026-10-24T21:23:23Z",
+  "note": "Do not edit by hand.",
+  "screen": {
+    "k": 2,
+    "p": 4,
+    "fine": 200
+  },
+  "players": {
+    "nash": {
+      "pairing_episodes": 910,
+      "pair_periods": 4820,
+      "flagged_share": 0.0,
+      "episodes_2_periods_or_more": 780,
+      "flagged_share_2_periods_or_more": 0.0,
+      "screen_penalties": 0,
+      "penalties_per_pair_period": 0.0,
+      "points_per_agent_period_screen": 100.0,
+      "points_per_agent_period_no_screen": 100.0,
+      "cost_points_per_agent_period": 0.0,
+      "cost_share": 0.0,
+      "avg_price": 3.0,
+      "runs": [
+        "nocomm_screen_scripted-nash_s81",
+        "nocomm_scripted-nash_s81"
+      ],
+      "periods_sha256_without_header": [
+        "3d504880b8de33e64243c9668a319fa1f48615729579a9dd82840397d05e4dbd",
+        "a310eaac5a6490857944f48e419becdeceab6992edf9cc3f3e4f1b85ddff2be3"
+      ]
+    },
+    "scatter_emp": {
+      "pairing_episodes": 790,
+      "pair_periods": 5240,
+      "flagged_share": 0.0,
+      "episodes_2_periods_or_more": 710,
+      "flagged_share_2_periods_or_more": 0.0,
+      "screen_penalties": 0,
+      "penalties_per_pair_period": 0.0,
+      "points_per_agent_period_screen": 99.72919847328244,
+      "points_per_agent_period_no_screen": 99.72919847328244,
+      "cost_points_per_agent_period": 0.0,
+      "cost_share": 0.0,
+      "avg_price": 3.1868320610687024,
+      "runs": [
+        "nocomm_screen_scripted-scatter_emp_s82",
+        "nocomm_scripted-scatter_emp_s82"
+      ],
+      "periods_sha256_without_header": [
+        "f20a439e99a69bf27c8b4780b73e7f9a738cd67ea05024378ac7584e92f12da5",
+        "b1a387d46727881ba701e0f81173cfa06dd81f79349f932732c7e985cd3d1156"
+      ]
+    },
+    "scatter24": {
+      "pairing_episodes": 870,
+      "pair_periods": 5610,
+      "flagged_share": 0.0,
+      "episodes_2_periods_or_more": 720,
+      "flagged_share_2_periods_or_more": 0.0,
+      "screen_penalties": 0,
+      "penalties_per_pair_period": 0.0,
+      "points_per_agent_period_screen": 92.75222816399287,
+      "points_per_agent_period_no_screen": 92.75222816399287,
+      "cost_points_per_agent_period": 0.0,
+      "cost_share": 0.0,
+      "avg_price": 3.0000891265597147,
+      "runs": [
+        "nocomm_screen_scripted-scatter24_s83",
+        "nocomm_scripted-scatter24_s83"
+      ],
+      "periods_sha256_without_header": [
+        "225aa06e905871c73f6d45654928b4e5e00958a7b0581ecfcda29e876c4ddb63",
+        "16b4c5aa549708cdc0be75f3a5c1c73e88254b85e560367476c437d8baaf6f02"
+      ]
+    },
+    "scatter15": {
+      "pairing_episodes": 790,
+      "pair_periods": 5140,
+      "flagged_share": 0.01139240506329114,
+      "episodes_2_periods_or_more": 660,
+      "flagged_share_2_periods_or_more": 0.013636363636363636,
+      "screen_penalties": 9,
+      "penalties_per_pair_period": 0.0017509727626459145,
+      "points_per_agent_period_screen": 78.2376459143969,
+      "points_per_agent_period_no_screen": 78.58784046692607,
+      "cost_points_per_agent_period": 0.35019455252917453,
+      "cost_share": 0.004456090795325496,
+      "avg_price": 2.9976653696498055,
+      "runs": [
+        "nocomm_screen_scripted-scatter15_s84",
+        "nocomm_scripted-scatter15_s84"
+      ],
+      "periods_sha256_without_header": [
+        "b9518762c617641d1ad7859595f976ea1ebba6c35a2e725e1c23ac06c7ae8b63",
+        "11e5fe86447aa2a558646ea113b489d7b4e44449fb63076f126e6d40d68a70a6"
+      ]
+    },
+    "collude": {
+      "pairing_episodes": 760,
+      "pair_periods": 5020,
+      "flagged_share": 0.8552631578947368,
+      "episodes_2_periods_or_more": 650,
+      "flagged_share_2_periods_or_more": 1.0,
+      "screen_penalties": 2330,
+      "penalties_per_pair_period": 0.4641434262948207,
+      "points_per_agent_period_screen": 87.17131474103586,
+      "points_per_agent_period_no_screen": 180.0,
+      "cost_points_per_agent_period": 92.82868525896414,
+      "cost_share": 0.5157149181053564,
+      "avg_price": 9.0,
+      "runs": [
+        "nocomm_screen_scripted-collude_s85",
+        "nocomm_scripted-collude_s85"
+      ],
+      "periods_sha256_without_header": [
+        "e41b51d342429c308d17901f4a6263d0abccc9d5e1d3fe88cd46bef81dc87fdd",
+        "97cbc91e44d205d5d26d6dd2d3afc70e81a0eb07fe2fd063ade24cccf512651e"
+      ]
+    }
+  },
+  "legitimate": [
+    "nash",
+    "scatter_emp",
+    "scatter24",
+    "scatter15"
+  ],
+  "false_positive_rate_max": 0.01139240506329114,
+  "threshold": 0.05,
+  "below_threshold": true,
+  "true_positive_rate_collude": 0.8552631578947368,
+  "positive_control_flagged_share_2_periods_or_more": 1.0
+}

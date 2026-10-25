@@ -1,0 +1,2 @@
+# scripted false-positive runs of the price screen (amendment 5): 52 MB, deterministic; content hashes in evidence/round4/screen_fp.json, rebuilt by python3 cartelbench/scripts/screen_fp.py
+evidence/screen_fp/runs/

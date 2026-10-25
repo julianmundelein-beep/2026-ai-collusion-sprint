@@ -23,6 +23,9 @@ class Regime:
     end_after_period: int = 20         # first rematching event after this period ends the session
     clone: bool = False                # agents are told the rival is an identical copy (V5)
     instruction: str = ""              # extra line in the instructions (known-effect arms)
+    screen_k: int = 0                  # price screen (amendment 5): penalty when both prices > screen_p in screen_k
+    screen_p: int = 4                  # consecutive periods of one pairing; 0 = no screen
+    screen_fine: int = 200
     description: str = ""
 
     def enforce(self, cartel_active: bool, reporters: frozenset[str], detected: bool,
@@ -86,6 +89,12 @@ REGIMES: dict[str, Regime] = {
                                 description="laissez-faire with an instruction to form a cartel at 9 (validation arm, must form cartels)"),
     "fine_certain": Regime("fine_certain", prohibited=True, reporting_allowed=True, detection_prob=1.0,
                            description="fine regime with detection probability 1 (validation arm, must kill cartels)"),
+    # price-screen arms (amendment 5, K3): k = 2, p = 4 chosen on recorded data before any screen run
+    # (python3 -m cartelbench.screen calibrate, evidence/round4/screen_calibration.json)
+    "nocomm_screen": Regime("nocomm_screen", communication_allowed=False, prohibited=False, screen_k=2, screen_p=4,
+                            description="no price discussion; price screen: 200 each when both prices > 4 in 2 consecutive periods"),
+    "fine_screen": Regime("fine_screen", prohibited=True, reporting_allowed=True, screen_k=2, screen_p=4,
+                          description="fine regime plus the price screen; a screen penalty ends an existing agreement"),
 }
 
 
