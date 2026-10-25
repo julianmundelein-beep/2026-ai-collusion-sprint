@@ -261,8 +261,15 @@ class Builder:
             tw = OxmlElement("w:tblW"); tblpr.append(tw)
         tw.set(qn("w:w"), "9360"); tw.set(qn("w:type"), "dxa")
         # column widths by the longest cell text, bounded
-        lens = [max(len(r[c]) if c < len(r) else 0 for r in rows) for c in range(ncols)]
-        lens = [min(max(l, 4), 28) for l in lens]
+        # column weight: the longest cell (capped) but never less than the longest single word, so numbers
+        # and header words do not wrap (Julian's mark J8)
+        def cell(r, c):
+            return clean(r[c]) if c < len(r) else ""
+        lens = []
+        for c in range(ncols):
+            texts = [cell(r, c) for r in rows]
+            longest_word = max((len(w) for t in texts for w in t.split()), default=4)
+            lens.append(max(min(max(len(t) for t in texts), 24), longest_word + 2, 5))
         total = sum(lens)
         widths = [int(9360 * l / total) for l in lens]
         grid = tbl.find(qn("w:tblGrid"))
@@ -294,12 +301,16 @@ class Builder:
                     ppr = OxmlElement("w:pPr"); p.insert(0, ppr)
                 sp = OxmlElement("w:spacing"); sp.set(qn("w:after"), "0"); sp.set(qn("w:line"), "240"); sp.set(qn("w:lineRule"), "auto")
                 ppr.append(sp)
+                if ri < len(rows) - 1:  # keep the table on one page where it fits
+                    ppr.insert(0, OxmlElement("w:keepNext"))  # schema order: keepNext before spacing
                 text = clean(row[ci]) if ci < len(row) else ""
                 add_inline_runs(p, text, size=size, base_bold=(ri == 0))
         self.paragraph("", space_after=60)
 
 
 def fill_title_block(document, title: str, author: str, affiliation: str):
+    """Title at 16 pt (at most three lines); the template's three-column author table is replaced by one centred
+    paragraph, so name and affiliation share one axis (Julian's mark J2)."""
     body = document.element.body
     for p in body.iter(qn("w:p")):
         if para_text(p) == "PROJECT TITLE":
@@ -307,24 +318,48 @@ def fill_title_block(document, title: str, author: str, affiliation: str):
                 t = r.find(qn("w:t"))
                 if t is not None and t.text == "PROJECT TITLE":
                     t.text = title
+                rpr = r.find(qn("w:rPr"))
+                if rpr is not None:
+                    for tag in ("w:sz", "w:szCs"):
+                        e = rpr.find(qn(tag))
+                        if e is not None:
+                            e.set(qn("w:val"), "32")
     author_ps = [p for p in body.iter(qn("w:p")) if para_text(p).startswith("Author name")]
-    for k, p in enumerate(author_ps):
-        for r in p.findall(qn("w:r")):
-            p.remove(r)
-        if k == 1:  # middle cell of the first row: a single author sits centred
-            r = OxmlElement("w:r"); r.append(run_props(bold=True))
-            t = OxmlElement("w:t"); t.set(qn("xml:space"), "preserve"); t.text = author
-            br = OxmlElement("w:br"); br.set(qn("w:type"), "textWrapping")
-            t2 = OxmlElement("w:t"); t2.set(qn("xml:space"), "preserve"); t2.text = affiliation
-            r.append(t); r.append(br)
-            r2 = OxmlElement("w:r"); r2.append(run_props()); r2.append(t2)
-            p.append(r); p.append(r2)
-    # drop the second author row (authors 4 to 6)
-    for p in author_ps[3:]:
-        tr = p.getparent().getparent()
-        if tr.tag == qn("w:tr") and tr.getparent() is not None:
-            tr.getparent().remove(tr)
-            break
+    if not author_ps:
+        return
+    tbl = author_ps[0]
+    while tbl is not None and tbl.tag != qn("w:tbl"):
+        tbl = tbl.getparent()
+    para = OxmlElement("w:p")
+    ppr = OxmlElement("w:pPr")
+    sp = OxmlElement("w:spacing"); sp.set(qn("w:after"), "120"); sp.set(qn("w:line"), "240"); sp.set(qn("w:lineRule"), "auto")
+    jc = OxmlElement("w:jc"); jc.set(qn("w:val"), "center")
+    ppr.append(sp); ppr.append(jc); para.append(ppr)
+    r = OxmlElement("w:r"); r.append(run_props(bold=True))
+    t = OxmlElement("w:t"); t.set(qn("xml:space"), "preserve"); t.text = author
+    br = OxmlElement("w:br"); br.set(qn("w:type"), "textWrapping")
+    r.append(t); r.append(br)
+    r2 = OxmlElement("w:r"); r2.append(run_props())
+    t2 = OxmlElement("w:t"); t2.set(qn("xml:space"), "preserve"); t2.text = affiliation
+    r2.append(t2)
+    para.append(r); para.append(r2)
+    tbl.addprevious(para)
+    tbl.getparent().remove(tbl)
+
+
+def add_page_numbers(document):
+    """Page number centred in the footer of every page (Julian's mark J4)."""
+    footer = document.sections[0].footer
+    footer.is_linked_to_previous = False
+    p = footer.paragraphs[0]._p
+    ppr = p.find(qn("w:pPr"))
+    if ppr is None:
+        ppr = OxmlElement("w:pPr"); p.insert(0, ppr)
+    jc = OxmlElement("w:jc"); jc.set(qn("w:val"), "center"); ppr.append(jc)
+    fld = OxmlElement("w:fldSimple"); fld.set(qn("w:instr"), "PAGE")
+    r = OxmlElement("w:r"); r.append(run_props(size=9))
+    t = OxmlElement("w:t"); t.text = "1"; r.append(t)
+    fld.append(r); p.append(fld)
 
 
 def fill_abstract(document, blocks):
@@ -409,6 +444,7 @@ def main(argv=None) -> int:
             b.figure((args.md.parent / blk[1]).resolve(), blk[2])
         elif kind == "table":
             b.table(blk[1], blk[2])
+    add_page_numbers(d)
     d.save(str(args.out))
     words = sum(len(clean(x[1]).split()) for x in md["body"] if x[0] in ("p", "bullet", "num"))
     abstract_words = sum(len(clean(x[1]).split()) for x in md["abstract"] if x[0] == "p")

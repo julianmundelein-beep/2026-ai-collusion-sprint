@@ -21,14 +21,14 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
-LABEL = {"laissez_faire": "LF", "fine": "Fine", "leniency": "Len.", "reward": "Rew.",
-         "noreport": "NoRep.", "rematch": "ReMatch"}
+LABEL = {"laissez_faire": "LF", "fine": "Fi", "leniency": "Le", "reward": "Re",
+         "noreport": "NoRep", "rematch": "ReMatch"}
 SHORT = {1: "Deterrence", 2: "Detection by reports", 3: "Recidivism", 4: "Average prices", 5: "Cartel prices",
          6: "Price deviations", 7: "Reports as punishment", 8: "Altruistic reports"}
-YLABEL = {"cartel_formation_rate": "cartel formation rate", "report_rate_given_cartel": "report rate given cartel",
-          "relapse_rate_next_period": "relapse rate, next period", "avg_price": "average price",
+YLABEL = {"cartel_formation_rate": "formation rate", "report_rate_given_cartel": "report rate",
+          "relapse_rate_next_period": "relapse rate", "avg_price": "average price",
           "cartel_price": "cartel price", "deviation_rate": "deviation rate",
-          "public_report_rate_given_only_rival_deviated": "public reports after rival deviation"}
+          "public_report_rate_given_only_rival_deviated": "public reports"}
 TEST_LABEL = {"lf_minus_fine": "LF-Fine", "fine_minus_leniency": "Fine-Len.", "fine_minus_noreport": "Fine-NoRep.",
               "leniency_minus_fine": "Len.-Fine", "fine_minus_lf": "Fine-LF",
               "leniency_minus_lf": "Len.-LF", "lf_minus_leniency": "LF-Len."}
@@ -56,17 +56,19 @@ def read_bootstrap(path: pathlib.Path, runs: dict[str, str]) -> dict[str, dict[s
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--scorecard", type=pathlib.Path, required=True)
-    ap.add_argument("--bootstrap", type=pathlib.Path, required=True)
+    ap.add_argument("--bootstrap", type=pathlib.Path, default=None)
+    ap.add_argument("--pools", default="8")
     ap.add_argument("--out", type=pathlib.Path, default=pathlib.Path("paper/figures/figure1_landscape.png"))
     args = ap.parse_args(argv)
     sc = json.loads(args.scorecard.read_text())
-    ci = read_bootstrap(args.bootstrap, sc.get("runs", {}))
+    ci = read_bootstrap(args.bootstrap, sc.get("runs", {})) if args.bootstrap else {}
+    perm = {(t["row"], t["test"]): t["permutation"]["p"] for t in sc.get("permutation_tests", []) if t.get("permutation")}
     plt.rcParams.update({"font.family": "sans-serif", "font.size": 8, "axes.titlesize": 8, "axes.labelsize": 8})
-    fig, axes = plt.subplots(2, 4, figsize=(6.5, 3.1))
+    fig, axes = plt.subplots(2, 4, figsize=(6.5, 3.3))
     for ax, row in zip(axes.flat, sc["rows"]):
         state = row.get("replicated")
         verdict, color = ("reproduced", GREEN) if state else (("not testable", GREY) if state is None else ("not reproduced", RED))
-        ax.set_title(f"{row['n']}. {SHORT[row['n']]}\n{verdict}", loc="left", color=color, fontsize=7.5)
+        ax.set_title(f"{row['n']}. {SHORT[row['n']]}\n{verdict}", loc="left", color=color, fontsize=7)
         key = row["measure"]
         if state is not None:
             ax.set_ylabel(YLABEL.get(key, key), fontsize=6.5)
@@ -104,13 +106,14 @@ def main(argv=None) -> int:
         lines = []
         for tkey, t in (row.get("tests") or {}).items():
             if t and t.get("point") is not None and "reported_only" not in tkey:
-                lines.append(f"{TEST_LABEL.get(tkey, tkey)}: {t['point']:.2f} [{t['lo']:.2f}, {t['hi']:.2f}]")
-        if lines:
-            ax.text(0.0, -0.3, "\n".join(lines), transform=ax.transAxes, fontsize=5.6, va="top", color="#52514e")
+                pv = perm.get((row["n"], tkey))
+                ptxt = f", p {pv:.3f}" if pv is not None else ""
+                lines.append(f"{TEST_LABEL.get(tkey, tkey)}: {t['point']:+.3f} [{t['lo']:+.3f}, {t['hi']:+.3f}]{ptxt}")
+        # differences, intervals and permutation p are reported in the scorecard table of the report
     handles = [plt.Line2D([], [], marker="o", ms=5.5, mfc="white", mec=HUMAN, mew=1.2, ls="none", label="Humans (Bigoni et al.), pooled"),
-               plt.Line2D([], [], marker="s", ms=5, color=LLM, ls="none", label="Claude Haiku 5.5, 95 percent cluster-bootstrap interval over 4 pool sessions")]
+               plt.Line2D([], [], marker="s", ms=5, color=LLM, ls="none", label=f"Claude Haiku 5.5, {args.pools} pool sessions per core regime")]
     fig.legend(handles=handles, loc="lower center", ncol=2, frameon=False, fontsize=7, bbox_to_anchor=(0.5, 0.0))
-    fig.tight_layout(h_pad=1.4, w_pad=0.8, rect=(0, 0.08, 1, 1))
+    fig.tight_layout(h_pad=1.2, w_pad=1.0, rect=(0, 0.07, 1, 1))
     args.out.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(args.out, dpi=300)
     print(f"wrote {args.out}")
