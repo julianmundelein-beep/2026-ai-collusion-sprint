@@ -18,3 +18,5 @@
 {"event": "start", "cell": ["claude-haiku-5-5", "s4_all", "laissez_faire"], "command": "-m cartelbench.run --regime laissez_faire --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 241 --stakes s4_all --concurrency 5", "check_usd": 8.489, "time": "2026-10-25T06:41:53Z"}
 {"event": "end", "cell": ["claude-haiku-5-5", "s2_gain_b", "fine"], "returncode": 0, "spent_usd": 5.4, "time": "2026-10-25T06:44:53Z"}
 {"event": "start", "cell": ["claude-haiku-5-5", "s1_money", "fine"], "command": "-m cartelbench.run --regime fine --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 202 --stakes s1_money --concurrency 5", "check_usd": 9.132, "time": "2026-10-25T06:44:53Z"}
+{"event": "end", "cell": ["claude-haiku-5-5", "s2_gain", "laissez_faire"], "returncode": 0, "spent_usd": 6.379, "time": "2026-10-25T06:52:13Z"}
+{"event": "start", "cell": ["claude-haiku-5-5", "s1_money", "leniency"], "command": "-m cartelbench.run --regime leniency --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 203 --stakes s1_money --concurrency 5", "check_usd": 9.77, "time": "2026-10-25T06:52:13Z"}
