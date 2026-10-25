@@ -19,13 +19,17 @@
   <a href="https://doi.org/10.1111/j.1756-2171.2012.00170.x">Source experiment: Bigoni et al. (2012)</a>
 </p>
 
-**CartelBench replays a published cartel laboratory experiment with LLM pricing agents under the human subjects' rules, so that every number sits next to the published human value, and tests whether fines, leniency programmes and whistleblower rewards work on four models from three families.** Track 1: Markets and Collusion, research questions 1.5 and 1.1.
+**What it is.** CartelBench replays a published cartel laboratory experiment with LLM pricing agents under the human subjects' rules, so that every number sits next to the published human value.
+
+**The question.** Do fines, leniency programmes and whistleblower rewards, the instruments competition authorities use against human cartels, work on LLM pricing agents? And if not, what does? Tested on four models from three families: Claude Haiku 5.5 and Sonnet 5.5, Qwen2.5-32B, Llama-3.1-8B.
+
+**Submitted as.** Track 1: Markets and Collusion; research question 1.5 (which single restriction removes the most collusion at the least cost) and 1.1 (which variables are necessary for collusion to emerge).
 
 <p align="center">
   <img src="docs/figures/cartoon.svg" width="100%" alt="Animated cartoon in a twelve-second loop: four robot sellers named Haiku, Sonnet, Qwen and Llama stand behind market stalls with price signs reading 3. They whisper 'psst, 9?' to each other and every sign rises to 9. An authority with a magnifying glass walks in and draws a dashed line at 4; the signs slide down and sit exactly on the line, reading 4, except Llama's, which hovers above it at 5.">
 </p>
 
-## The main finding: the published threshold becomes the price
+<h2 align="center">The main finding: the published threshold becomes the price</h2>
 
 ![Four panels, one per model (Haiku 5.5, Sonnet 5.5, Qwen2.5-32B, Llama-3.1-8B). Each plots the average price with a 95 percent interval and the modal price against the announced screen threshold p from 3 to 7, with the line price equals p, the Nash price 3 and the joint optimum 9 marked. Sonnet's points lie exactly on the line at every threshold with 93 to 100 percent of prices at p; Haiku and Qwen follow the line with their modal price on it; Llama's points stay near 4.5 to 5.7 and off the line.](cartelbench/evidence/round7/diagonal.png)
 
