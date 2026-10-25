@@ -84,7 +84,7 @@ def system_prompt(regime: Regime, table: PayoffTable, firm_name: str, offset: in
                 ]
             parts += ["At the end of a period in which a penalty was paid, both firms learn how many firms reported (0, 1 or 2)."]
         parts += [""]
-    if regime.screen_k:
+    if regime.screen_k and regime.screen_announced:
         nth = {2: "second", 3: "third", 4: "fourth", 5: "fifth", 6: "sixth"}.get(regime.screen_k, f"{regime.screen_k}th")
         parts += [
             "PRICE SCREEN",
@@ -128,14 +128,18 @@ def history_table(rows: list[dict], regime: Regime, offset: int = 0) -> str:
     if not rows:
         return "No previous periods with this other firm."
     cols = ["period", "discussion", "agreed", "your price", "other price", "your points", "other points"]
-    if regime.prohibited or regime.screen_k:
+    # the authority column: always under a prohibition or an announced screen; under an unannounced screen
+    # (amendment 6) only from the first penalty of this pairing on, so the table equals nocomm's until then
+    authority = regime.prohibited or (regime.screen_k and regime.screen_announced) or \
+        (regime.screen_k and any(r.get("authority_note", "-") != "-" for r in rows))
+    if authority:
         cols.append("authority")
     out = [" | ".join(cols)]
     for r in rows:
         cells = [str(r["period"]), "yes" if r["talked"] else "no",
                  str(r["agreed_price"] + offset) if r["agreed_price"] is not None else "-",
                  str(r["own_price"] + offset), str(r["rival_price"] + offset), str(r["own_points"]), str(r["rival_points"])]
-        if regime.prohibited or regime.screen_k:
+        if authority:
             cells.append(r.get("authority_note", "-"))
         out.append(" | ".join(cells))
     return "\n".join(out)

@@ -52,6 +52,9 @@ def build_parser() -> argparse.ArgumentParser:
     ap.add_argument("--label", default="")
     ap.add_argument("--prompt-variant", choices=["original", "paraphrase"], default="original",
                     help="instruction wording (paraphrase: prompt-robustness arm, amendment 4 (c))")
+    ap.add_argument("--screen-p", type=int, default=None, help="threshold of a screen regime (amendment 6, N2; default: the regime's)")
+    ap.add_argument("--partner", choices=["nash", "scatter_emp", "scatter24", "scatter15", "collude", "deviate", "tit"], default="",
+                    help="scripted partner (amendment 6, K): every duopole pairs one LLM agent with this scripted player")
     return ap
 
 
@@ -63,7 +66,7 @@ def main(argv=None) -> int:
                     payoff_scale=args.payoff_scale,
                     detection_prob=args.detection, fine=args.fine, effort=args.effort, concurrency=args.concurrency,
                     max_periods=args.max_periods, run_id=args.run_id, label=args.label, base_url=args.base_url,
-                    api_key_env=args.api_key_env, prompt_variant=args.prompt_variant)
+                    api_key_env=args.api_key_env, prompt_variant=args.prompt_variant, screen_p=args.screen_p, partner=args.partner)
     if args.out_dir:
         cfg.out_dir = args.out_dir
     client = None

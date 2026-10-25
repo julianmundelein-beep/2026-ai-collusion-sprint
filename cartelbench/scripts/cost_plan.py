@@ -31,6 +31,8 @@ def per_duopoly() -> dict[tuple[str, str], float]:
         cfg = json.loads((d / "config.json").read_text()).get("config", {})
         if cfg.get("detection_prob") is not None or cfg.get("fine") is not None:
             continue
+        if cfg.get("screen_p") is not None or cfg.get("partner") or cfg.get("prompt_variant", "original") != "original":
+            continue
         out.setdefault((s["model"], s["regime"]), c)   # first (registered) run per model and regime
     return out
 

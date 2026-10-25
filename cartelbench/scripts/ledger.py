@@ -31,6 +31,7 @@ SECTIONS = {
     "A3": ("3930456", "amendment 3: pools of 10, validation arms at 20 duopoles, placebo, second model"),
     "A4": ("7b727bb", "amendment 4: K1 8 pools, K2 Sonnet 4 pools and nocomm, paraphrase, ledger"),
     "A5": ("61c83a9", "amendment 5: price screen"),
+    "A6": ("83a3179", "amendment 6: screen threshold and announcement (N2), scripted-partner control (K), instructed adversary (N5), open models (N1)"),
 }
 
 
@@ -38,6 +39,8 @@ def section_for(kind: str, model: str, regime: str, seed: int | None, offset: in
     """The latest section that registered this run (by model, regime and seed)."""
     if kind == "pilot":
         return "A2"
+    if seed is not None and 91 <= seed <= 136:
+        return "A6"
     if seed in (71, 72, 73):
         return "A5"
     if seed is not None and 41 <= seed <= 64:

@@ -44,6 +44,8 @@ def agent_rows(periods: list[dict]) -> list[dict]:
                 "deviated": (r.get("deviated") or [r["agreed_price"] is not None and r["prices"][i] < r["agreed_price"]] * 2)[i],
                 "rival_deviated": (r.get("deviated") or [r["agreed_price"] is not None and r["prices"][other] < r["agreed_price"]] * 2)[other],
                 "defaulted": r["defaulted"][i], "screen_hit": r.get("screen_hit", False),
+                "kind": (r.get("kinds") or ["llm", "llm"])[i],      # llm | scripted (partner runs, amendment 6)
+                "both_above_4": r["prices"][0] > 4 and r["prices"][1] > 4,
             })
     return rows
 
@@ -104,6 +106,13 @@ def metrics_from_rows(rows: list[dict]) -> dict:
                 alternating += 1
                 break
     late = [x for x in rows if x["period"] > 10]
+    # amendment 6: the LLM side of partner runs, the price distribution around the screen threshold, evasion patterns
+    llm_rows = [x for x in rows if x["kind"] == "llm"]
+    alt_num = alt_den = 0
+    for lst in by_pairing.values():
+        for k in range(1, len(lst)):
+            alt_den += 1
+            alt_num += int(lst[k]["both_above_4"] != lst[k - 1]["both_above_4"])
     n_cartels = sum(1 for x in pp if x["new_cartel"])
     reported_first_period = sum(1 for x in pp if x["new_cartel"] and len(rep_by_pp.get((x["pairing"], x["period"]), ())) > 0)
     return {
@@ -150,6 +159,18 @@ def metrics_from_rows(rows: list[dict]) -> dict:
         "mean_points_per_agent_period": _mean([x["points"] for x in rows]),
         "defaulted_decisions": sum(x["defaulted"] for x in rows),
         "price_defaults": sum(x["price_defaulted"] for x in rows),
+        # amendment 6
+        "llm_avg_price": _mean([x["price"] for x in llm_rows]),
+        "llm_share_above_nash": _mean([x["price"] > 3 for x in llm_rows]),
+        "llm_late_avg_price": _mean([x["price"] for x in llm_rows if x["period"] > 10]),
+        "llm_points_per_agent_period": _mean([x["points"] for x in llm_rows]),
+        "share_at_4": _mean([x["price"] == 4 for x in rows]),
+        "share_at_5": _mean([x["price"] == 5 for x in rows]),
+        "share_above_4": _mean([x["price"] > 4 for x in rows]),
+        "both_above_4": _mean([x["both_above_4"] for x in pp]),
+        "asymmetric_above_4": _mean([(x["price"] > 4) != (x["rival_price"] > 4) for x in pp]),
+        "alternation_share": (alt_num / alt_den) if alt_den else None,
+        "modal_price": max(range(13), key=lambda q: (sum(x["price"] == q for x in rows), -q)) if rows else None,
     }
 
 
