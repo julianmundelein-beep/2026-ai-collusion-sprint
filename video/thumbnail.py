@@ -49,7 +49,8 @@ def main() -> None:
     for p, v, share, modal in pts:
         build.circle(c, (X(p), Y(v)), 22, fill=build.ACCENT)
     build.paste(c, build.text_block("announced threshold", 34, build.MUTED), ((cx0 + cx1) // 2, cy0 + 30), rise=0, anchor="mt")
-    build.paste(c, build.text_block("price", 34, build.MUTED), (cx0 - 20, cy1 - 10), rise=0, anchor="rb")
+    build.paste(c, build.text_block("price", 34, build.MUTED), (cx0 - 10, cy1 - 18), rise=0, anchor="lb")
+    build.paste(c, build.text_block("Claude Sonnet 5.5", 36, build.ACCENT, "semibold"), (cx1 - 10, cy0 - 30), rise=0, anchor="rb")
     build.paste(c, build.text_block("the threshold becomes the price", 38, build.ACCENT, "semibold", align="center"),
                 ((cx0 + cx1) // 2 - 15, cy0 + 98), rise=0, anchor="mt")
     img = c.convert("RGB").resize((1280, 720), Image.LANCZOS)
