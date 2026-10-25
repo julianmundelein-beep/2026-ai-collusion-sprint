@@ -164,3 +164,14 @@ def test_existing_regimes_unchanged():
         reg = get_regime(key)
         assert reg.screen_announced
         assert ("PRICE SCREEN" in system_prompt(reg, t, "Firm A")) == bool(reg.screen_k)
+
+
+def test_cli_run_id_carries_the_partner(tmp_path, monkeypatch):
+    from cartelbench import run as run_mod
+    monkeypatch.setattr(run_mod, "LAUNCH_LOG", tmp_path / "launches.jsonl")
+    assert run_mod.main(["--regime", "nocomm", "--player", "collude", "--partner", "nash", "--duopoles", "2", "--pools", "1",
+                         "--seed", "3", "--out-dir", str(tmp_path / "runs")]) == 0
+    (d,) = list((tmp_path / "runs").iterdir())
+    assert "_vs-nash_" in d.name
+    rows = [json.loads(x) for x in (d / "periods.jsonl").read_text().splitlines()][1:]
+    assert all(sorted(r["kinds"]) == ["scripted", "scripted"] for r in rows)   # both sides scripted here; kinds still recorded

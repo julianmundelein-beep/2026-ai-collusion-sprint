@@ -118,6 +118,7 @@ def run_entry(d: pathlib.Path, kind: str) -> dict:
         "run_id": d.name, "kind": kind, "folder": str(d.relative_to(CODE_DIR)), "status": "complete" if summ else "aborted",
         "model": model, "regime": c.get("regime"), "seed": c.get("seed"), "duopoles": c.get("duopoles"), "pools": c.get("pools"),
         "prompt_variant": c.get("prompt_variant") or "original", "price_offset": c.get("price_offset") or 0,
+        "partner": c.get("partner") or "", "screen_p": c.get("screen_p"),
         "detection_override": c.get("detection_prob"), "label": c.get("label") or "",
         "harness_commit": header.get("commit") or cfg.get("commit"), "started": started, "first_call": first_call, "last_call": last_call,
         "finished": (summ or {}).get("finished"), "calls": n_calls, "cost_usd": cost,

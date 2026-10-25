@@ -206,7 +206,12 @@ def control_model(model: str, n_boot: int) -> dict:
         reading = "mixed: above the Nash price against a Nash partner, below the no-channel level"
     d_cost = compare(k2, k1, keys, n_boot)
     no_cost = within(d_cost["llm_avg_price"]["diff"], 1.0) and within(d_cost["llm_points_per_agent_period"]["diff"], 10.0)
-    cost_reading = "no measurable cost of the told rule to an honest agent" if no_cost else "the told rule has a cost to an honest agent (see the differences)"
+    pts = d_cost["llm_points_per_agent_period"]["diff"]
+    if no_cost:
+        cost_reading = "no measurable cost of the told rule to an honest agent"
+    else:   # the difference is the cost (registered wording); a positive points difference is a gain, not a cost
+        cost_reading = (f"the told rule changes an honest agent's outcome: price {d_cost['llm_avg_price']['diff']['point']:+.3f}, "
+                        f"points per agent-period {pts['point']:+.1f} (" + ("a gain, not a cost" if pts["point"] > 0 else "a cost") + ")")
     arms = {}
     for name, run in (("K1 nash partner", k1), ("K2 nash partner, screen", k2), ("K3 scatter_emp partner, screen", k3), ("N0 all-LLM no channel", n0)):
         if run is None:

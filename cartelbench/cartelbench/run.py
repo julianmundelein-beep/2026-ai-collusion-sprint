@@ -78,7 +78,9 @@ def main(argv=None) -> int:
         client = make_client(args.provider, args.model, effort=args.effort, concurrency=args.concurrency,
                              base_url=args.base_url, api_key_env=args.api_key_env)
     if not cfg.run_id:
-        cfg.run_id = f"{cfg.regime}_{cfg.model.replace('/', '-')}_{now_iso().replace(':', '').replace('-', '')}_s{cfg.seed}"
+        tag = f"_vs-{cfg.partner}" if cfg.partner else ""     # scripted partner (amendment 6, K); the Claude K runs of
+        cfg.run_id = f"{cfg.regime}_{cfg.model.replace('/', '-')}{tag}_{now_iso().replace(':', '').replace('-', '')}_s{cfg.seed}"
+        # seeds 101 to 106 predate this tag and carry the partner in config.json only
     argline = " ".join(argv or sys.argv[1:])
     log_launch({"event": "start", "run_id": cfg.run_id, "args": argline, "out_dir": cfg.out_dir, "commit": git_commit(), "time": now_iso()})
     try:
