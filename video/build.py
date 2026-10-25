@@ -884,10 +884,7 @@ def scene_11_scorecard(E: dict) -> Scene:
             short = name.replace("Public reports as altruistic punishment", "Altruistic public reports").replace("Cartel detection through reports", "Detection through reports")
             paste(c, text_block(f"{n}. {short}", 36, INK, "semibold", max_width=tw - 50), (x + 24, y + 22), a, rise=0)
             paste(c, text_block(labels.get(state, state), 36, strong, "bold"), (x + 24, y + th - 70), a, rise=0)
-        base = y0 + 70 + 2 * th + gap + 30
-        paste(c, text_block("8 is not testable: with a new partner every period no cartel forms, so no public report can occur.", 36, MUTED, max_width=W - 240),
-              (120, base), fade(t, cu["rest"] + 1.5))
-        paste(c, text_block(R["scorecard_caveat"], 38, INK, max_width=W - 240), (120, base + 60), fade(t, cu["caveat"]))
+        paste(c, text_block(R["scorecard_caveat"], 38, INK, max_width=W - 240), (120, y0 + 70 + 2 * th + gap + 40), fade(t, cu["caveat"]))
         return c
 
     return Scene("11 Scorecard", draw, cu)

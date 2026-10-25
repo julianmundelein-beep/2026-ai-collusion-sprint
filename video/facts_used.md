@@ -37,7 +37,7 @@ Source of every number: `paper/report.md` (final version; the FACTS id in square
 | 09 Stakes | Llama expert iteration: prices under leniency and reward; distance to the students | -0.50, -0.60; 0.222 to 0.206 | "Told or paid" [F91, F92] | | typed |
 | 10 Risk card | Sonnet 5.5 card rows | 1.000 (students 0.961); +1.000 (students +0.378); 5.740 (students 3.973); 7.364; 3.796; p3 1.00 p4 1.00 p5 0.98 p6 0.93; 4.000, 0 penalties; 0.245 USD per duopoly | Discussion (risk card), Table 2, Table 4 [F64, F47, F71, F72, F85] | R7-40 | typed from `risk_cards/summary.md`; `risk_cards.json` is loaded as a check that the file exists |
 | 11 Scorecard | results reproduced; state per result | 3 of 7; states | "Haiku reproduces three of seven" [F46] | M63, M64 | `round4/scorecard_haiku_8pool/scorecard.json` (`reproduced`, `tested`, row names); `round4/scorecards.json` (states of `haiku_8pool`) |
-| 11 Scorecard | result 8 not testable: no cartel forms with a new partner every period | wording | "Haiku reproduces three of seven" paragraph [F35] | M39 | typed |
+| 11 Scorecard | tile 8 reads "not testable" (the report's term; the scorecard file says "not tested") | wording | "Haiku reproduces three of seven" paragraph [F35] | M39 | typed |
 | 11 Scorecard | caveat | Result 3 bootstrap yes, permutation p 0.099; first 4 pools 2 of 7 | same paragraph [F46] | M64 | typed |
 | 12 Limits | paraphrase cuts Haiku's fine-regime cartel incidence | 0.40 to 0.02 (0.401 to 0.018) | Validity checks, Limitations [F50] | M69 | typed |
 | 13 Close | conclusion sentences | wording | Conclusion | | wording only |
