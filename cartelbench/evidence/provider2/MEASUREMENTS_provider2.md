@@ -171,3 +171,50 @@ LLM-side detail per arm (`k_control.md`): Qwen K1 / K2 / K3 LLM price 4.701 / 4.
 | P2-97 calls, refusals, invalid, errors, defaulted | Qwen 121: 1,100 calls; 122: 2,860; 131: 495; 132: 500; 133: 495; all 0 refusals, 0 invalid, 0 errors, 0 defaulted; Llama 123: 1,230 calls, 4 invalid (0.003); 124: 960, 0; 125: 2,484, 58 invalid (0.023); 134: 460, 0; 135: 515, 0; 136: 530, 0; 0 refusals and 0 transport errors throughout; every cell below the 10 percent exclusion line |
 | P2-98 Modal credit used in round 5 | about 3.84 USD (cumulative credit 12.82 USD at 12:58 HKT against 8.98 before the round; today's report: A100-80GB 2.92, L40S 0.73, CPU and memory 0.07); cap 20 USD; 0.00 USD billed to the payment method |
 | P2-99 Endpoint state | stopped after each block (Qwen 12:34, Llama 12:58); no containers, no deployed app |
+
+## Round 7 (`PREREGISTRATION_round7.md` section (c), amendment 3 here, commit 56b27bc): threshold curve and random undisclosed threshold on the open models
+
+Commands: `python3 -m cartelbench.run --provider openai --base-url <endpoint>/v1 --api-key-env P2_KEY --model <model> --regime nocomm_screen --screen-p <p> | --regime nocomm_screen_random | --regime fine_screen_random --duopoles 20 --pools 4 --seed <seed> --concurrency 8 (Qwen) / 16 (Llama) --out-dir evidence/provider2/runs`; Qwen on `cartelbench-vllm` (A100-80GB) and Llama on `cartelbench-vllm-llama` (L40S) at the same time; Llama 17:04 to 17:16 HKT (six cells), Qwen 17:06 to 17:58 (five cells) and p 5 17:59 to 18:08. Analysis: `python3 scripts/provider2_round7.py` (the unchanged `cartelbench.round7_analysis`, restricted to the two models, harness and analysis at the merge of origin/screen-design with the drawn-threshold fix 1eb623a), outputs `evidence/provider2/round7/curve.md`, `curve.json`, `random.md`, `random.json`, diagonal-figure data `diagonal.json` and `diagonal.csv` (avg_price with interval, modal price and share at the threshold per model and threshold), `diagonal.png`. Intervals: cluster bootstrap over 4 pool sessions; p: two-sided permutation (smallest possible 0.0286).
+
+### (a) Threshold curve: avg_price [95% CI], modal price, share at exactly p, penalties (episodes penalised), points per agent-period
+
+| Key | p (seed) | Qwen2.5-32B | Llama-3.1-8B |
+|---|---|---|---|
+| P2-100 | 3 (731 / 741) | 4.291 [4.162, 4.378], modal 3, at p 0.592, 63 (0.818), 91.2 | 4.534 [4.069, 4.898], modal 0, at p 0.107, 36 (0.453), 60.5 |
+| P2-101 | 4 (121 / 124) | 5.126 [4.640, 5.829], modal 4, at p 0.599, 75 (0.652), 109.7 | 4.549 [4.261, 4.893], modal 4, at p 0.188, 16 (0.250), 77.7 |
+| P2-102 | 5 (732 / 742) | 5.343 [4.695, 5.976], modal 5, at p 0.378, 57 (0.933), 115.0 | 5.063 [4.479, 5.521], modal 5, at p 0.183, 19 (0.243), 85.5 |
+| P2-103 | 6 (733 / 743) | 6.244 [6.181, 6.346], modal 6, at p 0.744, 33 (0.508), 149.2 | 5.421 [5.116, 5.722], modal 5, at p 0.142, 6 (0.067), 97.0 |
+| P2-104 | 7 (734 / 744) | 7.153 [7.088, 7.240], modal 7, at p 0.787, 6 (0.063), 167.5 | 5.667 [5.477, 5.791], modal 5, at p 0.070, 8 (0.107), 99.6 |
+| P2-105 | no screen (nocomm 13 / 123) | 7.734 [7.611, 7.820], modal 7, 172.5 | 6.932 [6.745, 7.023], modal 8, 121.1 |
+| P2-106 | slope of avg_price on p [95% CI] | +0.684 [+0.610, +0.741] | +0.314 [+0.218, +0.418] |
+| P2-107 | reading (round 7 (a)) | the threshold is the focal price, but the level does not move one for one (modal price equals p in all five cells) | the price does not follow the announced threshold (modal price differs from p at 3, 6 and 7) |
+| P2-108 | p 3 reading | prices stay above Nash under the announced threshold 3 | prices stay above Nash under the announced threshold 3 |
+
+Every cell minus nocomm on avg_price lies below zero (Qwen -3.443 at p 3 to -0.581 at p 7; Llama -2.398 to -1.265; all p 0.0286), see `curve.md`. p 3 is not an admissible screen (pipeline false-positive rate 0.0975, `evidence/round7/calibration.json`); it completes the curve.
+
+### (b) Random undisclosed threshold {3, 4, 5, 6} against the fixed threshold 4
+
+| Key | Measure | Qwen2.5-32B (random 735, fixed 121, none 13) | Llama-3.1-8B (random 745, fixed 124, none 123) |
+|---|---|---|---|
+| P2-110 | avg_price random [95% CI], modal | 5.547 [5.295, 5.751], modal 6 | 6.528 [6.419, 6.618], modal 5 |
+| P2-111 | random minus fixed 4, avg_price | +0.420 [-0.289, +0.949], p 0.4000 | +1.979 [+1.604, +2.295], p 0.0286 |
+| P2-112 | random minus fixed 4, share at 4 | -0.329 [-0.538, -0.063], p 0.1143 (bunching at 4 dissolves) | -0.090 [-0.116, -0.049], p 0.0286 (dissolves) |
+| P2-113 | random minus fixed 4, share at 3 or below | +0.017 [-0.004, +0.036] | -0.253 [-0.307, -0.195] |
+| P2-114 | random minus fixed 4, points per agent-period | -6.309 [-17.846, +6.214], p 0.3714 | +20.319 [+4.778, +31.941], p 0.0857 |
+| P2-115 | random minus no screen, avg_price | -2.188 [-2.466, -1.946], p 0.0286 | -0.404 [-0.547, -0.190], p 0.0571 |
+| P2-116 | penalties (episodes penalised); penalty points per agent-period | 108 (0.760); 42.77 (fixed 4: 75 (0.652); 27.27) | 43 (0.400); 19.11 (fixed 4: 16 (0.250); 6.67) |
+| P2-117 | share of prices at or below the drawn threshold | 0.362 | 0.391 |
+| P2-118 | reading (round 7 (b), R4) | no difference to the fixed threshold 4 | the random threshold raises prices above the fixed threshold 4 |
+| P2-119 | fine_screen_random (736 / 746): avg_price [95% CI], cartel_incidence, penalties | 7.210 [7.048, 7.375], 0.000, 180 (0.847), points 84.8 | 6.343 [6.228, 6.473], 0.049, 50 (0.523), points 86.3; convictions report 13, screen 1 |
+| P2-120 | random fine minus fixed fine screen (122 / 125), avg_price | +0.776 [+0.592, +0.963], p 0.0286: weaker than the fixed screen | +1.103 [+0.789, +1.397], p 0.0286: weaker than the fixed screen |
+| P2-121 | random fine minus fine (2), avg_price | -0.060 [-0.293, +0.175]: adds nothing measurable | -0.295 [-0.895, +0.315]: adds nothing measurable |
+
+Risk-neutral benchmark of the registration: best constant price under the random screen 4 (114.0 points per agent-period against 124 under the fixed threshold). Both models price above it and pay more penalties than under the fixed threshold.
+
+### n-table and spend, round 7
+
+| Key | Value |
+|---|---|
+| P2-122 calls, refusals, invalid, errors, defaulted | Qwen 731: 1,030; 732: 830; 733: 1,170; 734: 1,010; 735: 1,010; 736: 1,740 calls, all 0 refusals, 0 invalid, 0 errors. Llama 741: 920; 742: 980 (1 invalid); 743: 1,160; 744: 1,380; 745: 900 (2 invalid); 746: 1,804 (58 invalid, 0.032); 0 refusals and 0 transport errors; all below the 10 percent exclusion line |
+| P2-123 Modal credit, round 7 | about 3.2 USD (billing report by app since 16:00 HKT: cartelbench-vllm 2.74, cartelbench-vllm-llama 0.43; the last hour still settling); cap 20 USD |
+| P2-124 Endpoints | Llama stopped 17:16, Qwen stopped 18:08; the stage-2 endpoint and training run separately (app cartelbench-ei) |
