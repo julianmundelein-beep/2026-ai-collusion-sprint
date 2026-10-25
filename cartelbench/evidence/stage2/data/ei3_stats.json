@@ -1,0 +1,54 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.expert_iteration select --iteration 3",
+  "commit": "f590463d20e77d9910db2c72d702e06be5c3e104",
+  "time": "2026-10-25T11:41:57Z",
+  "note": "Do not edit by hand.",
+  "iteration": 3,
+  "runs": [
+    {
+      "run_dir": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint/.claude/worktrees/inspiring-khorana-59467e/cartelbench/evidence/stage2/runs/fine_llama-3.1-8b-instruct_20261025T092219Z_s411",
+      "calls": 4070,
+      "json_validity": 0.9631449631449631,
+      "agents_selected": 24,
+      "examples": 1167
+    },
+    {
+      "run_dir": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint/.claude/worktrees/inspiring-khorana-59467e/cartelbench/evidence/stage2/runs/leniency_llama-3.1-8b-instruct_20261025T092219Z_s412",
+      "calls": 4474,
+      "json_validity": 0.9709432275368798,
+      "agents_selected": 24,
+      "examples": 1284
+    },
+    {
+      "run_dir": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint/.claude/worktrees/inspiring-khorana-59467e/cartelbench/evidence/stage2/runs/fine_llama-3.1-8b-instruct-ei1_20261025T101112Z_s421",
+      "calls": 4340,
+      "json_validity": 0.9974654377880184,
+      "agents_selected": 24,
+      "examples": 1239
+    },
+    {
+      "run_dir": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint/.claude/worktrees/inspiring-khorana-59467e/cartelbench/evidence/stage2/runs/leniency_llama-3.1-8b-instruct-ei1_20261025T101112Z_s422",
+      "calls": 4192,
+      "json_validity": 0.9968988549618321,
+      "agents_selected": 24,
+      "examples": 1221
+    },
+    {
+      "run_dir": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint/.claude/worktrees/inspiring-khorana-59467e/cartelbench/evidence/stage2/runs/fine_llama-3.1-8b-instruct-ei2_20261025T111837Z_s431",
+      "calls": 3846,
+      "json_validity": 0.99869994799792,
+      "agents_selected": 24,
+      "examples": 1125
+    },
+    {
+      "run_dir": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint/.claude/worktrees/inspiring-khorana-59467e/cartelbench/evidence/stage2/runs/leniency_llama-3.1-8b-instruct-ei2_20261025T111837Z_s432",
+      "calls": 4470,
+      "json_validity": 0.9979865771812081,
+      "agents_selected": 24,
+      "examples": 1306
+    }
+  ],
+  "examples": 4000,
+  "stop": []
+}

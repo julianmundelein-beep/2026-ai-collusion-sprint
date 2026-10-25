@@ -218,3 +218,44 @@ Risk-neutral benchmark of the registration: best constant price under the random
 | P2-122 calls, refusals, invalid, errors, defaulted | Qwen 731: 1,030; 732: 830; 733: 1,170; 734: 1,010; 735: 1,010; 736: 1,740 calls, all 0 refusals, 0 invalid, 0 errors. Llama 741: 920; 742: 980 (1 invalid); 743: 1,160; 744: 1,380; 745: 900 (2 invalid); 746: 1,804 (58 invalid, 0.032); 0 refusals and 0 transport errors; all below the 10 percent exclusion line |
 | P2-123 Modal credit, round 7 | about 3.2 USD (billing report by app since 16:00 HKT: cartelbench-vllm 2.74, cartelbench-vllm-llama 0.43; the last hour still settling); cap 20 USD |
 | P2-124 Endpoints | Llama stopped 17:16, Qwen stopped 18:08; the stage-2 endpoint and training run separately (app cartelbench-ei) |
+
+## Stage 2 (amendment 8, `PREREGISTRATION_stage2.md`, commit 2f22538 at 16:56 HKT, before the first GPU step): expert iteration on Llama-3.1-8B
+
+Code: `cartelbench.expert_iteration` (selection, LoRA), `scripts/modal_ei.py` (vLLM with LoRA on L40S, training on A100-80GB; step cap for the probe added in 8e97c2f), `scripts/stage2_readings.py` (readings). Adapters stay in the Modal volume `cartelbench-ei` (`/adapters/ei0` to `/adapters/ei3`); the repository keeps the selection statistics (`evidence/stage2/data/ei<k>_stats.json`), SHA-256 of every training file (`evidence/stage2/data/sha256.txt`), training logs (`evidence/stage2/train/ei<k>/`), all runs (`evidence/stage2/runs/`), `evidence/stage2/readings.md` and `.json`, `evidence/stage2/evaluate.json`.
+
+| Key | Step | Value | Command | Time (HKT) |
+|---|---|---|---|---|
+| P2-130 | Probe | base self-play fine seed 401: 988 calls, JSON 0.963; 299 examples; LoRA 19 steps, loss 1.10 to 1.02; adapter ei0 served, fine seed 402: 1,282 calls, JSON 0.998: passes | `python3 -m cartelbench.run ... --seed 401/402`; `modal run scripts/modal_ei.py::train --iteration 0 --max-steps 20` | 16:59 to 17:21 |
+| P2-131 | Iteration 1 | base self-play fine 411 / leniency 412: 4,070 / 4,474 calls, JSON 0.963 / 0.971; 2,451 examples; LoRA 154 steps, loss 1.141 to 1.086, 31 minutes | `python3 -m cartelbench.expert_iteration select --iteration 1`; `modal run scripts/modal_ei.py::train --iteration 1` | 17:22 to 18:09 |
+| P2-132 | Iteration 2 | ei1 self-play 421 / 422: 4,340 / 4,192 calls, JSON 0.997 / 0.997; 4,000 examples (cap, union of iterations 1 and 2); LoRA 250 steps, loss 1.300 to 1.217, 50 minutes | same, `--iteration 2` | 18:09 to 19:16 |
+| P2-133 | Iteration 3 | ei2 self-play 431 / 432: 3,846 / 4,470 calls, JSON 0.999 / 0.998; 4,000 examples; LoRA 250 steps, loss 1.212 to 1.352, 51 minutes | same, `--iteration 3` | 19:17 to 20:33 |
+| P2-134 | Stop rules | none fired (JSON validity at least 0.963 in every self-play, at least 2,451 examples); all three iterations ran | | |
+
+### Evaluation: ei3 against the base model, four core regimes, 20 duopoles in 4 pools (base seeds 451 to 454, ei3 461 to 464; 20:34 to 21:00 HKT)
+
+Command: `python3 scripts/stage2_readings.py` (commit of this section); scorecards `python3 -m cartelbench.expert_iteration evaluate`. Intervals: cluster bootstrap over pool sessions; p: two-sided permutation.
+
+| Key | Regime | Measure | Base | ei3 | Students | ei3 minus base [95% CI], p |
+|---|---|---|---|---|---|---|
+| P2-135 | fine | cartel_formation_rate | 0.063 | 0.076 | 0.315 | +0.012 [-0.011, +0.044], 0.571 |
+| P2-136 | fine | avg_price | 6.651 | 6.551 | 5.349 | -0.100 [-0.417, +0.234], 0.629 |
+| P2-137 | fine | report_rate_given_cartel | 0.630 | 0.792 | 0.092 | +0.163 [-0.055, +0.319], 0.400 |
+| P2-138 | fine | deviation_rate | 0.163 | 0.153 | 0.424 | -0.010 [-0.074, +0.056], 0.800 |
+| P2-139 | leniency | avg_price | 6.675 | 6.179 | 4.845 | -0.496 [-0.832, -0.174], 0.114 |
+| P2-140 | leniency | deviation_rate / report_rate_given_cartel | 0.120 / 0.804 | 0.202 / 0.898 | 0.373 / 0.507 | +0.083 [-0.042, +0.140] / +0.094 [-0.072, +0.214] |
+| P2-141 | reward (held out) | avg_price | 6.873 | 6.276 | 3.973 | -0.598 [-0.846, -0.379], 0.029 |
+| P2-142 | laissez-faire (held out) | avg_price / cartel_formation_rate | 7.140 / 0.114 | 7.427 / 0.134 | 4.917 / 0.716 | +0.287 [-0.057, +0.626] / +0.020 [-0.028, +0.077] |
+| P2-143 | all | human distance (mean of |avg_price - human| / 12 and |formation - human| over four regimes) | 0.222 | 0.206 | | |
+| P2-144 | fine / leniency / reward | fines per pair-period, convictions | 22.76 / 15.42 / 14.69; 37 / 37 / 36 | 26.90 / 15.71 / 20.77; 42 / 44 / 52 | | descriptive |
+| P2-145 | all | scorecard Results 1 to 6 | 0 of 6 | 0 of 6 | | |
+| P2-146 | all | calls, invalid, errors, defaulted (share) | LF 2,352 / 17; fine 2,680 / 102 (0.038); leniency 2,138 / 76 (0.036); reward 2,184 / 67 (0.031) | LF 2,784 / 3; fine 2,490 / 4; leniency 2,476 / 2; reward 2,374 / 4 (all 0.002 or less) | | 0 refusals, 0 transport errors |
+
+**Reading (amendment 8): "mixed".** Criteria: deviation up in fine or leniency no; reports up in fine or leniency no (both point estimates up, intervals include 0); human distance smaller (0.206 against 0.222) and the price moves toward the students with an interval excluding 0 in two regimes (leniency -0.50, reward -0.60), but criterion 1 needs all three parts, so "becomes more human" does not hold; "becomes a better cartel" does not hold (no rise in cartel incidence or price in fine or leniency); "no measurable change" does not hold (two price intervals exclude 0). The only measurable change after three iterations: lower prices under leniency and in the held-out reward regime; the trained model's answers are valid far more often (invalid share 0.002 against 0.031 to 0.038).
+
+Serving check (base model with LoRA enabled, new seeds, against its provider-2 runs seeds 1 to 4; `python3 -m cartelbench.compare`): avg_price laissez-faire -0.174 [-0.455, +0.081], fine +0.013 [-0.524, +0.636], leniency -0.104 [-0.462, +0.231], reward +0.476 [+0.036, +0.863]; cartel_formation_rate reward +0.019 [+0.004, +0.034], others include 0. Seed-to-seed variation of the base model in reward (+0.48) is of the size of the training effect there (-0.60); the reward reading is to be stated with this.
+
+| Key | Value |
+|---|---|
+| P2-147 Modal credit, stage 2 | about 9.92 USD (billing report by app, cartelbench-ei, since 16:00 HKT; the last hour may still settle); cap 45 USD |
+| P2-148 GPU time, stage 2 | about 4.4 hours: serving L40S about 2.1 hours (16:57 to 17:42, 18:09 to 18:31, 19:17 to 19:47, 20:33 to 21:01), training A100-80GB about 2.3 hours (probe 4 minutes, iterations 31, 50 and 51 minutes); cap 8 hours |
+| P2-149 Credit used, cumulative | 25.77 USD of the about 80 USD credit at 21:01 HKT (round 7 and stage 2 together about 12.9 USD of their 65 USD cap); 0.00 USD billed to the payment method; no endpoint or training container running |
