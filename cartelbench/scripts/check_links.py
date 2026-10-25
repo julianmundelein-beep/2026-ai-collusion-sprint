@@ -1,5 +1,5 @@
 """Checks that every relative link and image in the Markdown files of the repository points at an existing file
-(Markdown links and images, and src or href attributes of inline HTML).
+(Markdown links and images, and src, srcset or href attributes of inline HTML).
 
     python3 cartelbench/scripts/check_links.py [--root <repository root>]
 
@@ -13,7 +13,7 @@ import pathlib
 import re
 import sys
 
-LINK = re.compile(r"!?\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)|(?:src|href)=\"([^\"]+)\"")
+LINK = re.compile(r"!?\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)|(?:src|srcset|href)=\"([^\"]+)\"")
 SKIP_DIRS = {".git", "__pycache__", "node_modules", ".venv"}
 SKIP_PREFIXES = ("cartelbench/evidence/",)
 

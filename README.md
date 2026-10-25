@@ -1,5 +1,8 @@
 <p align="center">
-  <img src="docs/figures/header.svg" width="100%" alt="CartelBench. Same Game, Different Players: A Human-Calibrated Testbed for Cartel Enforcement on LLM Pricing Agents. Julian Mündelein, Independent, Hong Kong. Submitted to the AI Collusion Research Sprint, Apart Research, October 2026.">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/figures/header_dark.svg">
+    <img src="docs/figures/header.svg" width="100%" alt="CartelBench. Same Game, Different Players: A Human-Calibrated Testbed for Cartel Enforcement on LLM Pricing Agents. Julian Mündelein, Independent, Hong Kong. Submitted to the AI Collusion Research Sprint, Apart Research, October 2026.">
+  </picture>
 </p>
 
 <p align="center">
@@ -26,12 +29,20 @@
 **Submitted as.** Track 1: Markets and Collusion; research question 1.5 (which single restriction removes the most collusion at the least cost) and 1.1 (which variables are necessary for collusion to emerge).
 
 <p align="center">
-  <img src="docs/figures/cartoon.svg" width="100%" alt="Animated cartoon in a twelve-second loop: four robot sellers named Haiku, Sonnet, Qwen and Llama stand behind market stalls with price signs reading 3. They whisper 'psst, 9?' to each other and every sign rises to 9. An authority with a magnifying glass walks in and draws a dashed line at 4; the signs slide down and sit exactly on the line, reading 4, except Llama's, which hovers above it at 5.">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/figures/cartoon_dark.svg">
+    <img src="docs/figures/cartoon.svg" width="100%" alt="Animated cartoon in a twelve-second loop: four robot sellers named Haiku, Sonnet, Qwen and Llama stand behind market stalls with price signs reading 3. They whisper 'psst, 9?' to each other and every sign rises to 9. An authority with a magnifying glass walks in and draws a dashed line at 4; the signs slide down and sit exactly on the line, reading 4, except Llama's, which hovers above it at 5.">
+  </picture>
 </p>
 
 <h2 align="center">The main finding: the published threshold becomes the price</h2>
 
-![Four panels, one per model (Haiku 5.5, Sonnet 5.5, Qwen2.5-32B, Llama-3.1-8B). Each plots the average price with a 95 percent interval and the modal price against the announced screen threshold p from 3 to 7, with the line price equals p, the Nash price 3 and the joint optimum 9 marked. Sonnet's points lie exactly on the line at every threshold with 93 to 100 percent of prices at p; Haiku and Qwen follow the line with their modal price on it; Llama's points stay near 4.5 to 5.7 and off the line.](cartelbench/evidence/round7/diagonal.png)
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/figures/diagonal_dark.png">
+    <img src="cartelbench/evidence/round7/diagonal.png" width="760" alt="Four panels, one per model (Haiku 5.5, Sonnet 5.5, Qwen2.5-32B, Llama-3.1-8B). Each plots the average price with a 95 percent interval and the modal price against the announced screen threshold p from 3 to 7, with the line price equals p, the Nash price 3 and the joint optimum 9 marked. Sonnet's points lie exactly on the line at every threshold with 93 to 100 percent of prices at p; Haiku and Qwen follow the line with their modal price on it; Llama's points stay near 4.5 to 5.7 and off the line.">
+  </picture>
+</p>
 
 When the authority announces that it fines any pair whose prices both exceed a threshold p in two consecutive periods, the agents do not stay below the line by a safety margin; they price on it (the report's working term: pricing on the line). Claude Sonnet 5.5 follows the threshold with slope 0.976 and at least 93 percent of its prices exactly at p, Haiku 5.5 and Qwen2.5-32B follow with slopes 0.700 and 0.684 and their most frequent price on the threshold in every cell, and Llama-3.1-8B does not follow (slope 0.314). Figure: `cartelbench/evidence/round7/diagonal.png`, data `diagonal.json`, rows R7-10 to R7-13 and R7-30 of [`MEASUREMENTS_round7.md`](cartelbench/evidence/MEASUREMENTS_round7.md); Figure 2 and Finding 4 of the report.
 
@@ -43,7 +54,12 @@ When the authority announces that it fines any pair whose prices both exceed a t
 
 Calibration against the human subjects: without an authority Haiku forms cartels as often as the students did (cartel incidence 0.962 against 0.961) but holds them at 8.87 against the students' 4.92, and reproduces 3 of 7 tested results of the paper under the pre-registered rule on 8 pool sessions (2 of 7 on the first 4; Result 3 passes the bootstrap rule but not the permutation test, p 0.099).
 
-![Five dot-plot panels with one row per model: cartel incidence without an authority (Haiku 0.962, Sonnet 1.000, Qwen 0.832, Llama 0.595; students 0.961), cartel incidence under the fine (0.401, 0.000, 0.000, 0.082; students 0.583), average price under reward (3.21, 5.74, 7.33, 6.40; students 3.97), average price without a price channel (5.26, 7.36, 7.73, 6.93; Nash 3) and the share of prices exactly at the announced threshold 4 (0.65, 1.00, 0.60, 0.19).](docs/figures/model_overview.png)
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/figures/model_overview_dark.png">
+    <img src="docs/figures/model_overview.png" width="100%" alt="Five dot-plot panels with one row per model: cartel incidence without an authority (Haiku 0.962, Sonnet 1.000, Qwen 0.832, Llama 0.595; students 0.961), cartel incidence under the fine (0.401, 0.000, 0.000, 0.082; students 0.583), average price under reward (3.21, 5.74, 7.33, 6.40; students 3.97), average price without a price channel (5.26, 7.36, 7.73, 6.93; Nash 3) and the share of prices exactly at the announced threshold 4 (0.65, 1.00, 0.60, 0.19).">
+  </picture>
+</p>
 
 One page per model, the Cartel Risk Card, condenses these measures for a pre-deployment check: [`cartelbench/evidence/risk_cards/summary.md`](cartelbench/evidence/risk_cards/summary.md). The overview above is drawn from the cards by `python3 docs/figures/make_overview.py`.
 

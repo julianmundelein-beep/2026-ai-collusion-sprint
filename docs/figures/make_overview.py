@@ -1,11 +1,12 @@
 """Overview figure of the four models from the Cartel Risk Cards (recorded runs only, no API call).
 
-    python3 docs/figures/make_overview.py [--out docs/figures/model_overview.png]
+    python3 docs/figures/make_overview.py [--out docs/figures/model_overview.png] [--dark-out docs/figures/model_overview_dark.png]
 
 Reads cartelbench/evidence/risk_cards/risk_cards.json (written by python3 cartelbench/scripts/risk_card.py) and
 cartelbench/data/human_baseline.json, draws one panel per measure with one row per model, and writes the plotted
 numbers next to the figure as model_overview.json so that every value in the picture can be checked against its
-source key in the risk cards.
+source key in the risk cards. The dark-mode copy (light ink, lifted hues, GitHub's dark surface) is the same picture
+for viewers with a dark theme.
 """
 from __future__ import annotations
 
@@ -30,6 +31,12 @@ MODELS = ["claude-haiku-5-5", "claude-sonnet-5-5", "qwen2.5-32b-instruct", "llam
 COLORS = {"claude-haiku-5-5": "#eb6834", "claude-sonnet-5-5": "#2a78d6",
           "qwen2.5-32b-instruct": "#16996a", "llama-3.1-8b-instruct": "#6250d6"}
 INK, MUTED, GRID, HUMAN = "#0b0b0b", "#52514e", "#e4e3df", "#6b6a66"
+THEMES = {
+    "light": {"colors": COLORS, "ink": INK, "muted": MUTED, "grid": GRID, "human": HUMAN, "bg": "white", "ring": "white"},
+    "dark": {"colors": {"claude-haiku-5-5": "#e66b38", "claude-sonnet-5-5": "#4489de",
+                        "qwen2.5-32b-instruct": "#21a06d", "llama-3.1-8b-instruct": "#8c7ce8"},
+             "ink": "#e6edf3", "muted": "#9da7b3", "grid": "#30363d", "human": "#b1bac4", "bg": "#0d1117", "ring": "#0d1117"},
+}
 
 
 def panels(cards: dict, humans: dict) -> list[dict]:
@@ -68,43 +75,45 @@ def panels(cards: dict, humans: dict) -> list[dict]:
     return out
 
 
-def draw(cards: dict, humans: dict, out: pathlib.Path) -> list[dict]:
-    plt.rcParams.update({"font.size": 10, "font.family": "DejaVu Sans"})
+def draw(cards: dict, humans: dict, out: pathlib.Path, theme: str = "light") -> list[dict]:
+    t = THEMES[theme]
+    colors, ink, muted, grid, human = t["colors"], t["ink"], t["muted"], t["grid"], t["human"]
+    plt.rcParams.update({"font.size": 10, "font.family": "DejaVu Sans", "figure.facecolor": t["bg"], "axes.facecolor": t["bg"]})
     ps = panels(cards, humans)
     fig, axes = plt.subplots(1, len(ps), figsize=(13.5, 3.4), sharey=True)
     ys = list(range(len(MODELS)))[::-1]
     for ax, p in zip(axes, ps):
-        ax.set_title(p["title"], fontsize=10.5, loc="left", color=INK)
+        ax.set_title(p["title"], fontsize=10.5, loc="left", color=ink)
         lo, hi = p["xlim"]
         if p.get("nash") is not None:
-            ax.axvline(p["nash"], color=MUTED, lw=0.8, ls=":", zorder=1)
-            ax.text(p["nash"] + 0.1, ys[-1] - 0.75, "Nash 3", fontsize=10, color=MUTED, va="center")
+            ax.axvline(p["nash"], color=muted, lw=0.8, ls=":", zorder=1)
+            ax.text(p["nash"] + 0.1, ys[-1] - 0.75, "Nash 3", fontsize=10, color=muted, va="center")
         if p["human"] is not None:
-            ax.axvline(p["human"], color=HUMAN, lw=0.8, ls="--", zorder=1)
+            ax.axvline(p["human"], color=human, lw=0.8, ls="--", zorder=1)
             ax.text(p["human"], ys[0] + 0.72, f"{p['human_label']} {p['fmt'].format(p['human'])}", fontsize=10,
-                    color=HUMAN, ha="center", va="bottom")
+                    color=human, ha="center", va="bottom")
         for y, m in zip(ys, MODELS):
             v = p["values"][m]
-            ax.plot([lo, v], [y, y], color=COLORS[m], lw=2.2, solid_capstyle="round", zorder=2)
-            ax.plot([v], [y], marker="o", ms=8, color=COLORS[m], mec="white", mew=1.2, zorder=3)
-            ax.text(v + (hi - lo) * 0.035, y, p["fmt"].format(v), fontsize=10, color=INK, va="center")
+            ax.plot([lo, v], [y, y], color=colors[m], lw=2.2, solid_capstyle="round", zorder=2)
+            ax.plot([v], [y], marker="o", ms=8, color=colors[m], mec=t["ring"], mew=1.2, zorder=3)
+            ax.text(v + (hi - lo) * 0.035, y, p["fmt"].format(v), fontsize=10, color=ink, va="center")
         ax.set_xlim(lo, hi)
         ax.set_ylim(-1.1, len(MODELS) - 0.3 + 0.9)
         ax.set_yticks(ys)
-        ax.set_yticklabels([cards[m]["name"] for m in MODELS], fontsize=10.5, color=INK)
-        ax.grid(axis="x", color=GRID, lw=0.6)
+        ax.set_yticklabels([cards[m]["name"] for m in MODELS], fontsize=10.5, color=ink)
+        ax.grid(axis="x", color=grid, lw=0.6)
         for s in ("top", "right", "left"):
             ax.spines[s].set_visible(False)
-        ax.spines["bottom"].set_color(MUTED)
-        ax.tick_params(axis="x", colors=MUTED, labelsize=10)
+        ax.spines["bottom"].set_color(muted)
+        ax.tick_params(axis="x", colors=muted, labelsize=10)
         ax.tick_params(axis="y", length=0)
     fig.text(0.5, -0.04,
              "From the Cartel Risk Cards (cartelbench/evidence/risk_cards/risk_cards.json). Dashed line: human subjects "
              "of Bigoni et al. (2012); dotted line: competitive (Nash) price 3. No channel: no price discussion possible.",
-             ha="center", fontsize=10, color=MUTED)
+             ha="center", fontsize=10, color=muted)
     fig.tight_layout(w_pad=1.2)
     out.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out, dpi=200, bbox_inches="tight", facecolor="white")
+    fig.savefig(out, dpi=200, bbox_inches="tight", facecolor=t["bg"])
     return [{"panel": p["title"].replace("\n", " "), "risk_card_key": p["key"], "human": p["human"],
              "values": {cards[m]["name"]: p["values"][m] for m in MODELS}} for p in ps]
 
@@ -112,10 +121,12 @@ def draw(cards: dict, humans: dict, out: pathlib.Path) -> list[dict]:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--out", type=pathlib.Path, default=ROOT / "docs/figures/model_overview.png")
+    ap.add_argument("--dark-out", type=pathlib.Path, default=ROOT / "docs/figures/model_overview_dark.png")
     args = ap.parse_args()
     cards = json.loads(CARDS.read_text())
     humans = json.loads(HUMANS.read_text())
     rows = draw(cards["cards"], humans, args.out)
+    draw(cards["cards"], humans, args.dark_out, theme="dark")
     try:
         commit = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, cwd=ROOT).stdout.strip()
     except OSError:
@@ -129,7 +140,7 @@ def main() -> None:
         "risk_cards_commit": cards["commit"],
         "panels": rows,
     }, indent=1) + "\n")
-    print(f"wrote {args.out} and {side}")
+    print(f"wrote {args.out}, {args.dark_out} and {side}")
 
 
 if __name__ == "__main__":

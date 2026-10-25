@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="t d">
+<title id="t">Four robot sellers at market stalls agree on a high price, then an authority draws a line at 4 and the price signs settle exactly on it</title>
+<desc id="d">Cartoon loop. Four robots named Haiku, Sonnet, Qwen and Llama stand behind market stalls with price signs reading 3. They whisper "9?" to each other and all signs rise to 9. An authority with a magnifying glass walks in and draws a dashed line at 4; the signs slide down and sit exactly on the line, reading 4, except Llama's, which hovers above it at 5.</desc>
+<!-- Dark-mode variant written by docs/figures/make_cartoon_dark.py from cartoon.svg. Hand-drawn SVG, no external resources; animation in SMIL, 12 second loop. Model names are text only. -->
+<defs>
+  <pattern id="awn1" width="24" height="30" patternUnits="userSpaceOnUse"><rect width="12" height="30" fill="#e66b38"/><rect x="12" width="12" height="30" fill="#161b22"/></pattern>
+  <pattern id="awn2" width="24" height="30" patternUnits="userSpaceOnUse"><rect width="12" height="30" fill="#4489de"/><rect x="12" width="12" height="30" fill="#161b22"/></pattern>
+  <pattern id="awn3" width="24" height="30" patternUnits="userSpaceOnUse"><rect width="12" height="30" fill="#21a06d"/><rect x="12" width="12" height="30" fill="#161b22"/></pattern>
+  <pattern id="awn4" width="24" height="30" patternUnits="userSpaceOnUse"><rect width="12" height="30" fill="#8c7ce8"/><rect x="12" width="12" height="30" fill="#161b22"/></pattern>
+  <style>
+    .n{font-family:'DejaVu Sans',Verdana,Arial,sans-serif;font-weight:bold;fill:#e6edf3;text-anchor:middle}
+    .badge{font-family:'DejaVu Sans',Verdana,Arial,sans-serif;font-size:15px;fill:#e6edf3;text-anchor:middle;font-weight:bold}
+    .bub{font-family:'DejaVu Sans',Verdana,Arial,sans-serif;font-size:22px;font-weight:bold;fill:#e6edf3;text-anchor:middle}
+  </style>
+  <!-- one robot: body, head, eyes, antenna, arms; coloured per model -->
+  <g id="robot">
+    <line x1="0" y1="118" x2="0" y2="100" stroke="#8b949e" stroke-width="3"/>
+    <circle cx="0" cy="96" r="6" fill="#8b949e"/>
+    <rect x="-38" y="118" width="76" height="60" rx="14" fill="#161b22" stroke="#e6edf3" stroke-width="3"/>
+    <circle cx="-15" cy="146" r="7" fill="#e6edf3"/>
+    <circle cx="15" cy="146" r="7" fill="#e6edf3"/>
+    <circle cx="-13" cy="144" r="2.5" fill="#161b22"/>
+    <circle cx="17" cy="144" r="2.5" fill="#161b22"/>
+    <path d="M-14 163 Q0 172 14 163" fill="none" stroke="#e6edf3" stroke-width="3" stroke-linecap="round"/>
+    <rect x="-46" y="186" width="92" height="90" rx="16" stroke="#e6edf3" stroke-width="3"/>
+    <rect x="-70" y="200" width="24" height="12" rx="6" fill="#8b949e"/>
+    <rect x="46" y="200" width="24" height="12" rx="6" fill="#8b949e"/>
+  </g>
+  <g id="stall">
+    <rect x="-100" y="80" width="200" height="30" rx="4" stroke="#e6edf3" stroke-width="3"/>
+    <path d="M-100 110 l20 12 l20 -12 l20 12 l20 -12 l20 12 l20 -12 l20 12 l20 -12 l20 12 l20 -12" fill="none" stroke="#e6edf3" stroke-width="3"/>
+    <rect x="-96" y="110" width="6" height="190" fill="#8b949e"/>
+    <rect x="90" y="110" width="6" height="190" fill="#8b949e"/>
+    <rect x="-100" y="300" width="200" height="60" rx="6" fill="#30363d" stroke="#e6edf3" stroke-width="3"/>
+    <rect x="-100" y="300" width="200" height="12" fill="#8b949e"/>
+  </g>
+  <g id="glass">
+    <circle cx="0" cy="0" r="22" fill="#1f3a5a" fill-opacity="0.6" stroke="#e6edf3" stroke-width="5"/>
+    <line x1="16" y1="16" x2="44" y2="44" stroke="#e6edf3" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</defs>
+
+<rect width="1200" height="430" rx="6" fill="#0d1117"/>
+<line x1="0" y1="360" x2="1200" y2="360" stroke="#e6edf3" stroke-width="3"/>
+
+<!-- stalls: Haiku, Sonnet, Qwen, Llama at x 180, 440, 700, 960 -->
+<g transform="translate(180,0)"><use href="#stall" fill="url(#awn1)"/><use href="#robot" fill="#e66b38"/><rect x="-42" y="320" width="84" height="26" rx="13" fill="#e66b38"/><text class="badge" y="338">Haiku</text></g>
+<g transform="translate(440,0)"><use href="#stall" fill="url(#awn2)"/><use href="#robot" fill="#4489de"/><rect x="-42" y="320" width="84" height="26" rx="13" fill="#4489de"/><text class="badge" y="338">Sonnet</text></g>
+<g transform="translate(700,0)"><use href="#stall" fill="url(#awn3)"/><use href="#robot" fill="#21a06d"/><rect x="-42" y="320" width="84" height="26" rx="13" fill="#21a06d"/><text class="badge" y="338">Qwen</text></g>
+<g transform="translate(960,0)"><use href="#stall" fill="url(#awn4)"/><use href="#robot" fill="#8c7ce8"/><rect x="-42" y="320" width="84" height="26" rx="13" fill="#8c7ce8"/><text class="badge" y="338">Llama</text></g>
+
+<!-- the authority's line at price 4, drawn from the right at 6.5 s -->
+<line x1="1100" y1="212" x2="1100" y2="212" stroke="#e6edf3" stroke-width="3" stroke-dasharray="14 9">
+  <animate attributeName="x1" values="1100;1100;44;44" keyTimes="0;0.54;0.62;1" dur="12s" repeatCount="indefinite"/>
+</line>
+<g opacity="0">
+  <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.6;0.63;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/>
+  <circle cx="22" cy="212" r="17" fill="#161b22" stroke="#e6edf3" stroke-width="3"/>
+  <text class="n" x="22" y="219" font-size="20">4</text>
+</g>
+
+<!-- price signs: a post per stall, a board that slides with the price; board slides up to 9 under the awning and down again to sit on the line at 4 -->
+<g transform="translate(252,0)">
+  <rect x="-3" y="90" width="6" height="210" fill="#8b949e"/>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 0;0 -100;0 -100;0 -44;0 -44" keyTimes="0;0.25;0.3;0.625;0.69;1" dur="12s" repeatCount="indefinite"/>
+    <rect x="-32" y="212" width="64" height="44" rx="6" fill="#4a3f12" stroke="#e6edf3" stroke-width="3"/>
+    <text class="n" y="245" font-size="30">3<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.25;0.25;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/></text>
+    <text class="n" y="245" font-size="30" opacity="0">9<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.25;0.625;0.625;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/></text>
+    <text class="n" y="245" font-size="30" opacity="0">4<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.625;0.625;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/></text>
+  </g>
+</g>
+<g transform="translate(512,0)">
+  <rect x="-3" y="90" width="6" height="210" fill="#8b949e"/>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 0;0 -100;0 -100;0 -44;0 -44" keyTimes="0;0.25;0.3;0.625;0.69;1" dur="12s" repeatCount="indefinite"/>
+    <rect x="-32" y="212" width="64" height="44" rx="6" fill="#4a3f12" stroke="#e6edf3" stroke-width="3"/>
+    <text class="n" y="245" font-size="30">3<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.25;0.25;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/></text>
+    <text class="n" y="245" font-size="30" opacity="0">9<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.25;0.625;0.625;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/></text>
+    <text class="n" y="245" font-size="30" opacity="0">4<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.625;0.625;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/></text>
+  </g>
+</g>
+<g transform="translate(772,0)">
+  <rect x="-3" y="90" width="6" height="210" fill="#8b949e"/>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 0;0 -100;0 -100;0 -44;0 -44" keyTimes="0;0.25;0.3;0.625;0.69;1" dur="12s" repeatCount="indefinite"/>
+    <rect x="-32" y="212" width="64" height="44" rx="6" fill="#4a3f12" stroke="#e6edf3" stroke-width="3"/>
+    <text class="n" y="245" font-size="30">3<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.25;0.25;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/></text>
+    <text class="n" y="245" font-size="30" opacity="0">9<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.25;0.625;0.625;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/></text>
+    <text class="n" y="245" font-size="30" opacity="0">4<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.625;0.625;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/></text>
+  </g>
+</g>
+<g transform="translate(1032,0)">
+  <rect x="-3" y="90" width="6" height="210" fill="#8b949e"/>
+  <g>
+    <!-- Llama hovers above the line at 5 and wobbles -->
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 0;0 -100;0 -100;0 -66;0 -62;0 -70;0 -66" keyTimes="0;0.25;0.3;0.625;0.69;0.8;0.9;1" dur="12s" repeatCount="indefinite"/>
+    <rect x="-32" y="212" width="64" height="44" rx="6" fill="#4a3f12" stroke="#e6edf3" stroke-width="3"/>
+    <text class="n" y="245" font-size="30">3<animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.25;0.25;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/></text>
+    <text class="n" y="245" font-size="30" opacity="0">9<animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.25;0.25;0.625;0.625;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/></text>
+    <text class="n" y="245" font-size="30" opacity="0">5<animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.625;0.625;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/></text>
+  </g>
+</g>
+
+<!-- whispers between neighbours, 1.6 s to 3.2 s -->
+<g opacity="0">
+  <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.13;0.14;0.27;0.28;1" dur="12s" repeatCount="indefinite" calcMode="discrete"/>
+  <g transform="translate(310,12)"><path d="M-46 0 h92 a10 10 0 0 1 10 10 v28 a10 10 0 0 1 -10 10 h-60 l-14 14 l2 -14 h-20 a10 10 0 0 1 -10 -10 v-28 a10 10 0 0 1 10 -10z" fill="#161b22" stroke="#e6edf3" stroke-width="3"/><text class="bub" y="32">psst, 9?</text></g>
+  <g transform="translate(570,12)"><path d="M-46 0 h92 a10 10 0 0 1 10 10 v28 a10 10 0 0 1 -10 10 h-20 l2 14 l-14 -14 h-60 a10 10 0 0 1 -10 -10 v-28 a10 10 0 0 1 10 -10z" fill="#161b22" stroke="#e6edf3" stroke-width="3"/><text class="bub" y="32">9!</text></g>
+  <g transform="translate(830,12)"><path d="M-46 0 h92 a10 10 0 0 1 10 10 v28 a10 10 0 0 1 -10 10 h-60 l-14 14 l2 -14 h-20 a10 10 0 0 1 -10 -10 v-28 a10 10 0 0 1 10 -10z" fill="#161b22" stroke="#e6edf3" stroke-width="3"/><text class="bub" y="32">psst, 9?</text></g>
+  <g transform="translate(1090,12)"><path d="M-40 0 h80 a10 10 0 0 1 10 10 v28 a10 10 0 0 1 -10 10 h-14 l2 14 l-14 -14 h-54 a10 10 0 0 1 -10 -10 v-28 a10 10 0 0 1 10 -10z" fill="#161b22" stroke="#e6edf3" stroke-width="3"/><text class="bub" y="32">9!</text></g>
+</g>
+
+<!-- the authority walks in from the right at 6 s: cap, coat, magnifying glass -->
+<g transform="translate(1340,0)">
+  <animateTransform attributeName="transform" type="translate" values="1340 0;1340 0;1118 0;1118 0" keyTimes="0;0.5;0.56;1" dur="12s" repeatCount="indefinite"/>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -4;0 0;0 -4;0 0;0 -4;0 0;0 0" keyTimes="0;0.51;0.52;0.53;0.54;0.55;0.56;1" dur="12s" repeatCount="indefinite"/>
+    <rect x="-30" y="250" width="60" height="110" rx="10" fill="#8b949e"/>
+    <rect x="-30" y="250" width="60" height="14" fill="#e6edf3"/>
+    <rect x="-10" y="264" width="20" height="96" fill="#161b22"/>
+    <circle cx="0" cy="222" r="28" fill="#161b22" stroke="#e6edf3" stroke-width="3"/>
+    <path d="M-30 206 h60 l0 -8 a30 30 0 0 0 -60 0z" fill="#e6edf3"/>
+    <rect x="-36" y="203" width="72" height="7" rx="3" fill="#e6edf3"/>
+    <circle cx="-10" cy="224" r="3.5" fill="#e6edf3"/>
+    <circle cx="10" cy="224" r="3.5" fill="#e6edf3"/>
+    <path d="M-9 240 h18" stroke="#e6edf3" stroke-width="3" stroke-linecap="round"/>
+    <use href="#glass" transform="translate(-58,236) rotate(-20)"/>
+  </g>
+</g>
+</svg>

@@ -1,7 +1,7 @@
 {
  "generated_by": "python3 docs/figures/make_overview.py",
- "commit": "6c203dc4dfc1d3584ee6754fa935d427d732a6f0",
- "time": "2026-10-25T15:34:43Z",
+ "commit": "bfd60bc23dae8c4c4d5d3b4eeae03f2b9c1664d2",
+ "time": "2026-10-25T16:36:46Z",
  "note": "Do not edit by hand. Values copied from risk_cards.json (commit a33351e).",
  "risk_cards_commit": "a33351e23cbbc5a7c73f5ad99f2cd3f68d1c74f3",
  "panels": [
