@@ -1,0 +1,169 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.round5 cost",
+  "commit": "bfa35be41b0d101486cd0af875292f4875984e95-dirty",
+  "time": "2026-10-25T03:26:39Z",
+  "note": "Do not edit by hand.",
+  "items": [
+    {
+      "block": "N2",
+      "arm": "Sonnet 5.5 nocomm_screen --screen-p 5 (seed 91)",
+      "duopoles": 20,
+      "per_duopoly": 0.08174365,
+      "upper_per_duopoly": 0.1634873,
+      "expected_usd": 1.635,
+      "upper_usd": 3.27,
+      "note": ""
+    },
+    {
+      "block": "N2",
+      "arm": "Sonnet 5.5 nocomm_screen_hidden (seed 93)",
+      "duopoles": 20,
+      "per_duopoly": 0.09754099499999999,
+      "upper_per_duopoly": 0.19508198999999998,
+      "expected_usd": 1.951,
+      "upper_usd": 3.902,
+      "note": "at the nocomm rate"
+    },
+    {
+      "block": "N2",
+      "arm": "Haiku 5.5 nocomm_screen --screen-p 5 (seed 92)",
+      "duopoles": 20,
+      "per_duopoly": 0.017026165,
+      "upper_per_duopoly": 0.03405233,
+      "expected_usd": 0.341,
+      "upper_usd": 0.681,
+      "note": ""
+    },
+    {
+      "block": "N2",
+      "arm": "Haiku 5.5 nocomm_screen_hidden (seed 94)",
+      "duopoles": 20,
+      "per_duopoly": 0.0185211035,
+      "upper_per_duopoly": 0.037042207,
+      "expected_usd": 0.37,
+      "upper_usd": 0.741,
+      "note": "at the nocomm rate"
+    },
+    {
+      "block": "K",
+      "arm": "Haiku 5.5 nocomm --partner nash (seed 101)",
+      "duopoles": 20,
+      "per_duopoly": 0.00926055175,
+      "upper_per_duopoly": 0.0185211035,
+      "expected_usd": 0.185,
+      "upper_usd": 0.37,
+      "note": "half the calls are scripted"
+    },
+    {
+      "block": "K",
+      "arm": "Haiku 5.5 nocomm_screen --partner nash (seed 102)",
+      "duopoles": 20,
+      "per_duopoly": 0.0085130825,
+      "upper_per_duopoly": 0.017026165,
+      "expected_usd": 0.17,
+      "upper_usd": 0.341,
+      "note": ""
+    },
+    {
+      "block": "K",
+      "arm": "Haiku 5.5 nocomm_screen --partner scatter_emp (seed 103)",
+      "duopoles": 20,
+      "per_duopoly": 0.0085130825,
+      "upper_per_duopoly": 0.017026165,
+      "expected_usd": 0.17,
+      "upper_usd": 0.341,
+      "note": ""
+    },
+    {
+      "block": "K",
+      "arm": "Sonnet 5.5 nocomm --partner nash (seed 104)",
+      "duopoles": 20,
+      "per_duopoly": 0.048770497499999996,
+      "upper_per_duopoly": 0.09754099499999999,
+      "expected_usd": 0.975,
+      "upper_usd": 1.951,
+      "note": "half the calls are scripted"
+    },
+    {
+      "block": "K",
+      "arm": "Sonnet 5.5 nocomm_screen --partner nash (seed 105)",
+      "duopoles": 20,
+      "per_duopoly": 0.040871825,
+      "upper_per_duopoly": 0.08174365,
+      "expected_usd": 0.817,
+      "upper_usd": 1.635,
+      "note": ""
+    },
+    {
+      "block": "K",
+      "arm": "Sonnet 5.5 nocomm_screen --partner scatter_emp (seed 106)",
+      "duopoles": 20,
+      "per_duopoly": 0.040871825,
+      "upper_per_duopoly": 0.08174365,
+      "expected_usd": 0.817,
+      "upper_usd": 1.635,
+      "note": ""
+    },
+    {
+      "block": "N5",
+      "arm": "Haiku 5.5 instructed_cartel_screen (seed 111)",
+      "duopoles": 20,
+      "per_duopoly": 0.025456412,
+      "upper_per_duopoly": 0.050912824,
+      "expected_usd": 0.509,
+      "upper_usd": 1.018,
+      "note": ""
+    },
+    {
+      "block": "N5",
+      "arm": "Sonnet 5.5 instructed_cartel_screen (seed 112)",
+      "duopoles": 20,
+      "per_duopoly": 0.1919520791227363,
+      "upper_per_duopoly": 0.34551961000000003,
+      "expected_usd": 3.839,
+      "upper_usd": 6.91,
+      "note": "Sonnet laissez-faire rate times the Haiku instructed_cartel/laissez-faire ratio 0.56; upper: Sonnet laissez-faire maximum"
+    }
+  ],
+  "blocks": {
+    "N2": {
+      "expected_usd": 4.297,
+      "upper_usd": 8.594
+    },
+    "K": {
+      "expected_usd": 3.134,
+      "upper_usd": 6.273
+    },
+    "N5": {
+      "expected_usd": 4.348,
+      "upper_usd": 7.928
+    }
+  },
+  "total": {
+    "expected_usd": 11.78,
+    "upper_usd": 22.79,
+    "cap_usd": 30.0
+  },
+  "measured_per_duopoly": {
+    "claude-haiku-5-5 clone": 0.0485689135,
+    "claude-haiku-5-5 fine_certain": 0.026045032000000003,
+    "claude-haiku-5-5 fine": 0.03995883775,
+    "claude-sonnet-5-5 fine": 0.20297488000000002,
+    "claude-haiku-5-5 fine_screen": 0.03453472125,
+    "claude-haiku-5-5 instructed_cartel": 0.025456412,
+    "claude-haiku-5-5 laissez_faire": 0.04582231975,
+    "claude-sonnet-5-5 laissez_faire": 0.34551961000000003,
+    "claude-haiku-5-5 leniency": 0.03210911425,
+    "claude-sonnet-5-5 leniency": 0.1989494,
+    "claude-haiku-5-5 nocomm": 0.0185211035,
+    "claude-sonnet-5-5 nocomm": 0.09754099499999999,
+    "claude-haiku-5-5 nocomm_screen": 0.017026165,
+    "claude-sonnet-5-5 nocomm_screen": 0.08174365,
+    "claude-haiku-5-5 noreport": 0.029829648999999996,
+    "claude-haiku-5-5 placebo": 0.046897997999999996,
+    "claude-haiku-5-5 rematch": 0.026983818,
+    "claude-haiku-5-5 reward": 0.028637302000000003,
+    "claude-sonnet-5-5 reward": 0.23485526
+  }
+}

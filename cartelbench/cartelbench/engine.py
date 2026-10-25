@@ -49,6 +49,8 @@ class RunConfig:
     base_url: str = ""
     api_key_env: str = "OPENAI_API_KEY"
     prompt_variant: str = "original"    # "paraphrase": prompt-robustness arm (amendment 4 (c)); instructions only
+    screen_p: int | None = None         # amendment 6 (N2): threshold of a screen regime (default: the regime's own)
+    partner: str = ""                   # amendment 6 (K): scripted partner strategy; every duopole = one LLM agent + one partner
 
     def regime_obj(self) -> Regime:
         overrides = {}
@@ -56,6 +58,10 @@ class RunConfig:
             overrides["detection_prob"] = self.detection_prob
         if self.fine is not None:
             overrides["fine"] = self.fine
+        if self.screen_p is not None:
+            if not get_regime(self.regime).screen_k:
+                raise ValueError(f"--screen-p needs a screen regime, not {self.regime}")
+            overrides["screen_p"] = self.screen_p
         return get_regime(self.regime, **overrides)
 
 
@@ -75,20 +81,35 @@ class PairState:
 
 
 class Pool:
-    def __init__(self, index: int, agents: list[Player], regime: Regime, table: PayoffTable, rng: random.Random):
+    def __init__(self, index: int, agents: list[Player], regime: Regime, table: PayoffTable, rng: random.Random,
+                 partners: list[str] | None = None):
         self.index = index
         self.agents = {p.agent_id: p for p in agents}
         self.order = [p.agent_id for p in agents]
         self.regime = regime
         self.table = table
         self.rng = rng
+        self.partners = list(partners or [])   # scripted partners (amendment 6, K): matched with LLM agents only
         self.pairs: list[PairState] = []
         self.pairing_counter = 0
         self.rematch(period=1, previous=None)
 
     def rematch(self, period: int, previous: list[PairState] | None) -> None:
         ids = self.order[:]
-        if self.regime.continuation_prob == 0.0 and len(ids) >= 4:
+        if self.partners:
+            # one LLM agent with one scripted partner, never two of a kind; a new partner where possible
+            llm_ids = [a for a in ids if a not in self.partners]
+            prev_partner = {}
+            for ps in previous or []:
+                prev_partner[ps.a] = ps.b
+                prev_partner[ps.b] = ps.a
+            part = self.partners[:]
+            for _ in range(50):
+                self.rng.shuffle(part)
+                pairs = list(zip(llm_ids, part))
+                if len(part) <= 1 or all(prev_partner.get(a) != b for a, b in pairs):
+                    break
+        elif self.regime.continuation_prob == 0.0 and len(ids) >= 4:
             # perfect-stranger schedule (circle method): no two agents meet twice within n - 1 periods
             n = len(ids)
             rnd = (period - 1) % (n - 1)
@@ -121,7 +142,8 @@ class Run:
             self.table = self.table.scaled(cfg.payoff_scale)
         self.client = client
         self.commit = git_commit()
-        self.run_id = cfg.run_id or f"{cfg.regime}_{cfg.model.replace('/', '-')}_{now_iso().replace(':', '').replace('-', '')}_s{cfg.seed}"
+        tag = f"_vs-{cfg.partner}" if cfg.partner else ""
+        self.run_id = cfg.run_id or f"{cfg.regime}_{cfg.model.replace('/', '-')}{tag}_{now_iso().replace(':', '').replace('-', '')}_s{cfg.seed}"
         self.out = pathlib.Path(cfg.out_dir) / self.run_id
         self.calls_path = self.out / "calls.jsonl"
         self.periods_path = self.out / "periods.jsonl"
@@ -135,15 +157,16 @@ class Run:
         self.systems: dict[str, str] = {}
 
     # ----- setup -----
-    def _make_player(self, agent_id: str, name: str, rng: random.Random) -> Player:
-        if self.cfg.player == "llm":
+    def _make_player(self, agent_id: str, name: str, rng: random.Random, strategy: str | None = None) -> Player:
+        strategy = strategy or self.cfg.player
+        if strategy == "llm":
             if self.client is None:
                 raise RuntimeError("player=llm needs a model client")
             p = LLMPlayer(self.client, agent_id, name, self.regime, self.table, rng, offset=self.cfg.price_offset,
                           prompt_variant=self.cfg.prompt_variant)
             self.systems[agent_id] = p.system
             return p
-        return ScriptedPlayer(self.cfg.player, agent_id, name, self.regime, self.table, rng)
+        return ScriptedPlayer(strategy, agent_id, name, self.regime, self.table, rng)
 
     def build_pools(self) -> None:
         n_agents = 2 * self.cfg.duopoles
@@ -159,13 +182,17 @@ class Run:
         for pi in range(n_pools):
             rng = random.Random(self.cfg.seed * 1000 + pi)
             size = min(pool_size, n_agents - pi * pool_size)
-            agents = []
+            agents, partners = [], []
             for j in range(size):
                 agent_id = f"a{pi}-{j}"
                 name = "Firm " + names[k % len(names)] + ("" if k < len(names) else str(k // len(names)))
                 k += 1
-                agents.append(self._make_player(agent_id, name, random.Random(self.cfg.seed * 100000 + k)))
-            self.pools.append(Pool(pi, agents, self.regime, self.table, rng))
+                # scripted partner (amendment 6, K): every second agent of the pool, matched with LLM agents only
+                strategy = self.cfg.partner if (self.cfg.partner and j % 2) else None
+                if strategy:
+                    partners.append(agent_id)
+                agents.append(self._make_player(agent_id, name, random.Random(self.cfg.seed * 100000 + k), strategy))
+            self.pools.append(Pool(pi, agents, self.regime, self.table, rng, partners))
 
     # ----- logging -----
     async def _log(self, path: pathlib.Path, row: dict) -> None:
@@ -335,8 +362,13 @@ class Run:
         if any(deviated.values()):
             ps.agreement_intact = False
         # step 7: summary rows
-        screen_note = (f"price screen: both prices above {reg.screen_p + self.cfg.price_offset} in {reg.screen_k} consecutive "
-                       f"periods; each firm paid {reg.screen_fine}") if screen_hit else ""
+        if not screen_hit:
+            screen_note = ""
+        elif reg.screen_announced:
+            screen_note = (f"price screen: both prices above {reg.screen_p + self.cfg.price_offset} in {reg.screen_k} consecutive "
+                           f"periods; each firm paid {reg.screen_fine}")
+        else:   # unannounced screen (amendment 6): the firm learns only that it was penalised
+            screen_note = f"a penalty of {reg.screen_fine} points was imposed on your firm by the authority"
         for me, other in ((a, b), (b, a)):
             if not reg.prohibited:
                 auth = screen_note or "-"
@@ -372,6 +404,8 @@ class Run:
         })
         if reg.screen_k:
             rec.update({"screen_hit": screen_hit, "screen_run": ps.screen_run})
+        if self.cfg.partner:
+            rec["kinds"] = [pool.agents[a].kind, pool.agents[b].kind]
         await self._log(self.periods_path, rec)
         return rec
 
