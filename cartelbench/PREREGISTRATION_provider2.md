@@ -88,7 +88,7 @@ This arm runs the open-model cells of amendment 6 exactly as written there (sect
 
 Every cell 20 duopoles in 4 pools. N1 runs first; K runs once the `--partner` option is on the merged harness, K3 last. Budget: at most 20 USD of Modal credit for this round (stop line 18 USD measured with `modal billing report`, then the running cell finishes, nothing new starts), endpoint stopped after each block; compute ends Monday 2026-10-26 12:00 HKT. Cells not run are reported as not run.
 
-## Amendment 3, 2026-10-25 17:05 HKT: round 7 cells on the open models (`PREREGISTRATION_round7.md` section (c), Julian, DECISIONS 15:30), before the first round-7 call
+## Amendment 3, 2026-10-25 17:02 HKT: round 7 cells on the open models (`PREREGISTRATION_round7.md` section (c), Julian, DECISIONS 15:30), before the first round-7 call
 
 The open-model cells of `PREREGISTRATION_round7.md` run exactly as registered there (measures, comparisons, readings of its sections (a) and (b)); provider options, serving and sampling as above. Cells, 20 duopoles in 4 pools each, in this order per model:
 
