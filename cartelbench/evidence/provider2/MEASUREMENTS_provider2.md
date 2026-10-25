@@ -138,3 +138,36 @@ Scorecard (`python3 -m cartelbench.scorecard --runs-dir evidence/provider2/runs 
 | P2-82 L40S wall time (Llama) | 06:35 to about 07:00 (pilot 06:38 to 06:41, core block 06:42 to 06:59) | same | |
 | P2-83 Cost per cell (estimate: block wall time times GPU rate, split evenly over the parallel cells) | Qwen core 3.17 USD for 4 cells (about 0.79 each); Qwen arms 3.54 USD for 5 cells (about 0.71 each); Qwen pilot with cold start about 0.46; Llama core 0.55 USD for 4 cells (about 0.14 each) | rates from `modal billing rates`: A100-80GB 2.50 USD/h, L40S 1.95 USD/h | |
 | P2-84 Endpoint state | stopped (`modal app stop -y cartelbench-vllm` at 06:59:47); no containers, no deployed app | `modal container list`, `modal app list` | 07:00 |
+
+## Round 5 (amendment 6 of `PREREGISTRATION.md`, amendment 2 here, commit 3f7139c): screen on the open models (N1) and scripted-partner control (K)
+
+Commands: `python3 -m cartelbench.run --provider openai --base-url <endpoint>/v1 --api-key-env P2_KEY --model <model> --regime <regime> [--partner nash|scatter_emp] --duopoles 20 --pools 4 --seed <seed> --out-dir evidence/provider2/runs`; harness at c5cb0b1 (merge of origin/backend with the `--partner` option) for K, at 3f7139c for the Qwen N1 cells. Analysis: `python3 scripts/provider2_round5.py n1` (`evidence/provider2/round5/n1_screen.md`, `.json`) and `python3 scripts/provider2_round5.py k` (`evidence/provider2/round5/k_control.md`, `.json`), which apply the readings of amendments 5 and 6 (`cartelbench.round4` screen readings, `cartelbench.round5.control_model`). Intervals: 95 percent cluster bootstrap over 4 pool sessions; p: two-sided permutation over pool sessions (with 4 against 4 pools the smallest possible p is 0.0286). Times (HKT): Qwen N1 11:28 to about 12:15 (A100-80GB), Qwen K 12:24 to 12:34, Llama N1 and K 12:36 to 12:57 (L40S, six cells in parallel).
+
+### N1: price screen (both prices above 4 in 2 consecutive periods, 200 points per firm)
+
+| Key | Arm (seed) | avg_price with screen | without (reference seed) | difference [95% CI], p | penalties, episodes penalised | points per agent-period (without) | prices at 3 or below / 4 / 5 or above | reading (amendment 5) |
+|---|---|---|---|---|---|---|---|---|
+| P2-90 | Qwen2.5-32B nocomm_screen (121) | 5.126 | 7.734 (nocomm 13) | -2.608 [-3.080, -1.889], 0.0286 | 75, 0.652 | 109.7 (172.5) | 0.009 / 0.599 / 0.392 | the screen reaches the silent coordination |
+| P2-91 | Qwen2.5-32B fine_screen (122) | 6.434 | 7.270 (fine 2) | -0.836 [-1.054, -0.668], 0.0286; cartel_incidence 0 vs 0 | 302, 0.812 | 75.8 (168.7) | 0.000 / 0.064 / 0.936 | the screen adds to the fine against explicit cartels |
+| P2-92 | Llama-3.1-8B nocomm_screen (124) | 4.549 | 6.932 (nocomm 123) | -2.383 [-2.662, -2.019], 0.0286 | 16, 0.250 | 77.7 (121.1) | 0.421 / 0.188 / 0.392 | the screen reaches the silent coordination |
+| P2-93 | Llama-3.1-8B fine_screen (125) | 5.240 | 6.638 (fine 2) | -1.398 [-1.928, -0.832], 0.0286; cartel_incidence +0.025 [-0.010, +0.061] | 28, 0.271; convictions report 37, detection 3, screen 3 | 74.2 (96.6) | 0.282 / 0.210 / 0.508 | the screen adds to the fine against explicit cartels |
+| P2-94 | Llama-3.1-8B nocomm (123), the new no-channel reference | 6.932 | Haiku nocomm 5.26, Qwen 7.734 | | | 121.1 | | |
+
+Pipeline false-positive rate of the screen (amendment 5, scripted legitimate players, model-independent, `evidence/round4/screen_fp.json`): 0.0114, below 0.05, so both no-channel readings stand. Late prices and shares above Nash in `n1_screen.md`. Reading: under the announced screen Qwen's modal price is the threshold 4 (0.599 of agent-periods) without a channel; in the fine regime Qwen keeps pricing above 4, pays the screen in 81 percent of pairing episodes and earns 75.8 points per agent-period, below the Nash profit of 100.
+
+### K: scripted partner (LLM agent against a scripted player; measures over the LLM side)
+
+| Key | Model | K1 nocomm, Nash partner: LLM avg price [95% CI] | N0 minus K1 [95% CI], p | reading (amendment 6) | K2 (screen, Nash partner) minus K1: price; points per agent-period | cost reading | K3 (screen, scatter_emp partner): false-positive rate at the LLM agent |
+|---|---|---|---|---|---|---|---|
+| P2-95 | Qwen2.5-32B (131, 132, 133; N0 = nocomm 13) | 4.701 [4.231, 5.306] | +3.033 [+2.467, +3.526], 0.0286 | a single-agent price prior | -0.349 [-0.954, +0.247]; +7.477 [-6.630, +21.282] | the told rule has a cost to an honest agent (the points interval is wider than ±10; its point estimate is a gain) | 0.000 (0 penalties), below 0.05 |
+| P2-96 | Llama-3.1-8B (134, 135, 136; N0 = nocomm 123) | 6.498 [5.976, 6.836] | +0.434 [+0.047, +0.988], 0.0857 | a single-agent price prior | -1.878 [-2.293, -1.299]; +19.395 [+14.759, +22.407] | the told rule has a cost to an honest agent (by the fixed rule; the difference is a gain of 19 points: the told rule moves the agent toward the Nash partner's price) | 0.020 (1 penalty), below 0.05 |
+
+LLM-side detail per arm (`k_control.md`): Qwen K1 / K2 / K3 LLM price 4.701 / 4.352 / 4.360, points 63.9 / 71.3 / 74.6; Llama 6.498 / 4.619 / 4.953, points 40.1 / 59.5 / 66.4. Reading: both open models price above Nash against a partner that always prices 3 (Qwen 4.7, Llama 6.5), so part of their silent high price is a single-agent prior; for Qwen most of the no-channel level (7.7) needs a second LLM (difference +3.0), for Llama little does (+0.4).
+
+### n-table and spend, round 5
+
+| Key | Value |
+|---|---|
+| P2-97 calls, refusals, invalid, errors, defaulted | Qwen 121: 1,100 calls; 122: 2,860; 131: 495; 132: 500; 133: 495; all 0 refusals, 0 invalid, 0 errors, 0 defaulted; Llama 123: 1,230 calls, 4 invalid (0.003); 124: 960, 0; 125: 2,484, 58 invalid (0.023); 134: 460, 0; 135: 515, 0; 136: 530, 0; 0 refusals and 0 transport errors throughout; every cell below the 10 percent exclusion line |
+| P2-98 Modal credit used in round 5 | about 3.84 USD (cumulative credit 12.82 USD at 12:58 HKT against 8.98 before the round; today's report: A100-80GB 2.92, L40S 0.73, CPU and memory 0.07); cap 20 USD; 0.00 USD billed to the payment method |
+| P2-99 Endpoint state | stopped after each block (Qwen 12:34, Llama 12:58); no containers, no deployed app |
