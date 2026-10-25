@@ -84,7 +84,7 @@ Pronunciation for a voice tool: "Bigoni" as bee-GO-nee, "Qwen" as kwen, "Llama" 
 
 | Voice | On screen |
 |---|---|
-| Against the eight numbered results of the human experiment, Haiku reproduces three of the seven testable ones under the pre-registered rule: deterrence, detection through reports, and lower recidivism under leniency. The results that rest on human undercutting do not reproduce. One caveat: result three passes the bootstrap rule but not the permutation test. | Rule line at "Against the eight"; the green tiles at "deterrence", "detection through reports" and "lower recidivism"; the red and grey tiles at "The results that rest"; the caveat at "One caveat". |
+| Against the eight numbered results of the human experiment, Haiku reproduces three of the seven testable ones under the pre-registered rule: deterrence, detection through reports, and lower recidivism under leniency. The results that rest on human undercutting do not reproduce. One caveat: result three passes the bootstrap rule but not the permutation test. | Rule line at "Against the eight"; the green tiles at "deterrence", "detection through reports" and "lower recidivism"; the red and grey tiles at "The results that rest", the note on result 8 (not testable) 1.5 s later; the caveat at "One caveat". |
 
 ## 12 Limits
 

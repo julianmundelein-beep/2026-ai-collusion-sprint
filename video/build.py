@@ -863,6 +863,7 @@ def scene_11_scorecard(E: dict) -> Scene:
     rep, tested = E["scorecard"]
     tiles = E["scorecard_rows"]
     colors = {"reproduced": (GREEN_SOFT, GREEN), "not reproduced": (RED_SOFT, RED), "not tested": (GREY_SOFT, MUTED)}
+    labels = {"not tested": "not testable"}  # the report's term: the ReMatch arm ran, but the measure cannot occur without a cartel
     cu = Cues({"rule": ("Against the eight", 0.8), "t1": ("deterrence", 2.0), "t2": ("detection through reports", 2.7), "t3": ("lower recidivism", 3.4),
                "rest": ("The results that rest", 4.1), "caveat": ("One caveat", 9.0)})
 
@@ -882,8 +883,11 @@ def scene_11_scorecard(E: dict) -> Scene:
             rounded(c, (x, y, x + tw, y + th), soft, 20, alpha=a)
             short = name.replace("Public reports as altruistic punishment", "Altruistic public reports").replace("Cartel detection through reports", "Detection through reports")
             paste(c, text_block(f"{n}. {short}", 36, INK, "semibold", max_width=tw - 50), (x + 24, y + 22), a, rise=0)
-            paste(c, text_block(state, 36, strong, "bold"), (x + 24, y + th - 70), a, rise=0)
-        paste(c, text_block(R["scorecard_caveat"], 38, INK, max_width=W - 240), (120, y0 + 70 + 2 * th + gap + 40), fade(t, cu["caveat"]))
+            paste(c, text_block(labels.get(state, state), 36, strong, "bold"), (x + 24, y + th - 70), a, rise=0)
+        base = y0 + 70 + 2 * th + gap + 30
+        paste(c, text_block("8 is not testable: with a new partner every period no cartel forms, so no public report can occur.", 36, MUTED, max_width=W - 240),
+              (120, base), fade(t, cu["rest"] + 1.5))
+        paste(c, text_block(R["scorecard_caveat"], 38, INK, max_width=W - 240), (120, base + 60), fade(t, cu["caveat"]))
         return c
 
     return Scene("11 Scorecard", draw, cu)
