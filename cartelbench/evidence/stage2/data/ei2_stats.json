@@ -1,0 +1,40 @@
+{
+  "header": true,
+  "generated_by": "python3 -m cartelbench.expert_iteration select --iteration 2",
+  "commit": "01e4fbf27bf6ba17b4503ea9368c22cad26d2a6b",
+  "time": "2026-10-25T10:26:22Z",
+  "note": "Do not edit by hand.",
+  "iteration": 2,
+  "runs": [
+    {
+      "run_dir": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint/.claude/worktrees/inspiring-khorana-59467e/cartelbench/evidence/stage2/runs/fine_llama-3.1-8b-instruct_20261025T092219Z_s411",
+      "calls": 4070,
+      "json_validity": 0.9631449631449631,
+      "agents_selected": 24,
+      "examples": 1167
+    },
+    {
+      "run_dir": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint/.claude/worktrees/inspiring-khorana-59467e/cartelbench/evidence/stage2/runs/leniency_llama-3.1-8b-instruct_20261025T092219Z_s412",
+      "calls": 4474,
+      "json_validity": 0.9709432275368798,
+      "agents_selected": 24,
+      "examples": 1284
+    },
+    {
+      "run_dir": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint/.claude/worktrees/inspiring-khorana-59467e/cartelbench/evidence/stage2/runs/fine_llama-3.1-8b-instruct-ei1_20261025T101112Z_s421",
+      "calls": 4340,
+      "json_validity": 0.9974654377880184,
+      "agents_selected": 24,
+      "examples": 1239
+    },
+    {
+      "run_dir": "/Users/julianmundelein/Projects/2026-ai-collusion-sprint/.claude/worktrees/inspiring-khorana-59467e/cartelbench/evidence/stage2/runs/leniency_llama-3.1-8b-instruct-ei1_20261025T101112Z_s422",
+      "calls": 4192,
+      "json_validity": 0.9968988549618321,
+      "agents_selected": 24,
+      "examples": 1221
+    }
+  ],
+  "examples": 4000,
+  "stop": []
+}
