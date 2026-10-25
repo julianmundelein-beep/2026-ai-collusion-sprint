@@ -1,13 +1,360 @@
 {
   "header": true,
   "generated_by": "python3 scripts/provider2_round5.py k",
-  "commit": "c5cb0b13afbe9c0f81efe0c67936516aeae8aba4-dirty",
-  "time": "2026-10-25T04:25:38Z",
+  "commit": "f41a9bc4aa5db02e8a86b7aa39e1424a6998bfe9",
+  "time": "2026-10-25T04:35:07Z",
   "note": "Do not edit by hand.",
   "models": {
     "qwen2.5-32b-instruct": {
       "model": "qwen2.5-32b-instruct",
-      "skipped": "0 complete runs for qwen2.5-32b-instruct nocomm seed 131"
+      "arms": {
+        "K1 nash partner": {
+          "run": "nocomm_qwen2.5-32b-instruct_20261025T042415Z_s131",
+          "pools": 4,
+          "llm_avg_price": 4.701010101010101,
+          "llm_share_above_nash": 0.37575757575757573,
+          "llm_late_avg_price": 4.410169491525424,
+          "llm_points_per_agent_period": 63.86666666666667,
+          "avg_price_pair": 3.8505050505050504,
+          "distribution_llm": {
+            "0": 0,
+            "1": 0,
+            "2": 4,
+            "3": 305,
+            "4": 6,
+            "5": 4,
+            "6": 11,
+            "7": 79,
+            "8": 50,
+            "9": 29,
+            "10": 1,
+            "11": 2,
+            "12": 4
+          },
+          "n_table": {
+            "pool_sessions": 4,
+            "duopoles": 20,
+            "agents": 40,
+            "periods_per_pool": {
+              "1": 22,
+              "0": 22,
+              "2": 26,
+              "3": 29
+            },
+            "pair_periods": 495,
+            "pairing_episodes": 70,
+            "calls": 495,
+            "refusals": 0,
+            "invalid_json": 0,
+            "errors": 0,
+            "defaulted": 0,
+            "defaulted_share": 0.0,
+            "input_tokens": 712793,
+            "cache_read_tokens": 0,
+            "output_tokens": 21319,
+            "cost_usd": null,
+            "cost_usd_per_duopoly": null,
+            "tokens_per_duopoly": 36705.6,
+            "mean_latency_s": 18.75847744554507
+          }
+        },
+        "K2 nash partner, screen": {
+          "run": "nocomm_screen_qwen2.5-32b-instruct_20261025T042415Z_s132",
+          "pools": 4,
+          "llm_avg_price": 4.352,
+          "llm_share_above_nash": 0.584,
+          "llm_late_avg_price": 4.22,
+          "llm_points_per_agent_period": 71.344,
+          "avg_price_pair": 3.676,
+          "distribution_llm": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 208,
+            "4": 152,
+            "5": 24,
+            "6": 33,
+            "7": 51,
+            "8": 28,
+            "9": 1,
+            "10": 0,
+            "11": 0,
+            "12": 3
+          },
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "pairing_episodes": 65,
+          "share_of_episodes_penalised": 0.0,
+          "n_table": {
+            "pool_sessions": 4,
+            "duopoles": 20,
+            "agents": 40,
+            "periods_per_pool": {
+              "1": 22,
+              "2": 22,
+              "3": 25,
+              "0": 31
+            },
+            "pair_periods": 500,
+            "pairing_episodes": 65,
+            "calls": 500,
+            "refusals": 0,
+            "invalid_json": 0,
+            "errors": 0,
+            "defaulted": 0,
+            "defaulted_share": 0.0,
+            "input_tokens": 769373,
+            "cache_read_tokens": 0,
+            "output_tokens": 20392,
+            "cost_usd": null,
+            "cost_usd_per_duopoly": null,
+            "tokens_per_duopoly": 39488.25,
+            "mean_latency_s": 18.694151483929485
+          }
+        },
+        "K3 scatter_emp partner, screen": {
+          "run": "nocomm_screen_qwen2.5-32b-instruct_20261025T042415Z_s133",
+          "pools": 4,
+          "llm_avg_price": 4.35959595959596,
+          "llm_share_above_nash": 0.4767676767676768,
+          "llm_late_avg_price": 3.9796610169491524,
+          "llm_points_per_agent_period": 74.57373737373737,
+          "avg_price_pair": 3.7666666666666666,
+          "distribution_llm": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 259,
+            "4": 85,
+            "5": 24,
+            "6": 26,
+            "7": 52,
+            "8": 42,
+            "9": 5,
+            "10": 2,
+            "11": 0,
+            "12": 0
+          },
+          "screen_penalties": 0,
+          "penalties_per_pair_period": 0.0,
+          "pairing_episodes": 75,
+          "share_of_episodes_penalised": 0.0,
+          "n_table": {
+            "pool_sessions": 4,
+            "duopoles": 20,
+            "agents": 40,
+            "periods_per_pool": {
+              "1": 20,
+              "0": 20,
+              "3": 20,
+              "2": 39
+            },
+            "pair_periods": 495,
+            "pairing_episodes": 75,
+            "calls": 495,
+            "refusals": 0,
+            "invalid_json": 0,
+            "errors": 0,
+            "defaulted": 0,
+            "defaulted_share": 0.0,
+            "input_tokens": 775045,
+            "cache_read_tokens": 0,
+            "output_tokens": 20266,
+            "cost_usd": null,
+            "cost_usd_per_duopoly": null,
+            "tokens_per_duopoly": 39765.55,
+            "mean_latency_s": 17.469630814698817
+          }
+        },
+        "N0 all-LLM no channel": {
+          "run": "nocomm_qwen2.5-32b-instruct_20261024T210939Z_s13",
+          "pools": 4,
+          "llm_avg_price": 7.7342342342342345,
+          "llm_share_above_nash": 1.0,
+          "llm_late_avg_price": 7.807042253521127,
+          "llm_points_per_agent_period": 172.53333333333333,
+          "avg_price_pair": 7.7342342342342345,
+          "distribution_llm": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 1,
+            "6": 34,
+            "7": 470,
+            "8": 403,
+            "9": 181,
+            "10": 2,
+            "11": 15,
+            "12": 4
+          },
+          "n_table": {
+            "pool_sessions": 4,
+            "duopoles": 20,
+            "agents": 40,
+            "periods_per_pool": {
+              "2": 24,
+              "3": 26,
+              "0": 28,
+              "1": 33
+            },
+            "pair_periods": 555,
+            "pairing_episodes": 95,
+            "calls": 1110,
+            "refusals": 0,
+            "invalid_json": 0,
+            "errors": 0,
+            "defaulted": 0,
+            "defaulted_share": 0.0,
+            "input_tokens": 1592969,
+            "cache_read_tokens": 0,
+            "output_tokens": 45739,
+            "cost_usd": null,
+            "cost_usd_per_duopoly": null,
+            "tokens_per_duopoly": 81935.4,
+            "mean_latency_s": 74.42934593163538
+          }
+        }
+      },
+      "n0_minus_k1_llm_avg_price": {
+        "a": 7.7342342342342345,
+        "b": 4.701010101010101,
+        "diff": {
+          "point": 3.0332241332241336,
+          "lo": 2.467228346456693,
+          "hi": 3.525679418383244,
+          "n_boot": 1000
+        },
+        "permutation": {
+          "observed": 3.0332241332241336,
+          "p": 0.02857142857142857,
+          "alternative": "two-sided",
+          "exact": true,
+          "relabellings": 70,
+          "distinct_relabellings": 70,
+          "count_at_least_observed": 2,
+          "undefined": 0,
+          "clusters_a": 4,
+          "clusters_b": 4,
+          "seed": null
+        }
+      },
+      "k1_llm_avg_price": {
+        "point": 4.701010101010101,
+        "lo": 4.231192660550459,
+        "hi": 5.306
+      },
+      "k1_minus_nash": {
+        "point": 1.7010101010101009,
+        "lo": 1.2311926605504588,
+        "hi": 2.306
+      },
+      "reading_prior": "a single-agent price prior",
+      "k2_minus_k1": {
+        "llm_avg_price": {
+          "a": 4.352,
+          "b": 4.701010101010101,
+          "diff": {
+            "point": -0.34901010101010055,
+            "lo": -0.9539999999999997,
+            "hi": 0.24705882352941178,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -0.34901010101010055,
+            "p": 0.4,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 28,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          }
+        },
+        "llm_share_above_nash": {
+          "a": 0.584,
+          "b": 0.37575757575757573,
+          "diff": {
+            "point": 0.20824242424242423,
+            "lo": 0.04457642312864185,
+            "hi": 0.36557509601778854,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 0.20824242424242423,
+            "p": 0.08571428571428572,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 6,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          }
+        },
+        "llm_late_avg_price": {
+          "a": 4.22,
+          "b": 4.410169491525424,
+          "diff": {
+            "point": -0.19016949152542395,
+            "lo": -0.8048484848484856,
+            "hi": 0.42473118279569855,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": -0.19016949152542395,
+            "p": 0.6,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 42,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          }
+        },
+        "llm_points_per_agent_period": {
+          "a": 71.344,
+          "b": 63.86666666666667,
+          "diff": {
+            "point": 7.477333333333327,
+            "lo": -6.629972870320138,
+            "hi": 21.282128440366968,
+            "n_boot": 1000
+          },
+          "permutation": {
+            "observed": 7.477333333333327,
+            "p": 0.4,
+            "alternative": "two-sided",
+            "exact": true,
+            "relabellings": 70,
+            "distinct_relabellings": 70,
+            "count_at_least_observed": 28,
+            "undefined": 0,
+            "clusters_a": 4,
+            "clusters_b": 4,
+            "seed": null
+          }
+        }
+      },
+      "reading_cost": "the told rule has a cost to an honest agent (see the differences)",
+      "k2_screen_cannot_fire_note": "with a partner at 3 the screen (both prices above 4) cannot fire; penalties here must be 0",
+      "false_positive_at_llm_k3": {
+        "screen_penalties": 0,
+        "penalties_per_pair_period": 0.0,
+        "pairing_episodes": 75,
+        "share_of_episodes_penalised": 0.0,
+        "below_threshold": true,
+        "llm_prices_in_penalised_episodes": []
+      }
     },
     "llama-3.1-8b-instruct": {
       "model": "llama-3.1-8b-instruct",
