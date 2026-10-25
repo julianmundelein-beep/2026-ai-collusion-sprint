@@ -14,7 +14,7 @@ imageio-ffmpeg.
     python3 video/build.py --timeline      # print the scene times and exit
     python3 video/build.py --stills-only   # only the PNG stills
 
-Voice: if video/voice/01.mp3 ... 12.mp3 exist (one file per scene, see
+Voice: if video/voice/01.mp3 ... 13.mp3 exist (one file per scene, see
 narration.md), each scene lasts at least its file plus a pause and the files
 are mixed under the video at the scene starts. Without them the scene length
 follows the reading rule (3 s plus 0.35 s per word) and the timings in
@@ -92,7 +92,7 @@ R = {
     "fine_incidence_8pool": 0.401,
     "paraphrase_incidence": 0.018,  # [F50]
     "llama_training": ("-0.50", "-0.60", "0.222", "0.206"),  # [F91, F92]
-    "scorecard_caveat": "Result 3 passes the bootstrap rule but not the permutation test (p 0.099); the first 4 pools give 2 of 7.",  # [F46]
+    "scorecard_caveat": "Result 3 passes the bootstrap rule, not the permutation test (p 0.099); the first 4 pools give 2 of 7.",  # [F46]
 }
 
 
@@ -325,6 +325,30 @@ class Scene:
     duration: float = 0.0       # set by plan_durations
 
 
+def scene_00_intro(E: dict) -> Scene:
+    def draw(t: float) -> Image.Image:
+        c = new_canvas()
+        # two firms move together and agree on a price
+        k = ease((t - 0.6) / 1.8)
+        for i, name in enumerate(["Firm A", "Firm B"]):
+            x0 = 420 if i == 0 else W - 420
+            x1 = W // 2 - 300 if i == 0 else W // 2 + 300
+            x = x0 + (x1 - x0) * k
+            a = fade(t, 0.2)
+            rounded(c, (x - 200, 300, x + 200, 420), ACCENT_SOFT, 28, alpha=a)
+            paste(c, text_block(name, 50, ACCENT, "bold"), (x, 360), a, rise=0, anchor="mm")
+        ag = fade(t, 2.4)
+        line(c, (W // 2 - 100, 360), (W // 2 + 100, 360), ACCENT, 5, ag)
+        paste(c, text_block("one price", 36, ACCENT, "semibold"), (W // 2, 330), ag, rise=0, anchor="mb")
+        paste(c, text_block("When competitors quietly agree on a price, customers pay more.", 56, INK, "semibold",
+                            max_width=W - 300, align="center", spacing=1.25), (W // 2, 520), fade(t, 0.4), anchor="mt")
+        paste(c, text_block("That is a cartel, and it is illegal almost everywhere.", 48, INK,
+                            max_width=W - 300, align="center"), (W // 2, 700), fade(t, 4.2), anchor="mt")
+        return c
+
+    return Scene("01 Intro", draw, min_duration=6.0)
+
+
 def scene_01_title(E: dict) -> Scene:
     def draw(t: float) -> Image.Image:
         c = new_canvas()
@@ -340,12 +364,14 @@ def scene_01_title(E: dict) -> Scene:
             rounded(c, (x - 170, 480, x + 170, 570), ACCENT_SOFT, 24, alpha=a)
             paste(c, text_block(w, 48, ACCENT, "bold"), (x, 525), a, rise=0, anchor="mm")
         paste(c, text_block("Three tools against cartels. All three were designed for people.", 44, INK, align="center",
-                            max_width=W - 300), (W // 2, 620), fade(t, 5.6), anchor="mt")
-        paste(c, text_block("Do they work on AI pricing agents?", 60, INK, "semibold", align="center"),
-              (W // 2, 720), fade(t, 8.0), anchor="mt")
+                            max_width=W - 300), (W // 2, 610), fade(t, 5.6), anchor="mt")
+        paste(c, text_block("More and more prices are set by software, and language-model agents are starting to set them too.",
+                            44, MUTED, align="center", max_width=W - 300), (W // 2, 690), fade(t, 8.4), anchor="mt")
+        paste(c, text_block("Do the three tools work on them?", 60, INK, "semibold", align="center"),
+              (W // 2, 820), fade(t, 11.5), anchor="mt")
         return c
 
-    return Scene("01 Title", draw, min_duration=11.0)
+    return Scene("02 Title", draw, min_duration=14.0)
 
 
 def scene_02_game(E: dict) -> Scene:
@@ -379,7 +405,7 @@ def scene_02_game(E: dict) -> Scene:
               (120, ay + 180), fade(t, 8.0))
         return c
 
-    return Scene("02 Game", draw, min_duration=12.0)
+    return Scene("03 Game", draw, min_duration=12.0)
 
 
 def scene_03_humans(E: dict) -> Scene:
@@ -413,7 +439,7 @@ def scene_03_humans(E: dict) -> Scene:
                             40, INK, max_width=W - 240), (120, bottom + 40), fade(t, 10.5))
         return c
 
-    return Scene("03 Humans", draw, min_duration=15.0)
+    return Scene("04 Humans", draw, min_duration=15.0)
 
 
 def scene_04_testbed(E: dict) -> Scene:
@@ -434,7 +460,7 @@ def scene_04_testbed(E: dict) -> Scene:
         paste(c, text_block(f"{n:,} model calls, 0 refusals, every run hashed", 40, MUTED), (180, y - 140 + 62), a, rise=0)
         return c
 
-    return Scene("04 Testbed", draw, min_duration=12.0)
+    return Scene("05 Testbed", draw, min_duration=12.0)
 
 
 def scene_05_table(E: dict) -> Scene:
@@ -496,7 +522,7 @@ def scene_05_table(E: dict) -> Scene:
         paste(c, b2, (120, ty + 50), a2)
         return c
 
-    return Scene("05 Table", draw, min_duration=T_B2 + 7)
+    return Scene("06 Table", draw, min_duration=T_B2 + 7)
 
 
 def scene_06_line(E: dict) -> Scene:
@@ -590,7 +616,7 @@ def scene_06_line(E: dict) -> Scene:
         paste(c, rb, (rx, y + pb.height + 30), fade(t, T_READ))
         return c
 
-    return Scene("06 Line", draw, min_duration=T_READ + 6)
+    return Scene("07 Line", draw, min_duration=T_READ + 6)
 
 
 def scene_07_random(E: dict) -> Scene:
@@ -637,7 +663,7 @@ def scene_07_random(E: dict) -> Scene:
               (rx, y0 + 500), fade(t, T_RIGHT + 4.0))
         return c
 
-    return Scene("07 Random", draw, min_duration=T_RIGHT + 9)
+    return Scene("08 Random", draw, min_duration=T_RIGHT + 9)
 
 
 def scene_08_stakes(E: dict) -> Scene:
@@ -654,9 +680,9 @@ def scene_08_stakes(E: dict) -> Scene:
             rounded(c, (x, y0 + 10, x + 520, y0 + 100), ACCENT_SOFT, 20, alpha=a)
             paste(c, text_block(f, 40, ACCENT, "semibold"), (x + 260, y0 + 55), a, rise=0, anchor="mm")
         rows = [
-            (3.6, "Haiku, fine regime, cartel incidence", f"{lo} to {hi} with these frames; {fmt(R['fine_incidence_8pool'], 3)} original; {fmt(R['paraphrase_incidence'], 3)} with a rewording alone"),
+            (3.6, "Haiku, fine regime, cartel incidence", f"{lo} to {hi}, against {fmt(R['fine_incidence_8pool'], 3)} original and {fmt(R['paraphrase_incidence'], 3)} with a rewording alone"),
             (7.0, "No loss aversion", "loss and gain frame equivalent within the margin"),
-            (10.0, "Llama retrained after fines (exploratory)", f"prices {d1} and {d2} under leniency and reward; distance to the students {dist0} to {dist1}: moves only slightly"),
+            (10.0, "Llama retrained after fines (exploratory)", f"prices {d1} and {d2} under leniency and reward; distance to the students {dist0} to {dist1}"),
         ]
         y = y0 + 150
         for t0, head, body in rows:
@@ -668,7 +694,7 @@ def scene_08_stakes(E: dict) -> Scene:
             y += 60 + bb.height + 36
         return c
 
-    return Scene("08 Stakes", draw, min_duration=16.0)
+    return Scene("09 Stakes", draw, min_duration=16.0)
 
 
 def scene_09_risk_card(E: dict) -> Scene:
@@ -703,7 +729,7 @@ def scene_09_risk_card(E: dict) -> Scene:
             line(c, (160, y + 54), (W - 160, y + 54), RULE, 1, a)
         return c
 
-    return Scene("09 Risk card", draw, min_duration=2.4 + len(rows) * 0.75 + 3)
+    return Scene("10 Risk card", draw, min_duration=2.4 + len(rows) * 0.75 + 3)
 
 
 def scene_10_scorecard(E: dict) -> Scene:
@@ -730,7 +756,7 @@ def scene_10_scorecard(E: dict) -> Scene:
         paste(c, text_block(R["scorecard_caveat"], 38, INK, max_width=W - 240), (120, y0 + 70 + 2 * th + gap + 40), fade(t, 9.0))
         return c
 
-    return Scene("10 Scorecard", draw, min_duration=14.0)
+    return Scene("11 Scorecard", draw, min_duration=14.0)
 
 
 def scene_11_limits(E: dict) -> Scene:
@@ -747,16 +773,14 @@ def scene_11_limits(E: dict) -> Scene:
         bullet_list(c, items, y0 + 10, t, 1.2, 2.4, color=MUTED, gap=170, head_size=48)
         return c
 
-    return Scene("11 Limits", draw, min_duration=13.0)
+    return Scene("12 Limits", draw, min_duration=13.0)
 
 
 def scene_12_close(E: dict) -> Scene:
     def draw(t: float) -> Image.Image:
         c = new_canvas()
-        paste(c, text_block("A price screen reaches the silent coordination; the agents price on its published line.",
-                            44, INK, max_width=W - 300, align="center"), (W // 2, 120), fade(t, 0.3), anchor="mt")
         paste(c, text_block("An authority has to choose where the line lies, not only whether to publish it.", 52, ACCENT, "semibold",
-                            max_width=W - 300, align="center"), (W // 2, 300), fade(t, 3.0), anchor="mt")
+                            max_width=W - 300, align="center"), (W // 2, 200), fade(t, 0.5), anchor="mt")
         line(c, (W // 2 - 260, 470), (W // 2 + 260, 470), RULE, 3, fade(t, 5.0))
         paste(c, text_block("CartelBench", 40, ACCENT, "semibold"), (W // 2, 510), fade(t, 5.4), anchor="mt")
         paste(c, text_block("Same Game, Different Players: A Human-Calibrated Testbed for Cartel Enforcement on LLM Pricing Agents",
@@ -766,12 +790,12 @@ def scene_12_close(E: dict) -> Scene:
         paste(c, text_block("github.com/julianmundelein-beep/2026-ai-collusion-sprint", 44, ACCENT, "semibold", align="center"), (W // 2, 900), fade(t, 7.4), anchor="mt")
         return c
 
-    return Scene("12 Close", draw, min_duration=12.0)
+    return Scene("13 Close", draw, min_duration=12.0)
 
 
 def build_scenes() -> list[Scene]:
     E = evidence_numbers()
-    return [f(E) for f in (scene_01_title, scene_02_game, scene_03_humans, scene_04_testbed, scene_05_table, scene_06_line,
+    return [f(E) for f in (scene_00_intro, scene_01_title, scene_02_game, scene_03_humans, scene_04_testbed, scene_05_table, scene_06_line,
                            scene_07_random, scene_08_stakes, scene_09_risk_card, scene_10_scorecard, scene_11_limits, scene_12_close)]
 
 
@@ -891,7 +915,7 @@ def stills(scenes: list[Scene]) -> None:
     STILLS_DIR.mkdir(parents=True, exist_ok=True)
     for old in STILLS_DIR.glob("*.png"):
         old.unlink()
-    picks = {"05_table.png": "05 Table", "06_line.png": "06 Line", "07_random.png": "07 Random"}
+    picks = {"06_table.png": "06 Table", "07_line.png": "07 Line", "08_random.png": "08 Random"}
     for fname, name in picks.items():
         s = next(x for x in scenes if x.name == name)
         s.draw(s.duration - XFADE - 0.1).convert("RGB").save(STILLS_DIR / fname, optimize=True)

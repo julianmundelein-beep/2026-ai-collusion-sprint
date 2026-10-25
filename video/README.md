@@ -1,6 +1,6 @@
 # CartelBench video
 
-Explainer video for the AI Collusion Research Sprint submission: 1920x1080, 30 fps, H.264, English, about 4:37 without voice, text cards readable without sound. Output: `video/out/CartelBench_AI-Collusion-Research-Sprint_2026.mp4`.
+Explainer video for the AI Collusion Research Sprint submission: 1920x1080, 30 fps, H.264, English, about 4:47 without voice, text cards readable without sound. Output: `video/out/CartelBench_AI-Collusion-Research-Sprint_2026.mp4`.
 
 Everything on screen is generated from the repository: `build.py` draws every frame with Pillow, reads the numbers from `cartelbench/evidence/` (round4 and provider2 scorecards, `round7/diagonal.json`, `round4/screen.json`, `round4/scorecards.json`, `risk_cards/risk_cards.json`) and `cartelbench/data/human_baseline.json`, and encodes with the ffmpeg binary of the PyPI package `imageio-ffmpeg`. `facts_used.md` lists every number with its place in `paper/report.md` and its measurement key.
 
@@ -23,7 +23,7 @@ ffprobe -v error -show_entries format=duration,size -of default=nw=1 video/out/C
 
 ## Voice
 
-`narration.md` holds the spoken text per scene with the moments at which the elements appear. Generate or record one file per scene and save them as `video/voice/01.mp3` to `video/voice/12.mp3` (MP3, M4A or WAV all work; the extension in the file name must be `.mp3`, or rename after export). Then rebuild:
+`narration.md` holds the spoken text per scene with the moments at which the elements appear. Generate or record one file per scene and save them as `video/voice/01.mp3` to `video/voice/13.mp3` (MP3, M4A or WAV all work; the extension in the file name must be `.mp3`, or rename after export). Then rebuild:
 
 ```sh
 python3 video/build.py
