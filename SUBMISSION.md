@@ -15,7 +15,7 @@ CartelBench replays a published cartel laboratory experiment with LLM sellers un
 
 | Item | Required | File or link | Format and checks |
 |---|---|---|---|
-| Research report | yes | [`paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf`](paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf) (source: `paper/report.docx` on the official Apart Research submission template) | PDF, 13 pages; body ends on page 8, References start on page 9; abstract 150 to 250 words; author and affiliation; appendix "Limitations and Dual-Use / Ethical Considerations"; LLM Usage Statement; text layer checked with `pdftotext` |
+| Research report | yes | [`paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf`](paper/CartelBench_AI-Collusion-Research-Sprint_2026.pdf) (source: `paper/report.docx` on the official Apart Research submission template) | PDF, 14 pages; body ends on page 8, References start on page 9; abstract 150 to 250 words; author and affiliation; appendix "Limitations and Dual-Use / Ethical Considerations"; LLM Usage Statement; text layer checked with `pdftotext` |
 | Public GitHub repository | optional | this repository | code, pre-registration, every run record and measurement, run ledger with SHA-256 hashes, tests (`sh cartelbench/scripts/run_tests.sh`, 70 passed) |
 | Video demo | optional | release asset `CartelBench_AI-Collusion-Research-Sprint_2026.mp4` and an unlisted YouTube link in the submission form | 3 minutes 34 seconds, 1920 x 1080, English, text cards readable without sound |
 
