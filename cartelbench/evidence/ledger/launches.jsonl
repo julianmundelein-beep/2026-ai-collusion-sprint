@@ -126,3 +126,4 @@
 {"event": "start", "run_id": "laissez_faire_claude-haiku-5-5_stakes-s3_exit_20261025T071654Z_s231", "args": "--regime laissez_faire --model claude-haiku-5-5 --duopoles 20 --pools 4 --seed 231 --stakes s3_exit --concurrency 5", "out_dir": "/home/user/2026-ai-collusion-sprint/cartelbench/evidence/runs", "commit": "ec8b8a0f56aa8931a7af92a66c99cb7c76d055fa", "time": "2026-10-25T07:16:54Z"}
 {"event": "end", "run_id": "fine_claude-haiku-5-5_stakes-s3_exit_20261025T070714Z_s232", "status": "complete", "cost_usd": 0.5212163599999999, "calls": 1956, "time": "2026-10-25T07:26:32Z"}
 {"event": "end", "run_id": "leniency_claude-haiku-5-5_stakes-s3_exit_20261025T071214Z_s233", "status": "complete", "cost_usd": 0.40103597, "calls": 1672, "time": "2026-10-25T07:27:26Z"}
+{"event": "end", "run_id": "laissez_faire_claude-haiku-5-5_stakes-s1_money_20261025T065854Z_s201", "status": "complete", "cost_usd": 0.879484145, "calls": 3844, "time": "2026-10-25T07:34:57Z"}
