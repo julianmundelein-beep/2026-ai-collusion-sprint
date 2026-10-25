@@ -1,6 +1,6 @@
 # CartelBench video
 
-Explainer video for the AI Collusion Research Sprint submission: 1920x1080, 30 fps, H.264, English, about 4:49 without voice, text cards readable without sound. Output: `video/out/CartelBench_AI-Collusion-Research-Sprint_2026.mp4`.
+Explainer video for the AI Collusion Research Sprint submission: 1920x1080, 30 fps, H.264, English, about 4:50 without voice, text cards readable without sound. Output: `video/out/CartelBench_AI-Collusion-Research-Sprint_2026.mp4`.
 
 Everything on screen is generated from the repository: `build.py` draws every frame with Pillow, reads the numbers from `cartelbench/evidence/` (round4 and provider2 scorecards, `round7/diagonal.json`, `round4/screen.json`, `round4/scorecards.json`, `risk_cards/risk_cards.json`) and `cartelbench/data/human_baseline.json`, and encodes with the ffmpeg binary of the PyPI package `imageio-ffmpeg`. `facts_used.md` lists every number with its place in `paper/report.md` and its measurement key.
 

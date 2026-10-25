@@ -787,10 +787,11 @@ def scene_12_close(E: dict) -> Scene:
                             48, INK, "bold", max_width=W - 300, align="center", spacing=1.15), (W // 2, 570), fade(t, 5.6), anchor="mt")
         paste(c, text_block("Julian Mundelein, Independent, Hong Kong", 42, INK, align="center"), (W // 2, 740), fade(t, 6.4), anchor="mt")
         paste(c, text_block("AI Collusion Research Sprint, Apart Research, October 2026", 38, MUTED, align="center"), (W // 2, 805), fade(t, 6.8), anchor="mt")
-        paste(c, text_block("github.com/julianmundelein-beep/2026-ai-collusion-sprint", 44, ACCENT, "semibold", align="center"), (W // 2, 900), fade(t, 7.4), anchor="mt")
+        paste(c, text_block("github.com/julianmundelein-beep/2026-ai-collusion-sprint", 44, ACCENT, "semibold", align="center"), (W // 2, 880), fade(t, 7.4), anchor="mt")
+        paste(c, text_block("Thank you for watching.", 44, INK, align="center"), (W // 2, 970), fade(t, 11.0), anchor="mt")
         return c
 
-    return Scene("13 Close", draw, min_duration=12.0)
+    return Scene("13 Close", draw, min_duration=13.0)
 
 
 def build_scenes() -> list[Scene]:

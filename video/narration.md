@@ -16,7 +16,7 @@ Thirteen scenes, one voice file each. Record or generate each block as `video/vo
 | 10 Application | 3:20 | 22.5 s | 52 |
 | 11 Scorecard | 3:42 | 24.0 s | 53 |
 | 12 Limits | 4:05 | 24.5 s | 47 |
-| 13 Close | 4:29 | 18.0 s | 43 |
+| 13 Close | 4:31 | 19.5 s | 51 |
 
 Pronunciation for a voice tool: "Bigoni" as bee-GO-nee, "Qwen" as kwen, "Llama" as lah-ma, "Haiku" as HY-koo, "Nash" as in cash.
 
@@ -92,8 +92,8 @@ Pronunciation for a voice tool: "Bigoni" as bee-GO-nee, "Qwen" as kwen, "Llama" 
 |---|---|
 | Four limits. This is a laboratory game, not a market. The agents play for points, not money. Haiku's response to the fine is not robust to a rewording of the instructions. And the price screen has no human baseline: the threshold curve was never run with people. | Four bullets appear one after another (1.2 s, 3.6 s, 6.0 s, 8.4 s). |
 
-## 13 Close (4:29, 18.0 s)
+## 13 Close (4:31, 19.5 s)
 
 | Voice | On screen |
 |---|---|
-| A price screen reaches the silent coordination, but the agents price on its published line, and hiding the line alone does not lower prices. An authority has to choose where the line lies, not only whether to publish it. Code, pre-registration, every model call and the report are on GitHub. | The conclusion in the accent colour (0.5 s), then title, author and sprint (5.4 s to 6.8 s) and the repository address (7.4 s). |
+| A price screen reaches the silent coordination, but the agents price on its published line, and hiding the line alone does not lower prices. An authority has to choose where the line lies, not only whether to publish it. My code, every model call, the whole documentation and the report are on GitHub. Thank you for watching. | The conclusion in the accent colour (0.5 s), then title, author and sprint (5.4 s to 6.8 s), the repository address (7.4 s) and "Thank you for watching." (11.0 s). |
